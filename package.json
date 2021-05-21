@@ -1,0 +1,16 @@
+{
+  "name": "qt6book",
+  "version": "1.0.0",
+  "description": "A book about Qt6",
+  "main": "index.js",
+  "repository": "git@github.com:qmlbook/qt6book.git",
+  "author": "Juergen Ryannel <juergen@ryannel.org>",
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^1.8.2"
+  },
+  "scripts": {
+    "docs:dev": "vuepress dev docs --host 127.0.0.1",
+    "docs:build": "vuepress build docs"
+  }
+}
