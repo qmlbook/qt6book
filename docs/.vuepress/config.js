@@ -1,7 +1,16 @@
 module.exports = {
   title: 'Qt6 Book',
-  description: "A book about Qt6",
+  description: "A book about Qt6",  
   themeConfig: {
+    displayAllHeaders: false,
+    repo: 'qmlbook/qt6book',
+    repoLabel: 'Contribute!',
+    docsDir: 'docs',
+    docsBranch: 'main',
+    editLinks: true,
+    editLinkText: 'Help us improve this page!',
+    smoothScroll: true,
+    lastUpdated: 'Last Updated',
     nav: [
     ],
     sidebar: [
