@@ -11,6 +11,7 @@
   },
   "scripts": {
     "docs:dev": "vuepress dev docs --host 127.0.0.1",
-    "docs:build": "vuepress build docs"
+    "docs:build": "vuepress build docs",
+    "docs:examples": "./build-examples.sh"
   }
 }
