@@ -27,8 +27,7 @@
 
 // showcase.qml
 
-import QtQuick 2.5
-import QtGraphicalEffects 1.0
+import QtQuick
 
 Image {
     id: root
@@ -53,26 +52,12 @@ Image {
                 duration: 250
             }
         }
-        layer.effect: FastBlur {
-            id: blur
-            radius: root.blurRadius
-            Behavior on radius {
-                NumberAnimation {
-                    duration: 250
-                }
-            }
-        }
-        layer.enabled: true
     }
 
     MouseArea {
         anchors.fill: parent
         onPressed: {
             wheel.rotation += 90
-            root.blurRadius = 16
-        }
-        onReleased: {
-            root.blurRadius = 0
         }
     }
 }

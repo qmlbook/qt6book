@@ -1,6 +1,9 @@
 module.exports = {
   title: 'Qt6 Book',
   description: "A book about Qt6",  
+  plugins: [
+    'vuepress-plugin-mermaidjs'
+  ],  
   themeConfig: {
     displayAllHeaders: false,
     repo: 'qmlbook/qt6book',
@@ -33,7 +36,7 @@ module.exports = {
       ch17Sidebar(),
       ch18Sidebar(),
     ],
-  },
+  },  
 }
 
 function ch18Sidebar() {
@@ -327,8 +330,8 @@ function ch01Sidebar() {
     collapsable: false,
     children: [
       '/ch01-meetqt/meet-qt',
-      '/ch01-meetqt/qt5-blocks',
-      '/ch01-meetqt/qt5-intro',
+      '/ch01-meetqt/blocks',
+      '/ch01-meetqt/intro',
     ]
   }
 }

@@ -27,7 +27,7 @@
 
 // background.qml
 
-import QtQuick 2.5
+import QtQuick
 
 Item {
     id: window
