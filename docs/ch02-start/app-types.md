@@ -1,10 +1,10 @@
 # Application Types
 
-This section is a run through of different application types one can write with Qt 5. It’s not limited to the selection presented here, but it will give you a better idea of what you can achieve with Qt 5 in general.
+This section is a run through of different application types one can write with Qt 6. It’s not limited to the selection presented here, but it will give you a better idea of what you can achieve with Qt 6 in general.
 
 ## Console Application
 
-A console application does not provide a graphical user interface, and is usually called as part of a system service or from the command line. Qt 5 comes with a series of ready-made components which help you create cross-platform console applications very efficiently. For example, the networking file APIs, string handling, and an efficient command line parser. As Qt is a high-level API on top of C++, you get programming speed paired with execution speed. Don’t think of Qt as being *just* a UI toolkit - it has so much more to offer!
+A console application does not provide a graphical user interface, and is usually called as part of a system service or from the command line. Qt 6 comes with a series of ready-made components which help you create cross-platform console applications very efficiently. For example, the networking file APIs, string handling, and an efficient command line parser. As Qt is a high-level API on top of C++, you get programming speed paired with execution speed. Don’t think of Qt as being *just* a UI toolkit - it has so much more to offer!
 
 ## String Handling
 
@@ -124,8 +124,7 @@ int main(int argc, char** argv)
 When you work on user interfaces, you may need to create custom-made widgets. Typically, a widget is a window area filled with painting calls. Additionally, the widget has internal knowledge of how to handle keyboard and mouse input, as well as how to react to external triggers. To do this in Qt, we need to derive from QWidget and overwrite several functions for painting and event handling.
 
 ```cpp
-ifndef CUSTOMWIDGET_H
-define CUSTOMWIDGET_H
+#pragma once
 
 include <QtWidgets>
 
@@ -140,8 +139,6 @@ public:
 private:
     QPoint m_lastPos;
 };
-
-endif // CUSTOMWIDGET_H
 ```
 
 In the implementation, we draw a small border on our widget and a small rectangle on the last mouse position. This is very typical for a low-level custom widget. Mouse and keyboard events change the internal state of the widget and trigger a painting update. We won’t go into too much detail about this code, but it is good to know that you have the possibility. Qt comes with a large set of ready-made desktop widgets, so it’s likely that you don’t have to do this.
@@ -251,6 +248,7 @@ void CustomWidget::updateItem()
 ## Drawing Shapes
 
 Some problems are better visualized. If the problem at hand looks remotely like geometrical objects, Qt graphics view is a good candidate. A graphics view arranges simple geometrical shapes in a scene. The user can interact with these shapes, or they are positioned using an algorithm. To populate a graphics view, you need a graphics view and a graphics scene. The scene is attached to the view and is populated with graphics items.
+
 Here is a short example. First the header file with the declaration of the view and scene.
 
 ```cpp
@@ -358,7 +356,7 @@ The filter proxy model is much more powerful than demonstrated here. For now, it
 
     This has been an overview of the different kind of classic applications you can develop with Qt 5. The desktop is moving, and soon the mobile devices will be our desktop of tomorrow. Mobile devices have a different user interface design. They are much more simplistic than desktop applications. They do one thing and they do it with simplicity and focus. Animations are an important part of the mobile experience. A user interface needs to feel alive and fluent. The traditional Qt technologies are not well suited for this market.
 
-Coming next: Qt Quick to the rescue.
+*Coming next: Qt Quick to the rescue.*
 
 ## Qt Quick Application
 
@@ -372,7 +370,7 @@ This is a simple Qt Quick UI below
 import QtQuick 2.5
 
 Rectangle {
-    width: 240; height: 1230
+    width: 240; height: 240
     Rectangle {
         width: 40; height: 40
         anchors.centerIn: parent
@@ -384,10 +382,15 @@ Rectangle {
 The declaration language is called QML and it needs a runtime to execute it. Qt provides a standard runtime called `qmlscene` but it’s also not so difficult to write a custom runtime. For this, we need a quick view and set the main QML document as a source. The only thing left is to show the user interface.
 
 ```cpp
-QQuickView* view = new QQuickView();
-QUrl source = QUrl::fromLocalFile("main.qml");
-view->setSource(source);
-view->show();
+#include <QtGui>
+#include <QtQml>
+
+int main(int argc, char *argv[])
+{
+    QGuiApplication app(argc, argv);
+    QQmlApplicationEngine engine("main.qml");
+    return app.exec();
+}
 ```
 
 Let’s come back to our earlier examples. In one example, we used a C++ city model. It would be great if we could use this model inside our declarative QML code.
@@ -395,7 +398,7 @@ Let’s come back to our earlier examples. In one example, we used a C++ city mo
 To enable this, we first code our front-end to see how we would want to use a city model. In this case, the front-end expects an object named `cityModel` which we can use inside a list view.
 
 ```qml
-import QtQuick 2.5
+import QtQuick
 
 Rectangle {
     width: 240; height: 120
@@ -417,7 +420,7 @@ QHash<int, QByteArray> roles;
 roles[Qt::UserRole+1] = "city";
 roles[Qt::UserRole+2] = "country";
 m_model->setRoleNames(roles);
-view->rootContext()->setContextProperty("cityModel", m_model);
+engine.rootContext()->setContextProperty("cityModel", m_model);
 ```
 
 
