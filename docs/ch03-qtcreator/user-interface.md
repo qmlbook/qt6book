@@ -1,17 +1,16 @@
 # The User Interface
 
-When starting Qt Creator you are greeted by the *Welcome* screen. There you will find the most important hints on how to continue inside Qt Creator and your recently used projects. You will also see the sessions list, which might be empty for you. A session is a collection of projects stored for your reference. This comes really handy when you have several customers with larger projects.
+When starting Qt Creator you are greeted by the *Welcome* screen. There you will find the most important hints on how to continue inside Qt Creator and your recently used projects. You will also see the sessions list, which might be empty for you. A session is a collection of projects and configurations stored for fast access. This comes really handy when you have several customers with larger projects.
 
-On the left side, you will see the mode-selector. The mode selectors contain typical steps from your workflow.
+On the left side, you will see the mode-selector. The mode selectors support typical steps from a developer workflow.
 
-
-* Welcome mode: For your orientation.
-* Edit mode: Focus on the code
-* Design mode: Focus on the UI design
-* Debug mode: Retrieve information about a running application
-* Projects mode: Modify your projects run and build configuration
-* Analyze mode: For detecting memory leaks and profiling
-* Help mode: Easy access to the Qt documentation
+* **Welcome mode**: For your orientation.
+* **Edit mode**: Focus on the code
+* **Design mode**: Focus on the UI design
+* **Debug mode**: Retrieve information about a running application
+* **Projects mode**: Modify your projects run and build configuration
+* **Analyze mode**: For detecting memory leaks and profiling
+* **Help mode**: Easy access to the Qt documentation
 
 Below the mode-selectors, you will find the actual project-configuration selector and the run/debug
 
