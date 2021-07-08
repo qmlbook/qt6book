@@ -1,6 +1,6 @@
 # Common Patterns
 
-There a number of common user interface patterns that can be implemented using Qt Quick Controls 2. In this section, we try to demonstrate how some of the more common ones can be built.
+There a number of common user interface patterns that can be implemented using Qt Quick Controls. In this section, we try to demonstrate how some of the more common ones can be built.
 
 ## Nested Screens
 
@@ -17,8 +17,8 @@ The initial home screen of the application is shown in the figure below.
 The application start in `main.qml` where we have an `ApplicationWindow` containing a `ToolBar`, a `Drawer`, a `StackView` and a home page element, `Home`. We will look into each of the components below.
 
 ```qml
-import QtQuick 2.9
-import QtQuick.Controls 2.2
+import QtQuick
+import QtQuick.Controls
 
 ApplicationWindow {
 
@@ -47,8 +47,8 @@ ApplicationWindow {
 The home page, `Home.qml` consists of a `Page`, which is an control element that support headers and footers. In this example we simply center a `Label` with the text *Home Screen* on the page. This works because the contents of a `StackView` automatically fills the stack view, so the page has the right size for this to work.
 
 ```qml
-import QtQuick 2.9
-import QtQuick.Controls 2.2
+import QtQuick
+import QtQuick.Controls
 
 Page {
     title: qsTr("Home")
@@ -152,8 +152,8 @@ Now we’ve seen how to reach the *About* and *Profile* pages, but we also want 
 ![](./assets/interface-stack-profile.png)
 
 ```qml
-import QtQuick 2.9
-import QtQuick.Controls 2.2
+import QtQuick
+import QtQuick.Controls
 
 Page {
     title: qsTr("Profile")
@@ -188,8 +188,8 @@ The illustration below shows how the *Current* page looks in the application. Th
 Diving into `main.qml`, it consists of an `ApplicationWindow` with the `SwipeView`.
 
 ```qml
-import QtQuick 2.9
-import QtQuick.Controls 2.2
+import QtQuick
+import QtQuick.Controls
 
 ApplicationWindow {
     visible: true
@@ -262,8 +262,8 @@ ApplicationWindow {
 Each page consists of a `Page` with a `header` consisting of a `Label` and some contents. For the *Current* and *User Stats* pages the contents is a simple `Label`, but for the *Community Stats* page, a back button is included.
 
 ```qml
-import QtQuick 2.9
-import QtQuick.Controls 2.2
+import QtQuick
+import QtQuick.Controls
 
 Page {
     header: Label {
@@ -318,8 +318,8 @@ The code starts from an `ApplicationWindow` with a *File* menu with the standard
 We import the `Qt.labs.platform` for native dialogs and have made the subsequent changes to the project file and `main.cpp` as described in the section on native dialogs above.
 
 ```qml
-import QtQuick 2.0
-import QtQuick.Controls 2.4
+import QtQuick
+import QtQuick.Controls
 import Qt.labs.platform 1.0 as NativeDialogs
 
 ApplicationWindow {
@@ -362,7 +362,7 @@ ApplicationWindow {
 To bootstrap the program, we create the first `DocumentWindow` instance from the `main.qml`, which is the entry point of the application.
 
 ```qml
-import QtQuick 2.0
+import QtQuick
 
 DocumentWindow {
     visible: true
