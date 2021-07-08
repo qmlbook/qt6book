@@ -259,7 +259,7 @@ function ch06Sidebar() {
 
 function ch05Sidebar() {
   return {
-    title: "Fluid Elements (Qt5)",
+    title: "Fluid Elements (Qt6 - Draft)",
     path: '/ch05-fluid/fluid-elements',
     collapsable: false,
     children: [
