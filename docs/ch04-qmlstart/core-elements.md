@@ -46,6 +46,13 @@ Rectangle {
 
 ::: tip
 Valid colors values are colors from the SVG color names (see  [http://www.w3.org/TR/css3-color/#svg-color](http://www.w3.org/TR/css3-color/#svg-color)). You can provide colors in QML in different ways, but the most common way is an RGB string (‘#FF4444’) or as a color name (e.g. ‘white’).
+
+A random color can be created using some JavaScript.
+
+```qml
+color: Qt.rgba( Math.random(), Math.random(), Math.random(), 1 )
+```
+
 :::
 
 Besides a fill color and a border the rectangle also supports custom gradients.
@@ -90,7 +97,11 @@ Text {
 
 ![](./assets/text.png)
 
-Text can be aligned to each side and the center using the `horizontalAlignment` and `verticalAlignment` properties. To further enhance the text rendering you can use the `style` and `styleColor` property, which allows you render the text in outline, raised and sunken mode. For longer text, you often want to define a *break* position like *A very … long text*, this can be achieved using the `elide` property. The `elide` property allows you to set the elide position to the left, right or middle of your text. In case you don’t want the ‘…’ of the elide mode to appear but still want to see the full text you can also wrap the text using the `wrapMode` property (works only when the width is explicitly set):
+Text can be aligned to each side and the center using the `horizontalAlignment` and `verticalAlignment` properties. To further enhance the text rendering you can use the `style` and `styleColor` property, which allows you render the text in outline, raised and sunken mode. 
+
+For longer text, you often want to define a *break* position like *A very … long text*, this can be achieved using the `elide` property. The `elide` property allows you to set the elide position to the left, right or middle of your text. 
+
+In case you don’t want the ‘…’ of the elide mode to appear but still want to see the full text you can also wrap the text using the `wrapMode` property (works only when the width is explicitly set):
 
 ```qml
 Text {
@@ -120,7 +131,7 @@ Often when you want to layout `Text` elements you need to differentiate between 
 
 ## Image Element
 
-An `Image` element is able to display images in various formats (e.g. PNG, JPG, GIF, BMP, WEBP). *For the full list of supported image formats, please consult the Qt documentation*. Besides the obvious `source` property to provide the image URL, it contains a `fillMode` which controls the resizing behavior.
+An `Image` element is able to display images in various formats (e.g. `PNG`, `JPG`, `GIF`, `BMP`, `WEBP`). *For the full list of supported image formats, please consult the Qt documentation*. Besides the obvious `source` property to provide the image URL, it contains a `fillMode` which controls the resizing behavior.
 
 ```qml
 Image {
@@ -181,15 +192,15 @@ Rectangle {
 }
 ```
 
-![](./assets/mousearea1.png)
+![MouseArea](./assets/mousearea1.png)
 
-![](./assets/mousearea2.png)
+![MouseArea](./assets/mousearea2.png)
 
 ::: tip
 This is an important aspect of Qt Quick, the input handling is separated from the visual presentation. By this it allows you to show the user an interface element, but the interaction area can be larger.
 :::
 
 ::: tip
-For more complex interaction, [Qt Quick Input Handlers](https://doc-snapshots.qt.io/qt5-dev/qtquickhandlers-index.html) where introduced with Qt 5.12. They are intended to be used instead of elements such as `MouseArea` and `Flickable` and offer greater control and flexibility. The idea is to handle one interaction aspect in each handler instance instead of centralizing the handling of all events from a given source in a single element, which was the case before.
+For more complex interactionsee [Qt Quick Input Handlers](https://doc.qt.io/qt-6/qtquickhandlers-index.html). They are intended to be used instead of elements such as `MouseArea` and `Flickable` and offer greater control and flexibility. The idea is to handle one interaction aspect in each handler instance instead of centralizing the handling of all events from a given source in a single element, which was the case before.
 :::
 

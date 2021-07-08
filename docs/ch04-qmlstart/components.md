@@ -56,7 +56,7 @@ To achieve this we create a `Button.qml` file and copy our button UI inside. Add
 ```qml
 // Button.qml
 
-import QtQuick 2.5
+import QtQuick
 
 Rectangle {
     id: root
