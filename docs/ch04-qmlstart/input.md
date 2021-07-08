@@ -9,7 +9,7 @@ The `TextInput` allows the user to enter a line of text. The element supports in
 ```qml
 // textinput.qml
 
-import QtQuick 2.5
+import QtQuick
 
 Rectangle {
     width: 200
@@ -41,7 +41,7 @@ The user can click inside a `TextInput` to change the focus. To support switchin
 ```qml
 // textinput2.qml
 
-import QtQuick 2.5
+import QtQuick
 
 Rectangle {
     width: 200
@@ -76,7 +76,7 @@ We move this piece of code into our own component called `TLineEditV1` for reuse
 ```qml
 // TLineEditV1.qml
 
-import QtQuick 2.5
+import QtQuick
 
 Rectangle {
     width: 96; height: input.height + 8
@@ -126,7 +126,7 @@ A focus scope declares that the last child element with `focus: true` receives t
 ```qml
 // TLineEditV2.qml
 
-import QtQuick 2.5
+import QtQuick
 
 FocusScope {
     width: 96; height: input.height + 8
@@ -174,7 +174,7 @@ The `TextEdit` is very similar to `TextInput` and support a multi-line text edit
 ```qml
 // TTextEdit.qml
 
-import QtQuick 2.5
+import QtQuick
 
 FocusScope {
     width: 96; height: 96
@@ -202,7 +202,7 @@ You can use it like the `TLineEdit` component
 ```qml
 // textedit.qml
 
-import QtQuick 2.5
+import QtQuick
 
 Rectangle {
     width: 136
@@ -228,7 +228,7 @@ The attached property `Keys` allows executing code based on certain key presses.
 ```qml
 // keys.qml
 
-import QtQuick 2.5
+import QtQuick
 
 DarkSquare {
     width: 400; height: 200

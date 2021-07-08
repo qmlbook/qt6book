@@ -10,7 +10,7 @@ Before we go into details, let me introduce some helper elements. The red, blue,
 ```qml
 // RedSquare.qml
 
-import QtQuick 2.5
+import QtQuick
 
 Rectangle {
     width: 48
@@ -29,7 +29,7 @@ The `Column` element arranges child items into a column by stacking them on top 
 ```qml
 // column.qml
 
-import QtQuick 2.5
+import QtQuick
 
 DarkSquare {
     id: root
@@ -54,7 +54,7 @@ The `Row` element places its child items next to each other, either from the lef
 ```qml
 // row.qml
 
-import QtQuick 2.5
+import QtQuick
 
 BrightSquare {
     id: root
@@ -78,7 +78,7 @@ The `Grid` element arranges its children in a grid, by setting the `rows` and `c
 ```qml
 // grid.qml
 
-import QtQuick 2.5
+import QtQuick
 
 BrightSquare {
     id: root
@@ -106,7 +106,7 @@ The final positioner is `Flow`. It adds its child items in a flow. The direction
 ```qml
 // flow.qml
 
-import QtQuick 2.5
+import QtQuick
 
 BrightSquare {
     id: root
@@ -132,7 +132,7 @@ An element often used with positioners is the `Repeater`. It works like a for-lo
 ```qml
 // repeater.qml
 
-import QtQuick 2.5
+import QtQuick
 
 DarkSquare {
     id: root

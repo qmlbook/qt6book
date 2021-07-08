@@ -1,6 +1,5 @@
 ---
 home: true
-heroImage: /hero.png
 heroText: Qt6 Book
 tagline: A book about Qt6
 actionText: Get Started →

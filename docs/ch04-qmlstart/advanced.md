@@ -6,4 +6,4 @@ QML and Javascript are interpreted languages. This means that they do not have t
 
 The QML engine uses just-in-time (JIT) compilation to improve performance. It also caches the intermediate output to avoid having to recompile. This works seamlessly for you as a developer. The only trace of this is that files ending with `qmlc` and `jsc` can be found next to the source files.
 
-If you want to avoid the initial start-up penalty induced by the initial parsing you can also pre-compile your QML and Javascript. This requires you to put your code into a Qt resource file and is described in detail in the [Compiling QML Ahead of Time](http://doc.qt.io/qt-5/qtquick-deployment.html#compiling-qml-ahead-of-time) chapter in the Qt documentation.
+If you want to avoid the initial start-up penalty induced by the initial parsing you can also pre-compile your QML and Javascript. This requires you to put your code into a Qt resource file and is described in detail in the [Compiling QML Ahead of Time](http://doc.qt.io/qt-6/qtquick-deployment.html#compiling-qml-ahead-of-time) chapter in the Qt documentation.
