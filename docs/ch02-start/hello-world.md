@@ -17,8 +17,8 @@ Another file, `HelloWorld.qml`, is our application code. Open it and try to unde
 ```qml
 // HelloWorld.qml
 
-import QtQuick 2.15
-import QtQuick.Window 2.15
+import QtQuick
+import QtQuick.Window
 
 Window {
     width: 640

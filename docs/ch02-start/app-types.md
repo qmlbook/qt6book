@@ -367,7 +367,7 @@ Qt Quick provides a declarative environment where your user interface (the front
 This is a simple Qt Quick UI below
 
 ```qml
-import QtQuick 2.5
+import QtQuick
 
 Rectangle {
     width: 240; height: 240
