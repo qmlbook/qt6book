@@ -165,8 +165,10 @@ Text {
 
     text: "Space pressed: " + spacePresses + " times"
 
-    // (1) handler for text changes
-    onTextChanged: console.log("text changed to:", text)
+    // (1) handler for text changes. Need to use function to capture parameters
+    onTextChanged: function(text) { 
+        console.log("text changed to:", text)
+    }
 
     // need focus to receive key events
     focus: true
@@ -189,7 +191,7 @@ Text {
 ```
 
 
-* **(1)** The text changed handler `onTextChanged` prints the current text every-time the text changed due to a space-bar key pressed
+* **(1)** The text changed handler `onTextChanged` prints the current text every-time the text changed due to a space-bar key pressed. As we use a parameter injected by the signal, we need to use the function syntax here. Also possible would be to use am arrow function (`(text) => {}`). But we feel `function(text) {}` is more readable.
 
 
 * **(2)** When the text element receives the space-bar key (because the user pressed the space-bar on the keyboard) we call a JavaScript function `increment()`.

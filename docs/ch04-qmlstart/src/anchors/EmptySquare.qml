@@ -27,7 +27,7 @@
 
 // EmptySquare.qml
 
-import QtQuick 2.5
+import QtQuick
 
 Item {
     width: 96
