@@ -44,8 +44,10 @@ Rectangle {
 
         text: "Space pressed: " + spacePresses + " times"
 
-        // (1) handler for text changes
-        onTextChanged: console.log("text changed to:", text)
+        // (1) handler for text changes, need to use function to capture parameter
+        onTextChanged: function(text) {
+            console.log("text changed to:", text)
+        }
 
         // need focus to receive key events
         focus: true
