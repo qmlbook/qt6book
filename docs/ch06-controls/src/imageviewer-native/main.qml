@@ -52,7 +52,7 @@ ApplicationWindow {
         asynchronous: true
     }
 
-    FileDialog {
+    Platform.FileDialog {
         id: fileOpenDialog
         title: "Select an image file"
         folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
@@ -73,7 +73,7 @@ ApplicationWindow {
             horizontalAlignment: Text.AlignHCenter
         }
 
-        standardButtons: StandardButton.Ok
+        standardButtons: Dialog.Ok
     }
 
     // ...

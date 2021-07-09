@@ -24,15 +24,15 @@ ApplicationWindow {
         asynchronous: true
     }
 
-    FileDialog {
+    Platform.FileDialog {
         id: fileOpenDialog
 
         // ...
 
         title: "Select an image file"
-        folder: shortcuts.documents
+        folder: Platform.StandardPaths.writableLocation(Platform.StandardPaths.DocumentsLocation)
         nameFilters: [ "Image files (*.png *.jpeg *.jpg)" ]
-        onAccepted: image.source = fileOpenDialog.fileUrl;
+        onAccepted: image.source = fileOpenDialog.file;
     }
 
     Dialog {
@@ -41,7 +41,7 @@ ApplicationWindow {
         // ...
 
         title: qsTr("About")
-        standardButtons: StandardButton.Ok
+        standardButtons: Dialog.Ok
 
         Label {
             anchors.fill: parent

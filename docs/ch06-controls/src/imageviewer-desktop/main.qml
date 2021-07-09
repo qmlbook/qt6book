@@ -52,15 +52,15 @@ ApplicationWindow {
         asynchronous: true
     }
 
-    FileDialog {
+    Platform.FileDialog {
         id: fileOpenDialog
         title: "Select an image file"
-        folder: shortcuts.documents
+        folder: Platform.StandardPaths.writableLocation(Platform.StandardPaths.DocumentsLocation)
         nameFilters: [
             "Image files (*.png *.jpeg *.jpg)",
         ]
         onAccepted: {
-            image.source = fileOpenDialog.fileUrl
+            image.source = fileOpenDialog.file
         }
     }
 
@@ -73,7 +73,7 @@ ApplicationWindow {
             horizontalAlignment: Text.AlignHCenter
         }
 
-        standardButtons: StandardButton.Ok
+        standardButtons: Dialog.Ok
     }
 
     // ...
