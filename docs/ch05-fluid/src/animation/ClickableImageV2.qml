@@ -29,7 +29,7 @@
 // ClickableImageV2.qml
 // Simple image which can be clicked
 
-import QtQuick 2.5
+import QtQuick
 
 Item {
     id: root

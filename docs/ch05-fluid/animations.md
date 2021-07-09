@@ -284,8 +284,8 @@ The internals of the EasingType renders the curve in real time and the intereste
 ```qml
 // EasingCurves.qml
 
-import QtQuick 2.5
-import QtQuick.Layouts 1.2
+import QtQuick
+import QtQuick.Layouts
 
 Rectangle {
     id: root
@@ -477,7 +477,7 @@ A sequential animation will first run the first child animation and then continu
 
 ```qml
 // SequentialAnimationExample.qml
-import QtQuick 2.5
+import QtQuick
 
 BrightSquare {
     id: root
