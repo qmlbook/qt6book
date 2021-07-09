@@ -28,7 +28,7 @@
 // M1>>
 // TTextEdit.qml
 
-import QtQuick 2.5
+import QtQuick
 
 FocusScope {
     width: 96; height: 96

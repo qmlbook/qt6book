@@ -28,7 +28,7 @@
 // M1>>
 // keys.qml
 
-import QtQuick 2.5
+import QtQuick
 
 DarkSquare {
     width: 400; height: 200

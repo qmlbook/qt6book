@@ -1,6 +1,6 @@
-import QtQuick 2.0
-import QtQuick.Controls 2.4
-import Qt.labs.platform 1.0
+import QtQuick
+import QtQuick.Controls
+import Qt.labs.platform as Platform
 
 ApplicationWindow {
     
@@ -52,7 +52,7 @@ ApplicationWindow {
         asynchronous: true
     }
 
-    FileDialog {
+    Platform.FileDialog {
         id: fileOpenDialog
         title: "Select an image file"
         folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
@@ -73,7 +73,7 @@ ApplicationWindow {
             horizontalAlignment: Text.AlignHCenter
         }
 
-        standardButtons: StandardButton.Ok
+        standardButtons: Dialog.Ok
     }
 
     // ...

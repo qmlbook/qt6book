@@ -27,7 +27,7 @@
 
 // TLineEdit.qml
 
-import QtQuick 2.5
+import QtQuick
 
 FocusScope {
     width: 96; height: input.height + 8

@@ -27,7 +27,7 @@
 
 // mixed.qml
 
-import QtQuick 2.5
+import QtQuick
 
 Column {
     width: 240

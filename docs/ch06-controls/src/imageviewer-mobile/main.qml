@@ -1,7 +1,7 @@
-import QtQuick 2.0
-import QtQuick.Controls 2.4
-import QtQuick.Dialogs 1.2
-import QtQuick.Controls.Material 2.1
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Controls.Material
+import Qt.labs.platform as Platform
 
 ApplicationWindow {
     
@@ -57,7 +57,7 @@ ApplicationWindow {
             id: menuButton
             anchors.left: parent.left
             anchors.verticalCenter: parent.verticalCenter
-            icon.source: "images/baseline-menu-24px.svg"
+            icon.source: "qrc:///images/baseline-menu-24px.svg"
             onClicked: drawer.open()
         }
         Label {
@@ -79,15 +79,15 @@ ApplicationWindow {
         asynchronous: true
     }
 
-    FileDialog {
+    Platform.FileDialog {
         id: fileOpenDialog
         title: "Select an image file"
-        folder: shortcuts.documents
+        folder: Platform.StandardPaths.writableLocation(Platform.StandardPaths.DocumentsLocation)
         nameFilters: [
             "Image files (*.png *.jpeg *.jpg)",
         ]
         onAccepted: {
-            image.source = fileOpenDialog.fileUrl
+            image.source = fileOpenDialog.file
         }
     }
 
@@ -100,7 +100,7 @@ ApplicationWindow {
             horizontalAlignment: Text.AlignHCenter
         }
 
-        standardButtons: StandardButton.Ok
+        standardButtons: Dialog.Ok
     }
 
     // ...

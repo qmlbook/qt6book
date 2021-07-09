@@ -320,7 +320,7 @@ We import the `Qt.labs.platform` for native dialogs and have made the subsequent
 ```qml
 import QtQuick
 import QtQuick.Controls
-import Qt.labs.platform 1.0 as NativeDialogs
+import Qt.labs.platform as NativeDialogs
 
 ApplicationWindow {
     id: root

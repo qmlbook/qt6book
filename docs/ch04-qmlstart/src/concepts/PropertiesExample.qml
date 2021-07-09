@@ -27,7 +27,7 @@
 
 // properties.qml
 
-import QtQuick 2.5
+import QtQuick
 
 Rectangle {
     width: 240

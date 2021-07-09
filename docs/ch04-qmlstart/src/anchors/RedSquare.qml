@@ -27,7 +27,7 @@
 
 // RedSquare.qml
 
-import QtQuick 2.5
+import QtQuick
 
 Square {
     color: "#ea7025"

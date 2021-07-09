@@ -28,7 +28,7 @@
 // M1>>
 // Button.qml
 
-import QtQuick 2.5
+import QtQuick
 
 Rectangle {
     id: root
