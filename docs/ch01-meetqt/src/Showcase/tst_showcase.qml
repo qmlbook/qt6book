@@ -26,7 +26,7 @@
  */
 
 import QtQuick
-import QtTest 1.1
+import QtTest
 
 Showcase {
     id: root
