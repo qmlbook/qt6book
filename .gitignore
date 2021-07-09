@@ -105,3 +105,4 @@ dist
 *.user
 *.qtds.*
 *.qtds
+build-*

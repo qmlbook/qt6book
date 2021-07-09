@@ -1,6 +1,6 @@
-import QtQuick 2.0
-import QtQuick.Controls 2.4
-import Qt.labs.platform 1.0 as NativeDialogs
+import QtQuick
+import QtQuick.Controls
+import Qt.labs.platform as NativeDialogs
 
 ApplicationWindow {
     id: root
@@ -110,7 +110,7 @@ ApplicationWindow {
         }
     }
 
-    onClosing: {
+    onClosing: function(close) {
         if (root._isDirty) {
             closeWarningDialog.open();
             close.accepted = false;
