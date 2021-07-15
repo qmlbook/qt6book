@@ -2,7 +2,7 @@
 
 ## The PathView
 
-The `PathView` element is the most powerful, but also the most complex, view provided in Qt Quick. It makes it possible to create a view where the items are laid out along an arbitrary path. Along the same path, attributes such as scale, opacity and more can be controlled in detail.
+The `PathView` element is the most flexible view provided in Qt Quick, but it is also the most complex. It makes it possible to create a view where the items are laid out along an arbitrary path. Along the same path, attributes such as scale, opacity and more can be controlled in detail.
 
 When using the `PathView`, you have to define a delegate and a path. In addition to this, the `PathView` itself can be customized through a range of properties. The most common being `pathItemCount`, controlling the number of visible items at once, and the highlight range control properties `preferredHighlightBegin`, `preferredHighlightEnd` and `highlightRangeMode`, controlling where along the path the current item is to be shown.
 
@@ -110,7 +110,7 @@ In the example below, we set up a simple `TableView` with a custom model exposed
 
 ![image](./assets/tableview.png)
 
-Before we can use the `TableView` element, we must make sure that the `2.12` version of `QtQuick` is imported. After that, we can set it up. In this example below, we set the `rowSpacing` and `columnSpacing` to control the horizontal and vertical gaps between delegates. The rest of the properties are set up as for any other type of view.
+In the example below, we create a `TableView` and set the `rowSpacing` and `columnSpacing` to control the horizontal and vertical gaps between delegates. The rest of the properties are set up as for any other type of view.
 
 ```qml
 import QtQuick 2.12
@@ -378,7 +378,7 @@ Another aspect of the `ObjectModel` is that is can be dynamically populated usin
 
 ## Models with Actions
 
-Since 5.11, the `ListElement` type supports the binding of Javascript functions to properties. This means that you can put functions into a model. This is very useful when building menus with actions and similar constructs.
+The `ListElement` type supports the binding of Javascript functions to properties. This means that you can put functions into a model. This is very useful when building menus with actions and similar constructs.
 
 The example below demonstrates this by having a model of cities that greet you in different ways. The `actionModel` is a model of four cities, but the `hello` property is bound to functions. Each function takes an argument `value`, but you can have any number arguments.
 
