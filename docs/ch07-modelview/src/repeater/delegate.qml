@@ -25,8 +25,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-// M1>>
-import QtQuick 2.5
+import QtQuick 6.2
 import "../common"
 
 Column {
@@ -42,4 +41,3 @@ Column {
         }
     }
 }
-// <<M1

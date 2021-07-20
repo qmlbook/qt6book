@@ -25,8 +25,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-// M1>>
-import QtQuick 2.5
+import QtQuick 6.2
 
 Rectangle {
     width: 480
@@ -125,16 +124,22 @@ Rectangle {
                 }
             }
 
-            GridView.onRemove: SequentialAnimation {
+            GridView.onRemove: removeAnimation.start();
+            
+            SequentialAnimation {
+                id: removeAnimation
+                
                 PropertyAction { target: wrapper; property: "GridView.delayRemove"; value: true }
                 NumberAnimation { target: wrapper; property: "scale"; to: 0; duration: 250; easing.type: Easing.InOutQuad }
                 PropertyAction { target: wrapper; property: "GridView.delayRemove"; value: false }
             }
 
-            GridView.onAdd: SequentialAnimation {
+            GridView.onAdd: addAnimation.start();
+            
+            SequentialAnimation {
+                id: addAnimation
                 NumberAnimation { target: wrapper; property: "scale"; from: 0; to: 1; duration: 250; easing.type: Easing.InOutQuad }
             }
         }
     }
 }
-// <<M1

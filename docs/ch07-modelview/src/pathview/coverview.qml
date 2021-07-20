@@ -25,7 +25,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import QtQuick 2.5
+import QtQuick 6.2
 import "../common"
 
 Background {
@@ -33,7 +33,7 @@ Background {
 
     width: 100
     height: 300
-// M1>>
+
     PathView {
         anchors.fill: parent
 
@@ -66,9 +66,7 @@ Background {
         preferredHighlightBegin: 0.5
         preferredHighlightEnd: 0.5
     }
-// <<M1
 
-// M2>>
     Component {
         id: flipCardDelegate
 
@@ -99,5 +97,4 @@ Background {
             text: index
         }
     }
-// <<M2
 }

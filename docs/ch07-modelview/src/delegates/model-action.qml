@@ -25,8 +25,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-// M1>>
-import QtQuick 2.11
+import QtQuick 6.2
 
 Rectangle {
     width: 120
@@ -94,4 +93,3 @@ Rectangle {
         }
     }
 }
-// <<M1

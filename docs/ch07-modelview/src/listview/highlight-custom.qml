@@ -25,7 +25,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import QtQuick 2.5
+import QtQuick 6.2
 import "../common"
 
 Background {
@@ -49,7 +49,7 @@ Background {
         highlightFollowsCurrentItem: false
         focus: true
     }
-// M1>>
+
     Component {
         id: highlightComponent
 
@@ -73,7 +73,6 @@ Background {
             }
         }
     }
-// <<M1
 
     Component {
         id: numberDelegate

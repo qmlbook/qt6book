@@ -10,12 +10,12 @@ Repeaters work well for limited and static sets of data, but in the real world, 
 
 ![image](./assets/automatic/gridview-basic.png)
 
-The two elements are similar in their usage. Thus, we will begin with the `ListView` and then describe the `GridView` with the former as the starting point of the comparison. Notice that the `GridView` places a list of items into a two-dimensional grid, left-to-right or top-to-bottom. If you want to show a table of data you need to use the `TableView` which is described in the Table Models section.
+The two elements are similar in their usage. We will begin with the `ListView` and then describe the `GridView` with the former as the starting point of the comparison. Notice that the `GridView` places a list of items into a two-dimensional grid, left-to-right or top-to-bottom. If you want to show a table of data you need to use the `TableView` which is described in the Table Models section.
 
 The `ListView` is similar to the `Repeater` element. It uses a `model`, instantiates a `delegate` and between the delegates, there can be `spacing`. The listing below shows how a simple setup can look.
 
 ```qml
-import QtQuick 2.5
+import QtQuick 6.2
 import "../common"
 
 Background {
@@ -67,7 +67,7 @@ It is possible to limit the positions where a view is allowed to stop. This is c
 The list view provides a vertically scrolling list by default, but horizontal scrolling can be just as useful. The direction of the list view is controlled through the `orientation` property. It can be set to either the default value, `ListView.Vertical`, or to `ListView.Horizontal`. A horizontal list view is shown below.
 
 ```qml
-import QtQuick 2.5
+import QtQuick 6.2
 import "../common"
 
 Background {
@@ -113,7 +113,7 @@ In the example below this is demonstrated. There are two properties involved for
 In the example, the `ListView.view.width` attached property is used for width. The attached properties available to delegates are discussed further in the delegate section of this chapter, but it is good to know that the same properties are available to highlight delegates as well.
 
 ```qml
-import QtQuick 2.5
+import QtQuick 6.2
 import "../common"
 
 Background {
@@ -207,12 +207,12 @@ Component {
 
 ## Header and Footer
 
-At the end of the `ListView` contents, a `header` and a `footer` element can be inserted. These can be considered special delegates placed at the beginning or end of the list. For a horizontal list, these will not appear at the head or foot, but rather at the beginning or end, depending on the `layoutDirection` used.
+At each end of the `ListView` contents, a `header` and a `footer` element can be inserted. These can be considered special delegates placed at the beginning or end of the list. For a horizontal list, these will not appear at the head or foot, but rather at the beginning or end, depending on the `layoutDirection` used.
 
 The example below illustrates how a header and footer can be used to enhance the perception of the beginning and end of a list. There are other uses for these special list elements. For instance, they can be used to keep buttons to load more contents.
 
 ```qml
-import QtQuick 2.5
+import QtQuick 6.2
 import "../common"
 
 Background {

@@ -25,9 +25,8 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-// M1>>
-import QtQuick 2.0
-import QtQml.Models 2.1
+import QtQuick 6.2
+import QtQml.Models
 
 Rectangle {
     width: 320
@@ -56,4 +55,3 @@ Rectangle {
         model: itemModel
     }
 }
-// <<M1

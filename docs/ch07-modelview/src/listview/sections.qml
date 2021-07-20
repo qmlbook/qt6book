@@ -25,8 +25,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-// M1>>
-import QtQuick 2.5
+import QtQuick 6.2
 import "../common"
 
 Background {
@@ -94,4 +93,3 @@ Background {
         ListElement { name: "Dafydd Williams"; nation: "Canada"; }
     }
 }
-// <<M1
