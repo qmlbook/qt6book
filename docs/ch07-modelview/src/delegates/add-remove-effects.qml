@@ -124,13 +124,20 @@ Rectangle {
                 }
             }
 
-            GridView.onRemove: SequentialAnimation {
+            GridView.onRemove: removeAnimation.start();
+            
+            SequentialAnimation {
+                id: removeAnimation
+                
                 PropertyAction { target: wrapper; property: "GridView.delayRemove"; value: true }
                 NumberAnimation { target: wrapper; property: "scale"; to: 0; duration: 250; easing.type: Easing.InOutQuad }
                 PropertyAction { target: wrapper; property: "GridView.delayRemove"; value: false }
             }
 
-            GridView.onAdd: SequentialAnimation {
+            GridView.onAdd: addAnimation.start();
+            
+            SequentialAnimation {
+                id: addAnimation
                 NumberAnimation { target: wrapper; property: "scale"; from: 0; to: 1; duration: 250; easing.type: Easing.InOutQuad }
             }
         }
