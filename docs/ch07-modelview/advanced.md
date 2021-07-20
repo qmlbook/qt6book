@@ -181,15 +181,15 @@ The example below demonstrates fetching images from an RSS flow. The `source` pr
 
 ![image](./assets/automatic/xmllistmodel-images.png)
 
-When the data has been downloaded, it is processed into model items and roles. The `query` property is an XPath representing the base query for creating model items. In this example, the path is `/rss/channel/item`, so for every item tag, inside a channel tag, inside an RSS tag, a model item is created.
+When the data has been downloaded, it is processed into model items and roles. The `query` property of the `XmlListModel` is an XPath representing the base query for creating model items. In this example, the path is `/rss/channel/item`, so for every item tag, inside a channel tag, inside an RSS tag, a model item is created.
 
-For every model item, a number of roles are extracted. These are represented by `XmlRole` elements. Each role is given a name, which the delegate can access through an attached property. The actual value of each such property is determined through the XPath query for each role. For instance, the `title` property corresponds to the `title/string()` query, returning the contents between the `<title>` and `</title>` tags.
+For every model item, a number of roles are extracted. These are represented by `XmlListModelRole` elements. Each role is given a name, which the delegate can access through an attached property. The actual value of each such property is determined through the `elementName` and (optional) `attributeName` properties for each role. For instance, the `title` property corresponds to the `title` XML element, returning the contents between the `<title>` and `</title>` tags.
 
-The `imageSource` property extracts the value of an attribute of a tag instead of the contents of the tag. In this case, the `url` attribute of the `enclosure` tag is extracted as a string. The `@` is used to indicate that an attribute is requested. The `imageSource` property can then be used directly as the `source` for an `Image` element, which loads the image from the given URL.
+The `imageSource` property extracts the value of an attribute of a tag instead of the contents of the tag. In this case, the `url` attribute of the `enclosure` tag is extracted as a string. The `imageSource` property can then be used directly as the `source` for an `Image` element, which loads the image from the given URL.
 
 ```qml
 import QtQuick 6.2
-import QtQuick.XmlListModel
+import QtQml.XmlListModel
 import "../common"
 
 Background {
@@ -225,8 +225,8 @@ Background {
         source: "https://www.nasa.gov/rss/dyn/image_of_the_day.rss"
         query: "/rss/channel/item"
 
-        XmlRole { name: "title"; query: "title/string()" }
-        XmlRole { name: "imageSource"; query: "enclosure/string(@url)" }
+        XmlListModelRole { name: "title"; elementName: "title" }
+        XmlListModelRole { name: "imageSource"; elementName: "enclosure"; attributeName: "url"; }
     }
 
     ListView {

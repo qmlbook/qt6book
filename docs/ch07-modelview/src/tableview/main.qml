@@ -1,7 +1,4 @@
-// M1>>
-import QtQuick 2.12
-// <<M1
-import QtQuick.Window 2.0
+import QtQuick 6.2
 import "common"
 
 Window {
@@ -12,37 +9,33 @@ Window {
     Background {
         anchors.fill: parent
 
-// M2>>
-TableView {
-    id: view
-    anchors.fill: parent
-    anchors.margins: 20
+        TableView {
+            id: view
+            anchors.fill: parent
+            anchors.margins: 20
 
-    rowSpacing: 5
-    columnSpacing: 5
+            rowSpacing: 5
+            columnSpacing: 5
 
-    clip: true
+            clip: true
 
-    model: tableModel
+            model: tableModel
 
-    delegate: cellDelegate
-}
-// <<M2
-    }
-
-// M3>>
-Component {
-    id: cellDelegate
-
-    GreenBox {
-        implicitHeight: 40
-        implicitWidth: 40
-
-        Text {
-            anchors.centerIn: parent
-            text: display
+            delegate: cellDelegate
         }
     }
-}
-// <<M3
+
+    Component {
+        id: cellDelegate
+
+        GreenBox {
+            implicitHeight: 40
+            implicitWidth: 40
+
+            Text {
+                anchors.centerIn: parent
+                text: display
+            }
+        }
+    }
 }

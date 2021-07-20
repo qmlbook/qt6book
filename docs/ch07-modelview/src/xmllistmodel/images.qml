@@ -25,9 +25,8 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-// M1>>
-import QtQuick 2.5
-import QtQuick.XmlListModel 2.0
+import QtQuick 6.2
+import QtQml.XmlListModel
 import "../common"
 
 Background {
@@ -63,8 +62,8 @@ Background {
         source: "https://www.nasa.gov/rss/dyn/image_of_the_day.rss"
         query: "/rss/channel/item"
 
-        XmlRole { name: "title"; query: "title/string()" }
-        XmlRole { name: "imageSource"; query: "enclosure/string(@url)" }
+        XmlListModelRole { name: "title"; elementName: "title" }
+        XmlListModelRole { name: "imageSource"; elementName: "enclosure"; attributeName: "url"; }
     }
 
     ListView {
@@ -74,4 +73,3 @@ Background {
         delegate: imageDelegate
     }
 }
-// <<M1
