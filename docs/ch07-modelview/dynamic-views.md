@@ -15,7 +15,7 @@ The two elements are similar in their usage. Thus, we will begin with the `ListV
 The `ListView` is similar to the `Repeater` element. It uses a `model`, instantiates a `delegate` and between the delegates, there can be `spacing`. The listing below shows how a simple setup can look.
 
 ```qml
-import QtQuick 2.5
+import QtQuick 6.2
 import "../common"
 
 Background {
@@ -67,7 +67,7 @@ It is possible to limit the positions where a view is allowed to stop. This is c
 The list view provides a vertically scrolling list by default, but horizontal scrolling can be just as useful. The direction of the list view is controlled through the `orientation` property. It can be set to either the default value, `ListView.Vertical`, or to `ListView.Horizontal`. A horizontal list view is shown below.
 
 ```qml
-import QtQuick 2.5
+import QtQuick 6.2
 import "../common"
 
 Background {
@@ -113,7 +113,7 @@ In the example below this is demonstrated. There are two properties involved for
 In the example, the `ListView.view.width` attached property is used for width. The attached properties available to delegates are discussed further in the delegate section of this chapter, but it is good to know that the same properties are available to highlight delegates as well.
 
 ```qml
-import QtQuick 2.5
+import QtQuick 6.2
 import "../common"
 
 Background {
@@ -212,7 +212,7 @@ At the end of the `ListView` contents, a `header` and a `footer` element can be 
 The example below illustrates how a header and footer can be used to enhance the perception of the beginning and end of a list. There are other uses for these special list elements. For instance, they can be used to keep buttons to load more contents.
 
 ```qml
-import QtQuick 2.5
+import QtQuick 6.2
 import "../common"
 
 Background {

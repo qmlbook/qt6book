@@ -110,11 +110,7 @@ In the example below, we set up a simple `TableView` with a custom model exposed
 
 ![image](./assets/tableview.png)
 
-Before we can use the `TableView` element, we must make sure that the `2.12` version of `QtQuick` is imported. After that, we can set it up. In this example below, we set the `rowSpacing` and `columnSpacing` to control the horizontal and vertical gaps between delegates. The rest of the properties are set up as for any other type of view.
-
-```qml
-import QtQuick 2.12
-```
+In this example below, we set the `rowSpacing` and `columnSpacing` to control the horizontal and vertical gaps between delegates. The rest of the properties are set up as for any other type of view.
 
 ```qml
 TableView {
@@ -192,8 +188,8 @@ For every model item, a number of roles are extracted. These are represented by 
 The `imageSource` property extracts the value of an attribute of a tag instead of the contents of the tag. In this case, the `url` attribute of the `enclosure` tag is extracted as a string. The `@` is used to indicate that an attribute is requested. The `imageSource` property can then be used directly as the `source` for an `Image` element, which loads the image from the given URL.
 
 ```qml
-import QtQuick 2.5
-import QtQuick.XmlListModel 2.0
+import QtQuick 6.2
+import QtQuick.XmlListModel
 import "../common"
 
 Background {
@@ -261,7 +257,7 @@ It is also possible to assign a section delegate component to the `section.deleg
 The example below demonstrates the section concept by showing a list of spacemen sectioned after their nationality. The `nation` is used as the `section.property`. The `section.delegate` component, `sectionDelegate`, shows a heading for each nation, displaying the name of the nation. In each section, the names of the spacemen are shown using the `spaceManDelegate` component.
 
 ```qml
-import QtQuick 2.5
+import QtQuick 6.2
 import "../common"
 
 Background {
@@ -342,8 +338,8 @@ In some cases you might want to use a list view for a large set of different ite
 In the example below we put three `Rectangle` elements into the `ObjectModel`. However, one rectangle has a `Text` element child while the last one has rounded corners. This would have resulted in a table-style model using something like a `ListModel`. It would also have resulted in empty `Text` elements in the model.
 
 ```qml
-import QtQuick 2.0
-import QtQml.Models 2.1
+import QtQuick 6.2
+import QtQml.Models
 
 Rectangle {
     width: 320
@@ -378,14 +374,14 @@ Another aspect of the `ObjectModel` is that is can be dynamically populated usin
 
 ## Models with Actions
 
-Since 5.11, the `ListElement` type supports the binding of Javascript functions to properties. This means that you can put functions into a model. This is very useful when building menus with actions and similar constructs.
+You can also bind Javasscript functions `ListElement` properties. This means that you can put functions into a model. This is very useful when building menus with actions and similar constructs.
 
 The example below demonstrates this by having a model of cities that greet you in different ways. The `actionModel` is a model of four cities, but the `hello` property is bound to functions. Each function takes an argument `value`, but you can have any number arguments.
 
 In the delegate `actionDelegate`, the `MouseArea` calls the function `hello` as an ordinary function and this results a call to the corresponding `hello` property in the model.
 
 ```qml
-import QtQuick 2.11
+import QtQuick 6.2
 
 Rectangle {
     width: 120

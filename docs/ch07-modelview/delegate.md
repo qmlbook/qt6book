@@ -7,7 +7,7 @@ Each delegate gets access to a number of attached properties, some from the data
 The most commonly used properties attached from the view are `ListView.isCurrentItem` and `ListView.view`. The first is a boolean indicating if the item is the current item, while the latter is a read-only reference to the actual view. Through access to the view, it is possible to create general, reusable delegates that adapt to the size and nature of the view in which they are contained. In the example below, the `width` of each delegate is bound to the `width` of the view, while the background `color` of each delegate depends on the attached `ListView.isCurrentItem` property.
 
 ```qml
-import QtQuick 2.5
+import QtQuick 6.2
 
 Rectangle {
     width: 120
@@ -73,7 +73,7 @@ The example below demonstrates this through the use of a dynamically populated `
 When a delegate in the view is clicked, the item is removed from the model through a call to the `remove` method. This causes the `GridView.onRemove` signal to be emitted, triggering another `SequentialAnimation`. This time, however, the destruction of the delegate must be delayed until the animation has completed. To do this, `PropertyAction` element is used to set the `GridView.delayRemove` property to `true` before the animation, and `false` after. This ensures that the animation is allowed to complete before the delegate item is removed.
 
 ```qml
-import QtQuick 2.5
+import QtQuick 6.2
 
 Rectangle {
     width: 480
@@ -199,7 +199,7 @@ Setting up the `ListView` involves setting the `contentsY`, that is the top of t
 As the item first is clicked, it enters the `expanded` state, causing the item delegate to fill the `ListView` and the contents to rearrange. When the close button is clicked, the state is cleared, causing the delegate to return to its previous state and re-enabling the `ListView`.
 
 ```qml
-import QtQuick 2.5
+import QtQuick 6.2
 
 Item {
     width: 300
