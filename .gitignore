@@ -106,3 +106,6 @@ dist
 *.qtds.*
 *.qtds
 build-*
+
+# Examples build output
+_examples/
