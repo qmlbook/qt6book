@@ -27,7 +27,7 @@
 
 // BlueSquare.qml
 
-import QtQuick 2.5
+import QtQuick
 
 Square {
     color: "#00bde3"

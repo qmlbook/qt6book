@@ -1,6 +1,6 @@
 # An Image Viewer
 
-Let’s look at a larger example of how Qt Quick Controls 2 is used. For this, we will create a simple image viewer.
+Let’s look at a larger example of how Qt Quick Controls are used. For this, we will create a simple image viewer.
 
 First, we create it for desktop using the Fusion style, then we will refactor it for a mobile experience before having a look at the final code base.
 
@@ -13,9 +13,9 @@ The desktop version is based around a classic application window with a menu bar
 We use the Qt Creator project template for an empty Qt Quick application as a starting point. However, we replace the default `Window` element from the template with a `ApplicationWindow` from the `QtQuick.Controls` module. The code below shows `main.qml` where the window itself is created and setup with a default size and title.
 
 ```qml
-import QtQuick 2.0
-import QtQuick.Controls 2.4
-import QtQuick.Dialogs 1.2
+import QtQuick
+import QtQuick.Controls
+import Qt.labs.platform
 
 ApplicationWindow {
     visible: true
@@ -87,11 +87,7 @@ ApplicationWindow {
 }
 ```
 
-The `fileOpenDialog` element is a `FileDialog` control from the `QtQuick.Dialogs` module. The file dialog can be used to open or save files, as well as picking directories.
-
-::: tip
-The `QtQuick.Dialogs` module is a Qt Quick Controls 1 module, but it is also the only way to do dialogs without depending on the `QtWidgets` module. See how to implement native dialogs using `Qt.labs.platform` further down.
-:::
+The `fileOpenDialog` element is a `FileDialog` control from the `Qt.Labs` module. The file dialog can be used to open or save files, as well as picking directories.
 
 In the code we start by assigning a `title`. Then we set the starting folder using the `shortcut` property. The `shortcut` property holds links to common folders such as the user’s home, documents, and such. After that we set a name filter that controls what files the user can see and pick using the dialog.
 
@@ -231,11 +227,11 @@ ApplicationWindow {
             model: ListModel {
                 ListElement {
                     text: qsTr("Open...")
-                    triggered: function(){ fileOpenDialog.open(); }
+                    triggered: fileOpenDialog.open()
                 }
                 ListElement {
                     text: qsTr("About...")
-                    triggered: function(){ aboutDialog.open(); }
+                    triggered: aboutDialog.open()
                 }
             }
 
@@ -282,10 +278,10 @@ ApplicationWindow {
 }
 ```
 
-Finally we make the background of the toolbar pretty — or at least orange. To do this, we alter the `Material.background` attached property. This comes from the `QtQuick.Controls.Material 2.1` module and only affects the Material style.
+Finally we make the background of the toolbar pretty — or at least orange. To do this, we alter the `Material.background` attached property. This comes from the `QtQuick.Controls.Material` module and only affects the Material style.
 
 ```qml
-import QtQuick.Controls.Material 2.1
+import QtQuick.Controls.Material
 
 ApplicationWindow {
     
@@ -309,7 +305,7 @@ Looking at the code base, much of the code is still shared. The parts that are s
 
 A file selector lets us replace individual files based on which selectors are active. The Qt documentation maintains a list of selectors in the documentation for the `QFileSelector` class ([link](https://doc.qt.io/qt-5/qfileselector.html)). In our case we will make the desktop version the default and replace selected files when the *android* selector is encountered. During the development you can set the environment variable `QT_FILE_SELECTORS` to `android` to simulate this.
 
-::: tip
+::: tip File Selector
 The file selector works by replacing files with an alternative when a *selector* is present.
 
 By creating a directory named `+selector`, where `selector` represents the name of a selector, in parallel to the files that you want to replace, you can then place files with the same name as the file you want to replace inside the directory. When the selector is present, the file in the directory will be picked instead of the original file.
@@ -322,9 +318,9 @@ It is also possible to add your own, custom, selectors.
 The first step to do this change is to isolate the shared code. We do this by creating the `ImageViewerWindow` element which will be used instead of the `ApplicationWindow` for both our variants. This will consist of the dialogs, the `Image` element and the background. In order to make the open methods of the dialogs available to the platform specific code, we need to expose them through the functions `openFileDialog` and `openAboutDialog`.
 
 ```qml
-import QtQuick 2.0
-import QtQuick.Controls 2.4
-import QtQuick.Dialogs 1.2
+import QtQuick
+import QtQuick.Controls
+import Qt.labs.platform
 
 ApplicationWindow {
     function openFileDialog() { fileOpenDialog.open(); }
@@ -365,8 +361,8 @@ Next, we create a new `main.qml` for our default style *Fusion*, i.e. the deskto
 Here, we base the user interface around the `ImageViewerWindow` instead of the `ApplicationWindow`. Then we add the platform specific parts to it, e.g. the `MenuBar` and `ToolBar`. The only changes to these is that the calls to open the respective dialogs are made to the new functions instead of directly to the dialog controls.
 
 ```qml
-import QtQuick 2.0
-import QtQuick.Controls 2.4
+import QtQuick
+import QtQuick.Controls
 
 ImageViewerWindow {
     id: window
@@ -409,9 +405,9 @@ ImageViewerWindow {
 Next, we have to create a mobile specific `main.qml`. This will be based around the *Material* theme. Here, we keep the `Drawer` and the mobile specific toolbar. Again, the only change is how the dialogs are opened.
 
 ```qml
-import QtQuick 2.0
-import QtQuick.Controls 2.4
-import QtQuick.Controls.Material 2.1
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Controls.Material
 
 ImageViewerWindow {
     id: window
@@ -476,9 +472,9 @@ In order to integrate a native file dialog into the image viewer, we need to imp
 In the actual file dialog element, we have to change how the `folder` property is set, and ensure that the `onAccepted` handler uses the `file` property instead of the `fileUrl` property. Apart from these details, the usage is identical to the `FileDialog` from `QtQuick.Dialogs`.
 
 ```qml
-import QtQuick 2.0
-import QtQuick.Controls 2.4
-import Qt.labs.platform 1.0
+import QtQuick
+import QtQuick.Controls
+import Qt.labs.platform
 
 ApplicationWindow {
     

@@ -7,7 +7,9 @@
   "author": "Juergen Ryannel <juergen@ryannel.org>",
   "license": "MIT",
   "devDependencies": {
-    "vuepress": "^1.8.2"
+    "copyfiles": "^2.4.1",
+    "vuepress": "^1.8.2",
+    "vuepress-plugin-mermaidjs": "^1.8.1"
   },
   "scripts": {
     "docs:dev": "vuepress dev docs --host 127.0.0.1",

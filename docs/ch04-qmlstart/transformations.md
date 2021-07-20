@@ -12,7 +12,7 @@ Before we show off the example I would like to introduce a little helper: The `C
 // ClickableImage.qml
 // Simple image which can be clicked
 
-import QtQuick 2.5
+import QtQuick
 
 Image {
     id: root
@@ -33,7 +33,7 @@ We use our clickable image to present three objects (box, circle, triangle). Eac
 ```qml
 // transformation.qml
 
-import QtQuick 2.5
+import QtQuick
 
 Item {
     // set width based on given background

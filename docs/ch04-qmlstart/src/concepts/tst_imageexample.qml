@@ -1,5 +1,5 @@
-import QtQuick 2.5
-import QtTest 1.1
+import QtQuick
+import QtTest
 
 ImageExample {
     id: root

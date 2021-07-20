@@ -1,6 +1,5 @@
 ---
 home: true
-heroImage: /hero.png
 heroText: Qt6 Book
 tagline: A book about Qt6
 actionText: Get Started →
@@ -25,7 +24,7 @@ footer: CC-BY-NC Licensed | Copyright © 2021-present J. Ryannel & J. Thelin
 As easy as
 
 ```qml
-import QtQuick 2.1
+import QtQuick
 
 Item {
     id: root

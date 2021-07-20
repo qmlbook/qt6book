@@ -28,7 +28,7 @@
 // M1>>
 // animation.qml
 
-import QtQuick 2.5
+import QtQuick
 
 Image {
     id: root

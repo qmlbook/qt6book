@@ -3,8 +3,6 @@
 import QmlProject 1.1
 
 Project {
-    mainFile: "anchors.qml"
-
     /* Include .qml, .js, and image files from current directory and subdirectories */
     QmlFiles {
         directory: "."

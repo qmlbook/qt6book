@@ -1,6 +1,7 @@
-import QtQuick 2.0
-import QtQuick.Controls 2.4
-import QtQuick.Dialogs 1.2
+import QtQuick
+import QtQuick.Controls
+import Qt.labs.platform as Platform
+
 
 ApplicationWindow {
 
@@ -23,15 +24,15 @@ ApplicationWindow {
         asynchronous: true
     }
 
-    FileDialog {
+    Platform.FileDialog {
         id: fileOpenDialog
 
         // ...
 
         title: "Select an image file"
-        folder: shortcuts.documents
+        folder: Platform.StandardPaths.writableLocation(Platform.StandardPaths.DocumentsLocation)
         nameFilters: [ "Image files (*.png *.jpeg *.jpg)" ]
-        onAccepted: image.source = fileOpenDialog.fileUrl;
+        onAccepted: image.source = fileOpenDialog.file;
     }
 
     Dialog {
@@ -40,7 +41,7 @@ ApplicationWindow {
         // ...
 
         title: qsTr("About")
-        standardButtons: StandardButton.Ok
+        standardButtons: Dialog.Ok
 
         Label {
             anchors.fill: parent

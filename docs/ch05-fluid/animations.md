@@ -1,9 +1,14 @@
 # Animations
 
-Animations are applied to property changes. An animation defines the interpolation curve when for property value changes to create smooth transitions from one value to another. An animation is defined by a series of target properties to be animated, an easing curve for the interpolation curve and in the most cases a duration, which defines the time for the property change. All animations in Qt Quick are controlled by the same timer and are therefore synchronized. This improves the performance and visual quality of animations.
+Animations are applied to property changes. An animation defines the interpolation curve from one value to another value when a property value changes. These animation curves create smooth transitions from one value to another. 
 
-::: tip
-Animations control how property changes, i.e. value interpolation. This is a fundamental concept. QML is based on elements, properties, and scripting. Every element provides dozens of properties, each property is waiting to get animated by you. In the book, you will see this is a spectacular playing field. You will catch yourself at looking at some animations and just admire their beauty and for sure also your creative genius. Please remember then: *Animations control property changes and every element has dozens of properties at your disposal*.
+An animation is defined by a series of target properties to be animated, an easing curve for the interpolation curve and in the most cases a duration, which defines the time for the property change. All animations in Qt Quick are controlled by the same timer and are therefore synchronized. This improves the performance and visual quality of animations.
+
+::: tip Animations control how property changes using value interpolation
+
+This is a fundamental concept. QML is based on elements, properties, and scripting. Every element provides dozens of properties, each property is waiting to get animated by you. In the book, you will see this is a spectacular playing field. 
+
+You will catch yourself at looking at some animations and just admire their beauty and for sure also your creative genius. Please remember then: *Animations control property changes and every element has dozens of properties at your disposal*.
 
 **Unlock the power!**
 :::
@@ -13,7 +18,7 @@ Animations control how property changes, i.e. value interpolation. This is a fun
 ```qml
 // animation.qml
 
-import QtQuick 2.5
+import QtQuick
 
 Image {
     id: root
@@ -48,9 +53,9 @@ Image {
 }
 ```
 
-The example above shows a simple animation applied on the `x` and `rotation` property. Each animation has a duration of 4000 milliseconds (msec) and loops forever. The animation on x moves the x coordinate from the object gradually over to 240px. The animation on rotation runs from the current angle to 360 degrees. Both animations run in parallel and are started as soon as the UI is loaded.
+The example above shows a simple animation applied on the `x` and `rotation` property. Each animation has a duration of 4000 milliseconds (msec) and loops forever. The animation on `x` moves the x-coordinate from the object gradually over to 240px. The animation on rotation runs from the current angle to 360 degrees. Both animations run in parallel and are started as soon as the UI is loaded.
 
-Now you can play around with the animation by changing the `to` and `duration` property or you could add another animation for example on the `opacity` or even the `scale`. Combining these it could look like the object is disappearing into the deep space. Try it out!
+Now you can play around with the animation by changing the `to` and `duration` property or you could add another animation for example on the `opacity` or even the `scale`. **Combining these it could look like the object is disappearing into the deep space. Try it out!**
 
 ## Animation Elements
 
@@ -116,7 +121,7 @@ To demonstrate the usage of animations we reuse our ClickableImage component fro
 // ClickableImageV2.qml
 // Simple image which can be clicked
 
-import QtQuick 2.5
+import QtQuick
 
 Item {
     id: root
@@ -149,8 +154,10 @@ Item {
 
 To organize the element below the image we used a Column positioner and calculated the width and height based on the column’s childrenRect property. We exposed two properties: text and the image source as also the clicked signal. We also wanted that the text is as wide as the image and it should wrap. We achieve the latter by using the Text elements wrapMode property.
 
-::: tip
-Due to the inversion of the geometry-dependency (parent geometry depends on child geometry), we can’t set a width/height on the ClickableImageV2, as this will break our width/height binding. This is a limitation on our internal design and as a designer of components, you should be aware of this. Normally you should prefer the child’s geometry to depend on the parent’s geometry.
+::: tip Parent/child geometry dependency
+Due to the inversion of the geometry-dependency (parent geometry depends on child geometry), we can’t set a `width`/`height` on the ClickableImageV2, as this will break our `width`/`height` binding. 
+
+You should prefer the child’s geometry to depend on the parent’s geometry if the item is more like a container for other items and should adapt to the parents geometry.
 :::
 
 ## The objects ascending.
@@ -173,7 +180,11 @@ ClickableImageV2 {
 
 ## First object
 
-The first object travels using the `Animation on <property>` strategy. The animation starts immediately. When an object is clicked their y-position is reset to the start position, this applies to all objects. On the first object, the reset does not have any effect as long as the animation is running. It’s even disturbing as the y-position is set for a fraction of a second to a new value before the animation starts. *Such competing property changes should be avoided*.
+The first object travels using the `Animation on <property>` strategy. The animation starts immediately. 
+
+When an object is clicked their y-position is reset to the start position, this applies to all objects. On the first object, the reset does not have any effect as long as the animation is running. 
+
+It’s even disturbing as the y-position is set for a fraction of a second to a new value before the animation starts. *Such competing property changes should be avoided*.
 
 ```qml
 ClickableImageV2 {
@@ -187,13 +198,17 @@ ClickableImageV2 {
 
     onClicked: y = 40
     // random y on each click
-    // onClicked: y = 40+Math.random()*(205-40)
+    // onClicked: y = 40 + Math.random() * (205-40)
 }
 ```
 
 ## Second object
 
-The second object travels using a `behavior on` animation. This behavior tells the property, every time the property value changes, it changes through this animation. The behavior can be disabled by `enabled : false` on the `Behavior` element. The object will start traveling when you click it (y-position is then set to 40). Another click has no influence as the position is already set. You could try to use a random value (e.g. `40+(Math.random()\*(205-40)`) for the y-position. You will see that the object will always animate to the new position and adapt its speed to match the 4 seconds to the destination defined by the duration of the animation.
+The second object travels using a `behavior on` animation. This behavior tells the property, every time the property value changes, it changes through this animation. The behavior can be disabled by `enabled : false` on the `Behavior` element. 
+
+The object will start traveling when you click it (y-position is then set to 40). Another click has no influence as the position is already set. 
+
+You could try to use a random value (e.g. `40+(Math.random()\*(205-40)`) for the y-position. You will see that the object will always animate to the new position and adapt its speed to match the 4 seconds to the destination defined by the duration of the animation.
 
 ```qml
 ClickableImageV2 {
@@ -217,13 +232,18 @@ ClickableImageV2 {
 
 ## Third object
 
-The third object uses a `standalone animation`. The animation is defined as its own element and could be everywhere in the document. The click will start the animation using the animations function `start()`. Each animation has a start(), stop(), resume(), restart() function. The animation itself contains much more information than the other animation types earlier. We need to define the target and properties to declare the target element to be animated and which properties we want to animate. We need to define a `to` value and in this case, we define also a `from` value to allow a restart of the animation.
+The third object uses a `standalone animation`. The animation is defined as its own element and could be everywhere in the document. 
+
+The click will start the animation using the animations function `start()`. Each animation has a start(), stop(), resume(), restart() function. The animation itself contains much more information than the other animation types earlier. 
+
+We need to define the target and properties to declare the target element to be animated and which properties we want to animate. We need to define a `to` value and in this case, we define also a `from` value to allow a restart of the animation.
 
 ![](./assets/animationtypes.png)
 
 A click on the background will reset all objects to their initial position. The first object cannot be restarted except by re-starting the program which triggers the re-loading of the element.
 
-::: tip
+::: tip Other ways to control Animations
+
 Another way to start/stop an animation is to bind a property to the `running` property of an animation. This is especially useful when the user-input is in control of properties:
 
 ```qml
@@ -240,10 +260,15 @@ MouseArea {
 
 ## Easing Curves
 
-The value change of a property can be controlled by an animation. Easing attributes allows influencing the interpolation curve of a property change. All animations we have defined by now use a linear interpolation because the initial easing type of an animation is `Easing.Linear`. It’s best visualized with a small plot, where the y-axis is the property to be animated and the x-axis is the time (*duration*). A linear interpolation would draw a straight line from the `from` value at the start of the animation to the `to` value at the end of the animation. So the easing type defines the curve of change. Easing types are carefully chosen to support a natural fit for a moving object, for example when a page slides out. Initially, the page should slide out slowly and then gain the speed to finally slide out at high speed, similar to turning the page of a book.
+The value change of a property can be controlled by an animation. Easing attributes allows influencing the interpolation curve of a property change. 
 
-:::tip
-Animations should not be overused. As other aspects of UI design also animations should be designed carefully and support the UI flow and not dominate it. The eye is very sensitive to moving objects and animations can easily distract the user.
+All animations we have defined by now use a linear interpolation because the initial easing type of an animation is `Easing.Linear`. It’s best visualized with a small plot, where the y-axis is the property to be animated and the x-axis is the time (*duration*). A linear interpolation would draw a straight line from the `from` value at the start of the animation to the `to` value at the end of the animation. So the easing type defines the curve of change. 
+
+Easing types should be carefully chosen to support a natural fit for a moving object. For example when a page slides out, the page should initially slide out slowly and then gain the speed to finally slide out at high speed, similar to turning the page of a book.
+
+:::tip Animations should not be overused. 
+
+As other aspects of UI design also animations should be designed carefully and support the UI flow and not dominate it. The eye is very sensitive to moving objects and animations can easily distract the user.
 :::
 
 In the next example, we will try some easing curves. Each easing curve is displayed by a click-able image and, when clicked, will set a new easing type on the `square` animation and then trigger a `restart()` to run the animation with the new curve.
@@ -259,8 +284,8 @@ The internals of the EasingType renders the curve in real time and the intereste
 ```qml
 // EasingCurves.qml
 
-import QtQuick 2.5
-import QtQuick.Layouts 1.2
+import QtQuick
+import QtQuick.Layouts
 
 Rectangle {
     id: root
@@ -384,15 +409,20 @@ Rectangle {
 
 Please play with it, please observe the change of speed during an animation. Some animations feel more natural for the object and some feel irritating.
 
-Besides the `duration` and `easing.type` you are able to fine tune animations. For example, the general `PropertyAnimation` where most animation inherits from additionally supports an `easing.amplitude`, `easing.overshoot` and `easing.period` property which allows you to fine-tune the behavior of particular easing curves. Not all easing curves support these parameters. Please consult the [easing table](http://doc.qt.io/qt-5//qml-qtquick-propertyanimation.html#easing-prop) from the `PropertyAnimation` documentation to check if an easing parameter has an influence on an easing curve.
+Besides the `duration` and `easing.type` you are able to fine tune animations. For example, the general `PropertyAnimation` where most animation inherits from additionally supports an `easing.amplitude`, `easing.overshoot` and `easing.period` property allows you to fine-tune the behavior of particular easing curves. 
 
-::: tip
+Not all easing curves support these parameters. Please consult the [easing table](http://doc.qt.io/qt-5//qml-qtquick-propertyanimation.html#easing-prop) from the `PropertyAnimation` documentation to check if an easing parameter has an influence on an easing curve.
+
+::: tip Choose the right Animation
+
 Choosing the right animation for the element in the user interface context is crucial for the outcome. Remember the animation shall support the UI flow; not irritate the user.
 :::
 
 ## Grouped Animations
 
-Often animations will be more complex than just animating one property. You might want to run several animations at the same time or one after another or even execute a script between two animations. For this, the grouped animation offer you a possibility. As the named suggests it’s possible to group animations. Grouping can be done in two ways: parallel or sequential. You can use the `SequentialAnimation` or the `ParallelAnimation` element, which act as animation containers for other animation elements. These grouped animations are animations themselves and can be used exactly as such.
+Often animations will be more complex than just animating one property. You might want to run several animations at the same time or one after another or even execute a script between two animations. 
+
+For this, the grouped animation offer you a possibility. As the named suggests it’s possible to group animations. Grouping can be done in two ways: parallel or sequential. You can use the `SequentialAnimation` or the `ParallelAnimation` element, which act as animation containers for other animation elements. These grouped animations are animations themselves and can be used exactly as such.
 
 ![](./assets/groupedanimation.png)
 
@@ -400,7 +430,7 @@ All direct child animations of a parallel animation will run in parallel when st
 
 ```qml
 // parallelanimation.qml
-import QtQuick 2.5
+import QtQuick
 
 BrightSquare {
     id: root
@@ -447,7 +477,7 @@ A sequential animation will first run the first child animation and then continu
 
 ```qml
 // SequentialAnimationExample.qml
-import QtQuick 2.5
+import QtQuick
 
 BrightSquare {
     id: root
@@ -501,9 +531,7 @@ To understand the animation we need to dissect it into the integral transformati
 
 * An x-translation from left-to-right (`X1`)
 
-
 * An y-translation from down to up (`Y1`) followed by a translation from up to down (`Y2`) with some bouncing
-
 
 * A rotation over 360 over the whole animation duration (`ROT1`)
 
@@ -514,7 +542,7 @@ The whole duration of the animation should take three seconds.
 We start with an empty item as the root element of the width of 480 and height of 300.
 
 ```qml
-import QtQuick 2.5
+import QtQuick
 
 Item {
     id: root
@@ -644,6 +672,7 @@ ParallelAnimation {
 ```
 
 That’s the whole animation sequence. The one thing left is to provide the correct easing curves for the movements of the ball. For the *Y1* animation I use a `Easing.OutCirc` curve as this should look more like a circular movement. *Y2* is enhanced using an `Easing.OutBounce` as the ball should bounce and the bouncing should happen at the end (try an `Easing.InBounce` and you see the bouncing will start right away).
+
 The *X1* and *ROT1* animation are left as is with a linear curve.
 
 Here is the final animation code for your reference:

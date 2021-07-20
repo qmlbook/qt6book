@@ -27,7 +27,7 @@
 
 // reusable_component.qml
 
-import QtQuick 2.5
+import QtQuick
 
 Rectangle {
     width: 140

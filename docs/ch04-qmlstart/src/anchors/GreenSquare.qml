@@ -27,7 +27,7 @@
 
 // GreenSquare.qml
 
-import QtQuick 2.5
+import QtQuick
 
 Square {
     color: "#67c111"

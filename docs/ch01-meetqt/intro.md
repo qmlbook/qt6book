@@ -1,15 +1,14 @@
-# Qt 5 Introduction
+# Qt6 Introduction
 
 ## Qt Quick
 
-Qt Quick is the umbrella term for the user interface technology used in Qt 5. Qt Quick itself is a collection of several technologies:
-
+Qt Quick is the umbrella term for the user interface technology used in Qt6. It was introduced in Qt5 and now expanded for Qt6. Qt Quick itself is a collection of several technologies:
 
 * QML - Markup language for user interfaces
 * JavaScript - The dynamic scripting language
 * Qt C++ - The highly portable enhanced c++ library
 
-![](./assets/qt5_overview.png)
+![](./assets/qt6_overview.png)
 
 Similar to HTML, QML is a markup language. It is composed of tags, called types in Qt Quick, that are enclosed in curly brackets: `Item {}`. It was designed from the ground up for the creation of user interfaces, speed and easier reading for developers. The user interface can be enhanced further using JavaScript code. Qt Quick is easily extendable with your own native functionality using Qt C++. In short, the declarative UI is called the front-end and the native parts are called the back-end. This allows you to separate the computing intensive and native operation of your application from the user interface part.
 
@@ -24,7 +23,7 @@ Let’s create a simple user interface using Qt Quick, which showcases some aspe
 We start with an empty document called `main.qml`. All our QML files will have the suffix `.qml`. As a markup language (like HTML), a QML document needs to have one and only one root type. In our case, this is the `Image` type with a width and height based on the background image geometry:
 
 ```qml
-import QtQuick 2.12
+import QtQuick
 
 Image {
     id: root

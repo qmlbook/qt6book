@@ -28,7 +28,7 @@
 // M1>>
 // RectangleExample.qml
 
-import QtQuick 2.5
+import QtQuick
 
 // The root element is the Rectangle
 Rectangle {

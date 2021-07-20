@@ -28,7 +28,7 @@
 // M1>>
 // textedit.qml
 
-import QtQuick 2.5
+import QtQuick
 
 Rectangle {
     width: 136

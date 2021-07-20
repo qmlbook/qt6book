@@ -1,6 +1,9 @@
 module.exports = {
   title: 'Qt6 Book',
   description: "A book about Qt6",  
+  plugins: [
+    'vuepress-plugin-mermaidjs'
+  ],  
   themeConfig: {
     displayAllHeaders: false,
     repo: 'qmlbook/qt6book',
@@ -33,7 +36,7 @@ module.exports = {
       ch17Sidebar(),
       ch18Sidebar(),
     ],
-  },
+  },  
 }
 
 function ch18Sidebar() {
@@ -240,7 +243,7 @@ function ch07Sidebar() {
 
 function ch06Sidebar() {
   return {
-    title: "QtQuick Controls 2",
+    title: "QtQuick Controls (Qt5)",
     path: '/ch06-controls/controls2',
     collapsable: false,
     children: [
@@ -256,7 +259,7 @@ function ch06Sidebar() {
 
 function ch05Sidebar() {
   return {
-    title: "Fluid Elements",
+    title: "Fluid Elements (Qt6 - Draft)",
     path: '/ch05-fluid/fluid-elements',
     collapsable: false,
     children: [
@@ -270,7 +273,7 @@ function ch05Sidebar() {
 
 function ch04Sidebar() {
   return {
-    title: "Quick Starter",
+    title: "Quick Starter (Qt6 - Draft)",
     path: '/ch04-qmlstart/quick-start',
     collapsable: false,
     children: [
@@ -289,7 +292,7 @@ function ch04Sidebar() {
 
 function ch03Sidebar() {
   return {
-    title: "Qt Creator IDE",
+    title: "Qt Creator IDE (Qt6 - Draft)",
     path: '/ch03-qtcreator/qt-creator',
     collapsable: false,
     children: [
@@ -307,7 +310,7 @@ function ch03Sidebar() {
 
 function ch02Sidebar() {
   return {
-    title: "Getting Started",
+    title: "Getting Started (Qt6 - Draft)",
     path: '/ch02-start/quick-start',
     collapsable: false,
     children: [
@@ -322,13 +325,13 @@ function ch02Sidebar() {
 
 function ch01Sidebar() {
   return { 
-    title: "Meet Qt",
+    title: "Meet Qt (Qt6 - Draft)",
     path: '/ch01-meetqt/meet-qt',
     collapsable: false,
     children: [
       '/ch01-meetqt/meet-qt',
-      '/ch01-meetqt/qt5-blocks',
-      '/ch01-meetqt/qt5-intro',
+      '/ch01-meetqt/blocks',
+      '/ch01-meetqt/intro',
     ]
   }
 }
