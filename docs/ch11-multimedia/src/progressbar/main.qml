@@ -25,8 +25,8 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import QtQuick 2.5
-import QtMultimedia 5.6
+import QtQuick 6.2
+import QtMultimedia
 
 Item {
     width: 1024
@@ -42,7 +42,6 @@ Item {
         source: player
     }
 
-    // M1>>
     Rectangle {
         id: progressBar
 
@@ -75,9 +74,7 @@ Item {
             }
         }
     }
-    // <<M1
 
-    // M2>>
     Connections {
         target: player
         onMediaObjectChanged: {
@@ -86,7 +83,6 @@ Item {
             }
         }
     }
-    // <<M2
 
     Component.onCompleted: {
         player.play();

@@ -25,8 +25,8 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import QtQuick 2.5
-import QtMultimedia 5.6
+import QtQuick 6.2
+import QtMultimedia
 
 Item {
     id: window
@@ -46,8 +46,6 @@ Item {
     }
 
     // Play sound when the button is clicked
-
-    // M1>>
     SoundEffect {
         id: beep
         source: "beep.wav"
@@ -68,7 +66,6 @@ Item {
             onClicked: beep.play()
         }
     }
-    // <<M1
 
     states: [
         State {
@@ -78,8 +75,6 @@ Item {
     ]
 
     // Play sound on a state change
-
-    // M2>>
     SoundEffect {
         id: swosh
         source: "swosh.wav"
@@ -93,5 +88,4 @@ Item {
             }
         }
     ]
-    // <<M2
 }

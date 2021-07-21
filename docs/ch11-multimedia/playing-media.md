@@ -7,8 +7,8 @@ If you want to play visual media, i.e. pictures or video, you must also set up a
 In the example shown below, the `MediaPlayer` is given a file with video contents as `source`. A `VideoOutput` is created and bound to the media player. As soon as the main component has been fully initialized, i.e. at `Component.onCompleted`, the player’s `play` function is called.
 
 ```qml
-import QtQuick 2.5
-import QtMultimedia 5.6
+import QtQuick 6.2
+import QtMultimedia
 
 Item {
     width: 1024

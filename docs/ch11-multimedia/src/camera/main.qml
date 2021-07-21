@@ -25,8 +25,8 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import QtQuick 2.5
-import QtMultimedia 5.6
+import QtQuick 6.2
+import QtMultimedia
 
 Rectangle {
     id: root
@@ -36,7 +36,6 @@ Rectangle {
 
     color: "black"
 
-    // M1>>
     VideoOutput {
         anchors.fill: parent
         source: camera
@@ -45,9 +44,7 @@ Rectangle {
     Camera {
         id: camera
     }
-    // <<M1
 
-    // M2>>
     ListModel {
         id: imagePaths
     }
@@ -81,14 +78,12 @@ Rectangle {
             opacity: 0.5
         }
     }
-    // <<M2
 
     Image {
         id: image
         anchors.fill: parent
     }
 
-    // M3>>
     Connections {
         target: camera.imageCapture
 
@@ -97,7 +92,6 @@ Rectangle {
             listView.positionViewAtEnd();
         }
     }
-    // <<M3
 
     Column {
         id: buttons
@@ -108,7 +102,6 @@ Rectangle {
 
         spacing: 10
 
-        // M4>>
         Button {
             id: shotButton
 
@@ -117,7 +110,6 @@ Rectangle {
                 camera.imageCapture.capture();
             }
         }
-        // <<M4
 
         Button {
             id: playButton
@@ -138,7 +130,6 @@ Rectangle {
         }
     }
 
-    // M5>>
     property int _imageIndex: -1
 
     function startPlayback()
@@ -177,7 +168,6 @@ Rectangle {
             }
         }
     }
-    // <<M5
 
     states: [
         State {
