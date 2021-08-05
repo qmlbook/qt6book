@@ -28,6 +28,7 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+// #region M1
 import QtQuick
 import "../common"
 
@@ -84,3 +85,4 @@ Background {
         lv2.contentY = 15;
     }
 }
+// #endregion M1

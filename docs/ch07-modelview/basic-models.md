@@ -35,4 +35,3 @@ The properties bound inside each element are attached to each instantiated item 
 The `delegate` property of the `Repeater` is its default property. This means that it's also possible to write the code of example Example 01 as follows:
 
 <<< @/docs/ch07-modelview/src/repeater/delegate.qml#global
-

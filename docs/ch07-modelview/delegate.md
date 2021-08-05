@@ -46,9 +46,7 @@ As the item first is clicked, it enters the `expanded` state, causing the item d
 
 <<< @/docs/ch07-modelview/src/delegates/expanding.qml#global
 
-
 ![image](./assets/automatic/delegates-expanding-small.png)
-
 
 ![image](./assets/automatic/delegates-expanding-large.png)
 
