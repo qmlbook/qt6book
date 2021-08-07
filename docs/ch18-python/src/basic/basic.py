@@ -1,7 +1,7 @@
 import sys
-from PySide2.QtGui import QGuiApplication
-from PySide2.QtQml import QQmlApplicationEngine
-from PySide2.QtCore import QUrl
+from PySide6.QtGui import QGuiApplication
+from PySide6.QtQml import QQmlApplicationEngine
+from PySide6.QtCore import QUrl
 
 if __name__ == '__main__':
     app = QGuiApplication(sys.argv)
@@ -11,4 +11,4 @@ if __name__ == '__main__':
     if not engine.rootObjects():
         sys.exit(-1)
     
-    sys.exit(app.exec_())
+    sys.exit(app.exec())

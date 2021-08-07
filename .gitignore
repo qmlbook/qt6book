@@ -109,3 +109,7 @@ build-*
 
 # Examples build output
 _examples/
+
+# Python
+.venv
+__pycache__

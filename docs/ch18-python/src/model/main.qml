@@ -1,8 +1,8 @@
-import QtQuick 2.0
-import QtQuick.Window 2.0
-import QtQuick.Controls 2.0
+import QtQuick
+import QtQuick.Window
+import QtQuick.Controls
 
-import PsUtils 1.0
+import PsUtils
 
 Window {
     id: root

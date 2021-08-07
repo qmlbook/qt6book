@@ -11,9 +11,9 @@ As the Qt for Python project provides an entirely new language binding for Qt, i
 * Qt for Python wiki: [https://wiki.qt.io/Qt_for_Python](https://wiki.qt.io/Qt_for_Python)
 * Caveats: [https://wiki.qt.io/Qt_for_Python/Considerations](https://wiki.qt.io/Qt_for_Python/Considerations)
 
-The Qt for Python bindings are generated using the Shiboken tool. At times, it might be of interest to read about it as well to understand what is going on. The preferred point for finding information about Shiboken is the [reference documentation](https://doc.qt.io/qtforpython/shiboken2/index.html). If you want to mix your own C++ code with Python and QML, Shiboken is the tool that you need.
+The Qt for Python bindings are generated using the Shiboken tool. At times, it might be of interest to read about it as well to understand what is going on. The preferred point for finding information about Shiboken is the [reference documentation](https://doc.qt.io/qtforpython/shiboken6/index.html). If you want to mix your own C++ code with Python and QML, Shiboken is the tool that you need.
 
 ::: tip
-Through-out this chapter we will use Python 3.6.
+Through-out this chapter we will use Python 3.7.
 :::
 
