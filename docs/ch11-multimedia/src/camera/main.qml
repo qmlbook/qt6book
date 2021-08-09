@@ -37,8 +37,15 @@ Rectangle {
     color: "black"
 
     VideoOutput {
+        id: output
         anchors.fill: parent
-        source: camera
+    }
+    
+    CaptureSession {
+        id: capture
+        videoOutput: output
+        camera: camera
+        imageCapture: ImageCapture {}
     }
 
     Camera {
@@ -85,9 +92,10 @@ Rectangle {
     }
 
     Connections {
-        target: camera.imageCapture
+        target: capture.imageCapture
 
-        onImageSaved: {
+        function onImageSaved(id, path) {
+            console.log(path)
             imagePaths.append({"path": path})
             listView.positionViewAtEnd();
         }
@@ -107,7 +115,7 @@ Rectangle {
 
             text: "Take Photo"
             onClicked: {
-                camera.imageCapture.capture();
+                capture.imageCapture.captureToFile();
             }
         }
 
