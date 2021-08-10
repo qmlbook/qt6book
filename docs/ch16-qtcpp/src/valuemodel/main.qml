@@ -1,7 +1,7 @@
 import QtQuick 2.5
-import QtQuick.Window 2.2
-import QtQuick.Controls 1.5
-import QtQuick.Layouts 1.2
+import QtQuick.Window
+import QtQuick.Controls
+import QtQuick.Layouts
 
 // our module
 import org.example 1.0
@@ -128,11 +128,11 @@ Window {
         }
         TextEntry {
             id: textEntry
-            onAppend: {
+            onAppend: function(text) {
                 var js = JSON.parse(text)
                 valueModel.append(js)
             }
-            onEdit: {
+            onEdit: function(text) {
                 var js = JSON.parse(text)
                 valueModel.set(index,js)
             }

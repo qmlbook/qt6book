@@ -203,7 +203,7 @@ void ValueModel::append_children(QQmlListProperty< QObject >* property, QObject*
 }
 
 // QQmlListProperty count
-int ValueModel::count_children(QQmlListProperty< QObject >* property)
+qsizetype ValueModel::count_children(QQmlListProperty< QObject >* property)
 {
     ValueModel* model = qobject_cast< ValueModel* >(property->object);
     if(model) {
@@ -213,7 +213,7 @@ int ValueModel::count_children(QQmlListProperty< QObject >* property)
 }
 
 // QQmlListProperty at
-QObject* ValueModel::at_children(QQmlListProperty< QObject >* property, int row)
+QObject* ValueModel::at_children(QQmlListProperty< QObject >* property, qsizetype row)
 {
     ValueModel* model = qobject_cast< ValueModel* >(property->object);
     if(model)
