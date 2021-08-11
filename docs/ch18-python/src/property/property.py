@@ -1,21 +1,34 @@
-import sys
 import random
+import sys
 
-from PySide2.QtGui import QGuiApplication
-from PySide2.QtQml import QQmlApplicationEngine
-from PySide2.QtCore import QUrl
+from PySide6.QtGui import QGuiApplication
+from PySide6.QtQml import QQmlApplicationEngine
+from PySide6.QtCore import QUrl, QObject, Signal, Slot, Property
 
-from PySide2.QtCore import QObject, Signal, Slot, Property
 
 class NumberGenerator(QObject):
     def __init__(self):
         QObject.__init__(self)
         self.__number = 42
         self.__max_number = 99
-    
+        
+    # number
+
+    numberChanged = Signal(int)
+
     @Slot()
     def updateNumber(self):
         self.__set_number(random.randint(0, self.__max_number))
+
+    def __set_number(self, val):
+        if self.__number != val:
+            self.__number = val
+            self.numberChanged.emit(self.__number)
+    
+    def get_number(self):
+        return self.__number
+    
+    number = Property(int, get_number, notify=numberChanged)
 
     # maxNumber
 
@@ -42,20 +55,6 @@ class NumberGenerator(QObject):
         return self.__max_number
 
     maxNumber = Property(int, get_max_number, set_max_number, notify=maxNumberChanged)
-    
-    # number
-    
-    numberChanged = Signal(int)
-    
-    def __set_number(self, val):
-        if self.__number != val:
-            self.__number = val;
-            self.numberChanged.emit(self.__number)
-    
-    def get_number(self):
-        return self.__number
-    
-    number = Property(int, get_number, notify=numberChanged)
 
 
 if __name__ == '__main__':
@@ -70,7 +69,4 @@ if __name__ == '__main__':
     if not engine.rootObjects():
         sys.exit(-1)    
     
-    sys.exit(app.exec_())
-
-    # ...
-    
+    sys.exit(app.exec())

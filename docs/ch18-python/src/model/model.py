@@ -1,11 +1,9 @@
-import sys
 import psutil
+import sys
 
-from PySide2.QtGui import QGuiApplication
-from PySide2.QtQml import QQmlApplicationEngine, qmlRegisterType
-from PySide2.QtCore import QUrl, QTimer, QAbstractListModel
-
-from PySide2.QtCore import QObject, Signal, Slot, Property, Qt
+from PySide6.QtGui import QGuiApplication
+from PySide6.QtQml import QQmlApplicationEngine, qmlRegisterType
+from PySide6.QtCore import Qt, QUrl, QTimer, QAbstractListModel
 
 class CpuLoadModel(QAbstractListModel):
     def __init__(self):
@@ -49,4 +47,4 @@ if __name__ == '__main__':
     if not engine.rootObjects():
         sys.exit(-1)    
     
-    sys.exit(app.exec_())
+    sys.exit(app.exec())

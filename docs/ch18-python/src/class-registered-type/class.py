@@ -1,17 +1,16 @@
-import sys
 import random
+import sys
 
-from PySide2.QtGui import QGuiApplication
-from PySide2.QtQml import QQmlApplicationEngine, qmlRegisterType
-from PySide2.QtCore import QUrl
+from PySide6.QtGui import QGuiApplication
+from PySide6.QtQml import QQmlApplicationEngine, qmlRegisterType
+from PySide6.QtCore import QUrl, QObject, Signal, Slot
 
-from PySide2.QtCore import QObject, Signal, Slot
 
 class NumberGenerator(QObject):
     def __init__(self):
         QObject.__init__(self)
     
-    nextNumber = Signal(int)
+    nextNumber = Signal(int, arguments=['number'])
 
     @Slot()
     def giveNumber(self):
@@ -29,4 +28,4 @@ if __name__ == '__main__':
     if not engine.rootObjects():
         sys.exit(-1)    
     
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
