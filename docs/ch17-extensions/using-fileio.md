@@ -1,14 +1,15 @@
 # Using FileIO
 
-Now we can use our newly created file to access some nice data. For this example, we want to read some city data in a JSON format and display it in a table. We will use two projects, one the extension plugin (called `fileio`) which provides us a way to read and write text from a file and the other one, which displays the data in a table (`CityUI`) by using the file io for reading and writing of files. The data used in this example is in the `cities.json` file.
-
-
+Now we can use our newly created file to access some data. In this example, we will some city data in a JSON format and display it in a table. We build this as two projects: one for the extension plugin (called `fileio`) which provides us a way to read and write text from a file, and the other, which displays the data in a table, (`CityUI`). The `CityUI` uses the `fileio`extension for reading and writing files. 
 
 ![image](./images/cityui_mock.png)
 
-JSON is just text, which is formatted in such a way that it can be converted into a valid JS object/array and back to the text. We use our `FileIO` to read the JSON formatted data and convert it into a JS object using `JSON.parse()`. The data is later used as a model for the table view. This is roughly the content of our read document function. For saving, we convert the data back into a text format and use the write function for saving.
+JSON data is just text that is formatted in such a way that it can be converted into a valid JS object/array and back to text. We use our `FileIO` to read the JSON formatted data and convert it into a JS object using the built in Javascript function `JSON.parse()`. The data is later used as a model for the table view. This is implemented in the read document and write document functions shown below. 
 
-The city JSON data is a formatted text file, with a set of city data entries, where each entry contains interesting data about the city.
+<<< @/docs/ch17-extensions/src/CityUI/main.qml#readwrite
+
+The JSON data used in this example is in the `cities.json` file.
+It contains a list of city data entries, where each entry contains interesting data about the city such as what is shown below.
 
 ```json
 [
@@ -25,7 +26,7 @@ The city JSON data is a formatted text file, with a set of city data entries, wh
 
 ## The Application Window
 
-We use the Qt Creator `QtQuick Application` wizard to create a Qt Quick controls based application. We will not use the new QML forms as this is difficult to explain in a book, although the new forms approach with a *ui.qml* file is much more usable than previous. So you can remove/delete the forms file for now.
+We use the Qt Creator `QtQuick Application` wizard to create a Qt Quick Controls 2 based application. We will not use the new QML forms as this is difficult to explain in a book, although the new forms approach with a *ui.qml* file is much more usable than previous. So you can remove/delete the forms file for now.
 
 The basic setup is an `ApplicationWindow` which can contain a toolbar, menubar, and status bar. We will only use the menubar to create some standard menu entries for opening and saving the document. The basic setup will just display an empty window.
 
@@ -48,45 +49,7 @@ ApplicationWindow {
 
 To better use/reuse our commands we use the QML `Action` type. This will allow us later to use the same action also for a potential toolbar. The open and save and exit actions are quite standard. The open and save action do not contain any logic yet, this we will come later. The menubar is created with a file menu and these three action entries. Additional we prepare already a file dialog, which will allow us to pick our city document later. A dialog is not visible when declared, you need to use the `open()` method to show it.
 
-```qml
-...
-Action {
-    id: save
-    text: qsTr("&Save")
-    shortcut: StandardKey.Save
-    onTriggered: { }
-}
-
-Action {
-    id: open
-    text: qsTr("&Open")
-    shortcut: StandardKey.Open
-    onTriggered: {}
-}
-
-Action {
-    id: exit
-    text: qsTr("E&xit")
-    onTriggered: Qt.quit();
-}
-
-menuBar: MenuBar {
-    Menu {
-        title: qsTr("&File")
-        MenuItem { action: open }
-        MenuItem { action: save }
-        MenuSeparator { }
-        MenuItem { action: exit }
-    }
-}
-
-...
-
-FileDialog {
-    id: openDialog
-    onAccepted: { }
-}
-```
+<<< @/docs/ch17-extensions/src/CityUI/main.qml#actions
 
 ## Formatting the Table
 
@@ -210,7 +173,7 @@ This is basically the application with reading, writing and displaying a JSON do
 
 The application is not fully ready yet. We still want to show the flags and allow the user to modify the document by removing cities from the model.
 
-The flags are stored for this example relative to the `main.qml` document in a *flags* folder. To be able to show them the table column needs to define a custom delegate for rendering the flag image.
+In this example, the flag files are stored relative to the `main.qml` document in a *flags* folder. To be able to show them the table column needs to define a custom delegate for rendering the flag image.
 
 ```qml
 TableViewColumn {
@@ -226,7 +189,7 @@ TableViewColumn {
 }
 ```
 
-That is all. It exposes the flag property from the JS model as `styleData.value` to the delegate. The delegate then adjusts the image path to pre-pend `'flags/'` and displays it.
+That is all that is needed to show the flag. It exposes the flag property from the JS model as `styleData.value` to the delegate. The delegate then adjusts the image path to pre-pend `'flags/'` and displays it as an `Image` element.
 
 For removing we use a similar technique to display a remove button.
 
@@ -247,8 +210,6 @@ TableViewColumn {
 For the data removal operation, we get a hold on the view model and then remove one entry using the JS `splice` function. This method is available to us as the model is from the type JS array. The splice method changes the content of an array by removing existing elements and/or adding new elements.
 
 A JS array is unfortunately not so smart as a Qt model like the `QAbstractItemModel`, which will notify the view about row changes or data changes. The view will not show any updated data by now as it is never notified of any changes. Only when we set the data back to the view, the view recognizes there is new data and refreshes the view content. Setting the model again using `view.model = data` is a way to let the view know there was a data change.
-
-
 
 ![image](./images/cityui_populated.png)
 

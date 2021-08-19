@@ -12,6 +12,7 @@ ApplicationWindow {
     height: 480
     visible: true
 
+// #region actions
     Action {
         id: save
         text: qsTr("&Save")
@@ -44,6 +45,18 @@ ApplicationWindow {
         }
     }
 
+    FileDialog {
+        id: openDialog
+        onAccepted: {
+            root.readDocument()
+        }
+    }
+// #endregion actions
+
+// #region readwrite
+    FileIO {
+        id: io
+    }
 
     function readDocument() {
         io.source = openDialog.fileUrl
@@ -56,6 +69,7 @@ ApplicationWindow {
         io.text = JSON.stringify(data, null, 4)
         io.write()
     }
+// #endregion readwrite
 
     TableView {
         id: view
@@ -102,17 +116,6 @@ ApplicationWindow {
             }
             width: 40
         }
-    }
-
-    FileDialog {
-        id: openDialog
-        onAccepted: {
-            root.readDocument()
-        }
-    }
-
-    FileIO {
-        id: io
     }
 
 }
