@@ -7,8 +7,9 @@ You can always find the latest version of the book built at [https://distracted-
 # Contents
 
 1. Building the Book Locally
-2. For Reviewers
-3. For Authors
+2. Building for Release
+3. For Reviewers
+4. For Authors
 
 # 1. Building the Book Locally
 
@@ -37,12 +38,25 @@ $ CMAKE_PREFIX_PATH=/path/to/Qt/6.2.0/gcc_64/lib/cmake/ yarnpkg run examples:bui
 
 Subsequent calls do not need `CMAKE_PREFIX_PATH` to be specified.
 
-# 2. For Reviewers
+# 2. Building for Release
+
+To build for release, first build the docs, then package the examples into a tar-ball:
+
+```
+$ yarnpkg run docs:build
+$ yarnpkg run examples:package
+```
+
+This creates `examples.tar.gz` in your package root, as well as where VuePress places the output, i.e. `docs/.vuepress/dist/`.
+
+Notice that the `examples:package` command assumes that the VuePress `dist/` directory exists.
+
+# 3. For Reviewers
 
 Pick chapters to review from the [Project Board](https://github.com/qmlbook/qt6book/projects/1). Also look for issues tagged as [Questions](https://github.com/qmlbook/qt6book/issues?q=is%3Aissue+is%3Aopen+label%3Aquestion) in the project.
 
 Reviews are welcome both as issues, or as pull requests. Pick the approach that is the easiest for you!
 
-# 3. For Authors
+# 4. For Authors
 
 Chapters are outlined in `docs/.vuepress/config.js`. Please tag chapters as `Qt5`, `Qt6 Draft`, and `Qt 6` respectively.

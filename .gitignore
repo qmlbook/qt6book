@@ -109,6 +109,7 @@ build-*
 
 # Examples build output
 _examples/
+examples.tar.gz
 
 # Python
 .venv
