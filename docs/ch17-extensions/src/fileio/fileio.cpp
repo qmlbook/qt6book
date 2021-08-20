@@ -9,6 +9,7 @@ FileIO::~FileIO()
 {
 }
 
+// #region read
 void FileIO::read()
 {
     if(m_source.isEmpty()) {
@@ -16,7 +17,7 @@ void FileIO::read()
     }
     QFile file(m_source.toLocalFile());
     if(!file.exists()) {
-        qWarning() << "Does not exits: " << m_source.toLocalFile();
+        qWarning() << "Does not exist: " << m_source.toLocalFile();
         return;
     }
     if(file.open(QIODevice::ReadOnly)) {
@@ -25,7 +26,9 @@ void FileIO::read()
         emit textChanged(m_text);
     }
 }
+// #endregion read
 
+// #region write
 void FileIO::write()
 {
     if(m_source.isEmpty()) {
@@ -37,6 +40,7 @@ void FileIO::write()
         stream << m_text;
     }
 }
+// #endregion write
 
 QUrl FileIO::source() const
 {

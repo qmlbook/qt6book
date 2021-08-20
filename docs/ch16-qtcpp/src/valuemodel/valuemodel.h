@@ -43,8 +43,8 @@ protected:
     QHash<int, QByteArray> roleNames() const;
 private:
     static void append_children(QQmlListProperty<QObject> * property, QObject* object);
-    static QObject *at_children(QQmlListProperty<QObject> *property, int row);
-    static int count_children(QQmlListProperty<QObject> * property);
+    static QObject *at_children(QQmlListProperty<QObject> *property, qsizetype row);
+    static qsizetype count_children(QQmlListProperty<QObject> * property);
     static void clear_children(QQmlListProperty<QObject> * property);
 private slots:
     void refreshDelayed();

@@ -57,7 +57,7 @@ function ch18Sidebar() {
 
 function ch17Sidebar() {
   return {
-    title: "Extending QML",
+    title: "Extending QML (Qt6 - Draft)",
     path: '/ch17-extensions/extending-qml',
     collapsable: false,
     children: [
@@ -74,7 +74,7 @@ function ch17Sidebar() {
 
 function ch16Sidebar() {
   return {
-    title: "Qt C++",
+    title: "Qt C++ (Qt6 - Draft)",
     path: '/ch16-qtcpp/qtcpp',
     collapsable: false,
     children: [

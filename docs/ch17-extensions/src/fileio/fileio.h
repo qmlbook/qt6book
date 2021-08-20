@@ -2,6 +2,7 @@
 #define FILEIO_H
 
 #include <QtCore>
+#include <QtQml>
 
 class FileIO : public QObject
 {
@@ -9,6 +10,7 @@ class FileIO : public QObject
     Q_DISABLE_COPY(FileIO)
     Q_PROPERTY(QUrl source READ source WRITE setSource NOTIFY sourceChanged)
     Q_PROPERTY(QString text READ text WRITE setText NOTIFY textChanged)
+    QML_ELEMENT
 public:
     FileIO(QObject *parent = 0);
     ~FileIO();

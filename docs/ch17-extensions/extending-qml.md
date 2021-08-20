@@ -1,4 +1,4 @@
 # Extending QML with C++
 
-Executing QML within the confined space that QML as a language offers can sometimes be limiting. By extending the QML run-time with native functionality written in C++, the application can utilize the full performance and freedom of the base platform.
+Creating application using only QML can sometimes be limiting. The QML run-time is developed using C++, and the run-time environment can be extended, making it possible to make use of the full performance and freedom of the surrounding system.
 

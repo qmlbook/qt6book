@@ -1,12 +1,9 @@
-#include "fileio_plugin.h"
-#include "fileio.h"
+#include <QQmlEngineExtensionPlugin>
 
-#include <qqml.h>
-
-void FileioPlugin::registerTypes(const char *uri)
+class FileioPlugin : public QQmlEngineExtensionPlugin
 {
-    // @uri org.example.io
-    qmlRegisterType<FileIO>(uri, 1, 0, "FileIO");
-}
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID QQmlEngineExtensionInterface_iid)
+};
 
-
+#include "fileio_plugin.moc"
