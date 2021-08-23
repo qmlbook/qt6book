@@ -1,26 +1,90 @@
 # Build Systems
 
-Building software reliably on different platforms can be a complex task. You will encounter different environments with different compilers, paths, and library variations. The purpose of Qt is to shield the application developer from these cross-platform issues. For this Qt introduced the `qmake` build file generator. `qmake` operates on a project file with the ending `.pro`. This project file contains instructions about the application and the sources to be used. Running qmake on this project file will generate a `Makefile` for you on Unix and MacOS and even under windows if the MinGW compiler toolchain is being used. Otherwise, it may create a visual studio project or an Xcode project.
+Building software reliably across different platforms can be a complex task. You will encounter different environments with different compilers, paths, and library variations. The purpose of Qt is to shield the application developer from these cross-platform issues. Qt relies on [CMake](https://cmake.org/) to convert `CMakeLists.txt` project files to platform specific make files, which then can be built using the platform specific tooling.
+
+:: note
+::
+:: Qt comes with three different build systems. The original Qt build system 
+:: was called `qmake`. Another Qt specific build system is `QBS` which uses a 
+:: declarative approach to describing the build sequence. Since version 6, Qt 
+:: has shifted from `qmake` to CMake as the official build system.
 
 A typical build flow in Qt under Unix would be:
 
 ```sh
-edit myproject.pro
-qmake // generates Makefile
+vim CMakeLists.txt
+cmake . // generates Makefile
 make
 ```
 
-Qt allows you also to use shadow builds. A shadow build is a build outside of your source code location. Assume we have a myproject folder with a `myproject.pro` file. The flow would be like this:
+With Qt you are encouraged to use shadow builds. A shadow build is a build outside of your source code location. Assume we have a myproject folder with a `CMakeLists.txt` file. The flow would be like this:
 
 ```sh
 mkdir build
 cd build
-qmake ../myproject/myproject.pro
+cmake ..
 ```
 
-We create a build folder and then call qmake from inside the build folder with the location of our project folder. This will set up the makefile in a way that all build artifacts are stored under the build folder instead of inside our source code folder. This allows us to create builds for different qt versions and build configurations at the same time and also it does not clutter our source code folder which is always a good thing.
+We create a build folder and then call cmake from inside the build folder with the location of our project folder. This will set up the makefile in a way that all build artifacts are stored under the build folder instead of inside our source code folder. This allows us to create builds for different qt versions and build configurations at the same time and also it does not clutter our source code folder which is always a good thing.
 
-When you are using Qt Creator it does these things behind the scenes for you and you do not have to worry about these steps usually. For larger projects and for a deeper understanding of the flow, it is recommended that you learn to build your Qt project from the command line.
+When you are using Qt Creator it does these things behind the scenes for you and you do not have to worry about these steps in most cases. For larger projects and for a deeper understanding of the flow, it is recommended that you learn to build your Qt project from the command line to ensure that you have full control over what is happening.
+
+## CMake
+
+CMake is a tool created by Kitware. Kitware is very well known for their 3D visualization software VTK and also CMake, the cross-platform makefile generator. It uses a series of `CMakeLists.txt` files to generate platform-specific makefiles. CMake is used by the KDE project and as such has a special relationship with the Qt community and since version 6, it is the preferred way to build Qt projects.
+
+The `CMakeLists.txt` is the file used to store the project configuration. For a simple hello world using QtCore the project file would look like this:
+
+```cmake
+// ensure cmake version is at least 3.16.0
+cmake_minimum_required(VERSION 3.16.0)
+
+// defines a project with a version
+project(foundation_tests VERSION 1.0.0 LANGUAGES CXX)
+
+// pick the C++ standard to use, in this case C++17
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+// tell CMake to run the Qt tools moc, rcc, and uic automatically
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
+
+// configure the Qt 6 modules core and test
+find_package(Qt6 COMPONENTS Core REQUIRED)
+find_package(Qt6 COMPONENTS Test REQUIRED)
+
+// define an executable built from a source file
+add_executable(foundation_tests
+    tst_foundation.cpp
+)
+
+// tell cmake to link the executable to the Qt 6 core and test modules
+target_link_libraries(foundation_tests PRIVATE Qt6::Core Qt6::Test)
+```
+
+This will build a `foundations_tests` executable using `tst_foundation.cpp` and link against the Core and Test libraries from Qt 6. You will find more examples of CMake files in this book, as we use CMake for all C++ based examples.
+
+CMake is a powerful, a complex, tool and it takes some time to get used to the syntax. CMake is very flexible and really shines in large and complex projects.
+
+## References
+
+
+* [CMake Help](http://www.cmake.org/documentation/) - available online but also as QtHelp format
+
+
+* [Running CMake](http://www.cmake.org/runningcmake/)
+
+
+* [KDE CMake Tutorial](https://techbase.kde.org/Development/Tutorials/CMake)
+
+
+* [CMake Book](http://www.kitware.com/products/books/CMakeBook.html)
+
+
+* [CMake and Qt](http://www.cmake.org/cmake/help/v3.0/manual/cmake-qt.7.html)
+
 
 ## QMake
 
@@ -125,62 +189,3 @@ QMake based projects are normally the number one choice when you start programmi
 
 
 * [QMake Variables](http://doc.qt.io/qt-5//qmake-variable-reference.html) - Variables like TEMPLATE, CONFIG, QT is explained here
-
-## CMake
-
-CMake is a tool created by Kitware. Kitware is very well known for their 3D visualization software VTK and also CMake, the cross-platform makefile generator. It uses a series of `CMakeLists.txt` files to generate platform-specific makefiles. CMake is used by the KDE project and as such has a special relationship with the Qt community.
-
-The `CMakeLists.txt` is the file used to store the project configuration. For a simple hello world using QtCore the project file would look like this:
-
-```cmake
-// ensure cmake version is at least 3.0
-cmake_minimum_required(VERSION 3.0)
-// adds the source and build location to the include path
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-// Qt's MOC tool shall be automatically invoked
-set(CMAKE_AUTOMOC ON)
-// using the Qt5Core module
-find_package(Qt5Core)
-// create excutable helloworld using main.cpp
-add_executable(helloworld main.cpp)
-// helloworld links against Qt5Core
-target_link_libraries(helloworld Qt5::Core)
-```
-
-This will build a helloworld executable using main.cpp and linked agains the external Qt5Core library. The build file can be modified to be more generic:
-
-```cmake
-// sets the PROJECT_NAME variable
-project(helloworld)
-cmake_minimum_required(VERSION 3.0)
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set(CMAKE_AUTOMOC ON)
-find_package(Qt5Core)
-
-// creates a SRC_LIST variable with main.cpp as single entry
-set(SRC_LIST main.cpp)
-// add an executable based on the project name and source list
-add_executable(${PROJECT_NAME} ${SRC_LIST})
-// links Qt5Core to the project executable
-target_link_libraries(${PROJECT_NAME} Qt5::Core)
-```
-
-You can see that CMake is quite powerful. It takes some time to get used to the syntax. In general, it is said that CMake is better suited for large and complex projects.
-
-## References
-
-
-* [CMake Help](http://www.cmake.org/documentation/) - available online but also as QtHelp format
-
-
-* [Running CMake](http://www.cmake.org/runningcmake/)
-
-
-* [KDE CMake Tutorial](https://techbase.kde.org/Development/Tutorials/CMake)
-
-
-* [CMake Book](http://www.kitware.com/products/books/CMakeBook.html)
-
-
-* [CMake and Qt](http://www.cmake.org/cmake/help/v3.0/manual/cmake-qt.7.html)
-
