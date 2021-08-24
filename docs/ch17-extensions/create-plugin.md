@@ -2,9 +2,9 @@
 
 Qt Creator contains a wizard to create a **QtQuick 2 QML Extension Plugin**, found under **Library** when creating a new project. We use it to create a plugin called `fileio` with a `FileIO` object to start within the module `org.example.io`.
 
-:: note
-::
-:: The current wizard generates a QMake based project. Please use the example from this chapter as a starting point to build a CMake based project.
+::: tip
+The current wizard generates a QMake based project. Please use the example from this chapter as a starting point to build a CMake based project. 
+:::
 
 The project should consist of the `fileio.h` and `fileio.cpp`, that declare and implement the `FileIO` type, and a `fileio_plugin.cpp` that contains the actual plugin class that allows the QML engine to discover out extension.
 
@@ -27,8 +27,8 @@ The module is the URI that the user imports, and after it you name which plugin 
 
 The easier way to create a correct `qmldir` file is in the `CMakeLists.txt` for your project, in the `qt_add_qml_module` macro. Here, the `URI` parameter is used to specify the URI of the plugin, e.g. `org.example.io`. This way, the `qmldir` file is generated when the project is built.
 
-:: TODO
-::
-:: How to install the module?
+::: TODO
+How to install the module? 
+:::
 
 When importing a module called “org.example.io”, the QML engine will look in one of the import paths and tries to locate the “org/example/io” path with a qmldir. The qmldir then will tell the engine which library to load as a QML extension plugin using which module URI. Two modules with the same URI will override each other.

@@ -1,6 +1,6 @@
 # The QObject
 
-As described in the introduction, the `QObject` is what enables Qt’s introspection. It is the base class of almost all classes in Qt. Exceptions are value types such as `QColor`, `QString` and `QList`.
+As described in the introduction, the `QObject` is what enables mant of Qt's core functions such as signals and slots. This is implemented through introspection, which is what `QObject` provides. `QObject` is the base class of almost all classes in Qt. Exceptions are value types such as `QColor`, `QString` and `QList`.
 
 A Qt object is a standard C++ object, but with more abilities. These can be divided into two groups: introspection and memory management. The first means that a Qt object is aware of its class name, its relationship to other classes, as well as its methods and properties. The memory management concept means that each Qt object can be the parent of child objects. The parent *owns* the children, and when the parent is destroyed, it is responsible for destroying its children.
 
@@ -19,6 +19,9 @@ class Person : public QObject
 
     // enables enum introspections
     Q_ENUMS(Gender)
+    
+    // makes the type creatable in QML
+    QML_ELEMENT
 
 public:
     // standard Qt constructor with parent for memory management
@@ -29,7 +32,7 @@ public:
     QString name() const;
     Gender gender() const;
 
-public slots: // slots can be connected to signals
+public slots: // slots can be connected to signals, or called
     void setName(const QString &);
     void setGender(Gender);
 
@@ -54,7 +57,7 @@ Person::Person(QObject *parent)
 }
 ```
 
-The getter function is named after the property and is normally a simple `const` function. The setter emits the changed signal when the property really has changed. For this, we insert a guard to compare the current value with the new value. And only when the value differs we assign it to the member variable and emit the changed signal.
+The getter function is named after the property and is normally a basic `const` function. The setter emits the changed signal when the property has changed. To ensure that the value actually has changed, we insert a guard to compare the current value with the new value. Only when the value differs we assign it to the member variable and emit the changed signal.
 
 ```cpp
 QString Person::name() const

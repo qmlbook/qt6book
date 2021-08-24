@@ -2,12 +2,12 @@
 
 Building software reliably across different platforms can be a complex task. You will encounter different environments with different compilers, paths, and library variations. The purpose of Qt is to shield the application developer from these cross-platform issues. Qt relies on [CMake](https://cmake.org/) to convert `CMakeLists.txt` project files to platform specific make files, which then can be built using the platform specific tooling.
 
-:: note
-::
-:: Qt comes with three different build systems. The original Qt build system 
-:: was called `qmake`. Another Qt specific build system is `QBS` which uses a 
-:: declarative approach to describing the build sequence. Since version 6, Qt 
-:: has shifted from `qmake` to CMake as the official build system.
+::: tip
+Qt comes with three different build systems. The original Qt build system 
+was called `qmake`. Another Qt specific build system is `QBS` which uses a 
+declarative approach to describing the build sequence. Since version 6, Qt 
+has shifted from `qmake` to CMake as the official build system.
+:::
 
 A typical build flow in Qt under Unix would be:
 
