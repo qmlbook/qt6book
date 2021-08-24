@@ -35,6 +35,6 @@ Do not forget to call `make install` at the end. Otherwise, your plugin files wi
 
 TODO TODO TODO
 
-:: tip
-::
-:: As the reading and writing are blocking function calls you should only use this `FileIO` for small texts, otherwise, you will block the UI thread of Qt. Be warned!
+::: tip
+As the reading and writing are blocking function calls you should only use this `FileIO` for small texts, otherwise, you will block the UI thread of Qt. Be warned!
+:::

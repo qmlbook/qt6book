@@ -1,6 +1,6 @@
 # Models in C++
 
-Models in QML serve the purpose of providing data to `ListViews`, `PathViews` and other views which take a model and create an instance of a delegate for each entry in the model. The view is smart enough to only create these instances which are visible or in the cache range. This makes it possible to have large models with tens of thousands of entries but still have a very slick user interface. The delegate acts like a template to be rendered with the model entries data. So in summary: a view renders entries from the model using a delegate as a template. The model is a data provider for views.
+One of the most common ways to integrate C++ and QML is through _models_. A _model_ provides data to a _view_ such as  `ListViews`, `GridView`, `PathViews`, and other views which take a model and create an instance of a delegate for each entry in the model. The view is smart enough to only create these instances which are visible or in the cache range. This makes it possible to have large models with tens of thousands of entries but still have a very slick user interface. The delegate acts like a template to be rendered with the model entries data. So in summary: a view renders entries from the model using a delegate as a template. The model is a data provider for views.
 
 When you do not want to use C++ you can also define models in pure QML. You have several ways to provide a model for the view. For handling of data coming from C++ or a large amount of data, the C++ model is more suitable than this pure QML approach. But often you only need a few entries then these QML models are well suited.
 
@@ -30,11 +30,11 @@ ListView {
 }
 ```
 
-The QML views know how to handle these different models. For models coming from the C++ world, the view expects a specific protocol to be followed. This protocol is defined in an API (`QAbstractItemModel`) together with documentation for the dynamic behavior. The API was developed for the desktop widget world and is flexible enough to act as a base for trees, or multi-column tables as well as lists. In QML, we use either the list variant of the API (`QAbstractListModel`) or, for the `TableView` element, the table variant of the API (`QAbstractTableModel`). The API contains some mandatory functions to be implemented and some are optional. The optional parts mostly handle the dynamic use case of adding or removing of data.
+The QML views know how to handle these different types of models. For models coming from the C++ world, the view expects a specific protocol to be followed. This protocol is defined in the API defined in `QAbstractItemModel`, together with documentation describing the dynamic behavior. The API was developed for driving views in the desktop widget world and is flexible enough to act as a base for trees, or multi-column tables as well as lists. In QML, we usually use either the list variant of the API, `QAbstractListModel` or, for the `TableView` element, the table variant of the API, `QAbstractTableModel`. The API contains some functions that have to be implemented and some optional ones that extend the capabilities of the model. The optional parts mostly handle the dynamic use cases for changing, adding or deleting data.
 
 ## A simple model
 
-A typical QML C++ model derives from `QAbstractListModel` and implements at least the `data` and `rowCount` function. In this example, we will use a series of SVG color names provided by the `QColor` class and display them using our model. The data is stored into a `QList<QString>` data container.
+A typical QML C++ model derives from `QAbstractListModel` and implements at least the `data` and `rowCount` function. In the example below, we will use a series of SVG color names provided by the `QColor` class and display them using our model. The data is stored into a `QList<QString>` data container.
 
 Our `DataEntryModel` is derived form `QAbstractListModel` and implements the mandatory functions. We can ignore the parent in `rowCount` as this is only used in a tree model. The `QModelIndex` class provides the row and column information for the cell, for which the view wants to retrieve data. The view is pulling information from the model on a row/column and role-based. The `QAbstractListModel` is defined in `QtCore` but `QColor` in `QtGui`. That is why we have the additional `QtGui` dependency. For QML applications it is okay to depend on `QtGui` but it should normally not depend on `QtWidgets`.
 
@@ -62,7 +62,7 @@ private:
 #endif // DATAENTRYMODEL_H
 ```
 
-On the implementation side, the most complex part is the data function. We first need to make a range check. And then we check for the display role. The `Qt::DisplayRole` is the default text role a view will ask for. There is a small set of default roles defined in Qt which can be used, but normally a model will define its own roles for clarity. All calls which do not contain the display role are ignored at the moment and the default value `QVariant()` is returned.
+On the implementation side, the most complex part is the data function. We first need to make a range check to ensure that we've been provided a valid index. Then we check that the display role is supported. Each item in a model can have multiple display roles defining various aspects of the data contained. The `Qt::DisplayRole` is the default text role a view will ask for. There is a small set of default roles defined in Qt which can be used, but normally a model will define its own roles for clarity. In the example, all calls which do not contain the display role are ignored at the moment and the default value `QVariant()` is returned.
 
 ```cpp
 #include "dataentrymodel.h"
@@ -497,5 +497,5 @@ Window {
 }
 ```
 
-Model view programming is one of the hardest tasks in Qt. It is one of the very few classes where you have to implement an interface as a normal application developer. All other classes you just use normally. The sketching of models should always start on the QML side. You should envision how your users would use your model inside QML. For this, it is often a good idea to create a prototype first using the `ListModel` to see how this best works in QML. This is also true when it comes to defining QML APIs. Making data available from C++ to QML is not only a technology boundary it is also a programming paradigm change from imperative to declarative style programming. So be prepared for some setbacks and aha moments:-).
+Model view programming is one of the more complex development tasks in Qt. It is one of the very few classes where you have to implement an interface as a normal application developer. All other classes you just use normally. The sketching of models should always start on the QML side. You should envision how your users would use your model inside QML. For this, it is often a good idea to create a prototype first using the `ListModel` to see how this best works in QML. This is also true when it comes to defining QML APIs. Making data available from C++ to QML is not only a technology boundary it is also a programming paradigm change from imperative to declarative style programming. So be prepared for some setbacks and aha moments:-).
 

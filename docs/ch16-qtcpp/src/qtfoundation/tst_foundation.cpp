@@ -35,7 +35,7 @@ void FoundationTest::cleanupTestCase()
 
 void FoundationTest::testQString()
 {
-    // M1>>
+    // #region M1
     QString data("A,B,C,D"); // create a simple string
     // split it into parts
     QStringList list = data.split(",");
@@ -45,12 +45,12 @@ void FoundationTest::testQString()
     QVERIFY(data == out);
     // change the first character to upper case
     QVERIFY(QString("A") == out[0].toUpper());
-    // M1<<
+    // #endregion M1
 }
 
 void FoundationTest::testNumbers()
 {
-    // M2>>
+    // #region M2
     // create some variables
     int v = 10;
     int base = 10;
@@ -62,12 +62,12 @@ void FoundationTest::testNumbers()
     // verify our results
     QVERIFY(ok == true);
     QVERIFY(v = v2);
-    // M2<<
+    // #endregion M2
 }
 
 void FoundationTest::testStringArg()
 {
-    // M3>>
+    // #region M3
     // create a name
     QString name("Joe");
     // get the day of the week as string
@@ -80,13 +80,13 @@ void FoundationTest::testStringArg()
     } else {
         QVERIFY(QString("Hello Joe. Today is Monday.") !=  hello);
     }
-    // M3<<
+    // #endregion M3
 }
 
 
 void FoundationTest::testUnicode()
 {
-    // M4>>
+    // #region M4
     // Create a unicode character using the unicode for smile :-)
     QChar smile(0x263A);
     // you should see a :-) on you console
@@ -99,12 +99,12 @@ void FoundationTest::testUnicode()
     smilies.fill(smile);
     // Can you see the smiles
     qDebug() << smilies;
-    // M4<<
+    // #endregion M4
 }
 
 void FoundationTest::testContainer()
 {
-    // M5>>
+    // #region M5
     // Create a simple list of ints using the new C++11 initialization
     // for this you need to add "CONFIG += c++11" to your pro file.
     QList<int> list{1,2};
@@ -165,13 +165,13 @@ void FoundationTest::testContainer()
         auto result = std::find_if(list.constBegin(), list.constBegin(), [value](int v) { return v == value; });
         QVERIFY(*result == value);
     }
-    // M5<<
+    // #endregion M5
 }
 
 
 void FoundationTest::testDictionary()
 {
-    // M6>>
+    // #region M6
     QHash<QString, int> hash({{"b",2},{"c",3},{"a",1}});
     qDebug() << hash.keys(); // a,b,c - unordered
     qDebug() << hash.values(); // 1,2,3 - unordered but same as order as keys
@@ -229,12 +229,12 @@ void FoundationTest::testDictionary()
     QVERIFY(map.contains("c") == true);
 
     // JAVA and STL iterator work same as QHash
-    // M6<<
+    // #endregion M6
 }
 
 void FoundationTest::testFileIO()
 {
-    // M7>>
+    // #region M7
     QStringList data({"a", "b", "c"});
     { // write binary files
         QFile file("out.bin");
@@ -271,7 +271,7 @@ void FoundationTest::testFileIO()
             QCOMPARE(data, data2);
         }
     }
-    // M7<<
+    // #endregion M7
 }
 
 QTEST_MAIN(FoundationTest)
