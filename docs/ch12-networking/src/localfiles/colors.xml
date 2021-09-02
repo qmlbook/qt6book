@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<colors>
+	<color>
+		<name>red</name>
+		<value>#f00</value>
+	</color>
+	<color> 
+		<name>green</name>
+		<value>#0f0</value>
+	</color>
+	<color>
+		<name>blue</name>
+		<value>#00f</value>
+	</color>
+	<color>
+		<name>cyan</name>
+		<value>#0ff</value>
+	</color>
+	<color>
+		<name>magenta</name>
+		<value>#f0f</value>
+	</color>
+	</color>
+	<color>
+		<name>yellow</name>
+		<value>#ff0</value>
+	</color>
+	<color> 
+		<name>black</name>
+		<value>#000</value>
+	</color>
+</colors>

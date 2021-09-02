@@ -9,7 +9,7 @@ xhr.open("GET", "colors.json");
 We use this to read a color table and display it as a grid. It is not possible to modify the file from the Qt Quick side. To store data back to the source we would need a small REST based HTTP server or a native Qt Quick extension for file access.
 
 ```qml
-import QtQuick 2.5
+import QtQuick
 
 Rectangle {
     width: 360
@@ -47,19 +47,54 @@ Rectangle {
         request()
     }
 }
+```
 
-```qml
+:::tip
+For this to work, the `QML_XHR_ALLOW_FILE_READ` must be set and enabled (set to `1`). You can do so by running:
+
+```sh
+QML_XHR_ALLOW_FILE_READ=1 qml -f localfiles.qml
+```
+:::
+
+
+
 
 Instead of using the `XMLHttpRequest` it is also possible to use the XmlListModel to access local files.
 
 ```qml
-import QtQuick.XmlListModel 2.0
+import QtQuick
+import QtQml.XmlListModel
 
-XmlListModel {
-    source: "http://localhost:8080/colors.xml"
-    query: "/colors"
-    XmlRole { name: 'color'; query: 'name/string()' }
-    XmlRole { name: 'value'; query: 'value/string()' }
+Rectangle {
+    width: 360
+    height: 360
+    color: '#000'
+
+    GridView {
+        id: view
+        anchors.fill: parent
+        cellWidth: width/4
+        cellHeight: cellWidth
+        model: xmlModel
+        delegate: Rectangle {
+            width: view.cellWidth
+            height: view.cellHeight
+            color: model.value
+            Text { 
+                anchors.centerIn: parent
+                text: model.name
+            }
+        }
+    }
+
+    XmlListModel {
+        id: xmlModel
+        source: "colors.xml"
+        query: "/colors/color"
+        XmlListModelRole { name: 'name'; elementName: 'name' }
+        XmlListModelRole { name: 'value'; elementName: 'value' }
+    }
 }
 ```
 
