@@ -17,8 +17,8 @@ WebSocket {
 To test your web socket we will use the echo server from [http://websocket.org](http://websocket.org).
 
 ```qml
-import QtQuick 2.5
-import Qt.WebSockets 1.0
+import QtQuick
+import QtWebSockets
 
 Text {
     width: 480
@@ -31,7 +31,7 @@ Text {
         id: socket
         url: "ws://echo.websocket.org"
         active: true
-        onTextMessageReceived: {
+        onTextMessageReceived: function (message) {
             text = message
         }
         onStatusChanged: {
@@ -100,7 +100,7 @@ We will use a label with white color in the example.
 
 ```qml
 // Label.qml
-import QtQuick 2.5
+import QtQuick
 
 Text {
     color: '#fff'
@@ -113,7 +113,7 @@ Our chat view is a list view, where the text is appended to a list model. Each e
 
 ```qml
 // ChatView.qml
-import QtQuick 2.5
+import QtQuick
 
 ListView {
     id: root
@@ -148,7 +148,7 @@ The chat input is just a simple text input wrapped with a colored border.
 
 ```qml
 // ChatInput.qml
-import QtQuick 2.5
+import QtQuick
 
 FocusScope {
     id: root
@@ -183,8 +183,8 @@ When the web socket receives a message it appends the message to the chat view. 
 
 ```qml
 // ws_client.qml
-import QtQuick 2.5
-import Qt.WebSockets 1.0
+import QtQuick
+import QtWebSockets
 
 Rectangle {
     width: 360
@@ -204,7 +204,7 @@ Rectangle {
         anchors.right: parent.right
         anchors.bottom: parent.bottom
         focus: true
-        onAccepted: {
+        onAccepted: function (text) {
             print('send message: ' + text)
             socket.sendTextMessage(text)
             box.append('>', text)
@@ -216,7 +216,7 @@ Rectangle {
 
         url: "ws://localhost:3000"
         active: true
-        onTextMessageReceived: {
+        onTextMessageReceived: function (message) {
             box.append('<', message)
         }
         onStatusChanged: {

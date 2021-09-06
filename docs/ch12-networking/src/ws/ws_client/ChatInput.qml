@@ -1,5 +1,5 @@
 // ChatInput.qml
-import QtQuick 2.5
+import QtQuick
 
 FocusScope {
     id: root

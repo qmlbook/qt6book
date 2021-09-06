@@ -1,6 +1,6 @@
 // M1>>
 // remote.qml
-import QtQuick 2.5
+import QtQuick
 
 Loader {
     id: root

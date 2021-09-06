@@ -1,5 +1,5 @@
-import QtQuick 2.5
-import Qt.WebSockets 1.0
+import QtQuick
+import QtWebSockets
 
 Text {
     width: 480
@@ -12,7 +12,7 @@ Text {
         id: socket
         url: "ws://echo.websocket.org"
         active: true
-        onTextMessageReceived: {
+        onTextMessageReceived: function (message) {
             text = message
         }
         onStatusChanged: {
