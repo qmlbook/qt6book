@@ -169,28 +169,19 @@ function ch11Sidebar() {
 
 function ch10Sidebar() {
   return {
-    title: "OpenGL Shaders",
-    path: '/ch10-shaders/shader-effects',
+    title: "Effects (Qt6 - Draft)",
+    path: '/ch10-effects/effects',
     collapsable: false,
     children: [
-      '/ch10-shaders/shader-effects',
-      '/ch10-shaders/opengl-shaders',
-      '/ch10-shaders/shader-elements',
-      '/ch10-shaders/fragment-shaders',
-      '/ch10-shaders/wave-effect',
-      '/ch10-shaders/vertex-shader',
-      '/ch10-shaders/curtain-effect',
-      '/ch10-shaders/effect-library',
-    ]
-  }
-}
-
-function ch09Sidebar() {
-  return {
-    title: "Particles",
-    path: '/ch09-particles/particle-simulation',
-    collapsable: false,
-    children: [
+      '/ch10-effects/effects',
+      '/ch10-effects/shader-effects',
+      '/ch10-effects/opengl-shaders',
+      '/ch10-effects/shader-elements',
+      '/ch10-effects/fragment-shaders',
+      '/ch10-effects/wave-effect',
+      '/ch10-effects/vertex-shader',
+      '/ch10-effects/curtain-effect',
+      '/ch10-effects/effect-library',
       '/ch09-particles/particle-simulation',
       '/ch09-particles/concept',
       '/ch09-particles/simple-simulation',
@@ -199,6 +190,17 @@ function ch09Sidebar() {
       '/ch09-particles/affecting-particles',
       '/ch09-particles/particle-groups',
       '/ch09-particles/summary',
+    ]
+  }
+}
+
+function ch09Sidebar() {
+  return {
+    title: "Shapes (Qt6 - Placeholder)",
+    path: '/ch09-shapes/placeholder',
+    collapsable: false,
+    children: [
+      '/ch09-shapes/placeholder',
     ]
   }
 }
