@@ -25,15 +25,13 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-// composition.qml
-
-import QtQuick 2.5
+import QtQuick
 
 Canvas {
     id: root
     width: 400; height: 200
 
-    // M1>>
+// #region M1
     onPaint: {
         var ctx = getContext("2d")
         ctx.globalCompositeOperation = "xor"
@@ -46,5 +44,5 @@ Canvas {
             ctx.fill()
         }
     }
-    // <<M1
+// #endregion M1
 }

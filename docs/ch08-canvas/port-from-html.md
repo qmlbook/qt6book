@@ -1,14 +1,11 @@
 # Porting from HTML5 Canvas
 
+Porting from an HTML5 canvas to a QML canvas is fairly easy. In this chapter we will look at the example below and do the conversion.
 
 * [https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Transformations](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Transformations)
-
-
 * [http://en.wikipedia.org/wiki/Spirograph](http://en.wikipedia.org/wiki/Spirograph)
 
-It is fairly easy to port an HTML5 canvas graphics over to use the QML canvas. From the thousands of examples, we picked one and tried it yourself.
-
-## Spiro Graph
+## Spirograph
 
 We use a [spirograph](http://en.wikipedia.org/wiki/Spirograph) example from the Mozilla project as our foundation. The original HTML5 was posted as part of the [canvas tutorial](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Transformations).
 
@@ -48,19 +45,15 @@ onPaint: {
 }
 ```
 
-The result is a ported spiro graph graphics running using the QML canvas
-
-
+The result is a ported spiro graph graphics running using the QML canvas.
 
 ![image](./assets/spirograph.png)
 
-That’s all.
+As you can see, with no changes to the actual logic, and relatively few changes to the code itself, a port from HTML5 to QML is possible.
 
 ## Glowing Lines
 
 Here is another more complicated port from the W3C organization. The original [pretty glowing lines](http://www.w3.org/TR/2dcontext/#examples) has some pretty nice aspects, which makes the porting more challenging.
-
-
 
 ![image](./assets/html_glowlines.png)
 
@@ -141,7 +134,7 @@ In HTML5 the Context2D object can paint at any time on the canvas. In QML it can
 Everything starts with the canvas element. For simplicity, we just use the `Canvas` element as the root element of our QML file.
 
 ```qml
-import QtQuick 2.5
+import QtQuick
 
 Canvas {
    id: canvas
@@ -247,7 +240,5 @@ function blank(context) {
 ```
 
 The final result will look similar to this.
-
-
 
 ![image](./assets/glowlines.png)

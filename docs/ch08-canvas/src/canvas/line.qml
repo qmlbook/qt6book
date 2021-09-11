@@ -25,13 +25,13 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import QtQuick 2.5
+import QtQuick
 
 Canvas {
     id: root
     width: 200; height: 200
 
-    // M1>>
+// #region M1
     onPaint: {
         var ctx = getContext("2d")
 
@@ -46,5 +46,5 @@ Canvas {
         // stroke path
         ctx.stroke()
     }
-    // <<M1
+// #endregion M1
 }

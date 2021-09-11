@@ -25,16 +25,15 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import QtQuick 2.5
+import QtQuick
 
 Canvas {
     id: root
     width: 400; height: 120
 
-    // M1>>
+// #region M1
     onPaint: {
         var ctx = getContext("2d")
-
 
         // draw an image
         ctx.drawImage('assets/ball.png', 10, 10)
@@ -62,5 +61,5 @@ Canvas {
     Component.onCompleted: {
         loadImage("assets/ball.png")
     }
-    // <<M1
+// #endregion M1
 }

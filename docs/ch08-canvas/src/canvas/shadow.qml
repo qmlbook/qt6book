@@ -25,9 +25,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-// shadow.qml
-
-import QtQuick 2.5
+import QtQuick
 
 Canvas {
     id: canvas
@@ -37,25 +35,25 @@ Canvas {
     onPaint: {
         var ctx = getContext("2d")
 
-        // M1>>
+// #region M1
         // setup a dark background
         ctx.strokeStyle = "#333"
         ctx.fillRect(0,0,canvas.width,canvas.height);
-        // <<M1
+// #endregion M1
 
-        // M2>>
+// #region M2
         // setup a blue shadow
         ctx.shadowColor = "#2ed5fa";
         ctx.shadowOffsetX = 2;
         ctx.shadowOffsetY = 2;
         ctx.shadowBlur = 10;
-        // <<M2
+// #endregion M2
 
-        // M3>>
+// #region M3
         // render green text
-        ctx.font = 'bold 80px Ubuntu';
+        ctx.font = 'bold 80px sans-serif';
         ctx.fillStyle = "#24d12e";
         ctx.fillText("Canvas!",30,180);
-        // <<M3
+// #endregion M3
     }
 }

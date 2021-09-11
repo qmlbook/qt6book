@@ -205,7 +205,7 @@ function ch09Sidebar() {
 
 function ch08Sidebar() {
   return {
-    title: "Canvas",
+    title: "Canvas (Qt6 - Draft)",
     path: '/ch08-canvas/canvas-element',
     collapsable: false,
     children: [

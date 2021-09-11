@@ -25,15 +25,13 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-// compositeoperation.qml
-
-import QtQuick 2.5
+import QtQuick
 
 Canvas {
     id: root
     width: 600; height: 400
 
-    // M1>>
+// #region M1
     property var operation : [
         'source-over', 'source-in', 'source-over',
         'source-atop', 'destination-over', 'destination-in',
@@ -54,7 +52,6 @@ Canvas {
             ctx.save()
             ctx.fillStyle = '#33a9ff'
             ctx.fillRect(10+dx,10+dy,60,60)
-            // TODO: does not work yet
             ctx.globalCompositeOperation = root.operation[i]
             ctx.fillStyle = '#ff33a9'
             ctx.globalAlpha = 0.75
@@ -65,5 +62,5 @@ Canvas {
             ctx.restore()
         }
     }
-    // <<M1
+// #endregion M1
 }

@@ -25,20 +25,18 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-// spirograph.qml
-
-import QtQuick 2.5
+import QtQuick
 
 Canvas {
     id: root
     width: 300; height: 300
 
-    // M1>>
+// #region M1
     onPaint: {
         var ctx = getContext("2d");
         draw(ctx);
     }
-    // <<M1
+// #endregion M1
 
     function draw(ctx) {
         ctx.fillRect(0,0,300,300);

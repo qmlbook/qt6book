@@ -25,22 +25,22 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import QtQuick 2.5
+import QtQuick
 
 Canvas {
     id: canvas
     width: 800; height: 450
-
+    
     property real hue: 0
     property real lastX: width * Math.random()
     property real lastY: height * Math.random()
 
-    // M1>>
+// #region M1
     property bool requestLine: false
     property bool requestBlank: false
-    // <<M1
+// #endregion M1
 
-    // M2>>
+// #region M2
     Timer {
         id: lineTimer
         interval: 40
@@ -62,7 +62,7 @@ Canvas {
             canvas.requestPaint()
         }
     }
-    // <<M2
+// #endregion M2
 
     onPaint: {
         var context = getContext('2d')
