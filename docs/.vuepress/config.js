@@ -174,14 +174,6 @@ function ch10Sidebar() {
     collapsable: false,
     children: [
       '/ch10-effects/effects',
-      '/ch10-effects/shader-effects',
-      '/ch10-effects/opengl-shaders',
-      '/ch10-effects/shader-elements',
-      '/ch10-effects/fragment-shaders',
-      '/ch10-effects/wave-effect',
-      '/ch10-effects/vertex-shader',
-      '/ch10-effects/curtain-effect',
-      '/ch10-effects/effect-library',
       '/ch09-particles/particle-simulation',
       '/ch09-particles/concept',
       '/ch09-particles/simple-simulation',
@@ -190,6 +182,14 @@ function ch10Sidebar() {
       '/ch09-particles/affecting-particles',
       '/ch09-particles/particle-groups',
       '/ch09-particles/summary',
+      '/ch10-effects/shader-effects',
+      '/ch10-effects/opengl-shaders',
+      '/ch10-effects/shader-elements',
+      '/ch10-effects/fragment-shaders',
+      '/ch10-effects/wave-effect',
+      '/ch10-effects/vertex-shader',
+      '/ch10-effects/curtain-effect',
+      '/ch10-effects/effect-library',
     ]
   }
 }
