@@ -56,7 +56,7 @@ Rectangle {
 * Comments can be made using `//` for single line comments or `/\* \*/` for multi-line comments. Just like in C/C++ and JavaScript
 * Every QML file needs to have exactly one root element, like HTML
 * An element is declared by its type followed by `{ }`
-* Elements can have properties, they are in the form \`\` name: value\`\`
+* Elements can have properties, they are in the form `name: value`
 * Arbitrary elements inside a QML document can be accessed by using their `id` (an unquoted identifier)
 * Elements can be nested, meaning a parent element can have child elements. The parent element can be accessed using the `parent` keyword
 
@@ -78,7 +78,7 @@ In Qt Creator, you can open the corresponding project file and run the document 
 
 ## Properties
 
-Elements are declared by using their element name but are defined by using their properties or by creating custom properties. A property is a simple key-value pair, e.g. `width : 100`, `text: 'Greetings'`, `color: '#FF0000'`. A property has a well-defined type and can have an initial value.
+Elements are declared by using their element name but are defined by using their properties or by creating custom properties. A property is a simple key-value pair, e.g. `width: 100`, `text: 'Greetings'`, `color: '#FF0000'`. A property has a well-defined type and can have an initial value.
 
 ```qml
 Text {
@@ -114,7 +114,7 @@ Text {
     focus: true
 
     // change color based on focus value
-    color: focus?"red":"black"
+    color: focus ? "red" : "black"
 }
 ```
 
@@ -127,10 +127,10 @@ Let’s go through the different features of properties:
 
 * **(3)** A property can depend on one or many other properties. This is called *binding*. A bound property is updated when its dependent properties change. It works like a contract, in this case, the `height` should always be two times the `width`.
 
-* **(4)** Adding own properties to an element is done using the `property` qualifier followed by the type, the name and the optional initial value (`property <type> <name> : <value>`). If no initial value is given a system initial value is chosen.
+* **(4)** Adding new properties to an element is done using the `property` qualifier followed by the type, the name and the optional initial value (`property <type> <name> : <value>`). If no initial value is given, a default initial value is chosen.
 
 ::: tip
-You can also declare one property to be the default property if no property name is given by prepending the property declaration with the `default` keyword. This is used for example when you add child elements, the child elements are added automatically to the default property `children` of type list if they are visible elements.
+You can also declare one property to be the default property if no property name is given by prepending the property declaration with the `default` keyword. This is used for example when you add child elements; the child elements are added automatically to the default property `children` of type list if they are visible elements.
 :::
 
 * **(5)** Another important way of declaring properties is using the `alias` keyword (`property alias <name>: <reference>`). The `alias` keyword allows us to forward a property of an object or an object itself from within the type to an outer scope. We will use this technique later when defining components to export the inner properties or element ids to the root level. A property alias does not need a type, it uses the type of the referenced property or object.
@@ -147,7 +147,7 @@ You can also declare one property to be the default property if no property name
 * **(9)** For every property, you can provide a signal handler. This handler is called after the property changes. For example, here we want to be notified whenever the height changes and use the built-in console to log a message to the system.
 
 ::: warning
-An element id should only be used to reference elements inside your document (e.g. the current file). QML provides a mechanism called dynamic-scoping where later loaded documents overwrite the element id’s from earlier loaded documents. This makes it possible to reference element id’s from earlier loaded documents if they are not yet overwritten. It’s like creating global variables. Unfortunately, this frequently leads to really bad code in practice, where the program depends on the order of execution. Unfortunately, this can’t be turned off. Please only use this with care or even better don’t use this mechanism at all. It’s better to export the element you want to provide to the outside world using properties on the root element of your document.
+An element id should only be used to reference elements inside your document (e.g. the current file). QML provides a mechanism called "dynamic scoping", where documents loaded later on overwrite the element IDs from documents loaded earlier. This makes it possible to reference element IDs from previously loaded documents if they have not yet been overwritten. It’s like creating global variables. Unfortunately, this frequently leads to really bad code in practice, where the program depends on the order of execution. Unfortunately, this can’t be turned off. Please only use this with care; or, even better, don’t use this mechanism at all. It’s better to export the element you want to provide to the outside world using properties on the root element of your document.
 :::
 
 ## Scripting
@@ -191,19 +191,19 @@ Text {
 ```
 
 
-* **(1)** The text changed handler `onTextChanged` prints the current text every-time the text changed due to a space-bar key pressed. As we use a parameter injected by the signal, we need to use the function syntax here. Also possible would be to use am arrow function (`(text) => {}`). But we feel `function(text) {}` is more readable.
+* **(1)** The text changed handler `onTextChanged` prints the current text every time the text changed due to the space bar being pressed. As we use a parameter injected by the signal, we need to use the function syntax here. It's also possible to use an arrow function (`(text) => {}`), but we feel `function(text) {}` is more readable.
 
 
-* **(2)** When the text element receives the space-bar key (because the user pressed the space-bar on the keyboard) we call a JavaScript function `increment()`.
+* **(2)** When the text element receives the space key (because the user pressed the space bar on the keyboard) we call a JavaScript function `increment()`.
 
 
 * **(3)** Definition of a JavaScript function in the form of `function <name>(<parameters>) { ... }`, which increments our counter `spacePressed`. Every time `spacePressed` is incremented, bound properties will also be updated.
 
 ## Binding
 
-The difference between the QML `:` (binding) and the JavaScript `=` (assignment) is, that the binding is a contract and keeps true over the lifetime of the binding, whereas the JavaScript assignment (`=`) is a one time value assignment.
+The difference between the QML `:` (binding) and the JavaScript `=` (assignment) is that the binding is a contract and keeps true over the lifetime of the binding, whereas the JavaScript assignment (`=`) is a one time value assignment.
 
-The lifetime of a binding ends, when a new binding is set to the property or even when a JavaScript value is assigned is to the property. For example, a key handler setting the text property to an empty string would destroy our increment display:
+The lifetime of a binding ends when a new binding is set on the property or even when a JavaScript value is assigned to the property. For example, a key handler setting the text property to an empty string would destroy our increment display:
 
 ```qml
 Keys.onEscapePressed: {
@@ -211,7 +211,7 @@ Keys.onEscapePressed: {
 }
 ```
 
-After pressing escape, pressing the space-bar will not update the display anymore as the previous binding of the `text` property (*text: “Space pressed: ” + spacePresses + ” times”*) was destroyed.
+After pressing escape, pressing the space bar will not update the display anymore, as the previous binding of the `text` property (*text: “Space pressed: ” + spacePresses + ” times”*) was destroyed.
 
 When you have conflicting strategies to change a property as in this case (text updated by a change to a property increment via a binding and text cleared by a JavaScript assignment) then you can’t use bindings! You need to use assignment on both property change paths as the binding will be destroyed by the assignment (broken contract!).
 
