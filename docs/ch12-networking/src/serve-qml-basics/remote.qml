@@ -1,5 +1,3 @@
-// M1>>
-// main.qml
 import QtQuick
 
 Rectangle {
@@ -7,5 +5,3 @@ Rectangle {
     height: 320
     color: '#ff0000'
 }
-// <<M1
-

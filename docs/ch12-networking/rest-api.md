@@ -1,8 +1,8 @@
 # REST API
 
-To use a web-service, we first need to create one. We will use Flask ([http://flask.pocoo.org](http://flask.pocoo.org)) a simple HTTP app server based on python to create a simple color web-service. You could also use every other web server which accepts and returns JSON data. The idea is to have a list of named colors, which can be managed via the web-service. Managed in this case means CRUD (create-read-update-delete).
+To use a web-service, we first need to create one. We will use Flask ([https://flask.palletsprojects.com](https://flask.palletsprojects.com)) a simple HTTP app server based on python to create a simple color web-service. You could also use every other web server which accepts and returns JSON data. The idea is to have a list of named colors, which can be managed via the web-service. Managed in this case means CRUD (create-read-update-delete).
 
-A simple web-service in Flask can be written in one file. We start with an empty `server.py` file. Inside this file, we create some boiler-code and load our initial colors from an external JSON file. See also the Flask [quickstart](http://flask.pocoo.org/docs/quickstart/) documentation.
+A simple web-service in Flask can be written in one file. We start with an empty `server.py` file. Inside this file, we create some boiler-code and load our initial colors from an external JSON file. See also the Flask [quickstart](https://flask.palletsprojects.com/en/2.0.x/quickstart/) documentation.
 
 ```py
 from flask import Flask, jsonify, request
@@ -38,7 +38,7 @@ This will return the colors under the ‘/colors’ endpoint. To test this we ca
 curl -i -GET http://localhost:5000/colors
 ```
 
-Which will return us the list of colors as JSON data?
+Which will return us the list of colors as JSON data.
 
 ## Read Entry
 

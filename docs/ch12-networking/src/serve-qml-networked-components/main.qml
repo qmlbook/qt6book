@@ -1,13 +1,11 @@
-// M1>>
-// remote.qml
 import QtQuick
 
 Loader {
     id: root
-    source: 'https://gist.github.com/jryannel/7983492/raw'
+    anchors.fill: parent
+    source: 'http://localhost:8080/remote.qml'
     onLoaded: {
         root.width = item.width
         root.height = item.height
     }
 }
-// <<M1

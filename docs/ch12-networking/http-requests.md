@@ -107,7 +107,7 @@ function request() {
 Here is the full source code, where we create the request when the component is loaded. The request response is then used as the model for our simple list view.
 
 ```qml
-import QtQuick 2.5
+import QtQuick
 
 Rectangle {
     width: 320

@@ -1,6 +1,6 @@
 // ws_client.qml
-import QtQuick 2.5
-import Qt.WebSockets 1.0
+import QtQuick
+import QtWebSockets
 
 Rectangle {
     width: 360
@@ -20,7 +20,7 @@ Rectangle {
         anchors.right: parent.right
         anchors.bottom: parent.bottom
         focus: true
-        onAccepted: {
+        onAccepted: function(text) {
             print('send message: ' + text)
             socket.sendTextMessage(text)
             box.append('>', text)
@@ -32,7 +32,7 @@ Rectangle {
 
         url: "ws://localhost:3000"
         active: true
-        onTextMessageReceived: {
+        onTextMessageReceived: function (message) {
             box.append('<', message)
         }
         onStatusChanged: {

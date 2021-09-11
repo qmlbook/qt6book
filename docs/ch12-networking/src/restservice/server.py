@@ -3,7 +3,8 @@
 from flask import Flask, jsonify, request
 import json
 
-colors = json.load(file('colors.json', 'r'))
+with open('colors.json', 'r') as file:
+    colors = json.load(file)
 
 app = Flask(__name__)
 

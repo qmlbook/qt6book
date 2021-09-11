@@ -1,10 +1,10 @@
 # Serving UI via HTTP
 
-To load a simple user interface via HTTP we need to have a web-server, which serves the UI documents. We start off with our own simple web-server using a python one-liner. But first, we need to have our demo user interface. For this, we create a small `main.qml` file in our project folder and create a red rectangle inside.
+To load a simple user interface via HTTP we need to have a web-server, which serves the UI documents. We start off with our own simple web-server using a python one-liner. But first, we need to have our demo user interface. For this, we create a small `Remote.qml` file in our project folder and create a red rectangle inside.
 
 ```qml
-// main.qml
-import QtQuick 2.5
+// remote.qml
+import QtQuick
 
 Rectangle {
     width: 320
@@ -13,28 +13,42 @@ Rectangle {
 }
 ```
 
-To serve this file we launch a small python script:
+To serve this file we can start a small python script:
 
 ```sh
 cd <PROJECT>
-python -m SimpleHTTPServer 8080
+python -m http.server 8080
 ```
 
-Now our file should be reachable via `http://localhost:8080/main.qml`. You can test it with:
+Now our file should be reachable via `http://localhost:8080/Remote.qml`. You can test it with:
 
 ```sh
-curl http://localhost:8080/main.qml
+curl http://localhost:8080/Remote.qml
 ```
 
-Or just point your browser to the location. Your browser does not understand QML and will not be able to render the document through. We need to create now such a browser for QML documents. To render the document we need to point our `qmlscene` to the location. Unfortunately the `qmlscene` is limited to local files only. We could overcome this limitation by writing our own `qmlscene` replacement or simple dynamically load it using QML. We choose the dynamic loading as it works just fine. For this, we use a loader element to retrieve for us the remote document.
+Or just point your browser to the location. Your browser does not understand QML and will not be able to render the document through. 
+
+Hopefully, Qt6 provides such a browser in the form of the `qml` binary. You can directly load a remote QML document by using the following command:
+
+```sh
+qml -f http://localhost:8080/Remote.qml
+```
+
+Sweet and simple.
+
+::: tip
+If the `qml` program is not in your path, you can find it in the Qt binaries: `<qt-install-path>/<qt-version>/<your-os>/bin/qml`.
+:::
+
+Another way of importing a remote QML document is to dynamically load it using QML ! For this, we use a `Loader` element to retrieve for us the remote document.
 
 ```qml
-// remote.qml
-import QtQuick 2.5
+// main.qml
+import QtQuick
 
 Loader {
     id: root
-    source: 'http://localhost:8080/main2.qml'
+    source: 'http://localhost:8080/Remote.qml'
     onLoaded: {
         root.width = item.width
         root.height = item.height
@@ -42,20 +56,19 @@ Loader {
 }
 ```
 
-Now we can ask the `qmlscene` to load the local `remote.qml` loader document. There is one glitch still. The loader will resize to the size of the loaded item. And our `qmlscene` needs also to adapt to that size. This can be accomplished using the `--resize-to-root` option to the `qmlscene`,
+Now we can ask the `qml` executable to load the local `main.qml` loader document.
 
 ```sh
-qmlscene --resize-to-root remote.qml
+qml -f main.qml
 ```
-
-Resize to root tells the qml scene to resize its window to the size of the root element. The remote is now loading the `main.qml` from our local server and resizes itself to the loaded user interface. Sweet and simple.
 
 ::: tip
 If you do not want to run a local server you can also use the gist service from GitHub. The gist is a clipboard like online services like Pastebin and others. It is available under [https://gist.github.com](https://gist.github.com). I created for this example a small gist under the URL [https://gist.github.com/jryannel/7983492](https://gist.github.com/jryannel/7983492). This will reveal a green rectangle. As the gist URL will provide the website as HTML code we need to attach a `/raw` to the URL to retrieve the raw file and not the HTML code.
+:::
 
 ```qml
 // remote.qml
-import QtQuick 2.5
+import QtQuick
 
 Loader {
     id: root
@@ -66,23 +79,42 @@ Loader {
     }
 }
 ```
-:::
 
-To load another file over the network you just need to reference the component name. For example a `Button.qml` can be accessed as normal, as long it is in the same remote folder.
+To load another file over the network from `Remote.qml`, you will need to create a dedicated `qmldir` file in the same directory on the server. Once done, you will be able to reference the component by its name. 
 
 ## Networked Components
 
-Let us create a small experiment. We add to our remote side a small button as a reusable component.
+Let us create a small experiment. We add to our remote side a small button as a reusable component. 
+
+Here's the directory structure that we will use:
 
 ```sh
 ./src/main.qml
-./src/Button.qml
+./src/remote/qmldir
+./src/remote/Button.qml
+./src/remote/Remote.qml
 ```
 
-We modify our `main.qml` to use the button and save it as `main2.qml`:
+Our `main.qml` is the same as in our previous example:
 
 ```qml
-import QtQuick 2.5
+import QtQuick
+
+Loader {
+    id: root
+    anchors.fill: parent
+    source: 'http://localhost:8080/Remote.qml'
+    onLoaded: {
+        root.width = item.width
+        root.height = item.height
+    }
+}
+```
+
+In the `remote` directory, we will update the `Remote.qml` file so that it uses a custom `Button` component coming from our own remote `Button.qml` file:
+
+```qml
+import QtQuick
 
 Rectangle {
     width: 320
@@ -97,76 +129,54 @@ Rectangle {
 }
 ```
 
-And launch our web-server again
+Using a `qmldir`, we will define the content of our (remote) QML directory:
+
+```qmldir
+Button 1.0 Button.qml
+```
+
+And finally we will create our dummy `Button.qml` file:
+
+```qml
+import QtQuick.Controls
+
+Button {
+    
+}
+```
+
+We can now launch our web-server (keep in mind that we now have a `remote` subdirectory):
 
 ```sh
 cd src
-python -m SimpleHTTPServer 8080
+python -m http.server --directory ./remote 8080
 ```
 
-And our remote loader loads the main QML via HTTP again
+And remote QML loader:
 
 ```sh
-qmlscene --resize-to-root remote.qml
+qml -f main.qml
 ```
 
-What we see is an error
+## Importing a QML components directory
 
-```
-http://localhost:8080/main2.qml:11:5: Button is not a type
-```
-
-So QML cannot resolve the button component when it is loaded remotely. If the code would be local `qmlscene src/main.qml` this would be no issue. Locally Qt can parse the directory and detect which components are available but remotely there is no “list-dir” function for HTTP. We can force QML to load the element using the import statement inside `main.qml`:
+By defining a `qmldir` file, it's also possible to directly import a library of components from a remote repository. To do so, a classical import works:
 
 ```js
+import QtQuick
 import "http://localhost:8080" as Remote
-
-...
-
-Remote.Button { ... }
-```
-
-This will work then when the `qmlscene` is run again:
-
-```sh
-qmlscene --resize-to-root remote.qml
-```
-
-Here the full code:
-
-```js
-// main2.qml
-import QtQuick 2.5
-import "http://localhost:8080" 1.0 as Remote
 
 Rectangle {
     width: 320
     height: 320
-    color: '#ff0000'
+    color: 'blue'
 
     Remote.Button {
         anchors.centerIn: parent
-        text: 'Click Me'
+        text: 'Quit'
         onClicked: Qt.quit()
     }
 }
-```
-
-A better option is to use the `qmldir` file on the server side to control the export.
-
-```qml
-// qmldir
-Button 1.0 Button.qml
-```
-
-And then updating the `main.qml`:
-
-```js
-import "http://localhost:8080" 1.0 as Remote
-
-...
-
-Remote.Button { ... }
 ```
 
 ::: tip

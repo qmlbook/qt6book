@@ -1,4 +1,4 @@
-import QtQuick 2.5
+import QtQuick
 
 MouseArea {
     width: 140
