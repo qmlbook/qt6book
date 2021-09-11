@@ -25,7 +25,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-// M1>>
+// #region M1
 import QtQuick 2.5
 
 Item {
@@ -40,4 +40,4 @@ Item {
 
     Component.onCompleted: root.createItem();
 }
-// <<M1
+// #endregion M1

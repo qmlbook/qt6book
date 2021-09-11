@@ -25,11 +25,11 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-// M1>>
-import QtQuick 2.5
+// #region M1
+import QtQuick
 
 Item {
 	// A background flasher that flashes the background of any parent MouseArea
 }
 
-// <<M1
+// #endregion M1

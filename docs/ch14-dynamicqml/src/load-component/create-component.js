@@ -1,4 +1,4 @@
-// M1>>
+// #region M1
 var component;
 
 function createImageObject() {
@@ -21,4 +21,4 @@ function finishCreation() {
     }
 }
 
-// <<M1
+// #endregion M1

@@ -25,8 +25,8 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-// M1>>
-import QtQuick 2.5
+// #region M1
+import QtQuick
 
 Image {
     width: 400
@@ -55,4 +55,4 @@ Image {
         }
     }
 }
-// <<M1
+// #endregion M1

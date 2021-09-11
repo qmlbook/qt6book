@@ -25,12 +25,12 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-// M1>>
-import QtQuick 2.5
+// #region M1
+import QtQuick
 
 Connections {
-	onClicked: {
+	function onClicked() {
 		// Automatically targets the parent
 	}
 }
-// <<M1
+// #endregion M1

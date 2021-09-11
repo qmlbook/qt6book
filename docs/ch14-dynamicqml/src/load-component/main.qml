@@ -26,8 +26,8 @@
  */
 
 
-// M1>>
-import QtQuick 2.5
+// #region M1
+import QtQuick
 import "create-component.js" as ImageCreator
 
 Item {
@@ -39,4 +39,4 @@ Item {
     Component.onCompleted: ImageCreator.createImageObject();
 }
 
-// <<M1
+// #endregion M1

@@ -25,10 +25,10 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import QtQuick.XmlListModel 2.0
+import QtQml.XmlListModel
 
-// M1>>
-import QtQuick 2.5
+// #region M1
+import QtQuick
 import "create-object.js" as CreateObject
 
 Item {
@@ -49,21 +49,21 @@ Item {
     function itemAdded(obj, source) {
         objectsModel.append({"obj": obj, "source": source})
     }
-// <<M1
+// #endregion M1
 
     width: 1024
     height: 600
 
-// M2>>
+// #region M2
     function clearItems() {
         while(objectsModel.count > 0) {
             objectsModel.get(0).obj.destroy();
             objectsModel.remove(0);
         }
     }
-// <<M2
+// #endregion M2
 
-// M3>>
+// #region M3
     function serialize() {
         var res = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<scene>\n";
 
@@ -76,15 +76,15 @@ Item {
 
         return res;
     }
-// <<M3
+// #endregion M3
 
-// M4>>
+// #region M4
     XmlListModel {
         id: xmlModel
         query: "/scene/item"
-        XmlRole { name: "source"; query: "source/string()" }
-        XmlRole { name: "x"; query: "x/string()" }
-        XmlRole { name: "y"; query: "y/string()" }
+        XmlListModelRole { name: "source"; elementName: "source" }
+        XmlListModelRole { name: "x"; elementName: "x" }
+        XmlListModelRole { name: "y"; elementName: "y" }
     }
 
     function deserialize() {
@@ -104,7 +104,7 @@ Item {
     }
 
     property int dsIndex
-// <<M4
+// #endregion M4
     Column {
         anchors.left: parent.left
         anchors.top: parent.top
