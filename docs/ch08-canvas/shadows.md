@@ -6,32 +6,15 @@ A shadow can also be used to create a glow effect around a path. In the next exa
 
 First, we draw the dark background:
 
-```js
-// setup a dark background
-ctx.strokeStyle = "#333"
-ctx.fillRect(0,0,canvas.width,canvas.height);
-```
+<<< @/docs/ch08-canvas/src/canvas/shadow.qml#M1
 
 then we define our shadow configuration, which will be used for the next path:
 
-```js
-// setup a blue shadow
-ctx.shadowColor = "#2ed5fa";
-ctx.shadowOffsetX = 2;
-ctx.shadowOffsetY = 2;
-ctx.shadowBlur = 10;
-```
+<<< @/docs/ch08-canvas/src/canvas/shadow.qml#M2
 
 Finally, we draw our “Canvas” text using a large bold 80px font from the *Ubuntu* font family.
 
-```js
-// render green text
-ctx.font = 'bold 80px Ubuntu';
-ctx.fillStyle = "#24d12e";
-ctx.fillText("Canvas!",30,180);
-```
-
-
+<<< @/docs/ch08-canvas/src/canvas/shadow.qml#M3
 
 ![image](./assets/shadow.png)
 

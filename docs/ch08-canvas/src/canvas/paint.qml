@@ -25,15 +25,13 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-// paint.qml
-
-import QtQuick 2.5
+import QtQuick
 
 Rectangle {
     width: 400; height: 300
     color: "#333333"
 
-    // M1>>
+// #region M1
     Row {
         id: colorTools
         anchors {
@@ -41,13 +39,11 @@ Rectangle {
             top: parent.top
             topMargin: 8
         }
-        property variant activeSquare: red
         property color paintColor: "#33B5E5"
         spacing: 4
         Repeater {
             model: ["#33B5E5", "#99CC00", "#FFBB33", "#FF4444"]
             ColorSquare {
-                id: red
                 color: modelData
                 active: parent.paintColor == color
                 onClicked: {
@@ -56,7 +52,7 @@ Rectangle {
             }
         }
     }
-    // <<M1
+// #endregion M1
 
     Rectangle {
         anchors.fill: canvas
@@ -64,7 +60,7 @@ Rectangle {
         border.width: 4
     }
 
-    // M2>>
+// #region M2
     Canvas {
         id: canvas
         anchors {
@@ -101,5 +97,5 @@ Rectangle {
             }
         }
     }
-    // <<M2
+// #endregion M2
 }

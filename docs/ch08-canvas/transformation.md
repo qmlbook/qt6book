@@ -2,41 +2,7 @@
 
 The canvas allows you to transform the coordinate system in several ways. This is very similar to the transformation offered by QML items. You have the possibility to `scale`, `rotate`, `translate` the coordinate system. Indifference to QML the transform origin is always the canvas origin. For example to scale a path around its center you would need to translate the canvas origin to the center of the path. It is also possible to apply a more complex transformation using the transform method.
 
-```qml
-// transform.qml
-
-import QtQuick 2.5
-
-Canvas {
-    id: root
-    width: 240; height: 120
-    onPaint: {
-        var ctx = getContext("2d")
-            var ctx = getContext("2d");
-            ctx.lineWidth = 4;
-            ctx.strokeStyle = "blue";
-
-            // translate x/y coordinate system
-            ctx.translate(root.width/2, root.height/2);
-
-            // draw path
-            ctx.beginPath();
-            ctx.rect(-20, -20, 40, 40);
-            ctx.stroke();
-
-            // rotate coordinate system
-            ctx.rotate(Math.PI/4);
-            ctx.strokeStyle = "green";
-
-            // draw path
-            ctx.beginPath();
-            ctx.rect(-20, -20, 40, 40);
-            ctx.stroke();
-    }
-}
-```
-
-
+<<< @/docs/ch08-canvas/src/canvas/transform.qml#M1
 
 ![image](./assets/transform.png)
 
@@ -49,5 +15,3 @@ To reset any transformation you can call the `resetTransform()` function to set 
 ctx.resetTransform()
 ```
 :::
-
-
