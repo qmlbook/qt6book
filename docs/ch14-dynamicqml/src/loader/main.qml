@@ -25,7 +25,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import QtQuick 2.5
+import QtQuick
 
 Rectangle {
     id: root
@@ -42,7 +42,7 @@ Rectangle {
         NumberAnimation { target: root; property: "speed"; to: 145; easing.type: Easing.InOutQuad; duration: 4000; }
         NumberAnimation { target: root; property: "speed"; to: 10; easing.type: Easing.InOutQuad; duration: 2000; }
     }
-    // M1>>
+// #region M1
     Loader {
         id: dialLoader
 
@@ -62,7 +62,8 @@ Rectangle {
         property: "speed"
         value: speed
     }
-    // <<M1
+// #endregion M1
+
     Rectangle {
         id: analogButton
 
@@ -109,7 +110,7 @@ Rectangle {
 
     state: "analog"
 
-    // M3>>
+// #region M3
     states: [
         State {
             name: "analog"
@@ -122,5 +123,5 @@ Rectangle {
             PropertyChanges { target: dialLoader; source: "Digital.qml"; }
         }
     ]
-    // <<M3
+// #endregion M3
 }

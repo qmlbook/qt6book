@@ -14,45 +14,11 @@ The status of a component being created can be tracked by it is `status` propert
 
 When loading components over slow connections, the `progress` property can be of use. It ranges from `0.0`, meaning nothing has been loaded, to `1.0` indicating that all have been loaded. When the component’s `status` changes to `Ready`, the component can be used to instantiate objects. The code below demonstrates how that can be achieved, taking into account the event of the component becoming ready or failing to be created directly, as well as the case where a component is ready slightly later.
 
-```js
-var component;
-
-function createImageObject() {
-    component = Qt.createComponent("dynamic-image.qml");
-    if (component.status === Component.Ready || component.status === Component.Error) {
-        finishCreate();
-    } else {
-        component.statusChanged.connect(finishCreate);
-    }
-}
-
-function finishCreate() {
-    if (component.status === Component.Ready) {
-        var image = component.createObject(root, {"x": 100, "y": 100});
-        if (image === null) {
-            console.log("Error creating image");
-        }
-    } else if (component.status === Component.Error) {
-        console.log("Error loading component:", component.errorString());
-    }
-}
-```
+<<< @/docs/ch14-dynamicqml/src/load-component/create-component.js#M1
 
 The code above is kept in a separate JavaScript source file, referenced from the main QML file.
 
-```qml
-import QtQuick 2.5
-import "create-component.js" as ImageCreator
-
-Item {
-    id: root
-
-    width: 1024
-    height: 600
-
-    Component.onCompleted: ImageCreator.createImageObject();
-}
-```
+<<< @/docs/ch14-dynamicqml/src/load-component/main.qml#M1
 
 The `createObject` function of a component is used to create object instances, as shown above. This not only applies to dynamically loaded components but also `Component` elements inlined in the QML code. The resulting object can be used in the QML scene like any other object. The only difference is that it does not have an `id`.
 
@@ -103,22 +69,7 @@ The `createQmlObject` function always returns immediately. For the function to s
 
 The objects created using the `Qt.createQmlObject` function resembles any other dynamically created object. That means that it is identical to every other QML object, apart from not having an `id`. In the example below, a new `Rectangle` element is instantiated from in-line QML code when the `root` element has been created.
 
-```qml
-import QtQuick 2.5
-
-Item {
-    id: root
-
-    width: 1024
-    height: 600
-
-    function createItem() {
-        Qt.createQmlObject("import QtQuick 2.5; Rectangle { x: 100; y: 100; width: 100; height: 100; color: \"blue\" }", root, "dynamicItem");
-    }
-
-    Component.onCompleted: root.createItem();
-}
-```
+<<< @/docs/ch14-dynamicqml/src/create-object/main.qml#M1
 
 ### Managing Dynamically Created Elements
 

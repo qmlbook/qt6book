@@ -25,7 +25,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import QtQuick 2.5
+import QtQuick
 
 Rectangle {
     id: container
@@ -59,7 +59,7 @@ Rectangle {
             }
         }
 
-        // M1>>
+// #region M1
         Rectangle {
             id: leftRectangle
 
@@ -81,7 +81,7 @@ Rectangle {
                 text: "Click me!"
             }
         }
-        // <<M1
+// #endregion M1
     }
 
     Column {
@@ -193,14 +193,14 @@ Rectangle {
         }
     }
 
-    // M2>>
+// #region M2
     Connections {
         id: connections
-        onClicked: activeClickedAnimation.start();
+        function onClicked() { activeClickedAnimation.start(); }
     }
-    // <<M2
+// #endregion M2
 
-    // M3>>
+// #region M3
     states: [
         State {
             name: "left"
@@ -215,7 +215,7 @@ Rectangle {
             }
         }
     ]
-    // <<M3
+// #endregion M3
 
     Component.onCompleted: {
         state = "left";

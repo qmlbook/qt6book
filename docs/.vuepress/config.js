@@ -105,7 +105,7 @@ function ch15Sidebar() {
 
 function ch14Sidebar() {
   return {
-    title: "Dynamic QML",
+    title: "Dynamic QML (Qt6 - Draft)",
     path: '/ch14-dynamicqml/dynamic-qml',
     collapsable: false,
     children: [
