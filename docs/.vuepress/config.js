@@ -120,14 +120,13 @@ function ch14Sidebar() {
 
 function ch13Sidebar() {
   return {
-    title: "Storage",
+    title: "Storage (Qt6 - Draft)",
     path: '/ch13-storage/storage',
     collapsable: false,
     children: [
       '/ch13-storage/storage',
       '/ch13-storage/settings',
       '/ch13-storage/local-storage',
-      '/ch13-storage/other-storage',
     ]
   }
 }
