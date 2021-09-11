@@ -134,7 +134,7 @@ function ch13Sidebar() {
 
 function ch12Sidebar() {
   return {
-    title: "Networking",
+    title: "Networking (Qt6 - Draft)",
     path: '/ch12-networking/networking',
     collapsable: false,
     children: [
