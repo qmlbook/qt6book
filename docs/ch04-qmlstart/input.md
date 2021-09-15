@@ -4,7 +4,7 @@ We have already used the `MouseArea` as a mouse input element. Next, we’ll foc
 
 ## TextInput
 
-The `TextInput` allows the user to enter a line of text. The element supports input constraints such as `validator`, `inputMask`, and `echoMode`.
+`TextInput` allows the user to enter a line of text. The element supports input constraints such as `validator`, `inputMask`, and `echoMode`.
 
 ```qml
 // textinput.qml
@@ -69,7 +69,7 @@ Rectangle {
 
 The `KeyNavigation` attached property supports a preset of navigation keys where an element id is bound to switch focus on the given key press.
 
-A text input element comes with no visual presentation beside a blinking cursor and the entered text. For the user to be able to recognize the element as an input element it needs some visual decoration, for example, a simple rectangle. When placing the `TextInput` inside an element you need make sure you export the major properties you want others to be able to access.
+A text input element comes with no visual presentation beside a blinking cursor and the entered text. For the user to be able to recognize the element as an input element it needs some visual decoration; for example, a simple rectangle. When placing the `TextInput` inside an element you need make sure you export the major properties you want others to be able to access.
 
 We move this piece of code into our own component called `TLineEditV1` for reuse.
 
@@ -99,7 +99,7 @@ Rectangle {
 If you want to export the `TextInput` completely, you can export the element by using `property alias input: input`. The first `input` is the property name, where the 2nd input is the element id.
 :::
 
-We rewrite our `KeyNavigation` example with the new `TLineEditV1` component.
+We then rewrite our `KeyNavigation` example with the new `TLineEditV1` component.
 
 ```qml
 Rectangle {
@@ -117,11 +117,11 @@ Rectangle {
 
 ![](./assets/textinput3.png)
 
-And try the tab key for navigation. You will experience the focus does not change to `input2`. The simple use of `focus: true` is not sufficient. The problem arises, that the focus was transferred to the `input2` element the top-level item inside the `TlineEditV1` (our `Rectangle`) received focus and did not forward the focus to the `TextInput`. To prevent this QML offers the `FocusScope`.
+Try the tab key for navigation. You will experience the focus does not change to `input2`. The simple use of `focus: true` is not sufficient. The problem is that when the focus was transferred to the `input2` element, the top-level item inside the `TlineEditV1` (our `Rectangle`) received focus, and did not forward the focus to the `TextInput`. To prevent this, QML offers the `FocusScope`.
 
 ## FocusScope
 
-A focus scope declares that the last child element with `focus: true` receives the focus if the focus scope receives the focus. So it’s forward the focus to the last focus requesting child element. We will create a 2nd version of our TLineEdit component called TLineEditV2 using the focus scope as the root element.
+A focus scope declares that the last child element with `focus: true` receives the focus when the focus scope receives the focus. So it forwards the focus to the last focus-requesting child element. We will create a second version of our TLineEdit component called TLineEditV2, using a focus scope as the root element.
 
 ```qml
 // TLineEditV2.qml
@@ -149,7 +149,7 @@ FocusScope {
 }
 ```
 
-Our example will now look like this:
+Our example now looks like this:
 
 ```qml
 Rectangle {
@@ -169,7 +169,7 @@ Pressing the tab key now successfully switches the focus between the 2 component
 
 ## TextEdit
 
-The `TextEdit` is very similar to `TextInput` and support a multi-line text edit field. It doesn’t have the text constraint properties as this depends on querying the painted size of the text (`paintedHeight`, `paintedWidth`). We also create our own component called `TTextEdit` to provide an editing background and use the focus scope for better focus forwarding.
+The `TextEdit` is very similar to `TextInput`, and supports a multi-line text edit field. It doesn’t have the text constraint properties, as this depends on querying the painted size of the text (`paintedHeight`, `paintedWidth`). We also create our own component called `TTextEdit` to provide an editing background and use the focus scope for better focus forwarding.
 
 ```qml
 // TTextEdit.qml
@@ -223,7 +223,7 @@ Rectangle {
 
 ## Keys Element
 
-The attached property `Keys` allows executing code based on certain key presses. For example, to move a square around and scale we can hook into the up, down, left and right keys to translate the element and the plus, minus key to scale the element.
+The attached property `Keys` allows executing code based on certain key presses. For example, to move and scale a square, we can hook into the up, down, left and right keys to translate the element, and the plus and minus keys to scale the element.
 
 ```qml
 // keys.qml
