@@ -1,8 +1,8 @@
 # Playing Media
 
-The most basic case of multimedia integration in a QML application is for it to playback media. This is done using the `MediaPlayer` element, optionally in combination with a `VideoOutput` element if the source is an image or video. The `MediaPlayer` element has a `source` property pointing at the media to play. When a media source has been bound, it is simply a matter of calling the `play` function to start playing.
+The most basic case of multimedia integration in a QML application is for it to playback media. This can be achieved using the `MediaPlayer` element. This QML component has a `source` property pointing at the media to play. When a media source has been bound, it is simply a matter of calling the `play` function to start playing it.
 
-If you want to play visual media, i.e. pictures or video, you must also set up a `VideoOutput` element to place the resulting image in the user interface. The `MediaPlayer` running the playback is bound to the video output through the `source` property.
+If you want to play visual media such as pictures or videos, you must also set up a `VideoOutput` element to place the resulting image in the user interface. The `MediaPlayer` running the playback is bound to the video output through the `source` property.
 
 In the example shown below, the `MediaPlayer` is given a file with video contents as `source`. A `VideoOutput` is created and bound to the media player. As soon as the main component has been fully initialized, i.e. at `Component.onCompleted`, the player’s `play` function is called.
 
