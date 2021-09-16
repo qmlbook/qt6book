@@ -27,17 +27,17 @@ ApplicationWindow {
 }
 ```
 
-The `ApplicationWindow` consists of four main areas as shown below. The menu bar, tool bar and status bar are usually populated by instances of `MenuBar`, `ToolBar` or `TabBar` controls, while the contents area is where the children of the window goes. Notice that the image viewer application does not feature a status bar, that is why it is missing from the code show here, as well as from the figure above.
+The `ApplicationWindow` consists of four main areas as shown below. The menu bar, tool bar and status bar are usually populated by instances of `MenuBar`, `ToolBar` or `TabBar` controls, while the contents area is where the children of the window go. Notice that the image viewer application does not feature a status bar; that is why it is missing from the code show here, as well as from the figure above.
 
 ![](./assets/applicationwindow-areas.png)
 
-As we are targeting desktop, we enforce the use of the *Fusion* style. This can be done via environment variables, command line arguments, or programmatically in the C++ code. We do it the latter way by adding the following line to the `main.cpp`:
+As we are targeting desktop, we enforce the use of the *Fusion* style. This can be done via a configuration file, environment variables, command line arguments, or programmatically in the C++ code. We do it the latter way by adding the following line to `main.cpp`:
 
 ```cpp
 QQuickStyle::setStyle("Fusion");
 ```
 
-We then start building the user interface in `main.qml` by adding an `Image` element as the contents. This element will hold the images when the user opens them, so for now it is just a place holder. The `background` property is used to provide an element to the window to place behind the contents. This will be shown when there is no image loaded, and as borders around the image if the aspect ratio down not let it fill the contents area of the window.
+We then start building the user interface in `main.qml` by adding an `Image` element as the contents. This element will hold the images when the user opens them, so for now it is just a placeholder. The `background` property is used to provide an element to the window to place behind the contents. This will be shown when there is no image loaded, and as borders around the image if the aspect ratio does not let it fill the contents area of the window.
 
 ```qml
 ApplicationWindow {
@@ -87,11 +87,11 @@ ApplicationWindow {
 }
 ```
 
-The `fileOpenDialog` element is a `FileDialog` control from the `Qt.Labs` module. The file dialog can be used to open or save files, as well as picking directories.
+The `fileOpenDialog` element is a `FileDialog` control from the `Qt.labs` module. The file dialog can be used to open or save files.
 
-In the code we start by assigning a `title`. Then we set the starting folder using the `shortcut` property. The `shortcut` property holds links to common folders such as the user’s home, documents, and such. After that we set a name filter that controls what files the user can see and pick using the dialog.
+In the code we start by assigning a `title`. Then we set the starting folder using the `shortcut` property. The `shortcut` property holds links to common folders such as the user’s home, documents, and so on. After that we set a name filter that controls which files the user can see and pick using the dialog.
 
-Finally, we reach the `onAccepted` signal handler where the `Image` element that holds the window contents is set to show the the selected file. There is an `onRejected` signal as well, but we do not need to handle it in the image viewer application.
+Finally, we reach the `onAccepted` signal handler where the `Image` element that holds the window contents is set to show the selected file. There is an `onRejected` signal as well, but we do not need to handle it in the image viewer application.
 
 ```qml
 ApplicationWindow {
@@ -115,11 +115,11 @@ ApplicationWindow {
 }
 ```
 
-We then continue with the `MenuBar`. To create a menu, one puts `Menu` elements inside the menu bar, and then populate each `Menu` with `MenuItem` elements.
+We then continue with the `MenuBar`. To create a menu, one puts `Menu` elements inside the menu bar, and then populates each `Menu` with `MenuItem` elements.
 
-In the code below, we create two menus, *File* and *Help*. Under *File*, we place *Open* using the same icon and action as the tool button in the tool bar. Under *Help* you find *About* which triggers a call to the `open` method of the `aboutDialog` element.
+In the code below, we create two menus, *File* and *Help*. Under *File*, we place *Open* using the same icon and action as the tool button in the tool bar. Under *Help*, you find *About* which triggers a call to the `open` method of the `aboutDialog` element.
 
-Notice that the ampersands (“&”) in the `title` property of the `Menu` and the `text` property of the `MenuItem` turns the following character into a keyboard shortcut, e.g. you reach the file menu by pressing *Alt+F*, followed by *Alt+O* to trigger the open item.
+Notice that the ampersands (“&”) in the `title` property of the `Menu` and the `text` property of the `MenuItem` turn the following character into a keyboard shortcut; e.g. you reach the file menu by pressing *Alt+F*, followed by *Alt+O* to trigger the open item.
 
 ```qml
 ApplicationWindow {
@@ -154,7 +154,7 @@ The `aboutDialog` element is based on the `Dialog` control from the `QtQuick.Con
 
 ![](./assets/viewer-about.png)
 
-The code for the `aboutDialog` can be split into three parts. First, we setup the dialog window with a title. Then we provide some contents for the dialog – in this case, a `Label` control. Finally, we opt to use a standard *Ok* button to close the dialog.
+The code for the `aboutDialog` can be split into three parts. First, we setup the dialog window with a title. Then, we provide some contents for the dialog – in this case, a `Label` control. Finally, we opt to use a standard *Ok* button to close the dialog.
 
 ```qml
 ApplicationWindow {
@@ -178,11 +178,11 @@ ApplicationWindow {
 }
 ```
 
-The end result of all this is an, albeit simple, desktop application for viewing images.
+The end result of all this is a functional, albeit simple, desktop application for viewing images.
 
 ## Moving to Mobile
 
-There are a number of differences in how a user interface is expected to look an behave on a mobile device compared to a desktop application. The biggest difference for our application is how the actions are accessed. Instead of a menu bar and a tool bar, we will use a drawer from which the user can pick the actions. The drawer can swiped in from the side, but we also offer a hamburger button in the header. The resulting application with the drawer open can be seen below.
+There are a number of differences in how a user interface is expected to look and behave on a mobile device compared to a desktop application. The biggest difference for our application is how the actions are accessed. Instead of a menu bar and a tool bar, we will use a drawer from which the user can pick the actions. The drawer can be swiped in from the side, but we also offer a hamburger button in the header. The resulting application with the drawer open can be seen below.
 
 ![](./assets/viewer-mobile-drawer.png)
 
@@ -192,9 +192,9 @@ First of all, we need to change the style that is set in `main.cpp` from *Fusion
 QQuickStyle::setStyle("Material");
 ```
 
-Then we start adapting the user interface. We start by replacing the menu with a drawer. In the code below, the `Drawer` component is added as a child to the `ApplicationWindow`. Inside the drawer, we put a `ListView` containing `ItemDelegate` instances. It also contains a `ScrollIndicator` used to show what part of a long list that is shown. As our list only consists of two items, this is not visible in this example.
+Then we start adapting the user interface. We start by replacing the menu with a drawer. In the code below, the `Drawer` component is added as a child to the `ApplicationWindow`. Inside the drawer, we put a `ListView` containing `ItemDelegate` instances. It also contains a `ScrollIndicator` used to show which part of a long list is being shown. As our list only consists of two items, the indicator is not visible in this example.
 
-The drawer `ListView` is populated from a `ListModel` where each `ListItem` corresponds to a menu item. Each time an item is clicked, in the `onClicked` method, the `triggered` method of the corresponding `ListItem` is called. This way, we can use a single delegate to trigger different actions.
+The drawer's `ListView` is populated from a `ListModel` where each `ListItem` corresponds to a menu item. Each time an item is clicked, in the `onClicked` method, the `triggered` method of the corresponding `ListItem` is called. This way, we can use a single delegate to trigger different actions.
 
 ```qml
 ApplicationWindow {
@@ -244,13 +244,13 @@ ApplicationWindow {
 }
 ```
 
-The next change is the `header` in the `ApplicationWindow`. Instead of a desktop style toolbar, we add a button to open the drawer and the title of our application.
+The next change is in the `header` of the `ApplicationWindow`. Instead of a desktop style toolbar, we add a button to open the drawer and a label for the title of our application.
 
 ![](./assets/viewer-mobile.png)
 
-The `ToolBar` contains a two child child elements: a `ToolButton` and a `Label`.
+The `ToolBar` contains two child elements: a `ToolButton` and a `Label`.
 
-The `ToolButton` control opens the drawer. The corresponding close call can be found in the `ListView` delegate. When an item has been selected the drawer is closed. The icon used for the `ToolButton` comes from the [Material Design Icons page](https://material.io/tools/icons/?style=baseline).
+The `ToolButton` control opens the drawer. The corresponding `close` call can be found in the `ListView` delegate. When an item has been selected, the drawer is closed. The icon used for the `ToolButton` comes from the [Material Design Icons page](https://material.io/tools/icons/?style=baseline).
 
 ```qml
 ApplicationWindow {
@@ -295,27 +295,27 @@ ApplicationWindow {
 }
 ```
 
-With these few changes we have converted our desktop image viewer to a mobile friendly version.
+With these few changes we have converted our desktop image viewer to a mobile-friendly version.
 
 ## A Shared Codebase
 
 In the past two sections we have looked at an image viewer developed for desktop use and then adapted it to mobile.
 
-Looking at the code base, much of the code is still shared. The parts that are shared are mostly associated with the document of the application, i.e. the image. The changes has affected individual interaction patterns of desktop and mobile respectively. Naturally, we would want to unify these code bases. QML supports this through the use of *file selectors*.
+Looking at the code base, much of the code is still shared. The parts that are shared are mostly associated with the document of the application, i.e. the image. The changes have accounted for the different interaction patterns of desktop and mobile, respectively. Naturally, we would want to unify these code bases. QML supports this through the use of *file selectors*.
 
-A file selector lets us replace individual files based on which selectors are active. The Qt documentation maintains a list of selectors in the documentation for the `QFileSelector` class ([link](https://doc.qt.io/qt-5/qfileselector.html)). In our case we will make the desktop version the default and replace selected files when the *android* selector is encountered. During the development you can set the environment variable `QT_FILE_SELECTORS` to `android` to simulate this.
+A file selector lets us replace individual files based on which selectors are active. The Qt documentation maintains a list of selectors in the documentation for the `QFileSelector` class ([link](https://doc.qt.io/qt-5/qfileselector.html)). In our case, we will make the desktop version the default and replace selected files when the *android* selector is encountered. During development you can set the environment variable `QT_FILE_SELECTORS` to `android` to simulate this.
 
 ::: tip File Selector
-The file selector works by replacing files with an alternative when a *selector* is present.
+File selectors work by replacing files with an alternative when a *selector* is present.
 
-By creating a directory named `+selector`, where `selector` represents the name of a selector, in parallel to the files that you want to replace, you can then place files with the same name as the file you want to replace inside the directory. When the selector is present, the file in the directory will be picked instead of the original file.
+By creating a directory named `+selector` (where `selector` represents the name of a selector) in the same directory as the files that you want to replace, you can then place files with the same name as the file you want to replace inside the directory. When the selector is present, the file in the directory will be picked instead of the original file.
 
-The selectors are based on the platform, e.g. android, ios, osx, linux, qnx, and so on. They can also include the name of the Linux distribution used (if identified), e.g. debian, ubuntu, fedora. Finally, they also include the locale, e.g. en_US, sv_SE, etc.
+The selectors are based on the platform: e.g. android, ios, osx, linux, qnx, and so on. They can also include the name of the Linux distribution used (if identified), e.g. debian, ubuntu, fedora. Finally, they also include the locale, e.g. en_US, sv_SE, etc.
 
-It is also possible to add your own, custom, selectors.
+It is also possible to add your own custom selectors.
 :::
 
-The first step to do this change is to isolate the shared code. We do this by creating the `ImageViewerWindow` element which will be used instead of the `ApplicationWindow` for both our variants. This will consist of the dialogs, the `Image` element and the background. In order to make the open methods of the dialogs available to the platform specific code, we need to expose them through the functions `openFileDialog` and `openAboutDialog`.
+The first step to do this change is to isolate the shared code. We do this by creating the `ImageViewerWindow` element which will be used instead of the `ApplicationWindow` for both of our variants. This will consist of the dialogs, the `Image` element and the background. In order to make the open methods of the dialogs available to the platform specific code, we need to expose them through the functions `openFileDialog` and `openAboutDialog`.
 
 ```qml
 import QtQuick
@@ -402,7 +402,7 @@ ImageViewerWindow {
 }
 ```
 
-Next, we have to create a mobile specific `main.qml`. This will be based around the *Material* theme. Here, we keep the `Drawer` and the mobile specific toolbar. Again, the only change is how the dialogs are opened.
+Next, we have to create a mobile specific `main.qml`. This will be based around the *Material* theme. Here, we keep the `Drawer` and the mobile-specific toolbar. Again, the only change is how the dialogs are opened.
 
 ```qml
 import QtQuick
@@ -448,11 +448,11 @@ ImageViewerWindow {
 }
 ```
 
-The two `main.qml` files are placed in the file system as shown below. This lets the file selector that the QML engine automatically creates pick the right file. By default, the *Fusion* `main.qml` is loaded, unless the `android` selector is present. Then the *Material* `main.qml` is loaded instead.
+The two `main.qml` files are placed in the file system as shown below. This lets the file selector that the QML engine automatically creates pick the right file. By default, the *Fusion* `main.qml` is loaded. If the `android` selector is present, then the *Material* `main.qml` is loaded instead.
 
 ![](./assets/android-selector.png)
 
-Until now the style has been set in in `main.cpp`. We could continue doing this and use `#ifdef` expressions to set different styles for different platform. Instead we will use the file selector mechanism again and set the style using a configuration file. Below, you can see the file for the *Material* style, but the *Fusion* file is equally simple.
+Until now the style has been set in in `main.cpp`. We could continue doing this and use `#ifdef` expressions to set different styles for different platforms. Instead we will use the file selector mechanism again and set the style using a configuration file. Below, you can see the file for the *Material* style, but the *Fusion* file is equally simple.
 
 ```ini
 [Controls]
@@ -465,9 +465,9 @@ These changes has given us a joined codebase where all the document code is shar
 
 When using the image viewer you will notice that it uses a non-standard file selector dialog. This makes it look out of place.
 
-The `Qt.labs.platform` module can help us solve this. It provides QML bindings to native dialogs such as the file selector, font selector and colour selector. It also provides APIs to create system tray icons, as well as system global menus that sits on top of the screen (e.g. as in OS X). The cost of this is a dependency on the `QtWidgets` module, as the widget based dialog is used as a fallback where the native support is missing.
+The `Qt.labs.platform` module can help us solve this. It provides QML bindings to native dialogs such as the file dialog, font dialog and colour dialog. It also provides APIs to create system tray icons, as well as system global menus that sits on top of the screen (e.g. as in OS X). The cost of this is a dependency on the `QtWidgets` module, as the widget based dialog is used as a fallback where the native support is missing.
 
-In order to integrate a native file dialog into the image viewer, we need to import the `Qt.labs.platform` module. As this module has name clashes with the module it replaces, `QtQuick.Dialogs`, it is important to remove the old import statement.
+In order to integrate a native file dialog into the image viewer, we need to import the `Qt.labs.platform` module. As this module has name clashes with the `QtQuick.Dialogs` module which it replaces, it is important to remove the old import statement.
 
 In the actual file dialog element, we have to change how the `folder` property is set, and ensure that the `onAccepted` handler uses the `file` property instead of the `fileUrl` property. Apart from these details, the usage is identical to the `FileDialog` from `QtQuick.Dialogs`.
 
