@@ -1,6 +1,6 @@
 # Capturing Images
 
-One of the key features of the `Camera` element is that is can be used to take pictures. We will use this in a simple stop-motion application. In it, you will learn how to show a viewfinder, snap photos and keep track of the pictures taken.
+One of the key features of the `Camera` element is that is can be used to take pictures. We will use this in a simple stop-motion application. By building the application, you will learn how to show a viewfinder, snap photos and keep track of the pictures taken.
 
 The user interface is shown below. It consists of three major parts. In the background, you will find the viewfinder, to the right, a column of buttons and at the bottom, a list of images taken. The idea is to take a series of photos, then click the Play Sequence button. This will play the images back, creating a simple stop-motion film.
 
@@ -22,7 +22,7 @@ Camera {
 ```
 
 ::: tip
-For more control over the camera behaviour, for instance to control exposure or focus settings, use the `exposure` and `focus` properties of the `Camera` object. These expose a whole range of settings made available through the [CameraExposure](http://doc.qt.io/qt-5/qml-qtmultimedia-cameraexposure.html) and [CameraFocus](http://doc.qt.io/qt-5/qml-qtmultimedia-camerafocus.html) elements.
+For more control over the camera behaviour, for instance to control exposure or focus settings, use the `exposure` and `focus` properties of the `Camera` object. These are enums providing detailed control of the camear.
 :::
 
 The list of photos is a `ListView` oriented horizontally shows images from a `ListModel` called `imagePaths`. In the background, a semi-transparent black `Rectangle` is used.

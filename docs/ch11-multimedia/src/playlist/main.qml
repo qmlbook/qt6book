@@ -25,8 +25,8 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import QtQuick 2.5
-import QtMultimedia 5.6
+import QtQuick 6.2
+import QtMultimedia
 
 Rectangle {
     id: root
@@ -36,7 +36,6 @@ Rectangle {
 
     color: "black"
 
-    // M1>>
     MediaPlayer {
         id: player
         playlist: Playlist {
@@ -45,7 +44,6 @@ Rectangle {
             PlaylistItem { source: "trailer_400p.ogg" }
         }
     }
-    // <<M1
 
     VideoOutput {
         anchors.fill: parent
@@ -53,10 +51,8 @@ Rectangle {
         source: player
     }
 
-    // M2>>
     Component.onCompleted: {
         player.playlist.currentIndex = 0;
         player.play();
     }
-    // <<M2
 }

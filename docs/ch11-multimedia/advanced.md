@@ -2,7 +2,7 @@
 
 ## Using a Playlist
 
-Since Qt 5.6 the QML multimedia API supports playlists. Simply assign a `Playlist` instance to the `playlist` property of your `MediaPlayer`. The `Playlist` element will then take care of setting the `source` of the `MediaPlayer`, while the play state is controlled via the player.
+To play media items from a playlist instead of individual items, assign a `Playlist` instance to the `playlist` property of your `MediaPlayer`. The `Playlist` element will then take care of setting the `source` of the `MediaPlayer`, while the play state is controlled via the player.
 
 ```qml
 MediaPlayer {
@@ -23,4 +23,3 @@ Component.onCompleted: {
     player.play();
 }
 ```
-

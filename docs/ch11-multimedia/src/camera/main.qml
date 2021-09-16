@@ -25,8 +25,8 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import QtQuick 2.5
-import QtMultimedia 5.6
+import QtQuick 6.2
+import QtMultimedia
 
 Rectangle {
     id: root
@@ -36,18 +36,22 @@ Rectangle {
 
     color: "black"
 
-    // M1>>
     VideoOutput {
+        id: output
         anchors.fill: parent
-        source: camera
+    }
+    
+    CaptureSession {
+        id: capture
+        videoOutput: output
+        camera: camera
+        imageCapture: ImageCapture {}
     }
 
     Camera {
         id: camera
     }
-    // <<M1
 
-    // M2>>
     ListModel {
         id: imagePaths
     }
@@ -81,23 +85,21 @@ Rectangle {
             opacity: 0.5
         }
     }
-    // <<M2
 
     Image {
         id: image
         anchors.fill: parent
     }
 
-    // M3>>
     Connections {
-        target: camera.imageCapture
+        target: capture.imageCapture
 
-        onImageSaved: {
+        function onImageSaved(id, path) {
+            console.log(path)
             imagePaths.append({"path": path})
             listView.positionViewAtEnd();
         }
     }
-    // <<M3
 
     Column {
         id: buttons
@@ -108,16 +110,14 @@ Rectangle {
 
         spacing: 10
 
-        // M4>>
         Button {
             id: shotButton
 
             text: "Take Photo"
             onClicked: {
-                camera.imageCapture.capture();
+                capture.imageCapture.captureToFile();
             }
         }
-        // <<M4
 
         Button {
             id: playButton
@@ -138,7 +138,6 @@ Rectangle {
         }
     }
 
-    // M5>>
     property int _imageIndex: -1
 
     function startPlayback()
@@ -177,7 +176,6 @@ Rectangle {
             }
         }
     }
-    // <<M5
 
     states: [
         State {
