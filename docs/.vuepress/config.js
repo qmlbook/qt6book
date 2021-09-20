@@ -161,7 +161,6 @@ function ch11Sidebar() {
       '/ch11-multimedia/sound-effects',
       '/ch11-multimedia/video-streams',
       '/ch11-multimedia/capturing-images',
-      '/ch11-multimedia/advanced',
       '/ch11-multimedia/summary',
     ]
   }
