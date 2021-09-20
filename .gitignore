@@ -114,3 +114,6 @@ examples.tar.gz
 # Python
 .venv
 __pycache__
+
+# Qt Shaders
+*.qsb

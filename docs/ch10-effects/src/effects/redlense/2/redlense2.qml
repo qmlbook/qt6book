@@ -25,7 +25,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import QtQuick 2.5
+import QtQuick
 
 Rectangle {
     id: root
@@ -40,53 +40,34 @@ Rectangle {
         Image {
             id: sourceImage
             width: 80; height: width
-            source: 'assets/tulips.jpg'
+            source: '../../assets/tulips.jpg'
         }
+        
         ShaderEffect {
             id: effect1
             width: 80; height: width
             visible: root.step>0
-            // M1>>
-            fragmentShader: "
-                uniform lowp float qt_Opacity;
-                void main() {
-                    gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0) * qt_Opacity;
-                }"
-            // <<M1
+            fragmentShader: "red1.frag.qsb"
         }
-        // M2>>
+
         ShaderEffect {
             id: effect2
             width: 80; height: width
             property variant source: sourceImage
             visible: root.step>1
-            fragmentShader: "
-                varying highp vec2 qt_TexCoord0;
-                uniform sampler2D source;
-                uniform lowp float qt_Opacity;
-                void main() {
-                    gl_FragColor = texture2D(source, qt_TexCoord0) * vec4(1.0, 0.0, 0.0, 1.0) * qt_Opacity;
-                }"
+            fragmentShader: "red2.frag.qsb"
         }
-        // <<M2
-        // M3>>
+        
         ShaderEffect {
             id: effect3
             width: 80; height: width
             property variant source: sourceImage
             property real redChannel: 0.3
             visible: root.step>2
-            fragmentShader: "
-                varying highp vec2 qt_TexCoord0;
-                uniform sampler2D source;
-                uniform lowp float qt_Opacity;
-                uniform lowp float redChannel;
-                void main() {
-                    gl_FragColor = texture2D(source, qt_TexCoord0) * vec4(redChannel, 1.0, 1.0, 1.0) * qt_Opacity;
-                }"
+            fragmentShader: "red3.frag.qsb"
         }
-        // <<M3
-        // M4>>
+
+        // #region M1
         ShaderEffect {
             id: effect4
             width: 80; height: width
@@ -97,16 +78,9 @@ Rectangle {
                 from: 0.0; to: 1.0; loops: Animation.Infinite; duration: 4000
             }
 
-            fragmentShader: "
-                varying highp vec2 qt_TexCoord0;
-                uniform sampler2D source;
-                uniform lowp float qt_Opacity;
-                uniform lowp float redChannel;
-                void main() {
-                    gl_FragColor = texture2D(source, qt_TexCoord0) * vec4(redChannel, 1.0, 1.0, 1.0) * qt_Opacity;
-                }"
+            fragmentShader: "red3.frag.qsb"
         }
-        // <<M4
+        // #endregion M1
     }
 
 }

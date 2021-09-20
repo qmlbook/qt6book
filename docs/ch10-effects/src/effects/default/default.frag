@@ -25,43 +25,21 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-// M1>>
-import QtQuick 2.5
-import QtGraphicalEffects 1.0
+// #region M1
+#version 440
 
-Rectangle {
-    width: 480; height: 240
-    color: '#1e1e1e'
+layout(location=0) in vec2 qt_TexCoord0;
 
-    Row {
-        anchors.centerIn: parent
-        spacing: 16
+layout(location=0) out vec4 fragColor;
 
-        Image {
-            id: sourceImage
-            source: "assets/tulips.jpg"
-            width: 200; height: width
-            sourceSize: Qt.size(parent.width, parent.height)
-            smooth: true
-        }
+layout(std140, binding=0) uniform buf {
+    mat4 qt_Matrix;
+    float qt_Opacity;
+} ubuf;
 
-        FastBlur {
-            width: 200; height: width
-            source: sourceImage
-            radius: blurred?32:0
-            property bool blurred: false
+layout(binding=1) uniform sampler2D source;
 
-            Behavior on radius {
-                NumberAnimation { duration: 1000 }
-            }
-
-            MouseArea {
-                id: area
-                anchors.fill: parent
-                onClicked: parent.blurred = !parent.blurred
-            }
-        }
-    }
+void main() {
+    fragColor = texture(source, qt_TexCoord0) * ubuf.qt_Opacity;
 }
-// <<M1
-
+// #endregion M1

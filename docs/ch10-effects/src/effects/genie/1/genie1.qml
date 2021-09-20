@@ -25,50 +25,56 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-// M1>>
-import QtQuick 2.5
+import QtQuick
 
 Rectangle {
     width: 480; height: 240
     color: '#1e1e1e'
 
-    Row {
+    Image {
+        id: sourceImage
+        width: 160; height: width
+        source: "../../assets/lighthouse.jpg"
+        visible: false
+    }
+    Rectangle {
+        width: 160; height: width
         anchors.centerIn: parent
-        spacing: 20
-        Image {
-            id: sourceImage
-            width: 80; height: width
-            source: 'assets/tulips.jpg'
+        color: '#333333'
+    }
+    ShaderEffect {
+        id: genieEffect
+        width: 160; height: width
+        anchors.centerIn: parent
+        property variant source: sourceImage
+        property bool minimized: false
+
+        // #region M1
+        property real minimize: 0.0
+
+        SequentialAnimation on minimize {
+            id: animMinimize
+            running: genieEffect.minimized
+            PauseAnimation { duration: 300 }
+            NumberAnimation { to: 1; duration: 700; easing.type: Easing.InOutSine }
+            PauseAnimation { duration: 1000 }
         }
-        ShaderEffect {
-            id: effect
-            width: 80; height: width
-            property variant source: sourceImage
+
+        SequentialAnimation on minimize {
+            id: animNormalize
+            running: !genieEffect.minimized
+            NumberAnimation { to: 0; duration: 700; easing.type: Easing.InOutSine }
+            PauseAnimation { duration: 1300 }
         }
-        ShaderEffect {
-            id: effect2
-            width: 80; height: width
-            // the source where the effect shall be applied to
-            property variant source: sourceImage
-            // default vertex shader code
-            vertexShader: "
-                uniform highp mat4 qt_Matrix;
-                attribute highp vec4 qt_Vertex;
-                attribute highp vec2 qt_MultiTexCoord0;
-                varying highp vec2 qt_TexCoord0;
-                void main() {
-                    qt_TexCoord0 = qt_MultiTexCoord0;
-                    gl_Position = qt_Matrix * qt_Vertex;
-                }"
-            // default fragment shader code
-            fragmentShader: "
-                varying highp vec2 qt_TexCoord0;
-                uniform sampler2D source;
-                uniform lowp float qt_Opacity;
-                void main() {
-                    gl_FragColor = texture2D(source, qt_TexCoord0) * qt_Opacity;
-                }"
+        // #endregion M1
+
+        vertexShader: "genie1.vert.qsb"
+
+        MouseArea {
+            anchors.fill: parent
+            onClicked: parent.minimized = !parent.minimized
         }
     }
+
+
 }
-// <<M1

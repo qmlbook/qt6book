@@ -25,35 +25,32 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-// M1>>
-import QtQuick 2.5
+// #region M1
+#version 440
 
-Item {
-    id: root
-    width: background.width; height: background.height
+layout(location=0) in vec4 qt_Vertex;
+layout(location=1) in vec2 qt_MultiTexCoord0;
 
+layout(location=0) out vec2 qt_TexCoord0;
 
-    Image {
-        id: background
-        anchors.centerIn: parent
-        source: 'assets/background.png'
-    }
+layout(std140, binding=0) uniform buf {
+    mat4 qt_Matrix;
+    float qt_Opacity;
 
-    Text {
-        anchors.centerIn: parent
-        font.pixelSize: 48
-        color: '#efefef'
-        text: 'Qt5 Cadaques'
-    }
+    float minimize;
+    float width;
+    float height;
+} ubuf;
 
-    CurtainEffect {
-        id: curtain
-        anchors.fill: parent
-    }
+out gl_PerVertex { 
+    vec4 gl_Position;
+};
 
-    MouseArea {
-        anchors.fill: parent
-        onClicked: curtain.open = !curtain.open
-    }
+void main() {
+    qt_TexCoord0 = qt_MultiTexCoord0;
+    vec4 pos = qt_Vertex;
+    pos.y = mix(qt_Vertex.y, ubuf.height, ubuf.minimize);
+    pos.x = mix(qt_Vertex.x, ubuf.width, ubuf.minimize);
+    gl_Position = ubuf.qt_Matrix * pos;
 }
-// <<M1
+// #endregion M1

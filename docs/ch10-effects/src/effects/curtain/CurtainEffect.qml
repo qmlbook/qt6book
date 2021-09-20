@@ -25,22 +25,50 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-// M1>>
-import QtQuick 2.5
+// #region M1
+import QtQuick
 
-Rectangle {
-    width: 480; height: 240
-    color: '#1e1e1e'
+ShaderEffect {
+    anchors.fill: parent
 
-    Grid {
-        anchors.centerIn: parent
-        spacing: 20
-        rows: 2; columns: 4
-        Image {
-            id: sourceImage
-            width: 80; height: width
-            source: 'assets/tulips.jpg'
+    mesh: GridMesh {
+        resolution: Qt.size(50, 50)
+    }
+
+    property real topWidth: open?width:20
+    property real bottomWidth: topWidth
+    property real amplitude: 0.1
+    property bool open: false
+    property variant source: effectSource
+
+    Behavior on bottomWidth {
+        SpringAnimation {
+            easing.type: Easing.OutElastic;
+            velocity: 250; mass: 1.5;
+            spring: 0.5; damping: 0.05
         }
     }
+
+    Behavior on topWidth {
+        NumberAnimation { duration: 1000 }
+    }
+
+
+    ShaderEffectSource {
+        id: effectSource
+        sourceItem: effectImage;
+        hideSource: true
+    }
+
+    Image {
+        id: effectImage
+        anchors.fill: parent
+        source: "../assets/fabric.png"
+        fillMode: Image.Tile
+    }
+
+    vertexShader: "curtain.vert.qsb"
+
+    fragmentShader: "curtain.frag.qsb"
 }
-// <<M1
+// #endregion M1

@@ -2,7 +2,11 @@
 
 In this more complex example, we will create a wave effect with the fragment shader. The waveform is based on the sinus curve and it influences the texture coordinates used for the color.
 
+The qml file defines the properties and animation.
+
 <<< @/docs/ch10-effects/src/effects/wave/wave.qml#M1
+
+The fragment shader takes the properties and calculates the color of each pixel based on the properties.
 
 <<< @/docs/ch10-effects/src/effects/wave/wave.frag#M1
 
