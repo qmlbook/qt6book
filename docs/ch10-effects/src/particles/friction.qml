@@ -25,8 +25,8 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import QtQuick 2.5
-import QtQuick.Particles 2.0
+import QtQuick
+import QtQuick.Particles
 
 Rectangle {
     id: root
@@ -38,7 +38,7 @@ Rectangle {
     }
 
     ImageParticle {
-        source: "assets/star.png"
+        source: "assets/particle.png"
         system: particleSystem
         color: '#FFD700'
         colorVariation: 0.2
@@ -49,28 +49,32 @@ Rectangle {
         entryEffect: ImageParticle.Scale
     }
 
-
-    // M1>>
     Emitter {
         id: emitter
         anchors.left: parent.left
         anchors.verticalCenter: parent.verticalCenter
-        width: 1; height: 1
+        width: 1; height: 20
         system: particleSystem
-        emitRate: 10
+        emitRate: 40
         lifeSpan: 6400
         lifeSpanVariation: 400
         size: 32
         velocity: AngleDirection {
-            angle: -45
-            angleVariation: 0
+            angle: 0
+            angleVariation: 15
             magnitude: 100
-        }
-        acceleration: AngleDirection {
-            angle: 90
-            magnitude: 25
+            magnitudeVariation: 100
         }
     }
-    // <<M1
 
+    // #region M1
+    Friction {
+        anchors.horizontalCenter: parent.horizontalCenter
+        width: 240; height: 120
+        system: particleSystem
+        factor : 0.8
+        threshold: 25
+        Tracer {}
+    }
+    // #endregion M1
 }

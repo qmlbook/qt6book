@@ -4,16 +4,9 @@ We have seen particles can rotate. But particles can also have a trajectory. The
 
 There are different vector spaces available to define the velocity or acceleration of a particle:
 
-
 * `AngleDirection` - a direction that varies in angle
-
-
 * `PointDirection` - a direction that varies in x and y components
-
-
 * `TargetDirection` - a direction towards the target point
-
-
 
 ![image](./assets/particle_directions.png)
 
@@ -44,30 +37,11 @@ velocity: AngleDirection {
 }
 ```
 
-
-
 ![image](./assets/angledirection.png)
 
 Here is the full source code, with an average lifetime set to 6.4 seconds. We set the emitter width and height to 1px. This means all particles are emitted at the same location and from thereon travel based on our given trajectory.
 
-```qml
-Emitter {
-    id: emitter
-    anchors.left: parent.left
-    anchors.verticalCenter: parent.verticalCenter
-    width: 1; height: 1
-    system: particleSystem
-    lifeSpan: 6400
-    lifeSpanVariation: 400
-    size: 32
-    velocity: AngleDirection {
-        angle: 0
-        angleVariation: 15
-        magnitude: 100
-        magnitudeVariation: 50
-    }
-}
-```
+<<< @/docs/ch10-effects/src/particles/angledirection.qml#M1
 
 So what is then the acceleration doing? The acceleration adds an acceleration vector to each particle, which changes the velocity vector over time. For example, let’s make a trajectory like an arc of stars. For this we change our velocity direction to -45 degree and remove the variations, to better visualize a coherent arc:
 
@@ -89,36 +63,13 @@ acceleration: AngleDirection {
 
 The result is an arc going from the center-left to the bottom right.
 
-
-
 ![image](./assets/angledirection2.png)
 
 The values are discovered by try-and-error.
 
 Here is the full code of our emitter.
 
-```qml
-Emitter {
-    id: emitter
-    anchors.left: parent.left
-    anchors.verticalCenter: parent.verticalCenter
-    width: 1; height: 1
-    system: particleSystem
-    emitRate: 10
-    lifeSpan: 6400
-    lifeSpanVariation: 400
-    size: 32
-    velocity: AngleDirection {
-        angle: -45
-        angleVariation: 0
-        magnitude: 100
-    }
-    acceleration: AngleDirection {
-        angle: 90
-        magnitude: 25
-    }
-}
-```
+<<< @/docs/ch10-effects/src/particles/angledirection2.qml#M1
 
 In the next example we would like that the particles again travel from left to right but this time we use the `PointDirection` vector space.
 
@@ -143,8 +94,6 @@ velocity: PointDirection {
 
 The result should be particles traveling in a 15-degree cone from right to left.
 
-
-
 ![image](./assets/pointdirection.png)
 
 Now coming to our last contender, the `TargetDirection`. The target direction allows us to specify a target point as an x and y coordinate relative to the emitter or an item. When an item has specified the center of the item will become the target point. You can achieve the 15-degree cone by specifying a target variation of 1/6 th of the x target:
@@ -166,7 +115,4 @@ I spare you the image as it looks the same as the previous one, instead, I have 
 
 In the following image, the red and the green circle specify each a target item for the target direction of the velocity respective the acceleration property. Each target direction has the same parameters. Here the question: Who is responsible for velocity and who is for acceleration?
 
-
-
 ![image](./assets/directionquest.png)
-

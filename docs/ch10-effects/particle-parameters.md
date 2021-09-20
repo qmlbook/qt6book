@@ -35,23 +35,8 @@ entryEffect: ImageParticle.Scale
 
 So now we have rotating golden stars appearing all over the place.
 
-
-
 ![image](./assets/particleparameters.png)
 
 Here is the code we changed for the image-particle in one block.
 
-```qml
-ImageParticle {
-    source: "assets/star.png"
-    system: particleSystem
-    color: '#FFD700'
-    colorVariation: 0.2
-    rotation: 0
-    rotationVariation: 45
-    rotationVelocity: 15
-    rotationVelocityVariation: 15
-    entryEffect: ImageParticle.Scale
-}
-```
-
+<<< @/docs/ch10-effects/src/particles/particlevariation.qml#M1

@@ -25,8 +25,8 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import QtQuick 2.5
-import QtQuick.Particles 2.0
+import QtQuick
+import QtQuick.Particles
 
 Rectangle {
     id: root
@@ -67,7 +67,7 @@ Rectangle {
         }
     }
 
-    // M1>>
+    // #region M1
     Age {
         anchors.horizontalCenter: parent.horizontalCenter
         width: 240; height: 120
@@ -77,6 +77,5 @@ Rectangle {
         once: true
         Tracer {}
     }
-    // <<M1
-
+    // #endregion M1
 }

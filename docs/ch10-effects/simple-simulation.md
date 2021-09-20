@@ -4,49 +4,12 @@ Let us have a look at a very simple simulation to get started. Qt Quick makes it
 
 
 * A `ParticleSystem` which binds all elements to a simulation
-
-
 * An `Emitter` which emits particles into the system
-
-
 * A `ParticlePainter` derived element, which visualizes the particles
 
-```qml
-import QtQuick 2.5
-import QtQuick.Particles 2.0
-
-Rectangle {
-    id: root
-    width: 480; height: 160
-    color: "#1f1f1f"
-
-    ParticleSystem {
-        id: particleSystem
-    }
-
-    Emitter {
-        id: emitter
-        anchors.centerIn: parent
-        width: 160; height: 80
-        system: particleSystem
-        emitRate: 10
-        lifeSpan: 1000
-        lifeSpanVariation: 500
-        size: 16
-        endSize: 32
-        Tracer { color: 'green' }
-    }
-
-    ImageParticle {
-        source: "assets/particle.png"
-        system: particleSystem
-    }
-}
-```
+<<< @/docs/ch10-effects/src/particles/simple.qml#M1
 
 The outcome of the example will look like this:
-
-
 
 ![image](./assets/simpleparticles.png)
 
@@ -58,37 +21,16 @@ The green bordered rectangle is a tracer element to show the geometry of the emi
 
 The emitter emits logical particles. A logical particle is visualized using a `ParticlePainter` in this example we use an `ImageParticle`, which takes an image URL as the source property. The image particle has also several other properties, which control the appearance of the average particle.
 
-
 * `emitRate`: particles emitted per second (defaults to 10 per second)
-
-
 * `lifeSpan`: milliseconds the particle should last for (defaults to 1000 msec)
-
-
 * `size`, `endSize`: size of the particles at the beginning and end of their life  (defaults to 16 px)
 
 Changing these properties can influence the result in a drastically way
 
-```qml
-Emitter {
-    id: emitter
-    anchors.centerIn: parent
-    width: 20; height: 20
-    system: particleSystem
-    emitRate: 40
-    lifeSpan: 2000
-    lifeSpanVariation: 500
-    size: 64
-    sizeVariation: 32
-    Tracer { color: 'green' }
-}
-```
+<<< @/docs/ch10-effects/src/particles/simple2.qml#M1
 
 Besides increasing the emit rate to 40 and the lifespan to 2 seconds the size now starts at 64 pixels and decreases 32 pixels at the end of a particle lifespan.
-
-
 
 ![image](./assets/simpleparticles2.png)
 
 Increasing the `endSize` even more would lead to a more or less white background. Please note also when the particles are only emitted in the area defined by the emitter the rendering is not constrained to it.
-

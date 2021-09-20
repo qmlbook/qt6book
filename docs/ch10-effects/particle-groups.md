@@ -2,8 +2,6 @@
 
 At the beginning of this chapter, we stated particles are in groups, which is by default the empty group (‘’). Using the `GroupGoal` affector is it possible to let the particle change groups. To visualize this we would like to create a small firework, where rockets start into space and explode in the air into a spectacular firework.
 
-
-
 ![image](./assets/firework_teaser.png)
 
 The example is divided into 2 parts. The 1st part called “Launch Time” is concerned to set up the scene and introduce particle groups and the 2nd part called “Let there be fireworks” focuses on the group changes.
@@ -132,8 +130,6 @@ Also, the turbulence needs to declare which groups it shall affect. The turbulen
 
 When you start the example now you will see the rockets are climbing up and then will be slowed down by the friction and fall back to the ground by the still applied downwards acceleration. The next thing would be to start the firework.
 
-
-
 ![image](./assets/firework_rockets.png)
 
 ::: tip
@@ -232,132 +228,4 @@ Here is the final result.
 
 Here is the full source code of the rocket firework.
 
-```qml
-import QtQuick 2.5
-import QtQuick.Particles 2.0
-
-Rectangle {
-    id: root
-    width: 480; height: 240
-    color: "#1F1F1F"
-    property bool tracer: false
-
-    ParticleSystem {
-        id: particleSystem
-    }
-
-    ImageParticle {
-        id: smokePainter
-        system: particleSystem
-        groups: ['smoke']
-        source: "assets/particle.png"
-        alpha: 0.3
-    }
-
-    ImageParticle {
-        id: rocketPainter
-        system: particleSystem
-        groups: ['rocket']
-        source: "assets/rocket.png"
-        entryEffect: ImageParticle.Fade
-    }
-
-    Emitter {
-        id: rocketEmitter
-        anchors.bottom: parent.bottom
-        width: parent.width; height: 40
-        system: particleSystem
-        group: 'rocket'
-        emitRate: 2
-        maximumEmitted: 8
-        lifeSpan: 4800
-        lifeSpanVariation: 400
-        size: 128
-        velocity: AngleDirection { angle: 270; magnitude: 150; magnitudeVariation: 10 }
-        acceleration: AngleDirection { angle: 90; magnitude: 50 }
-        Tracer { color: 'red'; visible: root.tracer }
-    }
-
-    TrailEmitter {
-        id: smokeEmitter
-        system: particleSystem
-        group: 'smoke'
-        follow: 'rocket'
-        size: 16
-        sizeVariation: 8
-        emitRatePerParticle: 16
-        velocity: AngleDirection { angle: 90; magnitude: 100; angleVariation: 15 }
-        lifeSpan: 200
-        Tracer { color: 'blue'; visible: root.tracer }
-    }
-
-    Friction {
-        groups: ['rocket']
-        anchors.top: parent.top
-        width: parent.width; height: 80
-        system: particleSystem
-        threshold: 5
-        factor: 0.9
-
-    }
-
-    Turbulence {
-        groups: ['rocket']
-        anchors.bottom: parent.bottom
-        width: parent.width; height: 160
-        system: particleSystem
-        strength:25
-        Tracer { color: 'green'; visible: root.tracer }
-    }
-
-
-    ImageParticle {
-        id: sparklePainter
-        system: particleSystem
-        groups: ['sparkle']
-        color: 'red'
-        colorVariation: 0.6
-        source: "assets/star.png"
-        alpha: 0.3
-    }
-
-    GroupGoal {
-        id: rocketChanger
-        anchors.top: parent.top
-        width: parent.width; height: 80
-        system: particleSystem
-        groups: ['rocket']
-        goalState: 'explosion'
-        jump: true
-        Tracer { color: 'blue'; visible: root.tracer }
-    }
-
-    ParticleGroup {
-        name: 'explosion'
-        system: particleSystem
-
-        TrailEmitter {
-            id: explosionEmitter
-            anchors.fill: parent
-            group: 'sparkle'
-            follow: 'rocket'
-            lifeSpan: 750
-            emitRatePerParticle: 200
-            size: 32
-            velocity: AngleDirection { angle: -90; angleVariation: 180; magnitude: 50 }
-        }
-
-        TrailEmitter {
-            id: explosion2Emitter
-            anchors.fill: parent
-            group: 'sparkle'
-            follow: 'rocket'
-            lifeSpan: 250
-            emitRatePerParticle: 100
-            size: 32
-            velocity: AngleDirection { angle: 90; angleVariation: 15; magnitude: 400 }
-        }
-    }
-}
-```
-
+<<< @/docs/ch10-effects/src/particles/firework.qml#M1

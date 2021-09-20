@@ -25,9 +25,9 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-// M1>>
-import QtQuick 2.5
-import QtQuick.Particles 2.0
+// #region M1
+import QtQuick
+import QtQuick.Particles
 
 Rectangle {
     id: root
@@ -152,4 +152,4 @@ Rectangle {
         }
     }
 }
-// <<M1
+// #endregion M1

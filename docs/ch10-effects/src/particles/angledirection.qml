@@ -25,19 +25,18 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import QtQuick 2.5
-import QtQuick.Particles 2.0
+import QtQuick
+import QtQuick.Particles
 
 Rectangle {
     id: root
-    width: 480; height: 160
+    width: 480; height: 240
     color: "#1F1F1F"
 
     ParticleSystem {
         id: particleSystem
     }
 
-    // M1>>
     ImageParticle {
         source: "assets/star.png"
         system: particleSystem
@@ -49,15 +48,24 @@ Rectangle {
         rotationVelocityVariation: 15
         entryEffect: ImageParticle.Scale
     }
-    // <<M1
 
 
+    // #region M1
     Emitter {
         id: emitter
-        anchors.fill: parent
+        anchors.left: parent.left
+        anchors.verticalCenter: parent.verticalCenter
+        width: 1; height: 1
         system: particleSystem
-        lifeSpan: 8000
+        lifeSpan: 6400
+        lifeSpanVariation: 400
         size: 32
-        endSize: 16
+        velocity: AngleDirection {
+            angle: 0
+            angleVariation: 15
+            magnitude: 100
+            magnitudeVariation: 50
+        }
     }
+    // #endregion M1
 }
