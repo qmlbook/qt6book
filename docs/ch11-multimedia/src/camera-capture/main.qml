@@ -40,17 +40,6 @@ Rectangle {
         anchors.fill: parent
     }
 
-    Window {
-        width: 200
-        height: 200
-        visible: true
-        Image {
-            id: testImage
-            anchors.fill: parent
-            source: captureSession.imageCapture.preview
-        }
-    }
-
     ListView {
         id: listView
 
@@ -115,7 +104,7 @@ Rectangle {
             width: parent.buttonWidth
             height: parent.buttonHeight
 
-            text: "Take Photo"
+            text: qsTr("Take Photo")
             onClicked: {
                 captureSession.imageCapture.captureToFile()
             }
@@ -127,7 +116,7 @@ Rectangle {
             width: parent.buttonWidth
             height: parent.buttonHeight
 
-            text: "Play Sequence"
+            text: qsTr("Play Sequence")
             onClicked: {
                 startPlayback()
             }
@@ -139,7 +128,7 @@ Rectangle {
             width: parent.buttonWidth
             height: parent.buttonHeight
 
-            text: "Clear Sequence"
+            text: qsTr("Clear Sequence")
             onClicked: {
                 imagePaths.clear()
             }

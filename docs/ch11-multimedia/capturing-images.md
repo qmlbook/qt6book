@@ -79,7 +79,7 @@ Button {
     width: parent.buttonWidth
     height: parent.buttonHeight
 
-    text: "Take Photo"
+    text: qsTr("Take Photo")
     onClicked: {
         captureSession.imageCapture.captureToFile()
     }
