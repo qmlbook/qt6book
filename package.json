@@ -15,6 +15,7 @@
     "docs:dev": "vuepress dev docs --host 127.0.0.1",
     "docs:build": "vuepress build docs",
     "examples:build": "./scripts/build-examples.sh",
+    "examples:lint": "./scripts/lint-examples.sh",
     "examples:package": "./scripts/package-examples.sh"
   }
 }
