@@ -19,14 +19,16 @@ for exdir in docs/*/src; do
     for exexdir in *; do
         # Skip build- dirs (created by Qt Creator)
         if [[ $exexdir == build-* ]]; then
+            echo "Skipping $exexdir in $chname"
             continue
         fi
         # Skip screenshots.qml file
         if [[ $exexdir == "screenshots.qml" ]]; then
+            echo "Skipping $exexdir in $chname"
             continue
         fi
         
-        tar cf - $exexdir | (cd $tmpdir/qt6book/$chname; tar xfp -)
+        tar cf - --exclude=*.qsb $exexdir | (cd $tmpdir/qt6book/$chname; tar xfp -)
     done
     cd ../../..
 done
