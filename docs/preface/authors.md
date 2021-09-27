@@ -16,4 +16,8 @@ T.B.D.
 
 ## Cyril Lorquet
 
-T.B.D.
+![Cyril Lorquet](./assets/clorquet.jpg)
+
+Co-Founder and CEO of the belgian company [Eunoia Studio](https://www.eunoia.be), Cyril helps organizations turn their know-how into software products. Since 2009, he has been working on software products in various contexts (construction, healthcare, hydrology, marketing, ...) - several of them involving Qt. Software engineer at heart, he has a passion for design processes, software development and change management.
+
+You can find out more about Cyril at [LinkedIn](https://www.linkedin.com/in/cyrillorquet).
