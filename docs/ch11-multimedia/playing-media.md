@@ -312,10 +312,6 @@ When using `MediaPlayer` to build a media player, it is good to monitor the `sta
 
 As mentioned in the bullets above, the playback state can vary over time. Calling `play`, `pause` or `stop` alters the state, but the media in question can also have an effect. For example, the end can be reached, or it can be invalid, causing playback to stop. 
 
-::: danger
-To be checked with TQC
-
-Using the `autoPlay` property, the `MediaPlayer` can be made to attempt go to the playing state as soon as the `source` property is changed. A similar property is the `autoLoad` causing the player to try to load the media as soon as the `source` property is changed. The latter property is enabled by default.
-
+::: tip
 It is also possible to let the `MediaPlayer` to loop a media item. The `loops` property controls how many times the `source` is to be played. Setting the property to `MediaPlayer.Infinite` causes endless looping. Great for continuous animations or a looping background song.
 :::
