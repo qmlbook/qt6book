@@ -13,7 +13,7 @@ Window {
     Flow {
         Button {
             text: "Give me a number!"
-            onClicked: numberGenerator.giveNumber();
+            onClicked: numberGenerator.giveNumber()
         }
         Label {
             id: numberLabel
