@@ -54,7 +54,7 @@ import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
 
-import SpotifyOAuth
+import Spotify
 
 ApplicationWindow {
     width: 320
@@ -79,10 +79,10 @@ ApplicationWindow {
 }
 ```
 
-When the application starts, we will first import a custom library, `SpotifyOAuth`, that defines a `SpotifyAPI` component (we'll come to that later). 
+When the application starts, we will first import a custom library, `Spotify`, that defines a `SpotifyAPI` component (we'll come to that later). 
 
 ```qml
-import SpotifyOAuth
+import Spotify
 ```
 
 Once the application has been loaded, this `SpotifyAPI` component will request an authorization to Spotify:
@@ -173,7 +173,7 @@ The next step happens when the authorization has been granted. To display the li
 }
 ```
 
-The model `SpotifyModel` is defined in the `SpotifyOAuth` library. To work properly, it needs a `SpotifyAPI`:
+The model `SpotifyModel` is defined in the `Spotify` library. To work properly, it needs a `SpotifyAPI`:
 
 ```qml
 SpotifyModel {

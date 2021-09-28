@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
 
-import SpotifyOAuth
+import Spotify
 
 ApplicationWindow {
     width: 320
@@ -82,7 +82,7 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
-        spotifyApi.setCredentials("334044b3d4534ed48a3a1d5e90f9155b", "972084f85236422296004be85f87ca1e")
+        spotifyApi.setCredentials("CLIENT_ID", "CLIENT_SECRET")
         spotifyApi.authorize()
     }
 }
