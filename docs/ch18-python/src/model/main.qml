@@ -1,6 +1,5 @@
 import QtQuick
 import QtQuick.Window
-import QtQuick.Controls
 
 import PsUtils
 
@@ -15,15 +14,19 @@ Window {
     ListView {
         anchors.fill: parent
         model: CpuLoadModel { }
-        delegate: Rectangle { 
-            width: parent.width; 
-            height: 30;
+        delegate: Rectangle {
+            id: delegate
+            
+            required property int display
+
+            width: parent.width
+            height: 30
             color: "white"
             
             Rectangle {
                 id: bar
                 
-                width: parent.width * display / 100.0
+                width: parent.width * delegate.display / 100.0
                 height: 30
                 color: "green"
             }
@@ -31,8 +34,7 @@ Window {
             Text {
                 anchors.verticalCenter: parent.verticalCenter
                 x: Math.min(bar.x + bar.width + 5, parent.width-width)
-                
-                text: display + "%"
+                text: delegate.display + "%"
             }   
         }
     }

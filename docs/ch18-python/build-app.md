@@ -57,15 +57,15 @@ Qt classes come with a number of features that we want to be able to use. These 
 
 ### Signals and Slots
 
-We start with the class `NumberGenerator`. It has a constructor, a method called `giveNumber` and a signal called `nextNumber`. The idea is that when you call `giveNumber`, the signal `nextNumber` is emitted with a new random number. You can see the code for the class below, but first we will look at the details.
+We start with the class `NumberGenerator`. It has a constructor, a method called `updateNumber` and a signal called `nextNumber`. The idea is that when you call `updateNumber`, the signal `nextNumber` is emitted with a new random number. You can see the code for the class below, but first we will look at the details.
 
 First of all we make sure to call `QObject.__init__` from our constructor. This is very important, as the example will not work without it.
 
 Then we declare a signal by creating an instance of the `Signal` class from the `PySide6.QtCore` module. In this case, the signal carries an integer value, hence the `int`. The signal parameter name, `number`, is defined in the `arguments` parameter.
 
-Finally, we *decorate* the `giveNumber` method with the `@Slot()` decorator, thus turning it into a slot. There is not concept of *invokables* in Qt for Python, so all callable methods must be slots.
+Finally, we *decorate* the `updateNumber` method with the `@Slot()` decorator, thus turning it into a slot. There is not concept of *invokables* in Qt for Python, so all callable methods must be slots.
 
-In the `giveNumber` method we emit the `nextNumber` signal using the `emit` method. This is a bit different than the syntax for doing so from QML or C++ as the signal is represented by an object instead of being a callable function.
+In the `updateNumber` method we emit the `nextNumber` signal using the `emit` method. This is a bit different than the syntax for doing so from QML or C++ as the signal is represented by an object instead of being a callable function.
 
 ```py
 import random
@@ -79,7 +79,7 @@ class NumberGenerator(QObject):
     nextNumber = Signal(int, arguments=['number'])
 
     @Slot()
-    def giveNumber(self):
+    def updateNumber(self):
         self.nextNumber.emit(random.randint(0, 99))
 ```
 
@@ -103,7 +103,7 @@ if __name__ == '__main__':
     sys.exit(app.exec())
 ```
 
-Continuing to the QML code, we can see that we’ve created a Qt Quick Controls 2 user interface consisting of a `Button` and a `Label`. In the button’s `onClicked` handler, the `numberGenerator.giveNumber()` function is called. This is the slot of the object instantiated on the Python side.
+Continuing to the QML code, we can see that we’ve created a Qt Quick Controls 2 user interface consisting of a `Button` and a `Label`. In the button’s `onClicked` handler, the `numberGenerator.updateNumber()` function is called. This is the slot of the object instantiated on the Python side.
 
 To receive a signal from an object that has been instantiated outside of QML we need to use a `Connections` element. This allows us to attach a signal hanlder to an existing target.
 
@@ -124,7 +124,7 @@ Window {
     Flow {
         Button {
             text: "Give me a number!"
-            onClicked: numberGenerator.giveNumber();
+            onClicked: numberGenerator.updateNumber()
         }
         Label {
             id: numberLabel
@@ -296,7 +296,7 @@ Window {
         Flow {
             Button {
                 text: "Give me a number!"
-                onClicked: numberGenerator.updateNumber();
+                onClicked: numberGenerator.updateNumber()
             }
             Label {
                 id: numberLabel
@@ -343,7 +343,7 @@ class NumberGenerator(QObject):
     nextNumber = Signal(int, arguments=['number'])
 
     @Slot()
-    def giveNumber(self):
+    def updateNumber(self):
         self.nextNumber.emit(random.randint(0, 99))
 
 
@@ -381,7 +381,7 @@ Window {
     Flow {
         Button {
             text: "Give me a number!"
-            onClicked: numberGenerator.giveNumber();
+            onClicked: numberGenerator.updateNumber()
         }
         Label {
             id: numberLabel
@@ -422,7 +422,7 @@ We will use the `psutil.cpu_percent` function ([documentation](https://psutil.re
 
 Item models are interesting. They allow you to represent a two dimensional data set, or even nested data sets, if using the `QAbstractItemModel`. The `QAbstractListModel` that we use allow us to represent a list of items, so a one dimensional set of data. It is possible to implement a nested set of lists, creating a tree, but we will only create one level.
 
-To implement a `QAbstractListModel`, it is necessary to implement the methods `rowCount` and `data`. The `rowCount` returns the number of CPU cores which we get using the `psutil.cpu_count` method. The `data` method returns data for different *roles*. We only support the `Qt.DisplayRole`, which corresponds to what you get when you refer to `display` inside the deletage item from QML.
+To implement a `QAbstractListModel`, it is necessary to implement the methods `rowCount` and `data`. The `rowCount` returns the number of CPU cores which we get using the `psutil.cpu_count` method. The `data` method returns data for different *roles*. We only support the `Qt.DisplayRole`, which corresponds to what you get when you refer to `display` inside the delegate item from QML.
 
 Looking at the code for the model, you can see that the actual data is stored in the `__cpu_load` list. If a valid request is made to `data`, i.e. the row, column and role is correct, we return the right element from the `__cpu_load` list. Otherwise we return `None` which corresponds to an uninitialized `QVariant` on the Qt side.
 
@@ -505,14 +505,18 @@ Window {
         anchors.fill: parent
         model: CpuLoadModel { }
         delegate: Rectangle { 
-            width: parent.width; 
-            height: 30;
+            id: delegate
+
+            required property int display
+
+            width: parent.width
+            height: 30
             color: "white"
             
             Rectangle {
                 id: bar
                 
-                width: parent.width * display / 100.0
+                width: parent.width * delegate.display / 100.0
                 height: 30
                 color: "green"
             }
@@ -520,8 +524,7 @@ Window {
             Text {
                 anchors.verticalCenter: parent.verticalCenter
                 x: Math.min(bar.x + bar.width + 5, parent.width-width)
-                
-                text: display + "%"
+                text: delegate.display + "%"
             }   
         }
     }
