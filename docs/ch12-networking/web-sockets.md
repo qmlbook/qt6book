@@ -7,7 +7,7 @@ In Qt/QML you can also simply use the WebSocket and WebSocketServer objects to c
 You can use the web socket qml module by importing it first.
 
 ```qml
-import Qt.WebSockets 1.0
+import QtWebSockets
 
 WebSocket {
     id: socket
