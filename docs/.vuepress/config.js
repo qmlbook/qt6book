@@ -1,6 +1,6 @@
 module.exports = {
-  title: 'Qt6 Book',
-  description: "A book about Qt6",  
+  title: 'The Qt 6 Book',
+  description: "A book about QML",  
   plugins: [
     'vuepress-plugin-mermaidjs'
   ],  
@@ -17,6 +17,7 @@ module.exports = {
     nav: [
     ],
     sidebar: [
+      prefaceSidebar(),
       ch01Sidebar(),
       ch02Sidebar(),
       ch03Sidebar(),
@@ -57,7 +58,7 @@ function ch18Sidebar() {
 
 function ch17Sidebar() {
   return {
-    title: "Extending QML (Qt6 - Draft)",
+    title: "Extending QML",
     path: '/ch17-extensions/extending-qml',
     collapsable: false,
     children: [
@@ -74,7 +75,7 @@ function ch17Sidebar() {
 
 function ch16Sidebar() {
   return {
-    title: "Qt C++ (Qt6 - Draft)",
+    title: "Qt C++",
     path: '/ch16-qtcpp/qtcpp',
     collapsable: false,
     children: [
@@ -105,7 +106,7 @@ function ch15Sidebar() {
 
 function ch14Sidebar() {
   return {
-    title: "Dynamic QML (Qt6 - Draft)",
+    title: "Dynamic QML",
     path: '/ch14-dynamicqml/dynamic-qml',
     collapsable: false,
     children: [
@@ -120,7 +121,7 @@ function ch14Sidebar() {
 
 function ch13Sidebar() {
   return {
-    title: "Storage (Qt6 - Draft)",
+    title: "Storage",
     path: '/ch13-storage/storage',
     collapsable: false,
     children: [
@@ -133,7 +134,7 @@ function ch13Sidebar() {
 
 function ch12Sidebar() {
   return {
-    title: "Networking (Qt6 - Draft)",
+    title: "Networking",
     path: '/ch12-networking/networking',
     collapsable: false,
     children: [
@@ -168,7 +169,7 @@ function ch11Sidebar() {
 
 function ch10Sidebar() {
   return {
-    title: "Effects (Qt6 - Draft)",
+    title: "Effects",
     path: '/ch10-effects/effects',
     collapsable: false,
     children: [
@@ -193,7 +194,7 @@ function ch10Sidebar() {
 
 function ch09Sidebar() {
   return {
-    title: "Shapes (Qt6 - Placeholder)",
+    title: "Shapes (Placeholder)",
     path: '/ch09-shapes/placeholder',
     collapsable: false,
     children: [
@@ -204,7 +205,7 @@ function ch09Sidebar() {
 
 function ch08Sidebar() {
   return {
-    title: "Canvas (Qt6 - Draft)",
+    title: "Canvas",
     path: '/ch08-canvas/canvas-element',
     collapsable: false,
     children: [
@@ -224,7 +225,7 @@ function ch08Sidebar() {
 
 function ch07Sidebar() {
   return {
-    title: "Model View",
+    title: "Model View (Qt 5)",
     path: '/ch07-modelview/model-view',
     collapsable: false,
     children: [
@@ -241,7 +242,7 @@ function ch07Sidebar() {
 
 function ch06Sidebar() {
   return {
-    title: "QtQuick Controls (Qt5)",
+    title: "QtQuick Controls (Qt 5)",
     path: '/ch06-controls/controls2',
     collapsable: false,
     children: [
@@ -257,7 +258,7 @@ function ch06Sidebar() {
 
 function ch05Sidebar() {
   return {
-    title: "Fluid Elements (Qt6 - Draft)",
+    title: "Fluid Elements",
     path: '/ch05-fluid/fluid-elements',
     collapsable: false,
     children: [
@@ -271,7 +272,7 @@ function ch05Sidebar() {
 
 function ch04Sidebar() {
   return {
-    title: "Quick Starter (Qt6 - Draft)",
+    title: "Quick Starter",
     path: '/ch04-qmlstart/quick-start',
     collapsable: false,
     children: [
@@ -290,7 +291,7 @@ function ch04Sidebar() {
 
 function ch03Sidebar() {
   return {
-    title: "Qt Creator IDE (Qt6 - Draft)",
+    title: "Qt Creator IDE",
     path: '/ch03-qtcreator/qt-creator',
     collapsable: false,
     children: [
@@ -308,7 +309,7 @@ function ch03Sidebar() {
 
 function ch02Sidebar() {
   return {
-    title: "Getting Started (Qt6 - Draft)",
+    title: "Getting Started",
     path: '/ch02-start/quick-start',
     collapsable: false,
     children: [
@@ -323,13 +324,26 @@ function ch02Sidebar() {
 
 function ch01Sidebar() {
   return { 
-    title: "Meet Qt (Qt6 - Draft)",
+    title: "Meet Qt",
     path: '/ch01-meetqt/meet-qt',
     collapsable: false,
     children: [
       '/ch01-meetqt/meet-qt',
       '/ch01-meetqt/blocks',
       '/ch01-meetqt/intro',
+    ]
+  }
+}
+
+function prefaceSidebar() {
+  return { 
+    title: "Preface",
+    path: '/preface/preface',
+    collapsable: false,
+    children: [
+      '/preface/preface',
+      '/preface/acknowledgements',
+      '/preface/authors',
     ]
   }
 }
