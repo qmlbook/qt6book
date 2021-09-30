@@ -12,7 +12,16 @@ You can find out more about Johan at [LinkedIn](https://www.linkedin.com/in/joha
 
 ## Jürgen Bocklage-Ryannel
 
-T.B.D.
+![Jürgen Bocklage-Ryannel](./assets/jryannel.jpg)
+
+Jürgen is the CEO of ApiGear, which is a collaborative machine interface design tool that enables teams to collaborative design software interfaces 
+with automated monitoring and simulation solutions.
+
+He was the co-founder of Pelagicore AG and was responsible there as Chief User Interface Architect for the early versions of the Daimler MBUX.
+
+He focus currently on an API driven workflow to design and create the interfaces between the user experience and the underlying services for different platforms. 
+
+You can find out more about Jürgen at [LinkedIn](https://www.linkedin.com/in/jryannel/).
 
 ## Cyril Lorquet
 
