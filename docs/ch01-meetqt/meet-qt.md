@@ -11,8 +11,8 @@ Qt5 was released many years ago and introduced a new declarative way of writing 
 
 Qt6 will be a continuation of what has been done with Qt5 and should not be disruptive to the majority of users. What make Qt valuable to the users?
 
-* It's cross-platform nature
-* It's scalability
+* Its cross-platform nature
+* Its scalability
 * World class APIs and documentation
 * Maintainability, stability and compatibility
 * A large developer ecosystem
