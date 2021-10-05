@@ -25,9 +25,8 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-// M1>>
+// #region M1
 // transformation.qml
-
 
 import QtQuick
 
@@ -89,7 +88,10 @@ Item {
             scale += 0.05
         }
     }
+    
+    // ...
 
+// #endregion M1
     function _test_transformed() {
         circle.x += 20
         box.rotation = 15
@@ -103,7 +105,5 @@ Item {
         triangle.scale = 2.0
         triangle.rotation = 45
     }
-
 }
 
-// <<M1
