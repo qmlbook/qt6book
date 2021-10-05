@@ -1,6 +1,6 @@
 # Creating a JS Console
 
-As a little example, we will create a JS console. We need an input field where the user can enter his JS expressions and ideally there should be a list of output results. As this should more look like a desktop application we use the QtQuick Controls module.
+As a little example, we will create a JS console. We need an input field where the user can enter his JS expressions and ideally there should be a list of output results. As this should more look like a desktop application we use the Qt Quick Controls module.
 
 ::: tip
 A JS console inside your next project can be really beneficial for testing. Enhanced with a Quake-Terminal effect it is also good to impress customers. To use it wisely you need to control the scope the JS console evaluates in, e.g. the currently visible screen, the main data model, a singleton core object or all together.
@@ -10,7 +10,7 @@ A JS console inside your next project can be really beneficial for testing. Enha
 
 ![image](./assets/jsconsole.png)
 
-We use Qt Creator to create a Qt Quick UI project using QtQuick controls. We call the project JSConsole. After the wizard has finished we have already a basic structure for the application with an application window and a menu to exit the application.
+We use Qt Creator to create a Qt Quick UI project using Qt Quick controls. We call the project JSConsole. After the wizard has finished we have already a basic structure for the application with an application window and a menu to exit the application.
 
 For the input, we use a TextField and a Button to send the input for evaluation. The result of the expression evaluation is displayed using a ListView with a ListModel as the model and two labels to display the expression and the evaluated result.
 

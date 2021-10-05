@@ -1,7 +1,7 @@
 ---
 home: true
-heroText: Qt6 Book
-tagline: A book about Qt6
+heroText: Qt 6 Book
+tagline: A book about Qt 6
 actionText: Get Started →
 actionLink: /ch01-meetqt/meet-qt
 features:
@@ -15,7 +15,7 @@ features:
   details: Maintainability, stability, and compatibility, allowing to maintain large code bases with minimal effort
 - title: Developer Ecosystem
   details: A large developer ecosystem with more than 1 million users
-- title: Qt6 release series
+- title: Qt 6 release series
   details: Enable Qt to be the productivity platform for the future
 
 footer: CC-BY-NC Licensed | Copyright © 2021-present J. Ryannel & J. Thelin

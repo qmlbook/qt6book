@@ -383,7 +383,7 @@ Now you can use the model in QML and insert, append, remove entries from the mod
 
 ![image](./images/modelview.png)
 
-And here is the QML code. You find the full source code also in the assets for this chapter. The example uses the QtQuick.Controls and QtQuick.Layout module to make the code more compact. These controls module provides a set of desktop related UI elements in QtQuick and the layouts module provides some very useful layout managers.
+And here is the QML code. You find the full source code also in the assets for this chapter. The example uses the `QtQuick.Controls` and `QtQuick.Layout` module to make the code more compact. These controls module provides a set of desktop related UI elements in Qt Quick and the layouts module provides some very useful layout managers.
 
 ```qml
 import QtQuick 2.5
