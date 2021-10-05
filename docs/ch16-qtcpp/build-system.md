@@ -33,7 +33,7 @@ When you are using Qt Creator it does these things behind the scenes for you and
 
 CMake is a tool created by Kitware. Kitware is very well known for their 3D visualization software VTK and also CMake, the cross-platform makefile generator. It uses a series of `CMakeLists.txt` files to generate platform-specific makefiles. CMake is used by the KDE project and as such has a special relationship with the Qt community and since version 6, it is the preferred way to build Qt projects.
 
-The `CMakeLists.txt` is the file used to store the project configuration. For a simple hello world using QtCore the project file would look like this:
+The `CMakeLists.txt` is the file used to store the project configuration. For a simple hello world using Qt Core the project file would look like this:
 
 ```cmake
 // ensure cmake version is at least 3.16.0
@@ -71,7 +71,7 @@ CMake is a powerful, a complex, tool and it takes some time to get used to the s
 ## References
 
 
-* [CMake Help](http://www.cmake.org/documentation/) - available online but also as QtHelp format
+* [CMake Help](http://www.cmake.org/documentation/) - available online but also as Qt Help format
 
 
 * [Running CMake](http://www.cmake.org/runningcmake/)
@@ -96,7 +96,7 @@ QMake is the tool which reads your project file and generates the build file. A 
 SOURCES += main.cpp
 ```
 
-Here we build an executable application which will have the name `myproject` based on the project file name. The build will only contain the `main.cpp` source file. And by default, we will use the QtCore and QtGui module for this project. If our project were a QML application we would need to add the QtQuick and QtQml module to the list:
+Here we build an executable application which will have the name `myproject` based on the project file name. The build will only contain the `main.cpp` source file. And by default, we will use the `QtCore` and `QtGui` module for this project. If our project were a QML application we would need to add the `QtQuick` and `QtQml` module to the list:
 
 ```js
 // myproject.pro
@@ -106,7 +106,7 @@ QT += qml quick
 SOURCES += main.cpp
 ```
 
-Now the build file knows to link against the QtQml and QtQuick Qt modules. QMake uses the concept of `=`, `+=` and `-=` to assign, add, remove elements from a list of options, respectively. For a pure console build without UI dependencies you would remove the QtGui module:
+Now the build file knows to link against the `QtQml` and `QtQuick` Qt modules. QMake uses the concept of `=`, `+=` and `-=` to assign, add, remove elements from a list of options, respectively. For a pure console build without UI dependencies you would remove the `QtGui` module:
 
 ```js
 // myproject.pro

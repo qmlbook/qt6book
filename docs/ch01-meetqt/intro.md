@@ -1,8 +1,8 @@
-# Qt6 Introduction
+# Qt 6 Introduction
 
 ## Qt Quick
 
-Qt Quick is the umbrella term for the user interface technology used in Qt6. It was introduced in Qt5 and now expanded for Qt6. Qt Quick itself is a collection of several technologies:
+Qt Quick is the umbrella term for the user interface technology used in Qt 6. It was introduced in Qt 5 and now expanded for Qt 6. Qt Quick itself is a collection of several technologies:
 
 * QML - Markup language for user interfaces
 * JavaScript - The dynamic scripting language
