@@ -227,11 +227,11 @@ ApplicationWindow {
             model: ListModel {
                 ListElement {
                     text: qsTr("Open...")
-                    triggered: fileOpenDialog.open()
+                    triggered: function() { fileOpenDialog.open(); }
                 }
                 ListElement {
                     text: qsTr("About...")
-                    triggered: aboutDialog.open()
+                    triggered: function() { aboutDialog.open(); }
                 }
             }
 
