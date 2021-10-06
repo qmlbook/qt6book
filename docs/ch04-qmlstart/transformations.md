@@ -37,7 +37,7 @@ We use our clickable image to present three objects (box, circle, triangle). Eac
 The circle increments the x-position on each click and the box will rotate on each click. The triangle will rotate and scale the image up on each click, to demonstrate a combined transformation. For the scaling and rotation operation we set `antialiasing: true` to enable anti-aliasing, which is switched off (same as the clipping property `clip`) for performance reasons.  In your own work, when you see some rasterized edges in your graphics, then you should probably switch smoothing on.
 
 ::: tip
-To achieve better visual quality when scaling images, it is recommended to scale down instead of up. Scaling an image up with a larger scaling factor will result in scaling artifacts (blurred image). When scaling an image you should consider using \`\` antialiasing: true\`\` to enable the usage of a higher quality filter.
+To achieve better visual quality when scaling images, it is recommended to scale down instead of up. Scaling an image up with a larger scaling factor will result in scaling artifacts (blurred image). When scaling an image you should consider using ``smooth: true`` to enable the usage of a higher quality filter at the cost of performance.
 :::
 
 The background `MouseArea` covers the whole background and resets the object values.
