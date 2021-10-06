@@ -7,7 +7,7 @@ The Qt Creator IDE allows you to create various types of applications. If not ot
 :::
 
 ::: tip
-A typical Qt Quick application is made out of a runtime called the QmlEngine which loads the initial QML code. The developer can register C++ types with the runtime to interface with the native code. These C++ types can also be bundled into a plugin and then dynamically loaded using an import statement. The `qmlscene` and `qml` tool are pre-made runtimes, which can be used directly. For the beginning, we will not cover the native side of development and focus only on the QML aspects of Qt 6. This is why we start from a prototype project.
+A typical Qt Quick application is made out of a runtime called the QmlEngine which loads the initial QML code. The developer can register C++ types with the runtime to interface with the native code. These C++ types can also be bundled into a plugin and then dynamically loaded using an import statement. The `qml` tool is a pre-made runtime which is used directly. For the beginning, we will not cover the native side of development and focus only on the QML aspects of Qt 6. This is why we start from a prototype project.
 :::
 
 Qt Creator creates several files for you. The `HelloWorld.qmlproject` file is the project file, where the relevant project configuration is stored. This file is managed by Qt Creator, so don’t edit it yourself.
@@ -32,7 +32,7 @@ The `HelloWord.qml` program is written in the QML language. We’ll discuss the 
 
 To run the application on your own, press the ![](./assets/qtcreator-run.png) Run tool on the left side, or select Build > Run from the menu.
 
-In the background, Qt Creator runs `qmlscene` and passes your QML document as the first argument. The `qmlscene` application parses the document, and launches the user interface. You should see something like this:
+In the background, Qt Creator runs `qml` and passes your QML document as the first argument. The `qml` application parses the document, and launches the user interface. You should see something like this:
 
 ![](./assets/example.png)
 
@@ -51,6 +51,6 @@ After a successful compilation (and 2 cups of coffee), Qt 6 will be available in
 
 If you want to test your compilation, you can now run the example with the default runtime that comes with Qt 6:
 
-    $ qtbase/bin/qmlscene
+    $ qtbase/bin/qml
 :::
 

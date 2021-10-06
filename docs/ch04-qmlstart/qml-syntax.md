@@ -73,9 +73,9 @@ Often you want to access a particular element by id or a parent element using th
 ::: tip
 You can run the example using the Qt Quick runtime from the command line from your OS like this:
 
-    $ $QTDIR/bin/qmlscene RectangleExample.qml
+    $ $QTDIR/bin/qml RectangleExample.qml
 
-Where you need to replace the `$QTDIR` to the path to your Qt installation. The `qmlscene` executable initializes the Qt Quick runtime and interprets the provided QML file.
+Where you need to replace the `$QTDIR` to the path to your Qt installation. The `qml` executable initializes the Qt Quick runtime and interprets the provided QML file.
 
 In Qt Creator, you can open the corresponding project file and run the document  `RectangleExample.qml`.
 :::

@@ -245,7 +245,7 @@ Running the client
 
 ```sh
 cd ws_client
-qmlscene ws_client.qml
+qml ws_client.qml
 ```
 
 When entering text and pressing enter you should see something like this.

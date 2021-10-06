@@ -1,8 +1,8 @@
 # Summary
 
-The plugin created in thic chapter is a very simple plugin. but it can be re-used and extended by other types for different applications. Using plugins creates a very flexible solution. For example, you can now start the UI by just using the `qmlscene`. Open the folder where your `CityUI` project is a start the UI with `qmlscene main.qml`. The extension is readily available to the QML engine from any project and can be imported anywhere.
+The plugin created in thic chapter is a very simple plugin. but it can be re-used and extended by other types for different applications. Using plugins creates a very flexible solution. For example, you can now start the UI by just using the `qml`. Open the folder where your `CityUI` project is a start the UI with `qml main.qml`. The extension is readily available to the QML engine from any project and can be imported anywhere.
 
-You are encouraged to write your applications in a way so that they work with a `qmlscene`. This has a tremendous increase in turnaround time for the UI developer and it is also a good habit to keep a clear separation of the logic and the presentation of an application.
+You are encouraged to write your applications in a way so that they work with a `qml`. This has a tremendous increase in turnaround time for the UI developer and it is also a good habit to keep a clear separation of the logic and the presentation of an application.
 
 The only drawback with using plugins is that the deployment gets more difficult. This becomes more apparent the simpler the application is (as the overhead of creating and deploying the plugin stays the same). You need now to deploy your plugin with your application. If this is a problem for you, you can still use the same `FileIO` class and register it directly in your `main.cpp` using `qmlRegisterType`. The QML code would stay the same.
 

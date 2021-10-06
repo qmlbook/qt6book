@@ -379,7 +379,7 @@ Rectangle {
 }
 ```
 
-The declaration language is called QML and it needs a runtime to execute it. Qt provides a standard runtime called `qmlscene` but it’s also not so difficult to write a custom runtime. For this, we need a quick view and set the main QML document as a source. The only thing left is to show the user interface.
+The declaration language is called QML and it needs a runtime to execute it. Qt provides a standard runtime called `qml`. You can also write a custom runtime. For this, we need a quick view and set the main QML document as a source from C++. Then you can show the user interface.
 
 ```cpp
 #include <QtGui>
