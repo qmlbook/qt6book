@@ -55,7 +55,7 @@ ApplicationWindow {
     Platform.FileDialog {
         id: fileOpenDialog
         title: "Select an image file"
-        folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
+        folder: Platform.StandardPaths.writableLocation(Platform.StandardPaths.DocumentsLocation)
         nameFilters: [
             "Image files (*.png *.jpeg *.jpg)",
         ]

@@ -87,9 +87,9 @@ ApplicationWindow {
 }
 ```
 
-The `fileOpenDialog` element is a `FileDialog` control from the `Qt.labs` module. The file dialog can be used to open or save files.
+The `fileOpenDialog` element is a `FileDialog` control from the `Qt.labs.platform` module. The file dialog can be used to open or save files.
 
-In the code we start by assigning a `title`. Then we set the starting folder using the `shortcut` property. The `shortcut` property holds links to common folders such as the user’s home, documents, and so on. After that we set a name filter that controls which files the user can see and pick using the dialog.
+In the code we start by assigning a `title`. Then we set the starting folder using the `StandardsPaths` class. The `StandardsPaths` classholds links to common folders such as the user’s home, documents, and so on. After that we set a name filter that controls which files the user can see and pick using the dialog.
 
 Finally, we reach the `onAccepted` signal handler where the `Image` element that holds the window contents is set to show the selected file. There is an `onRejected` signal as well, but we do not need to handle it in the image viewer application.
 
@@ -101,7 +101,7 @@ ApplicationWindow {
     FileDialog {
         id: fileOpenDialog
         title: "Select an image file"
-        folder: shortcuts.documents
+        folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
         nameFilters: [
             "Image files (*.png *.jpeg *.jpg)",
         ]
