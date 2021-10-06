@@ -16,6 +16,8 @@ The initial home screen of the application is shown in the figure below.
 
 The application starts in `main.qml`, where we have an `ApplicationWindow` containing a `ToolBar`, a `Drawer`, a `StackView` and a home page element, `Home`. We will look into each of the components below.
 
+
+
 ```qml
 import QtQuick
 import QtQuick.Controls
@@ -46,19 +48,7 @@ ApplicationWindow {
 
 The home page, `Home.qml` consists of a `Page`, which is n control element that support headers and footers. In this example we simply center a `Label` with the text *Home Screen* on the page. This works because the contents of a `StackView` automatically fill the stack view, so the page will have the right size for this to work.
 
-```qml
-import QtQuick
-import QtQuick.Controls
-
-Page {
-    title: qsTr("Home")
-
-    Label {
-        anchors.centerIn: parent
-        text: qsTr("Home Screen")
-    }
-}
-```
+<<< @/docs/ch06-controls/src/interface-stack/Home.qml
 
 Returning back to `main.qml`, we now look at the drawer part. This is where the navigation to the pages begin. The active parts of the user interface are the `ÌtemDelegate` items. In the `onClicked` handler, the next page is pushed onto the `stackView`.
 
@@ -150,6 +140,8 @@ ApplicationWindow {
 Now we’ve seen how to reach the *About* and *Profile* pages, but we also want to make it possible to reach the *Edit Profile* page from the *Profile* page. This is done via the `Button` on the *Profile* page. When the button is clicked, the `EditProfile.qml` file is pushed onto the `StackView`.
 
 ![](./assets/interface-stack-profile.png)
+
+<<< @/docs/ch06-controls/src/interface-stack/Profile.qml
 
 ```qml
 import QtQuick
@@ -361,6 +353,8 @@ ApplicationWindow {
 
 To bootstrap the program, we create the first `DocumentWindow` instance from `main.qml`, which is the entry point of the application.
 
+<<< @/docs/ch06-controls/src/interface-document-window/main.qml
+
 ```qml
 import QtQuick
 
@@ -371,7 +365,7 @@ DocumentWindow {
 
 In the example at the beginning of this chapter, each `MenuItem` calls a corresponding function when triggered. Let’s start with the *New* item, which calls the `newDocument` function.
 
-The function, in turn, relies on the `_createNewDocument` function, which dynamically creates a new element instance from the `DocumentWindow.qml` file, i.e. a new `DocumentWindow` instance. The reason for breaking out this part of the new function is that we use it when opening documents as well.
+The function, in turn, relies on the `createNewDocument` function, which dynamically creates a new element instance from the `DocumentWindow.qml` file, i.e. a new `DocumentWindow` instance. The reason for breaking out this part of the new function is that we use it when opening documents as well.
 
 Notice that we do not provide a parent element when creating the new instance using `createObject`. This way, we create new top level elements. If we would have provided the current document as parent to the next, the destruction of the parent window would lead to the destruction of the child windows.
 
@@ -380,7 +374,7 @@ ApplicationWindow {
 
     // ...
 
-    function _createNewDocument()
+    function createNewDocument()
     {
         var component = Qt.createComponent("DocumentWindow.qml");
         var window = component.createObject();
@@ -389,7 +383,7 @@ ApplicationWindow {
 
     function newDocument()
     {
-        var window = _createNewDocument();
+        var window = createNewDocument();
         window.show();
     }
 
@@ -400,7 +394,7 @@ ApplicationWindow {
 
 Looking at the *Open* item, we see that it calls the `openDocument` function. The function simply opens the `openDialog`, which lets the user pick a file to open. As we don’t have a document format, file extension or anything like that, the dialog has most properties set to their default value. In a real world application, this would be better configured.
 
-In the `onAccepted` handler a new document window is instantiated using the `_createNewDocument` method, and a file name is set before the window is shown. In this case, no real loading takes place.
+In the `onAccepted` handler a new document window is instantiated using the `createNewDocument` method, and a file name is set before the window is shown. In this case, no real loading takes place.
 
 ::: tip
 We imported the `Qt.labs.platform` module as `NativeDialogs`. This is because it provides a `MenuItem` that clashes with the `MenuItem` provided by the `QtQuick.Controls` module.
@@ -421,8 +415,8 @@ ApplicationWindow {
         title: "Open"
         folder: NativeDialogs.StandardPaths.writableLocation(NativeDialogs.StandardPaths.DocumentsLocation)
         onAccepted: {
-            var window = root._createNewDocument();
-            window._fileName = openDialog.file;
+            var window = root.createNewDocument();
+            window.fileName = openDialog.file;
             window.show();
         }
     }
@@ -432,22 +426,22 @@ ApplicationWindow {
 }
 ```
 
-The file name belongs to a pair of properties describing the document: `_fileName` and `_isDirty`. The `_fileName` holds the file name of the document name and `_isDirty` is set when the document has unsaved changes. This is used by the save and save as logic, which is shown below.
+The file name belongs to a pair of properties describing the document: `fileName` and `isDirty`. The `fileName` holds the file name of the document name and `isDirty` is set when the document has unsaved changes. This is used by the save and save as logic, which is shown below.
 
 When trying to save a document without a name, the `saveAsDocument` is invoked. This results in a round-trip over the `saveAsDialog`, which sets a file name and then tries to save again in the `onAccepted` handler.
 
 Notice that the `saveAsDocument` and `saveDocument` functions correspond to the *Save As* and *Save* menu items.
 
-After having saved the document, in the `saveDocument` function, the `_tryingToClose` property is checked. This flag is set if the save is the result of the user wanting to save a document when the window is being closed. As a consequence, the window is closed after the save operation has been performed. Again, no actual saving takes place in this example.
+After having saved the document, in the `saveDocument` function, the `tryingToClose` property is checked. This flag is set if the save is the result of the user wanting to save a document when the window is being closed. As a consequence, the window is closed after the save operation has been performed. Again, no actual saving takes place in this example.
 
 ```qml
 ApplicationWindow {
 
     // ...
 
-    property bool _isDirty: true        // Has the document got unsaved changes?
-    property string _fileName           // The filename of the document
-    property bool _tryingToClose: false // Is the window trying to close (but needs a file name first)?
+    property bool isDirty: true        // Has the document got unsaved changes?
+    property string fileName           // The filename of the document
+    property bool tryingToClose: false // Is the window trying to close (but needs a file name first)?
 
     // ...
 
@@ -458,7 +452,7 @@ ApplicationWindow {
 
     function saveDocument()
     {
-        if (_fileName.length === 0)
+        if (fileName.length === 0)
         {
             root.saveAsDocument();
         }
@@ -466,9 +460,9 @@ ApplicationWindow {
         {
             // Save document here
             console.log("Saving document")
-            root._isDirty = false;
+            root.isDirty = false;
 
-            if (root._tryingToClose)
+            if (root.tryingToClose)
                 root.close();
         }
     }
@@ -478,11 +472,11 @@ ApplicationWindow {
         title: "Save As"
         folder: NativeDialogs.StandardPaths.writableLocation(NativeDialogs.StandardPaths.DocumentsLocation)
         onAccepted: {
-            root._fileName = saveAsDialog.file
+            root.fileName = saveAsDialog.file
             saveDocument();
         }
         onRejected: {
-            root._tryingToClose = false;
+            root.tryingToClose = false;
         }
     }
 
@@ -495,9 +489,9 @@ This leads us to the closing of windows. When a window is being closed, the `onC
 
 The `closeWarningDialog` asks the user if the changes should be saved, but the user also has the option to cancel the close operation. The cancelling, handled in `onRejected`, is the easiest case, as we rejected the closing when the dialog was opened.
 
-When the user does not want to save the changes, i.e. in `onNoClicked`, the `_isDirty` flag is set to `false` and the window is closed again. This time around, the `onClosing` will accept the closure, as `_isDirty` is false.
+When the user does not want to save the changes, i.e. in `onNoClicked`, the `isDirty` flag is set to `false` and the window is closed again. This time around, the `onClosing` will accept the closure, as `isDirty` is false.
 
-Finally, when the user wants to save the changes, we set the `_tryingToClose` flag to true before calling save. This leads us to the save/save as logic.
+Finally, when the user wants to save the changes, we set the `tryingToClose` flag to true before calling save. This leads us to the save/save as logic.
 
 ```qml
 ApplicationWindow {
@@ -505,7 +499,7 @@ ApplicationWindow {
     // ...
 
     onClosing: {
-        if (root._isDirty) {
+        if (root.isDirty) {
             closeWarningDialog.open();
             close.accepted = false;
         }
@@ -518,12 +512,12 @@ ApplicationWindow {
         buttons: NativeDialogs.MessageDialog.Yes | NativeDialogs.MessageDialog.No | NativeDialogs.MessageDialog.Cancel
         onYesClicked: {
             // Attempt to save the document
-            root._tryingToClose = true;
+            root.tryingToClose = true;
             root.saveDocument();
         }
         onNoClicked: {
             // Close the window
-            root._isDirty = false;
+            root.isDirty = false;
             root.close()
         }
         onRejected: {
@@ -539,14 +533,14 @@ This looks complicated compared to implementing this using `Qt Widgets` and C++.
 
 ![](./assets/dialog-state-machine.png)
 
-The final piece of the puzzle is the window title. It is composed from the `_fileName` and `_isDirty` properties.
+The final piece of the puzzle is the window title. It is composed from the `fileName` and `isDirty` properties.
 
 ```qml
 ApplicationWindow {
 
     // ...
 
-    title: (_fileName.length===0?qsTr("Document"):_fileName) + (_isDirty?"*":"")
+    title: (fileName.length===0?qsTr("Document"):fileName) + (isDirty?"*":"")
 
     // ...
 

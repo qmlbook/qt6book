@@ -242,7 +242,7 @@ function ch07Sidebar() {
 
 function ch06Sidebar() {
   return {
-    title: "QtQuick Controls (Qt 5)",
+    title: "QtQuick Controls",
     path: '/ch06-controls/controls2',
     collapsable: false,
     children: [

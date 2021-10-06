@@ -12,58 +12,13 @@ The application's style customizes the `ApplicationWindow` and `Button` controls
 
 The code for this uses a `Column` for the clickable buttons, and a `Grid` for the checkable ones. The clickable buttons also stretch with the window width.
 
-```qml
-ApplicationWindow {
-
-    // ...
-
-    Column {
-
-        // ...
-
-        Repeater {
-            model: 5
-            delegate: Button {
-                width: parent.width
-                height: 70
-                text: qsTr("Click me!")
-            }
-        }
-    }
-
-    Grid {
-
-        // ...
-
-        Repeater {
-            model: 10
-
-            delegate: Button {
-                height: 70
-                text: qsTr("Check me!")
-                checkable: true
-            }
-        }
-    }
-}
-```
+<<< @/docs/ch06-controls/src/imagine-style/main.qml
 
 As we are using the *Imagine* style, all controls that we want to use need to be styled using a graphical asset. The easiest is the background for the `ApplicationWindow`. This is a single pixel texture defining the background colour. By naming the file `applicationwindow-background.png` and then pointing the style to it using the `qtquickcontrols2.conf` file, the file is picked up.
 
 In the `qtquickcontrols2.conf` file shown below, you can see how we set the `Style` to `Imagine`, and then setup a `Path` for the style where it can look for the assets. Finally we set some palette properties as well. The available palette properties can be found on the [palette QML Basic Type](https://doc.qt.io/qt-6/qml-palette.html#qtquickcontrols2-palette) page.
 
-```ini
-[Controls]
-Style=Imagine
-
-[Imagine]
-Path=:images/imagine
-
-[Imagine\Palette]
-Text=#ffffff
-ButtonText=#ffffff
-BrightText=#ffffff
-```
+<<< @/docs/ch06-controls/src/imagine-style/qtquickcontrols2.conf
 
 The assets for the `Button` control are `button-background.9.png`, `button-background-pressed.9.png` and `button-background-checked.9.png`. These follow the *control*-*element*-*state* pattern. The stateless file, `button-background.9.png` is used for all states without a specific asset. According to the [Imagine style element reference table](https://doc.qt.io/qt-6/qtquickcontrols2-imagine.html#element-reference), a button can have the following states:
 

@@ -7,14 +7,14 @@ ApplicationWindow {
 
     // ...
 
-    title: (_fileName.length===0?qsTr("Document"):_fileName) + (_isDirty?"*":"")
+    title: (fileName.length===0?qsTr("Document"):fileName) + (isDirty?"*":"")
 
     width: 640
     height: 480
 
-    property bool _isDirty: true        // Has the document got unsaved changes?
-    property string _fileName           // The filename of the document
-    property bool _tryingToClose: false // Is the window trying to close (but needs a file name first)?
+    property bool isDirty: true        // Has the document got unsaved changes?
+    property string fileName           // The filename of the document
+    property bool tryingToClose: false // Is the window trying to close (but needs a file name first)?
 
     menuBar: MenuBar {
 
@@ -46,7 +46,7 @@ ApplicationWindow {
         }
     }
 
-    function _createNewDocument()
+    function createNewDocument()
     {
         var component = Qt.createComponent("DocumentWindow.qml");
         var window = component.createObject();
@@ -55,7 +55,7 @@ ApplicationWindow {
 
     function newDocument()
     {
-        var window = _createNewDocument();
+        var window = createNewDocument();
         window.show();
     }
 
@@ -71,7 +71,7 @@ ApplicationWindow {
 
     function saveDocument()
     {
-        if (_fileName.length === 0)
+        if (fileName.length === 0)
         {
             root.saveAsDocument();
         }
@@ -79,9 +79,9 @@ ApplicationWindow {
         {
             // Save document here
             console.log("Saving document")
-            root._isDirty = false;
+            root.isDirty = false;
 
-            if (root._tryingToClose)
+            if (root.tryingToClose)
                 root.close();
         }
     }
@@ -91,8 +91,8 @@ ApplicationWindow {
         title: "Open"
         folder: NativeDialogs.StandardPaths.writableLocation(NativeDialogs.StandardPaths.DocumentsLocation)
         onAccepted: {
-            var window = root._createNewDocument();
-            window._fileName = openDialog.file;
+            var window = root.createNewDocument();
+            window.fileName = openDialog.file;
             window.show();
         }
     }
@@ -102,16 +102,16 @@ ApplicationWindow {
         title: "Save As"
         folder: NativeDialogs.StandardPaths.writableLocation(NativeDialogs.StandardPaths.DocumentsLocation)
         onAccepted: {
-            root._fileName = saveAsDialog.file
+            root.fileName = saveAsDialog.file
             saveDocument();
         }
         onRejected: {
-            root._tryingToClose = false;
+            root.tryingToClose = false;
         }
     }
 
     onClosing: function(close) {
-        if (root._isDirty) {
+        if (root.isDirty) {
             closeWarningDialog.open();
             close.accepted = false;
         }
@@ -124,12 +124,12 @@ ApplicationWindow {
         buttons: NativeDialogs.MessageDialog.Yes | NativeDialogs.MessageDialog.No | NativeDialogs.MessageDialog.Cancel
         onYesClicked: {
             // Attempt to save the document
-            root._tryingToClose = true;
+            root.tryingToClose = true;
             root.saveDocument();
         }
         onNoClicked: {
             // Close the window
-            root._isDirty = false;
+            root.isDirty = false;
             root.close()
         }
         onRejected: {
