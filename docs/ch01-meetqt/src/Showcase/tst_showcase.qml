@@ -24,21 +24,17 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
-import QtQuick
 import QtTest
 
 Showcase {
     id: root
-
 
     TestCase {
         id: testCase
         name: 'showcase'
         when: windowShown
 
-        property int shots: 0;
-
+        property int shots: 0
 
         function test_shoot() {
             var shoot = false;

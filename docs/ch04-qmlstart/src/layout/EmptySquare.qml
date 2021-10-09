@@ -28,23 +28,11 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-// RawRowExample.qml
+// EmptySquare.qml
 
-BrightSquare {
-    id: root
-    width: 224
-    height: 88
+import QtQuick
 
-    RedSquare {
-        x: 20
-        y: 20
-    }
-    RedSquare {
-        x: 88
-        y: 20
-    }
-    RedSquare {
-        x: 156
-        y: 20
-    }
+Item {
+    width: 96
+    height: width
 }
