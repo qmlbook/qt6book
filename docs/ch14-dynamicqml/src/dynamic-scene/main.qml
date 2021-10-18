@@ -1,29 +1,32 @@
 /*
- * Copyright (c) 2013, Juergen Bocklage-Ryannel, Johan Thelin
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *     * Redistributions of source code must retain the above copyright
- *       notice, this list of conditions and the following disclaimer.
- *     * Redistributions in binary form must reproduce the above copyright
- *       notice, this list of conditions and the following disclaimer in the
- *       documentation and/or other materials provided with the distribution.
- *     * Neither the name of the editors nor the
- *       names of its contributors may be used to endorse or promote products
- *       derived from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
- * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
- * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
- * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
- * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
+Copyright (c) 2012-2021, Juergen Bocklage Ryannel and Johan Thelin
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without 
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+   list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice, 
+   this list of conditions and the following disclaimer in the documentation 
+   and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its contributors
+   may be used to endorse or promote products derived from this software 
+   without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
 
 import QtQml.XmlListModel
 
@@ -39,11 +42,11 @@ Item {
     }
 
     function addUfo() {
-        CreateObject.create("ufo.qml", root, itemAdded);
+        CreateObject.create("ufo.qml", root, itemAdded)
     }
 
     function addRocket() {
-        CreateObject.create("rocket.qml", root, itemAdded);
+        CreateObject.create("rocket.qml", root, itemAdded)
     }
 
     function itemAdded(obj, source) {
@@ -57,24 +60,24 @@ Item {
 // #region M2
     function clearItems() {
         while(objectsModel.count > 0) {
-            objectsModel.get(0).obj.destroy();
-            objectsModel.remove(0);
+            objectsModel.get(0).obj.destroy()
+            objectsModel.remove(0)
         }
     }
 // #endregion M2
 
 // #region M3
     function serialize() {
-        var res = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<scene>\n";
+        var res = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<scene>\n"
 
         for(var ii=0; ii < objectsModel.count; ++ii) {
-            var i = objectsModel.get(ii);
+            var i = objectsModel.get(ii)
             res += "  <item>\n    <source>" + i.source + "</source>\n    <x>" + i.obj.x + "</x>\n    <y>" + i.obj.y + "</y>\n  </item>\n"
         }
 
-        res += "</scene>";
+        res += "</scene>"
 
-        return res;
+        return res
     }
 // #endregion M3
 
@@ -88,19 +91,20 @@ Item {
     }
 
     function deserialize() {
-        dsIndex = 0;
-        CreateObject.create(xmlModel.get(dsIndex).source, root, dsItemAdded);
+        dsIndex = 0
+        CreateObject.create(xmlModel.get(dsIndex).source, root, dsItemAdded)
     }
 
     function dsItemAdded(obj, source) {
-        itemAdded(obj, source);
-        obj.x = xmlModel.get(dsIndex).x;
-        obj.y = xmlModel.get(dsIndex).y;
+        itemAdded(obj, source)
+        obj.x = xmlModel.get(dsIndex).x
+        obj.y = xmlModel.get(dsIndex).y
 
-        dsIndex ++;
+        dsIndex++
 
-        if (dsIndex < xmlModel.count)
-            CreateObject.create(xmlModel.get(dsIndex).source, root, dsItemAdded);
+        if (dsIndex < xmlModel.count) {
+            CreateObject.create(xmlModel.get(dsIndex).source, root, dsItemAdded)
+        }
     }
 
     property int dsIndex
@@ -120,7 +124,7 @@ Item {
 
             MouseArea {
                 anchors.fill: parent
-                onClicked: addUfo();
+                onClicked: root.addUfo()
             }
         }
 
@@ -130,7 +134,7 @@ Item {
 
             MouseArea {
                 anchors.fill: parent
-                onClicked: addRocket();
+                onClicked: root.addRocket()
             }
         }
 
@@ -145,8 +149,8 @@ Item {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    xmlModel.xml = serialize();
-                    clearItems();
+                    xmlModel.xml = root.serialize()
+                    root.clearItems()
                 }
             }
         }
@@ -161,7 +165,7 @@ Item {
 
             MouseArea {
                 anchors.fill: parent
-                onClicked: deserialize();
+                onClicked: root.deserialize()
             }
         }
     }

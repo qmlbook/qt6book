@@ -82,9 +82,9 @@ Dynamically created objects can also be dynamically destroyed. When doing this, 
 An object is destroyed by calling its `destroy` function. The function takes an optional argument which is an integer specifying how many milliseconds the objects shall exist before being destroyed. This is useful too, for instance, let the object complete a final transition.
 
 ```js
-item = Qt.createQmlObject(...);
+item = Qt.createQmlObject(...)
 ...
-item.destroy();
+item.destroy()
 ```
 
 ::: tip
