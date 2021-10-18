@@ -8,7 +8,7 @@ You use the API by first creating a database object and then creating transactio
 
 For example, to read from a simple notes table with a text column you could use the local storage like this:
 
-<<< @/docs/ch13-storage/src/db-snippet/main.qml#M1
+<<< @/docs/ch13-storage/src/db-snippet/main.qml#global
 
 ## Crazy Rectangle
 
@@ -30,7 +30,7 @@ import QtQuick.LocalStorage 2.0
 
 Item {
     // reference to the database object
-    property var db;
+    property var db
 
     function initDatabase() {
         // initialize the database object
@@ -44,14 +44,13 @@ Item {
         // reads and applies data from DB
     }
 
-
     Component.onCompleted: {
-        initDatabase();
-        readData();
+        initDatabase()
+        readData()
     }
 
     Component.onDestruction: {
-        storeData();
+        storeData()
     }
 }
 ```
@@ -72,7 +71,7 @@ To store the data, we need to differentiate the update and insert cases. We use 
 
 <<< @/docs/ch13-storage/src/rectangle/main.qml#M3
 
-Instead of selecting the whole recordset we could also use the SQLite count function like this: `SELECT COUNT(\*) from data where name = "crazy"` which would return use one row with the number of rows affected by the select query. Otherwise, this is common SQL code. As an additional feature, we use the SQL value binding using the `?` in the query.
+Instead of selecting the whole recordset we could also use the SQLite count function like this: `SELECT COUNT(*) from data where name = "crazy"` which would return use one row with the number of rows affected by the select query. Otherwise, this is common SQL code. As an additional feature, we use the SQL value binding using the `?` in the query.
 
 Now you can drag the rectangle and when you quit the application the database stores the x/y position and applies it on the next application run.
 
