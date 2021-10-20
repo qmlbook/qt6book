@@ -24,48 +24,45 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
-import QtQuick
 import QtTest
 
 Showcase {
     id: root
 
-
     TestCase {
         id: testCase
+
+        property int shots: 0
+
         name: 'showcase'
         when: windowShown
 
-        property int shots: 0;
-
-
         function test_shoot() {
-            var shoot = false;
+            var shoot = false
             root.grabToImage(function(result) {
-                result.saveToFile("../../assets/showcase.png");
-                shots++;
-            });
-            mouseClick(root);
-            mouseClick(root);
-            mouseClick(root);
-            mouseClick(root);
-            wait(100);
+                result.saveToFile("../../assets/showcase.png")
+                shots++
+            })
+            mouseClick(root)
+            mouseClick(root)
+            mouseClick(root)
+            mouseClick(root)
+            wait(100)
             root.grabToImage(function(result) {
-                result.saveToFile("../../assets/showcase2.png");
-                shots++;
-            });
-            wait(100);
+                result.saveToFile("../../assets/showcase2.png")
+                shots++
+            })
+            wait(100)
             root.grabToImage(function(result) {
-                result.saveToFile("../../assets/showcase3.png");
-                shots++;
-            });
-            wait(100);
+                result.saveToFile("../../assets/showcase3.png")
+                shots++
+            })
+            wait(100)
             root.grabToImage(function(result) {
-                result.saveToFile("../../assets/showcase4.png");
-                shots++;
-            });
-            tryCompare(testCase, "shots", 4);
+                result.saveToFile("../../assets/showcase4.png")
+                shots++
+            })
+            tryCompare(testCase, "shots", 4)
         }
     }
 }
