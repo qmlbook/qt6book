@@ -1,4 +1,35 @@
-import QtQuick 2.5
+/*
+Copyright (c) 2012-2021, Juergen Bocklage Ryannel and Johan Thelin
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without 
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+   list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice, 
+   this list of conditions and the following disclaimer in the documentation 
+   and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its contributors
+   may be used to endorse or promote products derived from this software 
+   without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
+// #region global
+import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -11,7 +42,6 @@ Window {
     width: 480
     height: 480
 
-
     Background { // a dark background
         id: background
     }
@@ -21,8 +51,8 @@ Window {
         id: dynamic
         onCountChanged: {
             // we print out count and the last entry when count is changing
-            print('new count: ' + count);
-            print('last entry: ' + get(count-1));
+            print('new count: ' + dynamic.count)
+            print('last entry: ' + dynamic.get(dynamic.count - 1))
         }
     }
 
@@ -37,6 +67,7 @@ Window {
                 // set our dynamic model to the views model property
                 model: dynamic
                 delegate: ListDelegate {
+                    required property var model
                     width: ListView.view.width
                     // construct a string based on the models proeprties
                     text: 'hsv(' +
@@ -48,12 +79,12 @@ Window {
 
                     onClicked: {
                         // make this delegate the current item
-                        view.currentIndex = index
+                        view.currentIndex = model.index
                         view.focus = true
                     }
                     onRemove: {
                         // remove the current entry from the model
-                        dynamic.remove(index)
+                        dynamic.remove(model.index)
                     }
                 }
                 highlight: ListHighlight { }
@@ -89,7 +120,7 @@ Window {
         }
         TextEntry {
             id: textEntry
-            onAppend: {
+            onAppend: function (color) {
                 // called when the user presses return on the text field
                 // or clicks the add button
                 dynamic.append(color)
@@ -103,7 +134,7 @@ Window {
                 // same for down
                 view.incrementCurrentIndex()
             }
-
         }
     }
 }
+// #endregion global
