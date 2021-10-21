@@ -28,23 +28,32 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-// RawRowExample.qml
+// #region global
+// reusable_component.qml
 
-BrightSquare {
-    id: root
-    width: 224
-    height: 88
+import QtQuick
 
-    RedSquare {
-        x: 20
-        y: 20
+Rectangle {
+    width: 140
+    height: 120
+
+    // #region reusability
+    Button { // our Button component
+        id: button
+        x: 12; y: 12
+        text: "Start"
+        onClicked: {
+            status.text = "Button clicked!"
+        }
     }
-    RedSquare {
-        x: 88
-        y: 20
+
+    Text { // text changes when button was clicked
+        id: status
+        x: 12; y: 76
+        width: 116; height: 26
+        text: "waiting ..."
+        horizontalAlignment: Text.AlignHCenter
     }
-    RedSquare {
-        x: 156
-        y: 20
-    }
+    // #endregion reusability
 }
+// #endregion global
