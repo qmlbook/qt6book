@@ -24,7 +24,7 @@ function request() {
 For a response, you can get the XML format or just the raw text. It is possible to iterate over the resulting XML but more commonly used is the raw text nowadays for a JSON formatted response. The JSON document will be used to convert text to a JS object using `JSON.parse(text)`.
 
 ```js
-...
+/* ... */
 } else if(xhr.readyState === XMLHttpRequest.DONE) {
     var object = JSON.parse(xhr.responseText.toString());
     print(JSON.stringify(object, null, 2));
@@ -87,64 +87,12 @@ for(var i=0; i<obj.items.length; i++) {
 
 As a valid JS array, we can use the `obj.items` array also as a model for a list view. We will try to accomplish this now. First, we need to retrieve the response and convert it into a valid JS object. And then we can just set the `response.items` property as a model to a list view.
 
-```js
-function request() {
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if(...) {
-            ...
-        } else if(xhr.readyState === XMLHttpRequest.DONE) {
-            var response = JSON.parse(xhr.responseText.toString());
-            // set JS object as model for listview
-            view.model = response.items;
-        }
-    }
-    xhr.open("GET", "http://api.flickr.com/services/feeds/photos_public.gne?format=json&nojsoncallback=1&tags=munich");
-    xhr.send();
-}
-```
+<<< @/docs/ch12-networking/src/httprequest/httprequest.qml#request
 
 Here is the full source code, where we create the request when the component is loaded. The request response is then used as the model for our simple list view.
 
-```qml
-import QtQuick
-
-Rectangle {
-    width: 320
-    height: 480
-    ListView {
-        id: view
-        anchors.fill: parent
-        delegate: Thumbnail {
-            width: view.width
-            text: modelData.title
-            iconSource: modelData.media.m
-        }
-    }
-
-    function request() {
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === XMLHttpRequest.HEADERS_RECEIVED) {
-                print('HEADERS_RECEIVED')
-            } else if(xhr.readyState === XMLHttpRequest.DONE) {
-                print('DONE')
-                var json = JSON.parse(xhr.responseText.toString())
-                view.model = json.items
-            }
-        }
-        xhr.open("GET", "http://api.flickr.com/services/feeds/photos_public.gne?format=json&nojsoncallback=1&tags=munich");
-        xhr.send();
-    }
-
-    Component.onCompleted: {
-        request()
-    }
-}
-
-```
+<<< @/docs/ch12-networking/src/httprequest/httprequest.qml#global
 
 When the document is fully loaded ( `Component.onCompleted` ) we request the latest feed content from Flickr. On arrival, we parse the JSON response and set the `items` array as the model for our view. The list view has a delegate, which displays the thumbnail icon and the title text in a row.
 
 The other option would be to have a placeholder `ListModel` and append each item onto the list model. To support larger models it is required to support pagination (e.g page 1 of 10) and lazy content retrieval.
-
