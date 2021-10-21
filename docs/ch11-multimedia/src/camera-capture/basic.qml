@@ -30,67 +30,24 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 // #region global
 import QtQuick
-import QtQuick.Controls
 import QtMultimedia
 
 Window {
-    width: 500
-    height: 500
+    width: 1024
+    height: 768
     visible: true
 
-    // #region effects
-    SoundEffect { id: beep; source: "file:beep.wav"}
-    SoundEffect { id: swosh; source: "file:swosh.wav" }
-    // #endregion effects
-
-    Rectangle {
-        id: rectangle
-
-        anchors.centerIn: parent
-
-        width: 300
-        height: width
-
-        color: "red"
-        state: "DEFAULT"
-
-        // #region states
-        states: [
-            State {
-                name: "DEFAULT"
-                PropertyChanges { target: rectangle; rotation: 0; }
-            },
-            State {
-                name: "REVERSE"
-                PropertyChanges { target: rectangle; rotation: 180; }
-            }
-        ]
-        // #endregion states
-
-        // #region transitions
-        transitions: [
-            Transition {
-                to: "DEFAULT"
-                ParallelAnimation {
-                    ScriptAction { script: swosh.play(); }
-                    PropertyAnimation { properties: "rotation"; duration: 200; }
-                }
-            },
-            Transition {
-                to: "REVERSE"
-                ParallelAnimation {
-                    ScriptAction { script: beep.play(); }
-                    PropertyAnimation { properties: "rotation"; duration: 200; }
-                }
-            }
-        ]
-        // #endregion transitions
+    CaptureSession {
+        id: captureSession
+        camera: Camera {}
+        videoOutput: output
     }
 
-    Button {
-        anchors.centerIn: parent
-        text: "Flip!"
-        onClicked: rectangle.state = rectangle.state === "DEFAULT" ? "REVERSE" : "DEFAULT"
+    VideoOutput {
+        id: output
+        anchors.fill: parent
     }
+
+    Component.onCompleted: captureSession.camera.start()
 }
 // #endregion global

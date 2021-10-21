@@ -8,26 +8,7 @@ The `MediaPlayer` component is a non-visual item that connects a media source to
 
 In the following example, the `MediaPlayer` plays a mp3 sample audio file from a remote URL in an empty window:
 
-```qml
-import QtQuick
-import QtMultimedia
-
-Window {
-    width: 1024
-    height: 768
-    visible: true
-
-    MediaPlayer {
-        id: player
-        source: "https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_2MG.mp3"
-        audioOutput: AudioOutput {}
-    }
-
-    Component.onCompleted: {
-        player.play()
-    }
-}
-```
+<<< @/docs/ch11-multimedia/src/playback-audio/main.qml#global
 
 In this example, the `MediaPlayer` defines two attributes: 
 
@@ -36,11 +17,8 @@ In this example, the `MediaPlayer` defines two attributes:
 
 As soon as the main component has been fully initialized, the player’s `play` function is called:
 
-```qml
-Component.onCompleted: {
-    player.play()
-}
-```
+<<< @/docs/ch11-multimedia/src/playback-audio/main.qml#play
+
 
 ## Playing a video
 
@@ -48,39 +26,13 @@ If you want to play visual media such as pictures or videos, you must also defin
 
 In the following example, the `MediaPlayer` plays a mp4 sample video file from a remote URL and centers the video content in the window:
 
-```qml
-import QtQuick
-import QtMultimedia
-
-Window {
-    width: 1920
-    height: 1080
-    visible: true
-
-    MediaPlayer {
-        id: player
-        source: "https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4"
-        audioOutput: AudioOutput {}
-        videoOutput: videoOutput
-    }
-
-    VideoOutput {
-        id: videoOutput
-        anchors.fill: parent
-        anchors.margins: 20
-    }
-
-    Component.onCompleted: {
-        player.play()
-    }
-}
-```
+<<< @/docs/ch11-multimedia/src/playback-video/main.qml#global
 
 In this example, the `MediaPlayer` defines a third attribute:
 
 - `videoOutput`: it contains the video output channel, `VideoOutput`, representing the visual space reserved to display the video in the user interface.
 
-::: warning
+::: tip
 Please note that the `VideoOutput` component is a visual item. As such, it's essential that it is created within the visual components hierarchy and not within the `MediaPlayer` itself.
 :::
 
@@ -97,134 +49,22 @@ The following example adds custom controls for the playback:
 * a play/pause button
 * a progress slider
 
-```qml
-import QtQuick
-import QtQuick.Controls
-import QtMultimedia
-
-Window {
-    id: root
-    width: 960
-    height: 400
-    visible: true
-
-    MediaPlayer {
-        id: player
-        source: "file:///path-to-your-video-file.mp4"
-        audioOutput: audioOutput
-        videoOutput: videoOutput
-    }
-
-    AudioOutput {
-        id: audioOutput
-        volume: volumeSlider.value
-    }
-
-    VideoOutput {
-        id: videoOutput
-        width: videoOutput.sourceRect.width
-        height: videoOutput.sourceRect.height
-        anchors.horizontalCenter: parent.horizontalCenter
-    }
-
-    Slider {
-        id: volumeSlider
-        anchors.top: parent.top
-        anchors.right: parent.right
-        anchors.margins: 20
-        orientation: Qt.Vertical
-        value: 0.5
-    }
-
-    Item {
-        height: 50
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-        anchors.margins: 20
-
-        Button {
-            anchors.horizontalCenter: parent.horizontalCenter
-            text: player.playbackState ===  MediaPlayer.PlayingState ? qsTr("Pause") : qsTr("Play")
-            onClicked: {
-                switch(player.playbackState) {
-                    case MediaPlayer.PlayingState: player.pause(); break;
-                    case MediaPlayer.PausedState: player.play(); break;
-                    case MediaPlayer.StoppedState: player.play(); break;
-                }
-            }
-        }
-
-        Slider {
-            id: progressSlider
-            width: parent.width
-            anchors.bottom: parent.bottom
-            enabled: player.seekable
-            value: player.duration > 0 ? player.position / player.duration : 0
-            background: Rectangle {
-                implicitHeight: 8
-                color: "white"
-                radius: 3
-                Rectangle {
-                    width: progressSlider.visualPosition * parent.width
-                    height: parent.height
-                    color: "#1D8BF8"
-                    radius: 3
-                }
-            }
-            handle: Item {}
-            onMoved: function () {
-                player.position = player.duration * progressSlider.position
-            }
-        }
-    }
-
-    Component.onCompleted: {
-        player.play()
-    }
-}
-```
+<<< @/docs/ch11-multimedia/src/playback-controls/main.qml#global
 
 ### The volume slider
 A vertical `Slider` component is added on the top right corner of the window, allowing the user to control the volume of the media:
 
-```qml
-Slider {
-    id: volumeSlider
-    anchors.top: parent.top
-    anchors.right: parent.right
-    anchors.margins: 20
-    orientation: Qt.Vertical
-    value: 0.5
-}
-```
+<<< @/docs/ch11-multimedia/src/playback-controls/main.qml#volume-slider
 
 The volume attribute of the `AudioOutput` is then mapped to the value of the slider:
 
-```qml
-AudioOutput {
-    id: audioOutput
-    volume: volumeSlider.value
-}
-```
+<<< @/docs/ch11-multimedia/src/playback-controls/main.qml#audio-output
 
 ### Play / Pause
 
 A `Button` component reflects the playback state of the media and allows the user to control this state: 
 
-```qml
-Button {
-    anchors.horizontalCenter: parent.horizontalCenter
-    text: player.playbackState ===  MediaPlayer.PlayingState ? qsTr("Pause") : qsTr("Play")
-    onClicked: {
-        switch(player.playbackState) {
-            case MediaPlayer.PlayingState: player.pause(); break;
-            case MediaPlayer.PausedState: player.play(); break;
-            case MediaPlayer.StoppedState: player.play(); break;
-        }
-    }
-}
-```
+<<< @/docs/ch11-multimedia/src/playback-controls/main.qml#button
 
 Depending on the playback state, a different text will be displayed in the button. When clicked, the corresponding action will be triggered and will either play or pause the media.
 
@@ -240,61 +80,12 @@ The possible playback states are listed below:
 
 A `Slider` component is added to reflect the current progress of the playback. It also allows the user to control the current position of the playback.
 
-```qml
-Slider {
-    id: progressSlider
-    width: parent.width
-    anchors.bottom: parent.bottom
-    enabled: player.seekable
-    value: player.duration > 0 ? player.position / player.duration : 0
-    background: Rectangle {
-        implicitHeight: 8
-        color: "white"
-        radius: 3
-        Rectangle {
-            width: progressSlider.visualPosition * parent.width
-            height: parent.height
-            color: "#1D8BF8"
-            radius: 3
-        }
-    }
-    handle: Item {}
-    onMoved: function () {
-        player.position = player.duration * progressSlider.position
-    }
-}
-```
+<<< @/docs/ch11-multimedia/src/playback-controls/main.qml#progress-slider{5,6,19-21}
 
-This slider will only be enabled when the media is `seekable`:
-
-```qml
-Slider {
-    /* ... */
-    enabled: player.seekable
-    /* ... */
-}
-```
-
-Its value will be set to the current media progress, i.e. `player.position / player.duration`:
-
-```qml
-Slider {
-    /* ... */
-    value: player.duration > 0 ? player.position / player.duration : 0
-    /* ... */
-}
-```
-
-When the slider is moved by the user, the media position will be updated:
-```qml
-Slider {
-    /* ... */
-    onMoved: function () {
-        player.position = player.duration * progressSlider.position
-    }
-    /* ... */
-}
-```
+A few things to note on this sample: 
+* This slider will only be enabled when the media is `seekable` (line 5)
+* Its value will be set to the current media progress, i.e. `player.position / player.duration` (line 6)
+* The media position will be *(also)* updated when the slider is moved by the user (lines 19-21)
 
 ## The media status
 

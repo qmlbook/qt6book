@@ -1,3 +1,34 @@
+/*
+Copyright (c) 2012-2021, Juergen Bocklage Ryannel and Johan Thelin
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without 
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+   list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice, 
+   this list of conditions and the following disclaimer in the documentation 
+   and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its contributors
+   may be used to endorse or promote products derived from this software 
+   without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
+// #region global
 import QtQuick
 import QtQuick.Controls
 import QtMultimedia
@@ -10,6 +41,8 @@ Rectangle {
 
     color: "black"
 
+    // #region viewfinder
+    // #region capture-session
     CaptureSession {
         id: captureSession
         videoOutput: output
@@ -21,23 +54,22 @@ Rectangle {
             }
         }
     }
-
-    MediaDevices {
-        id: mediaDevices
-    }
-
-    ListModel {
-        id: imagePaths
-    }
+    // #endregion capture-session
 
     VideoOutput {
         id: output
         anchors.fill: parent
     }
+    // #endregion viewfinder
     
     Image {
         id: image
         anchors.fill: parent
+    }
+
+    // #region model-view
+    ListModel {
+        id: imagePaths
     }
 
     ListView {
@@ -56,6 +88,7 @@ Rectangle {
         model: imagePaths
 
         delegate: Image {
+            required property string path
             height: 100
             source: path
             fillMode: Image.PreserveAspectFit
@@ -69,6 +102,7 @@ Rectangle {
             opacity: 0.5
         }
     }
+    // #endregion model-view
 
     Column {
         id: controls
@@ -81,6 +115,11 @@ Rectangle {
         anchors.margins: 10
 
         spacing: 0
+
+        // #region switching-devices
+        MediaDevices {
+            id: mediaDevices
+        }
 
         ComboBox {
             id: cameraComboBox
@@ -97,7 +136,9 @@ Rectangle {
                 captureSession.camera.cameraDevice = cameraComboBox.currentValue
             }
         }
+        // #endregion switching-devices
 
+        // #region button-shot
         Button {
             id: shotButton
             
@@ -109,6 +150,7 @@ Rectangle {
                 captureSession.imageCapture.captureToFile()
             }
         }
+        // #endregion button-shot
 
         Button {
             id: playButton
@@ -118,7 +160,7 @@ Rectangle {
 
             text: qsTr("Play Sequence")
             onClicked: {
-                startPlayback()
+                root.startPlayback()
             }
         }
 
@@ -135,19 +177,20 @@ Rectangle {
         }
     }
 
+    // #region playback
     property int _imageIndex: -1
 
     function startPlayback() {
         root.state = "playing"
-        setImageIndex(0)
+        root.setImageIndex(0)
         playTimer.start()
     }
 
     function setImageIndex(i) {
-        _imageIndex = i
+        root._imageIndex = i
 
-        if (_imageIndex >= 0 && _imageIndex < imagePaths.count) {
-            image.source = imagePaths.get(_imageIndex).path
+        if (root._imageIndex >= 0 && root._imageIndex < imagePaths.count) {
+            image.source = imagePaths.get(root._imageIndex).path
         } else {
             image.source = ""
         }
@@ -160,20 +203,21 @@ Rectangle {
         repeat: false
 
         onTriggered: {
-            if (_imageIndex + 1 < imagePaths.count) {
-                setImageIndex(_imageIndex + 1)
+            if (root._imageIndex + 1 < imagePaths.count) {
+                root.setImageIndex(root._imageIndex + 1)
                 playTimer.start()
             } else {
-                setImageIndex(-1)
+                root.setImageIndex(-1)
                 root.state = ""
             }
         }
     }
+    // #endregion playback
 
     states: [
         State {
             name: "playing"
-            PropertyChanges { target: buttons; opacity: 0 }
+            PropertyChanges { target: controls; opacity: 0 }
             PropertyChanges { target: listView; opacity: 0 }
         }
     ]
@@ -188,3 +232,4 @@ Rectangle {
         captureSession.camera.start()
     }
 }
+// #endregion global
