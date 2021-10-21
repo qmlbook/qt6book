@@ -29,18 +29,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 // #region global
-// remote/Remote.qml
+// RemoteComponent.qml
 import QtQuick
 
 Rectangle {
     width: 320
     height: 320
     color: '#ff0000'
-
-    Button {
-        anchors.centerIn: parent
-        text: qsTr('Click Me')
-        onClicked: Qt.quit()
-    }
 }
 // #endregion global

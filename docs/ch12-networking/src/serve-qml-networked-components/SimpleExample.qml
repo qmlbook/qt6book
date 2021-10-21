@@ -34,7 +34,7 @@ import QtQuick
 Loader {
     id: root
     anchors.fill: parent
-    source: 'http://localhost:8080/Remote.qml'
+    source: 'http://localhost:8080/RemoteComponent.qml'
     onLoaded: {
         root.width = root.item.width  // qmllint disable
         root.height = root.item.height  // qmllint disable

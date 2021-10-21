@@ -1,8 +1,8 @@
 # Serving UI via HTTP
 
-To load a simple user interface via HTTP we need to have a web-server, which serves the UI documents. We start off with our own simple web-server using a python one-liner. But first, we need to have our demo user interface. For this, we create a small `Remote.qml` file in our project folder and create a red rectangle inside.
+To load a simple user interface via HTTP we need to have a web-server, which serves the UI documents. We start off with our own simple web-server using a python one-liner. But first, we need to have our demo user interface. For this, we create a small `RemoteComponent.qml` file in our project folder and create a red rectangle inside.
 
-<<< @/docs/ch12-networking/src/serve-qml-basics/Remote.qml#global
+<<< @/docs/ch12-networking/src/serve-qml-basics/RemoteComponent.qml#global
 
 To serve this file we can start a small python script:
 
@@ -11,10 +11,10 @@ cd <PROJECT>
 python -m http.server 8080
 ```
 
-Now our file should be reachable via `http://localhost:8080/Remote.qml`. You can test it with:
+Now our file should be reachable via `http://localhost:8080/RemoteComponent.qml`. You can test it with:
 
 ```sh
-curl http://localhost:8080/Remote.qml
+curl http://localhost:8080/RemoteComponent.qml
 ```
 
 Or just point your browser to the location. Your browser does not understand QML and will not be able to render the document through. 
@@ -22,7 +22,7 @@ Or just point your browser to the location. Your browser does not understand QML
 Hopefully, Qt 6 provides such a browser in the form of the `qml` binary. You can directly load a remote QML document by using the following command:
 
 ```sh
-qml http://localhost:8080/Remote.qml
+qml http://localhost:8080/RemoteComponent.qml
 ```
 
 Sweet and simple.
@@ -47,7 +47,7 @@ If you do not want to run a local server you can also use the gist service from 
 
 <<< @/docs/ch12-networking/src/serve-qml-basics/GistExample.qml#global
 
-To load another file over the network from `Remote.qml`, you will need to create a dedicated `qmldir` file in the same directory on the server. Once done, you will be able to reference the component by its name. 
+To load another file over the network from `RemoteComponent.qml`, you will need to create a dedicated `qmldir` file in the same directory on the server. Once done, you will be able to reference the component by its name. 
 
 ## Networked Components
 
@@ -59,16 +59,16 @@ Here's the directory structure that we will use:
 ./src/SimpleExample.qml
 ./src/remote/qmldir
 ./src/remote/Button.qml
-./src/remote/Remote.qml
+./src/remote/RemoteComponent.qml
 ```
 
 Our `SimpleExample.qml` is the same as our previous `main.qml` example:
 
 <<< @/docs/ch12-networking/src/serve-qml-networked-components/SimpleExample.qml#global
 
-In the `remote` directory, we will update the `Remote.qml` file so that it uses a custom `Button` component:
+In the `remote` directory, we will update the `RemoteComponent.qml` file so that it uses a custom `Button` component:
 
-<<< @/docs/ch12-networking/src/serve-qml-networked-components/remote/Remote.qml#global
+<<< @/docs/ch12-networking/src/serve-qml-networked-components/remote/RemoteComponent.qml#global
 
 As our components are hosted remotely, the QML engine needs to know what other components are available remotely. To do so, we define the content of our remote directory within a `qmldir` file:
 
