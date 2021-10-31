@@ -112,7 +112,6 @@ The example below demonstrates the section concept by showing a list of spacemen
 
 <<< @/docs/ch07-modelview/src/listview/sections.qml#global
 
-
 ## The ObjectModel
 
 In some cases you might want to use a list view for a large set of different items. You can solve this using dynamic QML and `Loader`, but another options is to use an `ObjectModel` from the `QtQml.Models` module. The object model is different from other models as it lets you put the actual visual elements side the model. That way, the view does not need any `delegate`.

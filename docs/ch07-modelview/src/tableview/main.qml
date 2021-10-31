@@ -53,7 +53,6 @@ Window {
             clip: true
 
             model: tableModel
-
             delegate: cellDelegate
         }
         // #endregion tableview
