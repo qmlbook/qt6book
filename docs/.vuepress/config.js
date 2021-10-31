@@ -225,7 +225,7 @@ function ch08Sidebar() {
 
 function ch07Sidebar() {
   return {
-    title: "Model View (Qt6 - Draft)",
+    title: "Model View",
     path: '/ch07-modelview/model-view',
     collapsable: false,
     children: [
