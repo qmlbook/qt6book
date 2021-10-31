@@ -15,43 +15,7 @@ You will catch yourself looking at some animations and just admiring their beaut
 
 ![](./assets/animation_sequence.png)
 
-```qml
-// animation.qml
-
-import QtQuick
-
-Image {
-    id: root
-    source: "assets/background.png"
-
-    property int padding: 40
-    property int duration: 4000
-    property bool running: false
-
-    Image {
-        id: box
-        x: root.padding;
-        y: (root.height-height)/2
-        source: "assets/box_green.png"
-
-        NumberAnimation on x {
-            to: root.width - box.width - root.padding
-            duration: root.duration
-            running: root.running
-        }
-        RotationAnimation on rotation {
-            to: 360
-            duration: root.duration
-            running: root.running
-        }
-    }
-
-    MouseArea {
-        anchors.fill: parent
-        onClicked: root.running = true
-    }
-}
-```
+<<< @/docs/ch05-fluid/src/animation/AnimationExample.qml#global
 
 The example above shows a simple animation applied on the `x` and `rotation` properties. Each animation has a duration of 4000 milliseconds (msec) and loops forever. The animation on `x` moves the x-coordinate from the object gradually over to 240px. The animation on rotation runs from the current angle to 360 degrees. Both animations run in parallel and are started as soon as the UI is loaded.
 
@@ -117,40 +81,7 @@ Animation can be applied in several ways:
 
 To demonstrate the usage of animations we reuse our ClickableImage component from an earlier chapter and extended it with a text element.
 
-```qml
-// ClickableImageV2.qml
-// Simple image which can be clicked
-
-import QtQuick
-
-Item {
-    id: root
-    width: container.childrenRect.width
-    height: container.childrenRect.height
-    property alias text: label.text
-    property alias source: image.source
-    signal clicked
-
-    Column {
-        id: container
-        Image {
-            id: image
-        }
-        Text {
-            id: label
-            width: image.width
-            horizontalAlignment: Text.AlignHCenter
-            wrapMode: Text.WordWrap
-            color: "#ececec"
-        }
-    }
-
-    MouseArea {
-        anchors.fill: parent
-        onClicked: root.clicked()
-    }
-}
-```
+<<< @/docs/ch05-fluid/src/animation/ClickableImageV2.qml#global
 
 To organize the element below the image we used a Column positioner and calculated the width and height based on the column’s childrenRect property. We exposed text and image source properties, and a clicked signal. We also wanted the text to be as wide as the image, and for it to wrap. We achieve the latter by using the Text element's `wrapMode` property.
 
@@ -160,79 +91,37 @@ Due to the inversion of the geometry-dependency (parent geometry depends on chil
 You should prefer the child’s geometry to depend on the parent’s geometry if the item is more like a container for other items and should adapt to the parent's geometry.
 :::
 
-## The objects ascending
+### The objects ascending
 
 ![](./assets/animationtypes_start.png)
 
 The three objects are all at the same y-position (`y=200`). They all need to travel to `y=40`, each of them using a different method with different side-effects and features.
 
-```qml
-ClickableImageV2 {
-    id: greenBox
-    x: 40; y: root.height-height
-    source: "assets/box_green.png"
-    text: "animation on property"
-    NumberAnimation on y {
-        to: 40; duration: 4000
-    }
-}
-```
-
-## First object
+### First object
 
 The first object travels using the `Animation on <property>` strategy. The animation starts immediately. 
+
+<<< @/docs/ch05-fluid/src/animation/AnimationTypesExample.qml#animation-on-property
 
 When an object is clicked, its y-position is reset to the start position, and this applies to all of the objects. On the first object, the reset does not have any effect as long as the animation is running. 
 
 This can be visually disturbing, as the y-position is set to a new value for a fraction of a second before the animation starts. *Such competing property changes should be avoided*.
 
-```qml
-ClickableImageV2 {
-    id: blueBox
-    x: (root.width-width)/2; y: root.height-height
-    source: "assets/box_blue.png"
-    text: "behavior on property"
-    Behavior on y {
-        NumberAnimation { duration: 4000 }
-    }
-
-    onClicked: y = 40
-    // random y on each click
-    // onClicked: y = 40 + Math.random() * (205-40)
-}
-```
-
-## Second object
+### Second object
 
 The second object travels using a `Behavior on` animation. This behavior tells the property it should animate each change in value. The behavior can be disabled by setting `enabled: false` on the `Behavior` element. 
 
+<<< @/docs/ch05-fluid/src/animation/AnimationTypesExample.qml#behavior-on
+
 The object will start traveling when you click it (its y-position is then set to 40). Another click has no influence, as the position is already set. 
 
-You could try to use a random value (e.g. `40+(Math.random()\*(205-40)`) for the y-position. You will see that the object will always animate to the new position and adapt its speed to match the 4 seconds to the destination defined by the duration of the animation.
+You could try to use a random value (e.g. `40 + (Math.random() \* (205-40)`) for the y-position. You will see that the object will always animate to the new position and adapt its speed to match the 4 seconds to the destination defined by the duration of the animation.
 
-```qml
-ClickableImageV2 {
-    id: redBox
-    x: root.width-width-40; y: root.height-height
-    source: "assets/box_red.png"
-    onClicked: anim.start()
-    // onClicked: anim.restart()
-
-    text: "standalone animation"
-
-    NumberAnimation {
-        id: anim
-        target: redBox
-        properties: "y"
-        to: 40
-        duration: 4000
-    }
-}
-```
-
-## Third object
+### Third object
 
 The third object uses a standalone animation. The animation is defined as its own element and can be almost anywhere in the document. 
+
+<<< @/docs/ch05-fluid/src/animation/AnimationTypesExample.qml#standalone
 
 The click will start the animation using the animation's `start()` function. Each animation has start(), stop(), resume(), and restart() functions. The animation itself contains much more information than the other animation types earlier. 
 
@@ -248,7 +137,7 @@ Another way to start/stop an animation is to bind a property to the `running` pr
 
 ```qml
 NumberAnimation {
-    ...
+    // [...]
     // animation runs when mouse is pressed
     running: area.pressed
 }
@@ -281,131 +170,7 @@ The code for this example was made a little bit more complicated. We first creat
 The internals of the EasingType renders the curve in real time, and the interested reader can look it up in the `EasingCurves` example.
 :::
 
-```qml
-// EasingCurves.qml
-
-import QtQuick
-import QtQuick.Layouts
-
-Rectangle {
-    id: root
-    width: childrenRect.width
-    height: childrenRect.height
-
-    color: '#4a4a4a'
-    gradient: Gradient {
-        GradientStop { position: 0.0; color: root.color }
-        GradientStop { position: 1.0; color: Qt.lighter(root.color, 1.2) }
-    }
-
-    ColumnLayout {
-        Grid {
-            spacing: 8
-            columns: 5
-            EasingType {
-                easingType: Easing.Linear
-                title: 'Linear'
-                onClicked: {
-                    animation.easing.type = easingType
-                    box.toggle = !box.toggle
-                }
-            }
-            EasingType {
-                easingType: Easing.InExpo
-                title: "InExpo"
-                onClicked: {
-                    animation.easing.type = easingType
-                    box.toggle = !box.toggle
-                }
-            }
-            EasingType {
-                easingType: Easing.OutExpo
-                title: "OutExpo"
-                onClicked: {
-                    animation.easing.type = easingType
-                    box.toggle = !box.toggle
-                }
-            }
-            EasingType {
-                easingType: Easing.InOutExpo
-                title: "InOutExpo"
-                onClicked: {
-                    animation.easing.type = easingType
-                    box.toggle = !box.toggle
-                }
-            }
-            EasingType {
-                easingType: Easing.InOutCubic
-                title: "InOutCubic"
-                onClicked: {
-                    animation.easing.type = easingType
-                    box.toggle = !box.toggle
-                }
-            }
-            EasingType {
-                easingType: Easing.SineCurve
-                title: "SineCurve"
-                onClicked: {
-                    animation.easing.type = easingType
-                    box.toggle = !box.toggle
-                }
-            }
-            EasingType {
-                easingType: Easing.InOutCirc
-                title: "InOutCirc"
-                onClicked: {
-                    animation.easing.type = easingType
-                    box.toggle = !box.toggle
-                }
-            }
-            EasingType {
-                easingType: Easing.InOutElastic
-                title: "InOutElastic"
-                onClicked: {
-                    animation.easing.type = easingType
-                    box.toggle = !box.toggle
-                }
-            }
-            EasingType {
-                easingType: Easing.InOutBack
-                title: "InOutBack"
-                onClicked: {
-                    animation.easing.type = easingType
-                    box.toggle = !box.toggle
-                }
-            }
-            EasingType {
-                easingType: Easing.InOutBounce
-                title: "InOutBounce"
-                onClicked: {
-                    animation.easing.type = easingType
-                    box.toggle = !box.toggle
-                }
-            }
-        }
-        Item {
-            height: 80
-            Layout.fillWidth: true
-            Box {
-                id: box
-                property bool toggle
-                x: toggle?20:root.width-width-20
-                anchors.verticalCenter: parent.verticalCenter
-                gradient: Gradient {
-                    GradientStop { position: 0.0; color: "#2ed5fa" }
-                    GradientStop { position: 1.0; color: "#2467ec" }
-                }
-                Behavior on x {
-                    NumberAnimation {
-                        id: animation
-                        duration: 500
-                    }
-                }
-            }
-        }
-    }
-}
-```
+<<< @/docs/ch05-fluid/src/easing/EasingCurves.qml#global
 
 Please play with the example and observe the change of speed during an animation. Some animations feel more natural for the object and some feel irritating.
 
@@ -426,108 +191,29 @@ For this, grouped animations can be used. As the name suggests, it’s possible 
 
 ![](./assets/groupedanimation.png)
 
+### Parallel animations
+
 All direct child animations of a parallel animation run in parallel when started. This allows you to animate different properties at the same time.
 
-```qml
-// parallelanimation.qml
-import QtQuick
-
-BrightSquare {
-    id: root
-    width: 600
-    height: 400
-    property int duration: 3000
-    property Item ufo: ufo
-
-    Image {
-        anchors.fill: parent
-        source: "assets/ufo_background.png"
-    }
-
-
-    ClickableImageV3 {
-        id: ufo
-        x: 20; y: root.height-height
-        text: 'ufo'
-        source: "assets/ufo.png"
-        onClicked: anim.restart()
-    }
-
-    ParallelAnimation {
-        id: anim
-        NumberAnimation {
-            target: ufo
-            properties: "y"
-            to: 20
-            duration: root.duration
-        }
-        NumberAnimation {
-            target: ufo
-            properties: "x"
-            to: 160
-            duration: root.duration
-        }
-    }
-}
-```
+<<< @/docs/ch05-fluid/src/animation/ParallelAnimationExample.qml#global
 
 ![](./assets/parallelanimation_sequence.png)
 
+### Sequential animations
+
 A sequential animation runs each child animation in the order in which it is declared: top to bottom.
 
-```qml
-// SequentialAnimationExample.qml
-import QtQuick
-
-BrightSquare {
-    id: root
-    width: 600
-    height: 400
-    property int duration: 3000
-
-    property Item ufo: ufo
-
-    Image {
-        anchors.fill: parent
-        source: "assets/ufo_background.png"
-    }
-
-    ClickableImageV3 {
-        id: ufo
-        x: 20; y: root.height-height
-        text: 'rocket'
-        source: "assets/ufo.png"
-        onClicked: anim.restart()
-    }
-
-    SequentialAnimation {
-        id: anim
-        NumberAnimation {
-            target: ufo
-            properties: "y"
-            to: 20
-            // 60% of time to travel up
-            duration: root.duration*0.6
-        }
-        NumberAnimation {
-            target: ufo
-            properties: "x"
-            to: 400
-            // 40% of time to travel sideways
-            duration: root.duration*0.4
-        }
-    }
-}
-```
+<<< @/docs/ch05-fluid/src/animation/SequentialAnimationExample.qml#global
 
 ![](./assets/sequentialanimation_sequence.png)
+
+### Nested animations
 
 Grouped animations can also be nested. For example, a sequential animation can have two parallel animations as child animations, and so on. We can visualize this with a soccer ball example. The idea is to throw a ball from left to right and animate its behavior.
 
 ![](./assets/soccer_init.png)
 
 To understand the animation we need to dissect it into the integral transformations of the object. We need to remember that animations animate property changes. Here are the different transformations:
-
 
 * An x-translation from left-to-right (`X1`)
 
@@ -546,11 +232,13 @@ import QtQuick
 
 Item {
     id: root
-    width: 480
-    height: 300
+
     property int duration: 3000
 
-    ...
+    width: 480
+    height: 300
+
+    // [...]
 }
 ```
 
@@ -558,27 +246,7 @@ We have defined our total animation duration as a reference to better synchroniz
 
 The next step is to add the background, which in our case are 2 rectangles with green and blue gradients.
 
-```qml
-Rectangle {
-    id: sky
-    width: parent.width
-    height: 200
-    gradient: Gradient {
-        GradientStop { position: 0.0; color: "#0080FF" }
-        GradientStop { position: 1.0; color: "#66CCFF" }
-    }
-}
-Rectangle {
-    id: ground
-    anchors.top: sky.bottom
-    anchors.bottom: root.bottom
-    width: parent.width
-    gradient: Gradient {
-        GradientStop { position: 0.0; color: "#00FF00" }
-        GradientStop { position: 1.0; color: "#00803F" }
-    }
-}
-```
+<<< @/docs/ch05-fluid/src/animation/BouncingBallExample.qml#background
 
 ![](./assets/soccer_stage1.png)
 
@@ -586,23 +254,7 @@ The upper blue rectangle takes 200 pixels of the height and the lower one is anc
 
 Let’s bring the soccer ball onto the green. The ball is an image, stored under “assets/soccer_ball.png”. For the beginning, we would like to position it in the lower left corner, near the edge.
 
-```qml
-Image {
-    id: ball
-    x: 0; y: root.height-height
-    source: "assets/soccer_ball.png"
-
-    MouseArea {
-        anchors.fill: parent
-        onClicked: {
-            ball.x = 0;
-            ball.y = root.height-ball.height;
-            ball.rotation = 0;
-            anim.restart()
-        }
-    }
-}
-```
+<<< @/docs/ch05-fluid/src/animation/BouncingBallExample.qml#soccer-ball
 
 ![](./assets/soccer_stage2.png)
 
@@ -677,37 +329,4 @@ The *X1* and *ROT1* animation are left as-is, with a linear curve.
 
 Here is the final animation code for your reference:
 
-```qml
-ParallelAnimation {
-    id: anim
-    SequentialAnimation {
-        NumberAnimation {
-            target: ball
-            properties: "y"
-            to: 20
-            duration: root.duration * 0.4
-            easing.type: Easing.OutCirc
-        }
-        NumberAnimation {
-            target: ball
-            properties: "y"
-            to: root.height-ball.height
-            duration: root.duration * 0.6
-            easing.type: Easing.OutBounce
-        }
-    }
-    NumberAnimation {
-        target: ball
-        properties: "x"
-        to: root.width-ball.width
-        duration: root.duration
-    }
-    RotationAnimation {
-        target: ball
-        properties: "rotation"
-        to: 720
-        duration: root.duration
-    }
-}
-```
-
+<<< @/docs/ch05-fluid/src/animation/BouncingBallExample.qml#parallel-animation

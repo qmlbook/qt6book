@@ -2,16 +2,18 @@ import QtQuick
 
 Rectangle {
     id: root
-    width: 100
-    height: 100
-    clip: true
+
     property real value: 0.0
     property int pointCount: 100
     property string title
-    signal clicked()
 
     property alias easingType: anim.easing.type
 
+    signal clicked()
+
+    width: 100
+    height: 100
+    clip: true
 
     Image {
         anchors.fill: parent
@@ -26,9 +28,7 @@ Rectangle {
         border.color: "#53d769"
         border.width: 4
         opacity: 0.5
-
     }
-
 
     NumberAnimation {
         id: anim
@@ -49,7 +49,7 @@ Rectangle {
         Component.onCompleted: {
             valueModel.clear()
             for(var i=0; i<root.pointCount; i++) {
-                progress = i/root.pointCount
+                progress = i / root.pointCount
                 valueModel.append({value: root.value})
             }
         }
@@ -58,15 +58,19 @@ Rectangle {
     PathView {
         id: view
         anchors.fill: parent
-        anchors.topMargin: root.height*0.2
-        anchors.bottomMargin: root.height*0.2
+        anchors.topMargin: root.height * 0.2
+        anchors.bottomMargin: root.height * 0.2
         model: valueModel
         pathItemCount: root.pointCount
         delegate: Item {
+            id: delegate
+            required property var model
             width: 4; height: 4
             Rectangle {
-                width: parent.width; height: width; radius: width/2
-                y: -model.value*view.height
+                width: parent.width
+                height: width
+                radius: width / 2
+                y: -delegate.model.value * view.height
                 color: "#ff8800"
                 border.color: Qt.lighter(color, 1.2)
                 opacity: 0.5

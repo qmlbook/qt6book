@@ -12,49 +12,7 @@ QtQuick builds on QML. The QML language only knows of elements, properties, sign
 
 Let’s start with a simple example of a QML file to explain the different syntax.
 
-```qml
-// RectangleExample.qml
-
-import QtQuick
-
-// The root element is the Rectangle
-Rectangle {
-    // name this element root
-    id: root
-
-    // properties: <name>: <value>
-    width: 120; height: 240
-
-    // color property
-    color: "#4A4A4A"
-
-    // Declare a nested element (child of root)
-    Image {
-        id: triangle
-
-        // reference the parent
-        x: (parent.width - width)/2; y: 40
-
-        source: 'assets/triangle_red.png'
-    }
-
-    // Another child of root
-    Text {
-        // un-named element
-
-        // reference element by id
-        y: triangle.y + triangle.height + 20
-
-        // reference root element
-        width: root.width
-
-        color: 'white'
-        horizontalAlignment: Text.AlignHCenter
-        text: 'Triangle'
-    }
-}
-```
-
+<<< @/docs/ch04-qmlstart/src/concepts/RectangleExample.qml#global
 
 * The `import` statement imports a module. An optional version in the form of `<major>.<minor>` can be added.
 * Comments can be made using `//` for single line comments or `/\* \*/` for multi-line comments. Just like in C/C++ and JavaScript
@@ -158,42 +116,7 @@ An element id should only be used to reference elements inside your document (e.
 
 QML and JavaScript (also known as ECMAScript) are best friends. In the *JavaScript* chapter we will go into more detail on this symbiosis. Currently, we just want to make you aware of this relationship.
 
-```qml
-Text {
-    id: label
-
-    x: 24; y: 24
-
-    // custom counter property for space presses
-    property int spacePresses: 0
-
-    text: "Space pressed: " + spacePresses + " times"
-
-    // (1) handler for text changes. Need to use function to capture parameters
-    onTextChanged: function(text) { 
-        console.log("text changed to:", text)
-    }
-
-    // need focus to receive key events
-    focus: true
-
-    // (2) handler with some JS
-    Keys.onSpacePressed: {
-        increment()
-    }
-
-    // clear the text on escape
-    Keys.onEscapePressed: {
-        label.text = ''
-    }
-
-    // (3) a JS function
-    function increment() {
-        spacePresses = spacePresses + 1
-    }
-}
-```
-
+<<< @/docs/ch04-qmlstart/src/concepts/ScriptingExample.qml#text
 
 * **(1)** The text changed handler `onTextChanged` prints the current text every time the text changed due to the space bar being pressed. As we use a parameter injected by the signal, we need to use the function syntax here. It's also possible to use an arrow function (`(text) => {}`), but we feel `function(text) {}` is more readable.
 
@@ -209,11 +132,8 @@ The difference between the QML `:` (binding) and the JavaScript `=` (assignment)
 
 The lifetime of a binding ends when a new binding is set on the property or even when a JavaScript value is assigned to the property. For example, a key handler setting the text property to an empty string would destroy our increment display:
 
-```qml
-Keys.onEscapePressed: {
-    label.text = ''
-}
-```
+<<< @/docs/ch04-qmlstart/src/concepts/ScriptingExample.qml#clear-binding{2}
+
 
 After pressing escape, pressing the space bar will not update the display anymore, as the previous binding of the `text` property (*text: “Space pressed: ” + spacePresses + ” times”*) was destroyed.
 

@@ -2,11 +2,7 @@
 
 Repeaters work well for limited and static sets of data, but in the real world, models are commonly more complex – and larger. Here, a smarter solution is needed. For this, Qt Quick provides the `ListView` and `GridView` elements. These are both based on a `Flickable` area, so the user can move around in a larger dataset. At the same time, they limit the number of concurrently instantiated delegates. For a large model, that means fewer elements in the scene at once.
 
-
-
 ![image](./assets/automatic/listview-basic.png)
-
-
 
 ![image](./assets/automatic/gridview-basic.png)
 
@@ -14,45 +10,11 @@ The two elements are similar in their usage. We will begin with the `ListView` a
 
 The `ListView` is similar to the `Repeater` element. It uses a `model`, instantiates a `delegate` and between the delegates, there can be `spacing`. The listing below shows how a simple setup can look.
 
-```qml
-import QtQuick 6.2
-import "../common"
-
-Background {
-    width: 80
-    height: 300
-
-    ListView {
-        anchors.fill: parent
-        anchors.margins: 20
-
-        clip: true
-
-        model: 100
-
-        delegate: numberDelegate
-        spacing: 5
-    }
-
-    Component {
-        id: numberDelegate
-
-        GreenBox {
-            width: 40
-            height: 40
-            text: index
-        }
-    }
-}
-```
-
-
+<<< @/docs/ch07-modelview/src/listview/basic.qml#global
 
 ![image](./assets/automatic/listview-basic.png)
 
 If the model contains more data than can fit onto the screen, the `ListView` only shows part of the list. However, as a consequence of the default behavior of Qt Quick, the list view does not limit the screen area within which the delegates are shown. This means that delegates may be visible outside the list view and that the dynamic creation and destruction of delegates outside the list view is visible to the user. To prevent this, clipping must be activated on the `ListView` element by setting the `clip` property to `true`. The illustration below shows the result of this (left view), compared to when the `clip` property is `false` (right view).
-
-
 
 ![image](./assets/automatic/listview-clip.png)
 
@@ -66,37 +28,7 @@ It is possible to limit the positions where a view is allowed to stop. This is c
 
 The list view provides a vertically scrolling list by default, but horizontal scrolling can be just as useful. The direction of the list view is controlled through the `orientation` property. It can be set to either the default value, `ListView.Vertical`, or to `ListView.Horizontal`. A horizontal list view is shown below.
 
-```qml
-import QtQuick 6.2
-import "../common"
-
-Background {
-    width: 480
-    height: 80
-
-    ListView {
-        anchors.fill: parent
-        anchors.margins: 20
-        spacing: 4
-        clip: true
-        model: 100
-        orientation: ListView.Horizontal
-        delegate: numberDelegate
-    }
-
-    Component {
-        id: numberDelegate
-
-        GreenBox {
-            width: 40
-            height: 40
-            text: index
-        }
-    }
-}
-```
-
-
+<<< @/docs/ch07-modelview/src/listview/horizontal.qml#global
 
 ![image](./assets/automatic/listview-horizontal.png)
 
@@ -112,58 +44,7 @@ In the example below this is demonstrated. There are two properties involved for
 
 In the example, the `ListView.view.width` attached property is used for width. The attached properties available to delegates are discussed further in the delegate section of this chapter, but it is good to know that the same properties are available to highlight delegates as well.
 
-```qml
-import QtQuick 6.2
-import "../common"
-
-Background {
-    width: 240
-    height: 300
-
-    ListView {
-        id: view
-        anchors.fill: parent
-        anchors.margins: 20
-
-        clip: true
-
-        model: 100
-
-        delegate: numberDelegate
-        spacing: 5
-
-        highlight: highlightComponent
-        focus: true
-    }
-
-    Component {
-        id: highlightComponent
-
-        GreenBox {
-            width: ListView.view.width
-        }
-    }
-
-    Component {
-        id: numberDelegate
-
-        Item {
-            width: ListView.view.width
-            height: 40
-
-            Text {
-                anchors.centerIn: parent
-
-                font.pixelSize: 10
-
-                text: index
-            }
-        }
-    }
-}
-```
-
-
+<<< @/docs/ch07-modelview/src/listview/highlight.qml#global
 
 ![image](./assets/automatic/listview-highlight.png)
 
@@ -179,31 +60,7 @@ To control the movement of the highlight more in detail, the `highlightFollowCur
 
 In the example below, the `y` property of the highlight delegate is bound to the `ListView.view.currentItem.y` attached property. This ensures that the highlight follows the current item. However, as we do not let the view move the highlight, we can control how the element is moved. This is done through the `Behavior on y`. In the example below, the movement is divided into three steps: fading out, moving, before fading in. Notice how `SequentialAnimation` and `PropertyAnimation` elements can be used in combination with the `NumberAnimation` to create a more complex movement.
 
-```qml
-Component {
-    id: highlightComponent
-
-    Item {
-        width: ListView.view.width
-        height: ListView.view.currentItem.height
-
-        y: ListView.view.currentItem.y
-
-        Behavior on y {
-            SequentialAnimation {
-                PropertyAnimation { target: highlightRectangle; property: "opacity"; to: 0; duration: 200 }
-                NumberAnimation { duration: 1 }
-                PropertyAnimation { target: highlightRectangle; property: "opacity"; to: 1; duration: 200 }
-            }
-        }
-
-        GreenBox {
-            id: highlightRectangle
-            anchors.fill: parent
-        }
-    }
-}
-```
+<<< @/docs/ch07-modelview/src/listview/highlight-custom.qml#highlight-component
 
 ## Header and Footer
 
@@ -211,117 +68,26 @@ At each end of the `ListView` contents, a `header` and a `footer` element can be
 
 The example below illustrates how a header and footer can be used to enhance the perception of the beginning and end of a list. There are other uses for these special list elements. For instance, they can be used to keep buttons to load more contents.
 
-```qml
-import QtQuick 6.2
-import "../common"
+<<< @/docs/ch07-modelview/src/listview/header-footer.qml#global
 
-Background {
-    width: 240
-    height: 300
-
-    ListView {
-        anchors.fill: parent
-        anchors.margins: 20
-
-        clip: true
-
-        model: 4
-
-        delegate: numberDelegate
-        spacing: 2
-
-        header: headerComponent
-        footer: footerComponent
-    }
-
-    Component {
-        id: headerComponent
-
-        YellowBox {
-            width: ListView.view.width
-            height: 20
-            text: 'Header'
-
-        }
-    }
-
-    Component {
-        id: footerComponent
-
-        YellowBox {
-            width: ListView.view.width
-            height: 20
-            text: 'Footer'
-        }
-    }
-
-    Component {
-        id: numberDelegate
-
-        GreenBox {
-            width: ListView.view.width
-            height: 40
-            text: 'Item #' + index
-        }
-    }
-}
-```
+![image](./assets/automatic/listview-header-footer.png)
 
 ::: tip
 Header and footer delegates do not respect the `spacing` property of a `ListView`, instead they are placed directly adjacent to the next item delegate in the list. This means that any spacing must be a part of the header and footer items.
 :::
 
-
-![image](./assets/automatic/listview-header-footer.png)
-
 ## The GridView
 
 Using a `GridView` is very similar to using a `ListView`. The only real difference is that the grid view places the delegates in a two-dimensional grid instead of in a linear list.
-
-
 
 ![image](./assets/automatic/gridview-basic.png)
 
 Compared to a list view, the grid view does not rely on spacing and the size of its delegates. Instead, it uses the `cellWidth` and `cellHeight` properties to control the dimensions of the contents delegates. Each delegate item is then placed in the top left corner of each such cell.
 
-```qml
-import QtQuick 2.5
-import "../common"
-
-Background {
-    width: 220
-    height: 300
-
-    GridView {
-        id: view
-        anchors.fill: parent
-        anchors.margins: 20
-
-        clip: true
-
-        model: 100
-
-        cellWidth: 45
-        cellHeight: 45
-
-        delegate: numberDelegate
-    }
-
-    Component {
-        id: numberDelegate
-
-        GreenBox {
-            width: 40
-            height: 40
-            text: index
-        }
-    }
-}
-```
+<<< @/docs/ch07-modelview/src/gridview/basic.qml#global
 
 A `GridView` contains headers and footers, can use a highlight delegate and supports snap modes as well as various bounds behaviors. It can also be orientated in different directions and orientations.
 
 The orientation is controlled using the `flow` property. It can be set to either `GridView.LeftToRight` or `GridView.TopToBottom`. The former value fills a grid from the left to the right, adding rows from the top to the bottom. The view is scrollable in the vertical direction. The latter value adds items from the top to the bottom, filling the view from left to right. The scrolling direction is horizontal in this case.
 
 In addition to the `flow` property, the `layoutDirection` property can adapt the direction of the grid to left-to-right or right-to-left languages, depending on the value used.
-
