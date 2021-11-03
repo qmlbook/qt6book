@@ -15,13 +15,13 @@ You can always find the latest released version of the book built at [https://ww
 
 # 1. Building the Book Locally
 
-The contents is built into a static site using [VuePress](https://vuepress.vuejs.org/). The packages are managed ysing [Yarn](https://yarnpkg.com/).
+The contents is built into a static site using [VuePress](https://vuepress.vuejs.org/). The packages are managed using [Yarn](https://yarnpkg.com/).
 
 To build the contents locally, run:
 
 ```
-$ yarnpkg
-$ yarnpkg run docs:dev
+$ yarn
+$ yarn run docs:dev
 ```
 
 Then visit [localhost:8080](http://localhost:8080) to view the book.
@@ -29,13 +29,13 @@ Then visit [localhost:8080](http://localhost:8080) to view the book.
 To build the examples, run:
 
 ```
-$ yarnpkg run examples:build
+$ yarn run examples:build
 ```
 
 This will create the `_examples/` directory with the build. It assumes Qt6 can be found by CMake. My typical command line on a Debian Linux machine looks like this:
 
 ```
-$ CMAKE_PREFIX_PATH=/path/to/Qt/6.2.0/gcc_64/lib/cmake/ yarnpkg run examples:build
+$ CMAKE_PREFIX_PATH=/path/to/Qt/6.2.0/gcc_64/lib/cmake/ yarn run examples:build
 ```
 
 Subsequent calls do not need `CMAKE_PREFIX_PATH` to be specified.
@@ -45,8 +45,8 @@ Subsequent calls do not need `CMAKE_PREFIX_PATH` to be specified.
 To build for release, first build the docs, then package the examples into a tar-ball:
 
 ```
-$ yarnpkg run docs:build
-$ yarnpkg run examples:package
+$ yarn run docs:build
+$ yarn run examples:package
 ```
 
 This creates `examples.tar.gz` in your package root, as well as where VuePress places the output, i.e. `docs/.vuepress/dist/`.
