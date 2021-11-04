@@ -57,9 +57,9 @@ Item {
 
             onLoaded: {
                 if (loader.source != "") {
-                    if (assetsource.indexOf("ss-") == -1) {
-                        setSize(loader.item.width, loader.item.height);
-                        shoot();
+                    if (root.assetsource.indexOf("ss-") == -1) {
+                        root.setSize(loader.item.width, loader.item.height)
+                        root.shoot()
                     }
                 }
             }
@@ -68,58 +68,59 @@ Item {
 
     function setSize(w,h)
     {
-        loader.x = shootmargin;
-        loader.y = shootmargin;
-        root.width = w+2+shootmargin*2;
-        root.height = h+2+shootmargin*2;
+        loader.x = shootmargin
+        loader.y = shootmargin
+        root.width = w + 2 + shootmargin * 2
+        root.height = h + 2 + shootmargin * 2
     }
 
     function shoot()
     {
-        shootDelay.start();
+        shootDelay.start()
     }
 
     function shootWithDelay(d)
     {
-        shootDelay.interval = d;
-        shoot();
+        shootDelay.interval = d
+        root.shoot()
     }
 
     Timer {
         id: shootDelay
         interval: 100
-        repeat: false;
-        onTriggered: takeScreenshot();
+        repeat: false
+        onTriggered: root.takeScreenshot()
     }
 
     Component.onCompleted: {
-        prepareScreenshot();
+        root.prepareScreenshot()
     }
 
     function prepareScreenshot()
     {
-        shootDelay.interval = 100;
-        console.log("SS: " + p);
-        assetsource = sourcesModel.get(p).source;
-        assetname = "../assets/automatic/" + sourcesModel.get(p).name;
-        shootmargin = sourcesModel.get(p).margin;
-        p += 1;
-        loader.source = assetsource;
-        console.log("    " + assetname);
-        console.log("    " + loader.source);
+        shootDelay.interval = 100
+        console.log("SS: " + p)
+        assetsource = sourcesModel.get(p).source
+        assetname = "../assets/automatic/" + sourcesModel.get(p).name
+        shootmargin = sourcesModel.get(p).margin
+        p += 1
+        loader.source = assetsource
+        console.log("    " + assetname)
+        console.log("    " + loader.source)
     }
 
     function takeScreenshot()
     {
-        console.log("TS: " + assetname);
+        console.log("TS: " + assetname)
 
-        shorty.shootFull(assetname);
+        shorty.shootFull(assetname)
         if (p < sourcesModel.count)
         {
-            loader.source = "";
-            prepareScreenshot();
+            loader.source = ""
+            root.prepareScreenshot()
         }
-        else
-            Qt.quit();
+        else {
+            Qt.quit()
+        }
     }
 }

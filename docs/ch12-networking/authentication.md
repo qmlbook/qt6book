@@ -10,19 +10,10 @@ OAuth is currently not part of a QML/JS API. So you would need to write some C++
 
 Here are some links which we find useful:
 
-
 * [http://oauth.net/](http://oauth.net/)
-
-
 * [http://hueniverse.com/oauth/](http://hueniverse.com/oauth/)
-
-
 * [https://github.com/pipacs/o2](https://github.com/pipacs/o2)
-
-
 * [http://www.johanpaul.com/blog/2011/05/oauth2-explained-with-qt-quick/](http://www.johanpaul.com/blog/2011/05/oauth2-explained-with-qt-quick/)
-
-
 
 ## Integration example
 
@@ -47,146 +38,40 @@ The process is divided in two phases:
 1. The application connects to the Spotify API, which in turns requests the user to authorize it;
 2. If authorized, the application displays the list of the top ten favourite artists of the user.
 
+#### Authorizing the app
+
 Let's start with the first step:
 
-```qml
-import QtQuick
-import QtQuick.Window
-import QtQuick.Controls
+<<< @/docs/ch12-networking/src/oauth/main.qml#imports
 
-import Spotify
+When the application starts, we will first import a custom library, `Spotify`, that defines a `SpotifyAPI` component (we'll come to that later). This component will then be instanciated:
 
-ApplicationWindow {
-    width: 320
-    height: 568
-    visible: true
-    title: qsTr("Spotify OAuth2")
+<<< @/docs/ch12-networking/src/oauth/main.qml#setup
 
-    BusyIndicator {
-        visible: !spotifyApi.isAuthenticated
-        anchors.centerIn: parent
-    }
+Once the application has been loaded, the `SpotifyAPI` component will request an authorization to Spotify:
 
-    SpotifyAPI {
-        id: spotifyApi
-        onIsAuthenticatedChanged: if(isAuthenticated) spotifyModel.update()
-    }
+<<< @/docs/ch12-networking/src/oauth/main.qml#on-completed
 
-    Component.onCompleted: {
-        spotifyApi.setCredentials("CLIENT_ID", "CLIENT_SECRET")
-        spotifyApi.authorize()
-    }
-}
-```
-
-When the application starts, we will first import a custom library, `Spotify`, that defines a `SpotifyAPI` component (we'll come to that later). 
-
-```qml
-import Spotify
-```
-
-Once the application has been loaded, this `SpotifyAPI` component will request an authorization to Spotify:
-
-```qml
-Component.onCompleted: {
-    spotifyApi.setCredentials("CLIENT_ID", "CLIENT_SECRET")
-    spotifyApi.authorize()
-}
-```
+Until the authorization is provided, a busy indicator will be displayed in the center of the app.
 
 :::tip
 Please note that for security reasons, the API credentials should never be put directly into a QML file!
 :::
 
-Until the authorization is provided, a busy indicator will be displayed in the center of the app:
-
-```qml
-BusyIndicator {
-    visible: !spotifyApi.isAuthenticated
-    anchors.centerIn: parent
-}
-```
+#### Listing the user's favorite artists
 
 The next step happens when the authorization has been granted. To display the list of artists, we will use the Model/View/Delegate pattern:
 
-```qml
-    SpotifyModel {
-        id: spotifyModel
-        spotifyApi: spotifyApi
-    }
+<<< @/docs/ch12-networking/src/oauth/main.qml#model-view{3,10,13,22,42,51,57,61}
 
-    ListView {
-        visible: spotifyApi.isAuthenticated
-        width: parent.width
-        height: parent.height
-        model: spotifyModel
-        delegate: Pane {
-            topPadding: 0
-            Column {
-                width: 300
-                spacing: 10
-
-                Rectangle {
-                    height: 1
-                    width: parent.width
-                    color: model.index > 0 ? "#3d3d3d" : "transparent"
-                }
-
-                Row {
-                    spacing: 10
-
-                    Item {
-                        width: 20
-                        height: width
-
-                        Rectangle {
-                            width: 20
-                            height: 20
-                            anchors.top: parent.top
-                            anchors.right: parent.right
-                            color: "black"
-
-                            Label {
-                                anchors.centerIn: parent
-                                font.pointSize: 16
-                                text: model.index + 1
-                                color: "white"
-                            }
-                        }
-                    }
-
-                    Image {
-                        width: 80
-                        height: width
-                        source: model.imageURL
-                        fillMode: Image.PreserveAspectFit
-                    }
-
-                    Column {
-                        Label { text: model.name; font.pointSize: 16; font.bold: true }
-                        Label { text: "Followers: " + model.followersCount }
-                    }
-                }
-            }
-        }
-    }
-}
-```
-
-The model `SpotifyModel` is defined in the `Spotify` library. To work properly, it needs a `SpotifyAPI`:
-
-```qml
-SpotifyModel {
-    id: spotifyModel
-    spotifyApi: spotifyApi
-}
-```
+The model `SpotifyModel` is defined in the `Spotify` library. To work properly, it needs a `SpotifyAPI`.
 
 The ListView displays a vertical list of artists. An artist is represented by a name, an image and the total count of followers.
 
 ### SpotifyAPI
 
 Let's now get a bit deeper into the authentication flow. We'll focus on the `SpotifyAPI` class, a `QML_ELEMENT` defined on the C++ side.
+
 
 ```cpp
 #ifndef SPOTIFYAPI_H

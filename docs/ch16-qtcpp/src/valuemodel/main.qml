@@ -1,4 +1,33 @@
-import QtQuick 2.5
+/*
+Copyright (c) 2012-2021, Juergen Bocklage Ryannel and Johan Thelin
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without 
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+   list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice, 
+   this list of conditions and the following disclaimer in the documentation 
+   and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its contributors
+   may be used to endorse or promote products derived from this software 
+   without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -8,15 +37,16 @@ import org.example 1.0
 
 Window {
     id: root
+
+    property alias letter: letterFilter.text
+
     visible: true
     width: 480
     height: 480
 
-    property alias letter: letterFilter.text
     onLetterChanged: {
-        print('filter letter: ' + letter)
+        adaptiveModel.applyFilter()
     }
-
 
     Background { // a dark background
         id: background
@@ -34,20 +64,12 @@ Window {
             property string group: 'A'
         }
     }
-
-    property var filterCallback: function(v) {
-        return v.group === root.letter
-    }
+    
     AdaptiveModel {
         id: adaptiveModel
+        filter: function(v) { return v.group === root.letter }
         source: valueModel
-        property var filter: function(v) { return v.group === root.letter }
-        onFilterChanged: print('new filter' + filter)
-        function filter(v) {
-            console.log('called filter');
-            return true;
-        }
-
+        onFilterChanged: function(filter) { print('new filter: ' + filter) }
     }
 
     ColumnLayout {
@@ -57,23 +79,21 @@ Window {
             Layout.fillWidth: true
             Layout.fillHeight: true
             ScrollView {
-                Layout.fillHeight: true
-                Layout.fillWidth: true
+                SplitView.minimumWidth: 150
                 ListView {
                     id: view
                     // set our dynamic model to the views model property
                     model: valueModel
                     delegate: ListDelegate {
+                        required property int index
+                        required property var object
                         width: ListView.view.width
                         // construct a string based on the models proeprties
                         text: object.text + ' / ' + object.group
 
                         onClicked: {
                             // make this delegate the current item
-                            ListView.view.currentIndex = index
-                            ListView.view.focus = true
-                            var text = JSON.stringify(valueModel.get(index))
-                            textEntry.setEditValue(index, text)
+                            root.selectItem(index)
                         }
                         onRemove: {
                             // remove the current entry from the model
@@ -85,13 +105,14 @@ Window {
                 }
             }
             ScrollView {
-                Layout.fillHeight: true
-                Layout.fillWidth: true
+                SplitView.minimumWidth: 150
                 ListView {
                     id: rightView
                     // set our dynamic model to the views model property
                     model: adaptiveModel
                     delegate: ListDelegate {
+                        required property int index
+                        required property var object
                         width: ListView.view.width
                         // construct a string based on the models proeprties
                         text: object.text + ' / ' + object.group
@@ -100,12 +121,12 @@ Window {
                             // make this delegate the current item
                             ListView.view.currentIndex = index
                             ListView.view.focus = true
-                            var text = JSON.stringify(valueModel.get(index))
+                            const text = JSON.stringify(valueModel.get(index))
                             textEntry.setEditValue(index, text)
                         }
                         onRemove: {
                             // remove the current entry from the model
-                            var sourceRow = adaptiveModel.mapToSourceRow(index)
+                            const sourceRow = adaptiveModel.mapToSourceRow(index)
                             valueModel.remove(sourceRow)
                         }
                     }
@@ -129,26 +150,34 @@ Window {
         TextEntry {
             id: textEntry
             onAppend: function(text) {
-                var js = JSON.parse(text)
+                console.log(text)
+                const js = JSON.parse(text)
                 valueModel.append(js)
             }
-            onEdit: function(text) {
-                var js = JSON.parse(text)
-                valueModel.set(index,js)
+            onEdit: function(index, text) {
+                const js = JSON.parse(text)
+                valueModel.set(index, js)
             }
 
             onUp: {
                 // called when the user presses up while the text field is focused
-                view.decrementCurrentIndex()
+                root.selectItem(Math.max(0, view.currentIndex - 1))
             }
             onDown: {
                 // same for down
-                view.incrementCurrentIndex()
+                root.selectItem(Math.min(view.count - 1, view.currentIndex + 1))
             }
 
             Component.onCompleted: {
                 setAppendValue('{ "text": "Three", "group": "A" }')
             }
         }
+    }
+
+    function selectItem(index) {
+        view.currentIndex = index
+        view.focus = true
+        const text = JSON.stringify(valueModel.get(index))
+        textEntry.setEditValue(index, text)
     }
 }
