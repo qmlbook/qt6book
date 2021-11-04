@@ -19,7 +19,7 @@ curl http://localhost:8080/RemoteComponent.qml
 
 Or just point your browser to the location. Your browser does not understand QML and will not be able to render the document through. 
 
-Hopefully, Qt 6 provides such a browser in the form of the `qml` binary. You can directly load a remote QML document by using the following command:
+Fortunately, Qt 6 provides such a browser in the form of the `qml` binary. You can directly load a remote QML document by using the following command:
 
 ```sh
 qml http://localhost:8080/RemoteComponent.qml
