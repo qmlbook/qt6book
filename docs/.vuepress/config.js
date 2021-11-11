@@ -194,11 +194,16 @@ function ch10Sidebar() {
 
 function ch09Sidebar() {
   return {
-    title: "Shapes (Placeholder)",
-    path: '/ch09-shapes/placeholder',
+    title: "Shapes",
+    path: '/ch09-shapes/shapes',
     collapsable: false,
     children: [
-      '/ch09-shapes/placeholder',
+      '/ch09-shapes/shapes',
+      '/ch09-shapes/basics',
+      '/ch09-shapes/paths',
+      '/ch09-shapes/gradients',
+      '/ch09-shapes/animations',
+      '/ch09-shapes/summary',
     ]
   }
 }
