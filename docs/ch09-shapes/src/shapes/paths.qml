@@ -63,7 +63,7 @@ Rectangle {
                 path: [
                     Qt.point(220, 100),
                     Qt.point(260, 20),
-                    Qt.point(300, 180),
+                    Qt.point(300, 170),
                     Qt.point(340, 60),
                     Qt.point(380, 100)
                 ]
@@ -104,7 +104,7 @@ Rectangle {
     }
 // #endregion quad
 
-// #region cube
+// #region cubic
     Shape {
         ShapePath {
             strokeWidth: 3
@@ -119,7 +119,7 @@ Rectangle {
             }
         }
     }
-// #endregion cube
+// #endregion cubic
 
 // #region curve
     Shape {
@@ -130,7 +130,7 @@ Rectangle {
             startX: 420; startY: 300
 
             PathCurve { x: 460; y: 220 }
-            PathCurve { x: 500; y: 380 }
+            PathCurve { x: 500; y: 370 }
             PathCurve { x: 540; y: 270 }
             PathCurve { x: 580; y: 300 }
         }
@@ -142,7 +142,7 @@ Rectangle {
 
     Marker { x: 220; y: 100 }
     Marker { x: 260; y: 20 }
-    Marker { x: 300; y: 180 }
+    Marker { x: 300; y: 170 }
     Marker { x: 340; y: 60 }
     Marker { x: 380; y: 100 }
 
@@ -160,8 +160,59 @@ Rectangle {
 
     Marker { x: 420; y: 300 }
     Marker { x: 460; y: 220 }
-    Marker { x: 500; y: 380 }
+    Marker { x: 500; y: 370 }
     Marker { x: 540; y: 270 }
-    Marker { x: 580; y: 300 }
+    Marker { x: 560; y: 300 }
+
+    Text {
+        x: 0
+        y: 180
+        width: 200
+        
+        text: "PathLine"
+        horizontalAlignment: Text.AlignHCenter
+    }
+    Text {
+        x: 200
+        y: 180
+        width: 200
+        
+        text: "PathPolyline"
+        horizontalAlignment: Text.AlignHCenter
+    }
+    Text {
+        x: 400
+        y: 180
+        width: 200
+        
+        text: "PathArc"
+        horizontalAlignment: Text.AlignHCenter
+    }
+    Text {
+        x: 0
+        y: 380
+        width: 200
+        
+        text: "PathQuad"
+        horizontalAlignment: Text.AlignHCenter
+    }
+    Text {
+        x: 200
+        y: 380
+        width: 200
+        
+        text: "PathCubic"
+        horizontalAlignment: Text.AlignHCenter
+    }
+    Text {
+        x: 400
+        y: 380
+        width: 200
+        
+        text: "PathCurve"
+        horizontalAlignment: Text.AlignHCenter
+    }
+
+    
 }
 // #endregion global
