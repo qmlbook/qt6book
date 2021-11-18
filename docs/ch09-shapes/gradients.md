@@ -4,7 +4,7 @@ A shape can be filled in a number of different ways. In this section we will hav
 
 Qt Quick Shapes provides two filling rules controlled using the ``fillRule`` property of the ``ShapePath`` element. The different results are shown in the screenshot below. It can be set to either ``ShapePath.OddEvenFill``, which is the default. This fills each part of the path individually, meaning that you can create a shape with holes in it. The alternative rule is the ``ShapePath.WindingFill``, which fills everything between the extreme endpoints on each horizontal line across the shape. Regardless of the filling rule, the shape outline is then drawn using a pen, so even when using the winding fill rule, the outline is drawn inside the shape.
 
-TODO SCREENSHOT OF FILLMODE
+![](./assets/automatic/fillmode.png)
 
 The examples below demonstrate how to use the two fill rules as shown in the screenshot above.
 
@@ -13,7 +13,7 @@ The examples below demonstrate how to use the two fill rules as shown in the scr
 
 Once the filling rule has been decided on, there are a number of ways to fill the outline. The various options are shown in the screenshot below. The various options are either a solid color, or one of the three gradients provided by Qt Quick.
 
-TODO SCREENSHOT OF GRADIENTS
+![](./assets/automatic/gradients.png)
 
 To fill a shape using a solid color, the ``fillColor`` property of the ``ShapePath`` is used. Set it to a color name or code, and the shape is filled using it.
 

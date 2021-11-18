@@ -4,7 +4,7 @@ The shape module lets you create arbitrarily paths and then stroke the outline a
 
 In the example below, the path shown in the screenshot here is created. The entire figure, all five filled areas, are created from a single path which then is stroked and filled.
 
-TODO SCREENSHOT OF BASIC
+![](./assets/automatic/basic.png)
 
 <<< @/docs/ch09-shapes/src/shapes/basic.qml#global
 

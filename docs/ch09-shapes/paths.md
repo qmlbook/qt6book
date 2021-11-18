@@ -2,11 +2,9 @@
 
 As we saw in the last section, shapes are built from paths, which are built from path elements. The most common way to build a path is to close it, i.e. to ensure that it starts and ends in the same point. However, it is possible to create open paths, e.g. only for stroking. When filling an open path, the path is closed by a straight line, basically adding a ``PathLine`` that is used when filling the path, but not when stroking it.
 
-TODO CONFIRM THE STATEMENT ABOVE
-
 As shown in the screenshot below, there are a few basic shapes that can be used to build your path. These are: lines, arcs, and various curves. It is also possible to move without drawing using a ``PathMove`` element. In addition to these elements, the ``ShapePath`` element also lets you specify a starting point using the ``startX`` and ``startY`` properties.
 
-TODO SCREENSHOT FROM PATHS
+![](./assets/automatic/paths.png)
 
 Lines are drawn using the ``PathLine`` element, as shown below. For creating multiple independent lines, the ``PathMultiline`` can be used.
 
