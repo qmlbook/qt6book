@@ -71,7 +71,7 @@ Rectangle {
             
             fillGradient: ConicalGradient {
                 centerX: 300; centerY: 100
-                angle: 360
+                angle: 45
                 
                 GradientStop { position: 0.0; color: "lightgreen" }
                 GradientStop { position: 0.7; color: "yellow" }
