@@ -32,7 +32,7 @@ Item {
 
     ListModel {
         id: sourcesModel
-        ListElement { source: "EasingCurves/EasingCurves.qml"; name: "easingcurves.png"; margin: 0; }
+        ListElement { source: "easing/EasingCurves.qml"; name: "easingcurves.png"; margin: 0; }
    }
 
     property int p: 0
