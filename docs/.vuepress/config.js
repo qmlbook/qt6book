@@ -48,7 +48,9 @@ function ch19Sidebar() {
     collapsable: false,
     children: [
       '/ch19-qtformcu/qtformcu',
+      '/ch19-qtformcu/setup',
       '/ch19-qtformcu/helloworld',
+      '/ch19-qtformcu/cpp',
       '/ch19-qtformcu/models',
       '/ch19-qtformcu/summary',
     ]
