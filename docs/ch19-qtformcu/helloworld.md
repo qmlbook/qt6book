@@ -101,5 +101,3 @@ Further reading at qt.io:
 * [Differences between Qt Quick Ultralite Controls and Qt Quick Controls](https://doc.qt.io/QtForMCUs/qtul-qtquick-controls-api-differences.html)
 * [Known Issues and Limitations](https://doc.qt.io/QtForMCUs/qtul-known-issues.html)
 :::
-
-
