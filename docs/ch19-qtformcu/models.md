@@ -38,9 +38,22 @@ Finally, the ``ListView`` element joins the model and the delegate, resulting in
 
 ![](./assets/model-3.png)
 
-::: warning TODO
-* `ListModel<T> = var`
-* ListModel is read-only
-* Qul::ListModel
-* Custom main
-:::
+An interesting aspect of the QML is how the font of the ``Text`` elements is configured. The ``unicodeCoverage`` property lets us tell the Qt Quick Ultralite compiler what characters we would like to be able to render. When specifying fixed strings, the Qt Quick Ultralite tooling generates minimal fonts containing exactly the glyphs that we intend to use. However, since the model will provide us with dynamic data, we need to tell the font what characters we expect to use.
+
+When rendering a complete font, sometimes you encounter the following style of warnings:
+
+```
+[2/7 8.8/sec] Generating CMakeFiles/cppmodel.dir/qul_font_engines.cpp, CMakeFiles/cppmodel.dir/qul_font_data.cpp
+Warning: Glyph not found for character "\u0000"
+Warning: Glyph not found for character "\u0001"
+Warning: Glyph not found for character "\u0002"
+Warning: Glyph not found for character "\u0003"
+Warning: Glyph not found for character "\u0004"
+Warning: Glyph not found for character "\u0005"
+Warning: Glyph not found for character "\u0006"
+Warning: Glyph not found for character "\u0007"
+...
+```
+
+These can safely be disregarded, unless you expect to show the character in question.
+
