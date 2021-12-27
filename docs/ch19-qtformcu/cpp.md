@@ -78,6 +78,37 @@ The buttons on the right modify the ``Counter.value`` directly from QML. This is
 
 This shows how to provide a singleton from C++ and how to make function calls, emit signals, and share state (properties) between C++ and QML.
 
+## Revisiting the CMake file
+
+The ``CMakeLists.txt`` file may look familiar to you, but there are some tips and tricks that we need to discuss.
+
+First of all, in order to expose a C++ class to QML, use the ``qul_target_generate_interfaces``, e.g:
+
+```
+qul_target_generate_interfaces(cppintegration counter.h)
+```
+
+The other half, the QML files, are added using the ``qul_target_qml_sources`` macro. If you have multiple QML files, simply list them one by one as shown below:
+
+```
+qul_target_qml_sources(cppintegration cppintegration.qml PlainButton.qml)
+```
+
+Another interesting aspect is that we are building a C++ project without writing a ``main`` function. This is taken care of by the ``app_target_default_main`` macro that adds a reference main implementation to the project. You can of course replace this with a custom ``main`` function if you need more control.
+
+```
+app_target_default_main(cppintegration cppintegration)
+```
+
+Finally, the libraries linked to are not the standard Qt ones, but the ``Qul::`` ones, e.g:
+
+```
+target_link_libraries(cppintegration
+    Qul::QuickUltralite
+    Qul::QuickUltralitePlatform)
+```
+
+        
 ::: tip Links
 Further reading at qt.io:
 * [Integrate C++ and QML](https://doc.qt.io/QtForMCUs/qtul-integratecppqml.html)
