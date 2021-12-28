@@ -15,7 +15,7 @@ You can always find the latest released version of the book built at [https://ww
 
 # 1. Building the Book Locally
 
-The contents is built into a static site using [VuePress](https://vuepress.vuejs.org/). The packages are managed ysing [Yarn](https://yarnpkg.com/).
+The contents is built into a static site using [VuePress](https://vuepress.vuejs.org/). The packages are managed using [Yarn](https://yarnpkg.com/).
 
 To build the contents locally, run:
 
