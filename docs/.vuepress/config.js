@@ -36,8 +36,25 @@ module.exports = {
       ch16Sidebar(),
       ch17Sidebar(),
       ch18Sidebar(),
+      ch19Sidebar(),
     ],
   },  
+}
+
+function ch19Sidebar() {
+  return {
+    title: "Qt for MCUs",
+    path: '/ch19-qtformcu/qtformcu',
+    collapsable: false,
+    children: [
+      '/ch19-qtformcu/qtformcu',
+      '/ch19-qtformcu/setup',
+      '/ch19-qtformcu/helloworld',
+      '/ch19-qtformcu/cpp',
+      '/ch19-qtformcu/models',
+      '/ch19-qtformcu/summary',
+    ]
+  }
 }
 
 function ch18Sidebar() {
