@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
 }
 ```
 
-The example demonstrates the use of file access and the how to write text to a a file using text codecs using a text stream. For binary data, there is a cross-platform binary stream called `QDataStream` that takes care of endianess and other details. The different classes we use are included using their class name at the top of the file. You can also include classes using the module and class name e.g. `#include <QtCore/QFile>`. For the lazy, there is also the possibility to include all the clases from a module using `#include <QtCore>`. For instance, in `QtCore` you have the most common classes used for an application that are not UI related. Have a look at the [QtCore class list](http://doc.qt.io/qt-5/qtcore-module.html) or the [QtCore overview](http://doc.qt.io/qt-5/qtcore-index.html).
+The example demonstrates the use of file access and the how to write text to a file using text codecs using a text stream. For binary data, there is a cross-platform binary stream called `QDataStream` that takes care of endianess and other details. The different classes we use are included using their class name at the top of the file. You can also include classes using the module and class name e.g. `#include <QtCore/QFile>`. For the lazy, there is also the possibility to include all the classes from a module using `#include <QtCore>`. For instance, in `QtCore` you have the most common classes used for an application that are not UI related. Have a look at the [QtCore class list](http://doc.qt.io/qt-5/qtcore-module.html) or the [QtCore overview](http://doc.qt.io/qt-5/qtcore-index.html).
 
 You build the application using CMake and make. CMake reads a project file, `CMakeLists.txt` and generates a Makefile which is used to build the application. CMake supports other build systems too, for example ninja. The project file is platform independent and CMake has some rules to apply the platform specific settings to the generated makefile. The project can also contain platform scopes for platform-specific rules, which are required in some specific cases. 
 
@@ -179,7 +179,7 @@ private:
 
 Additionally, we define a public slot called `storeContent()` in a custom section in the header file. Slots can be public, protected, or private, and can be called just like any other class method. You may also encounter a `signals` section with a set of signal signatures. These methods should not be called and must not be implemented. Both signals and slots are handled by the Qt meta information system and can be introspected and called dynamically at run-time.
 
-The purpose of the `storeContent()` slot is that is is called when the button is clicked. Let's make that happen!
+The purpose of the `storeContent()` slot is that it is called when the button is clicked. Let's make that happen!
 
 ```cpp
 #include "mainwindow.h"

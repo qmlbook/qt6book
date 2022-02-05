@@ -1,6 +1,6 @@
 # Graphics Shaders
 
-Graphics is rendered using a _rendering pipeline_ split into stages. There are multiple APIs to control graphics rendering. Qt supports OpenGL, Metal, Vulcan, and Direct3D. Looking at a simplified OpenGL pipeline, we can spot a vertex and fragment shader. These concepts exists for all other rendering pipelines too.
+Graphics is rendered using a _rendering pipeline_ split into stages. There are multiple APIs to control graphics rendering. Qt supports OpenGL, Metal, Vulcan, and Direct3D. Looking at a simplified OpenGL pipeline, we can spot a vertex and fragment shader. These concepts exist for all other rendering pipelines too.
 
 ![image](./assets/openglpipeline.png)
 

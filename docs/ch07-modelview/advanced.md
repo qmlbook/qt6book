@@ -34,7 +34,7 @@ When transforming images or other complex elements on in `PathView`, a performan
 Given the dynamic nature of `PathAttribute`, the qml tooling (in this case: `qmllint`) is not aware of `itemZ`, `itemAngle` nor `itemScale`.
 :::
 
-When using the `PathView` and changing the `currentIndex` programatically you might want to control the direction that the path moves in. You can do this using the `movementDirection` property. It can be set to `PathView.Shortest`, which is the default value. This means that the movement can be either direction, depending on which way is the closest way to move to the target value. The direction can instead be restricted by setting `movementDirection` to `PathView.Negative` or `PathView.Positive`.
+When using the `PathView` and changing the `currentIndex` programmatically you might want to control the direction that the path moves in. You can do this using the `movementDirection` property. It can be set to `PathView.Shortest`, which is the default value. This means that the movement can be either direction, depending on which way is the closest way to move to the target value. The direction can instead be restricted by setting `movementDirection` to `PathView.Negative` or `PathView.Positive`.
 
 ## Table Models
 

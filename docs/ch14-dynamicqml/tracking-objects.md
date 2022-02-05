@@ -2,7 +2,7 @@
 
 Working with dynamic objects, it is often necessary to track the created objects. Another common feature is to be able to store and restore the state of the dynamic objects. Both these tasks are easily handled using an `XmlListModel` that is dynamically populated.
 
-In the example shown below two types of elements, rockets and ufos can be created and moved around by the user. In order to be able to manipulate the entire scene of dynamically created elements, we use a model to track the items.
+In the example shown below two types of elements, rockets and UFOs can be created and moved around by the user. In order to be able to manipulate the entire scene of dynamically created elements, we use a model to track the items.
 
 The model, a `XmlListModel`, is populated as the items are created. The object reference is tracked alongside the source URL used when instantiating it. The latter is not strictly needed for tracking the objects but will come in handy later.
 

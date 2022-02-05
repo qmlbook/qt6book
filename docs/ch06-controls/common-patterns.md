@@ -50,9 +50,9 @@ The home page, `Home.qml` consists of a `Page`, which is n control element that 
 
 <<< @/docs/ch06-controls/src/interface-stack/Home.qml
 
-Returning back to `main.qml`, we now look at the drawer part. This is where the navigation to the pages begin. The active parts of the user interface are the `ÌtemDelegate` items. In the `onClicked` handler, the next page is pushed onto the `stackView`.
+Returning to `main.qml`, we now look at the drawer part. This is where the navigation to the pages begin. The active parts of the user interface are the `ÌtemDelegate` items. In the `onClicked` handler, the next page is pushed onto the `stackView`.
 
-As shown in the code below, it possible to push either a `Component` or a reference to a specific QML file. Either way results in a new instance being created and pushed onto the stack.
+As shown in the code below, it is possible to push either a `Component` or a reference to a specific QML file. Either way results in a new instance being created and pushed onto the stack.
 
 ```qml
 ApplicationWindow {
@@ -300,7 +300,7 @@ Page {
 
 ## Document Windows
 
-This example shows how to implement a desktop-oriented, document-centric user interface. The idea is to have one window per document. When opening a new document, a new window is opened. To the user, each window is a self contained world with a single document.
+This example shows how to implement a desktop-oriented, document-centric user interface. The idea is to have one window per document. When opening a new document, a new window is opened. To the user, each window is a self-contained world with a single document.
 
 ![Two document windows and the close warning dialog.](assets/interface-document-window.png)
 
@@ -367,7 +367,7 @@ In the example at the beginning of this chapter, each `MenuItem` calls a corresp
 
 The function, in turn, relies on the `createNewDocument` function, which dynamically creates a new element instance from the `DocumentWindow.qml` file, i.e. a new `DocumentWindow` instance. The reason for breaking out this part of the new function is that we use it when opening documents as well.
 
-Notice that we do not provide a parent element when creating the new instance using `createObject`. This way, we create new top level elements. If we would have provided the current document as parent to the next, the destruction of the parent window would lead to the destruction of the child windows.
+Notice that we do not provide a parent element when creating the new instance using `createObject`. This way, we create new top level elements. If we had provided the current document as parent to the next, the destruction of the parent window would lead to the destruction of the child windows.
 
 ```qml
 ApplicationWindow {
@@ -533,7 +533,7 @@ This looks complicated compared to implementing this using `Qt Widgets` and C++.
 
 ![](./assets/dialog-state-machine.png)
 
-The final piece of the puzzle is the window title. It is composed from the `fileName` and `isDirty` properties.
+The final piece of the puzzle is the window title. It is composed of the `fileName` and `isDirty` properties.
 
 ```qml
 ApplicationWindow {

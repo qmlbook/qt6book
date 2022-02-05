@@ -4,7 +4,7 @@ Now we can use our newly created file to access some data. In this example, we w
 
 ![image](./images/cityui_mock.png)
 
-JSON data is just text that is formatted in such a way that it can be converted into a valid JS object/array and back to text. We use our `FileIO` to read the JSON formatted data and convert it into a JS object using the built in Javascript function `JSON.parse()`. The data is later used as a model for the table view. This is implemented in the read document and write document functions shown below. 
+JSON data is just text that is formatted in such a way that it can be converted into a valid JS object/array and back to text. We use our `FileIO` to read the JSON formatted data and convert it into a JS object using the built-in Javascript function `JSON.parse()`. The data is later used as a model for the table view. This is implemented in the read document and write document functions shown below. 
 
 <<< @/docs/ch17-extensions/src/CityUI/main.qml#readwrite
 

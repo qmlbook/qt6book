@@ -33,4 +33,4 @@ Finally, the ``PathCurve`` creates a curve passing through a list of provided co
 There is one more useful path element, the ``PathSvg``. This element lets you stroke and fill an SVG path.
 
 :::tip
-The ``PathSvg`` element cannot always be combined with other path elements. This depends on the painting backend used, so make sure to use the ``PathSvg`` element or the other elements for a single path. If you mix ``PathSvg`` with other path elements, your milage will vary.
+The ``PathSvg`` element cannot always be combined with other path elements. This depends on the painting backend used, so make sure to use the ``PathSvg`` element or the other elements for a single path. If you mix ``PathSvg`` with other path elements, your mileage will vary.

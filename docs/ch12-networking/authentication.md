@@ -44,7 +44,7 @@ Let's start with the first step:
 
 <<< @/docs/ch12-networking/src/oauth/main.qml#imports
 
-When the application starts, we will first import a custom library, `Spotify`, that defines a `SpotifyAPI` component (we'll come to that later). This component will then be instanciated:
+When the application starts, we will first import a custom library, `Spotify`, that defines a `SpotifyAPI` component (we'll come to that later). This component will then be instantiated:
 
 <<< @/docs/ch12-networking/src/oauth/main.qml#setup
 
@@ -204,7 +204,7 @@ We then select the scope (= the Spotify authorizations) that we want to use:
 m_oauth2.setScope("user-top-read");
 ````
 
-Since OAuth is a two-way communication process, we instanciate a dedicated local server to handle the replies:
+Since OAuth is a two-way communication process, we instantiate a dedicated local server to handle the replies:
 
 ```cpp
 m_oauth2.setReplyHandler(new QOAuthHttpServerReplyHandler(8000, this));

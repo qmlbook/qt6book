@@ -35,7 +35,7 @@ To use our new `Button` element we can simply declare it in our file. So the ear
 
 <<< @/docs/ch04-qmlstart/src/components/ReusableComponentExample.qml#reusability
 
-Now you can use as many buttons as you like in your UI by just using `Button { ... }`. A real button could be more complex, e.g providing feedback when clicked or showing a nicer decoration.
+Now you can use as many buttons as you like in your UI by just using `Button { ... }`. A real button could be more complex, e.g. providing feedback when clicked or showing a nicer decoration.
 
 ::: tip
 If you want to, you could even go a step further and use an `Item` as a root element. This prevents users from changing the color of the button we designed, and provides us with more control over the exported API. The target should be to export a minimal API. Practically, this means we would need to replace the root `Rectangle` with an `Item` and make the rectangle a nested element in the root item.

@@ -65,7 +65,7 @@ The result is an arc going from the center-left to the bottom right.
 
 ![image](./assets/angledirection2.png)
 
-The values are discovered by try-and-error.
+The values are discovered by trial-and-error.
 
 Here is the full code of our emitter.
 
@@ -81,7 +81,7 @@ In our case we want the particles to travel from left-to-right building a 15-deg
 velocity: PointDirection { }
 ```
 
-To achieve a traveling velocity of 100 px per seconds we set our x component to 100. For the 15 degrees (which is 1/6th of 90 degrees) we specify an y variation of 100/6:
+To achieve a traveling velocity of 100 px per seconds we set our x component to 100. For the 15 degrees (which is 1/6th of 90 degrees) we specify any variation of 100/6:
 
 ```qml
 velocity: PointDirection {

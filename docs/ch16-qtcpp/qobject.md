@@ -1,6 +1,6 @@
 # The QObject
 
-As described in the introduction, the `QObject` is what enables mant of Qt's core functions such as signals and slots. This is implemented through introspection, which is what `QObject` provides. `QObject` is the base class of almost all classes in Qt. Exceptions are value types such as `QColor`, `QString` and `QList`.
+As described in the introduction, the `QObject` is what enables many of Qt's core functions such as signals and slots. This is implemented through introspection, which is what `QObject` provides. `QObject` is the base class of almost all classes in Qt. Exceptions are value types such as `QColor`, `QString` and `QList`.
 
 A Qt object is a standard C++ object, but with more abilities. These can be divided into two groups: introspection and memory management. The first means that a Qt object is aware of its class name, its relationship to other classes, as well as its methods and properties. The memory management concept means that each Qt object can be the parent of child objects. The parent *owns* the children, and when the parent is destroyed, it is responsible for destroying its children.
 

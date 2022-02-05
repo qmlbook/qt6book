@@ -16,7 +16,7 @@ As an example assume we would like to store the position of a rectangle on our s
 
 ![image](./images/crazy_rect.png)
 
-Here is the base of the example. It contains a rectange called `crazy` that is draggable and shows its current `x` and `y` position as text.
+Here is the base of the example. It contains a rectangle called `crazy` that is draggable and shows its current `x` and `y` position as text.
 
 <<< @/docs/ch13-storage/src/rectangle/main.qml#M1
 

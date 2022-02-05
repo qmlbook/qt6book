@@ -144,7 +144,7 @@ Delete a color by the color name:
 
 <<< @/docs/ch12-networking/src/rest/rest.qml#delete-color
 
-This concludes the CRUD (create, read, update, delete) operations using a REST API. There are also other possibilities to generate a Web-Service API. One could be module based and each module would have one endpoint. And the API could be defined using JSON RPC ([http://www.jsonrpc.org/](http://www.jsonrpc.org/)). Sure also XML based API is possible and but the JSON approach has great advantages as the parsing is built into the QML/JS as part of JavaScript.
+This concludes the CRUD (create, read, update, delete) operations using a REST API. There are also other possibilities to generate a Web-Service API. One could be module based and each module would have one endpoint. And the API could be defined using JSON RPC ([http://www.jsonrpc.org/](http://www.jsonrpc.org/)). Sure also XML based API is possible, but the JSON approach has great advantages as the parsing is built into the QML/JS as part of JavaScript.
 
 
 

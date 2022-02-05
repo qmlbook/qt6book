@@ -26,7 +26,7 @@ QtObject {
 
 Yes, this looks more like a QML API. We use properties to allow our environment to bind to our properties and react to changes.
 
-To create this API in C++ we would need to create an Qt C++ interface looking like this.
+To create this API in C++ we would need to create a Qt C++ interface looking like this.
 
 ```cpp
 class FileIO : public QObject {
