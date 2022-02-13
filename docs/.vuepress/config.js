@@ -29,6 +29,7 @@ module.exports = {
       ch09Sidebar(),
       ch10Sidebar(),
       ch11Sidebar(),
+      ch12Sidebar(),
       ch13Sidebar(),
       ch14Sidebar(),
       ch15Sidebar(),
@@ -164,6 +165,18 @@ function ch13Sidebar() {
       '/ch13-networking/authentication',
       '/ch13-networking/web-sockets',
       '/ch13-networking/summary',
+    ]
+  }
+}
+
+function ch12Sidebar() {
+  return {
+    title: "Qt Quick 3D",
+    path: '/ch12-qtquick3d/intro',
+    collapsable: false,
+    children: [
+      '/ch12-qtquick3d/intro',
+      '/ch12-qtquick3d/summary',
     ]
   }
 }
