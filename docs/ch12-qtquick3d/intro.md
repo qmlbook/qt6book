@@ -2,7 +2,7 @@
 
 This introduces the chapter
 
-Outline:
+## Outline
 
 - Introduction
     - capabilities
@@ -42,6 +42,11 @@ Outline:
 - Mixing 2D and 3D Contents
     - A 2D scene with 3D contents
     - 2D contents in a 3D scene
+    
+## Advanced topics
+
+_ (on hold) _
+    
 - Custom Materials
     - Shaders 
         - Fragment shader
