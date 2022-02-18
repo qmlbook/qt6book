@@ -1,9 +1,5 @@
 # Qt Quick 3d
 
-This introduces the chapter
-
-## Outline
-
 - Introduction
     - capabilities
         - fancy 3D
@@ -15,15 +11,9 @@ This introduces the chapter
         - Vulcan 1.0 or higher
         - Metal 1.2 or higher
         - (Qt Quick Software Adaptation, i.e. CPU based rendering, does not support 3D contents)
-    - 
-- A basic scene
-    - View
-    - scene environment
-    - camera
-    - Built in meshes
-    - lights
-    - 3D transformations
-    - (qml animation?)
+
+## Outline
+
 - Working with assets
     - Balsam Asset Import Tool
     - Importing contents from Blender
@@ -45,7 +35,7 @@ This introduces the chapter
     
 ## Advanced topics
 
-_ (on hold) _
+_on hold_
     
 - Custom Materials
     - Shaders 

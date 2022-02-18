@@ -176,6 +176,7 @@ function ch12Sidebar() {
     collapsable: false,
     children: [
       '/ch12-qtquick3d/intro',
+      '/ch12-qtquick3d/basics',
       '/ch12-qtquick3d/summary',
     ]
   }
