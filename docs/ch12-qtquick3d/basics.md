@@ -20,4 +20,18 @@
 
 ## Lights
 
+![image](./assets/light_directional.png)
+![image](./assets/light_point.png)
+![image](./assets/light_spot.png)
+
+<<< @/docs/ch12-qtquick3d/src/lights/main.qml
+
 ## Transformations
+
+![image](./assets/rotation.png)
+
+<<< @/docs/ch12-qtquick3d/src/translations/main.qml
+
+- scale
+- translate
+- order
