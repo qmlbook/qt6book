@@ -65,7 +65,7 @@ The result is an arc going from the center-left to the bottom right.
 
 ![image](./assets/angledirection2.png)
 
-The values are discovered by try-and-error.
+The values are discovered by trial-and-error.
 
 Here is the full code of our emitter.
 
