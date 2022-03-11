@@ -1,37 +1,20 @@
-# Qt Quick 3d
+# Qt Quick 3D
 
-- Introduction
-    - capabilities
-        - fancy 3D
-        - mix with 2D
-    - abstracting rendering backends
-        - OpenGL 3 or higher (3.3+ recommended)
-        - OpenGL ES 2 or higher (3.0+ recommended) (ES 2 - very limited feature set)
-        - Direct3D 11.1
-        - Vulcan 1.0 or higher
-        - Metal 1.2 or higher
-        - (Qt Quick Software Adaptation, i.e. CPU based rendering, does not support 3D contents)
+The Qt Quick 3D module takes the power of QML to the third dimension. Using qt Quick 3D you can create three dimensional scenes and use the property bindings, state management, animations, and more from QML to make the scene interactive. You can even mix 2D and 3D contents in various way to create a mixed environment.
 
-## Outline
+Just as Qt provides an abstraction for 2D graphics, Qt Quick 3D relies on an abstraction layer for the various rendering APIs supported. In order to use Qt Quick 3D it is recommended to use a platform provding at least one of the following APIs:
 
-- Working with assets
-    - Balsam Asset Import Tool
-    - Importing contents from Blender
-- Making Stuff Pretty (working name)
-    - Materials
-    - Physically-Based Rendering (PBR)
-        - PrincipedMaterial
-        - DefaultMaterial
-    - Image based lighting (IBL)
-    - Anti-aliasing
-- Animations
-    - Skeletal animations (vertex skinning)
-        - https://doc.qt.io/qt-6/quick3d-vertex-skinning.html
-    - Morphing animations
-        - https://doc.qt.io/qt-6/quick3d-morphing.html
-- Mixing 2D and 3D Contents
-    - A 2D scene with 3D contents
-    - 2D contents in a 3D scene
+- OpenGL 3.3+ (support from 3.0)
+- OpenGL ES 3.0+ (limited support for OpenGL ES 2)
+- Direct3D 11.1
+- Vulcan 1.0+
+- Metal 1.2+
+
+The Qt Quick Software Adaption, i.e. the software only rendering stack, does not support 3D contents.
+
+In this chapter we will take you through the basics of Qt Quick 3D, letting you create interactive 3D scenes based on built in meshes as well as assets created in external tools. We will also look at animations and mixing of 2D and 3D contents.
+
+<!--
     
 ## Advanced topics
 
@@ -61,3 +44,5 @@ _on hold_
         - https://doc.qt.io/qt-6/quick3d-asset-conditioning-3d-assets.html
     - Optimizing 2D contents (textures)
         - https://doc.qt.io/qt-6/quick3d-asset-conditioning-2d-assets.html
+
+-->
