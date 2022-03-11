@@ -177,6 +177,10 @@ function ch12Sidebar() {
     children: [
       '/ch12-qtquick3d/intro',
       '/ch12-qtquick3d/basics',
+      '/ch12-qtquick3d/assets',
+      '/ch12-qtquick3d/materials-and-light',
+      '/ch12-qtquick3d/animations',
+      '/ch12-qtquick3d/mixing-2d-and-3d',
       '/ch12-qtquick3d/summary',
     ]
   }
