@@ -143,29 +143,6 @@ Now we’ve seen how to reach the *About* and *Profile* pages, but we also want 
 
 <<< @/docs/ch06-controls/src/interface-stack/Profile.qml
 
-```qml
-import QtQuick
-import QtQuick.Controls
-
-Page {
-    title: qsTr("Profile")
-
-    Column {
-        anchors.centerIn: parent
-        spacing: 10
-        Label {
-            anchors.horizontalCenter: parent.horizontalCenter
-            text: qsTr("Profile")
-        }
-        Button {
-            anchors.horizontalCenter: parent.horizontalCenter
-            text: qsTr("Edit");
-            onClicked: stackView.push("EditProfile.qml")
-        }
-    }
-}
-```
-
 ## Side by Side Screens
 
 For this example we create a user interface consisting of three pages that the user can shift through. The pages are shown in the diagram below. This could be the interface of a health tracking app, tracking the current state, the user’s statistics and the overall statistics.
@@ -354,14 +331,6 @@ ApplicationWindow {
 To bootstrap the program, we create the first `DocumentWindow` instance from `main.qml`, which is the entry point of the application.
 
 <<< @/docs/ch06-controls/src/interface-document-window/main.qml
-
-```qml
-import QtQuick
-
-DocumentWindow {
-    visible: true
-}
-```
 
 In the example at the beginning of this chapter, each `MenuItem` calls a corresponding function when triggered. Let’s start with the *New* item, which calls the `newDocument` function.
 
