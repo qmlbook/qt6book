@@ -169,7 +169,7 @@ Pressing the tab key now successfully switches the focus between the 2 component
 
 ## TextEdit
 
-The `TextEdit` is very similar to `TextInput`, and supports a multi-line text edit field. It doesn’t have the text constraint properties, as this depends on querying the painted size of the text (`paintedHeight`, `paintedWidth`). We also create our own component called `TTextEdit` to provide an editing background and use the focus scope for better focus forwarding.
+The `TextEdit` is very similar to `TextInput`, and supports a multi-line text edit field. It doesn’t have the text constraint properties, as this depends on querying the content size of the text (`contentHeight`, `contentWidth`). We also create our own component called `TTextEdit` to provide an editing background and use the focus scope for better focus forwarding.
 
 ```qml
 // TTextEdit.qml
