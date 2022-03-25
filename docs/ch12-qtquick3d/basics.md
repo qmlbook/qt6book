@@ -73,6 +73,10 @@ The resulting scene can be seen below.
 
 ![image](./assets/basicscene.png)
 
+So, all in all, a minimal scene consists of a ``View3D`` with an ``SceneEnvironment``, something to look at, e.g. a ``Model`` with a mesh, a light source, e.g. a ``DirectionalLight``, and something to look with, e.g. a ``PerspectiveCamera``.
+
+
+
 ## The Built-in Meshes
 
 In the previous example, we used the built-in cone and sphere. Qt Quick 3D comes with the following built in meshes:
@@ -83,26 +87,42 @@ In the previous example, we used the built-in cone and sphere. Qt Quick 3D comes
 - ``#Cylinder``
 - ``#Rectangle``
 
-These are all shown in the illustration below.
+These are all shown in the illustration below. (top-left: Cube, top-right: Cone, center: Sphere, bottom-left: Cylinder, bottom-right: Rectangle)
 
 ![image](./assets/meshes.png)
 
+::: tip Tip
 One caveat is that the ``#Rectangle`` is one-sided. That means that it is only visible from one direction. This means that the ``eulerRotation`` property is important.
+:::
+
+When working with real scenes, the meshes are exported from a design tool and then imported into the Qt Quick 3D scene. We look at this in more detail in the [Working with Assets](assets.md) section.
+
+
 
 ## Lights
 
+Just as with meshes, Qt Quick 3D comes with a number of pre-defined light sources. These are used to light the scene in different ways.
+
+The first one, ``DirectionalLight``, should be familiar from our previous example. It works much as the sun, and casts light uniformly over the scene in a given direction. If the ``castsShadow`` property is set to ``true``, the light will cast shadows, as shown in the illustration below. This property is available for all the light sources.
+
 ![image](./assets/light_directional.png)
+
+<<< @/docs/ch12-qtquick3d/src/lights/main.qml#directional
+
+The next light source is the ``PointLight``. It is a light that eminates from a given point in space and then falls off towards darkness based on the values of the ``constantFade``, ``linearFade``, and ``quadraticFace`` properties, where the light is calculated as ``constantFade + distance * (linearFade * 0.01) + distance^2 * (quadraticFade * 0.0001)``. The default values are ``1.0`` constant and quadratic fade, and ``0.0`` for the linear fade, meaning that the light falls off according to the inverse square law.
+
 ![image](./assets/light_point.png)
+
+<<< @/docs/ch12-qtquick3d/src/lights/main.qml#point
+
+The last of the light sources is the ``SpotLight`` which emits a cone of light in a given direction, much like a real world spotlight. The cone consists of an inner and an outer cone. The width of these is controlled by the ``innerConeAngle`` and ``coneAngle``, specified in degrees between zero and 180 degrees.
+
+The light in the inner cone behaves much like a ``PointLight`` and can be controlled using the ``constantFade``, ``linearFade``, and ``quadraticFace`` properties. In addition to this, the light fades towards darkness as it approaches the outer cone, controlled by the ``coneAngle``.
+
 ![image](./assets/light_spot.png)
 
-<<< @/docs/ch12-qtquick3d/src/lights/main.qml
+<<< @/docs/ch12-qtquick3d/src/lights/main.qml#spot
 
-## Transformations
+In addition to the ``castsShadow`` property, all lights also has the commonly used properties ``color`` and ``brightness`` which control the color and intensity of the light emitted. The lights also has an ``ambientColor`` property defining a base color to be applied to materials, before they are lit by the light source. This property is set to black by default, but can be used to provide a base lighting in a scene.
 
-![image](./assets/rotation.png)
-
-<<< @/docs/ch12-qtquick3d/src/translations/main.qml
-
-- scale
-- translate
-- order
+In the examples this far, we've only used one light source at a time, but it is of course possible to combine multiple light sources in a single scene.

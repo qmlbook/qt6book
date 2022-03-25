@@ -61,6 +61,7 @@ Window {
             Component.onCompleted: lookAt(Qt.vector3d(0, 0, 0))
         }
 
+// #region spot
         SpotLight {
             position: Qt.vector3d(50, 200, 50)
             eulerRotation.x: -90
@@ -70,18 +71,23 @@ Window {
 
             castsShadow: true
         }
+// #endregion spot
 
+// #region point
         PointLight {
             position: Qt.vector3d(100, 100, 150)
 
             castsShadow: true
         }
+// #endregion point
 
+// #region directional
         DirectionalLight {
             eulerRotation.x: 210
             eulerRotation.y: 20
 
             castsShadow: true
         }
+// #endregion directional
     }
 }
