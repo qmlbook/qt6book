@@ -51,7 +51,7 @@ As these modules are not part of the release, the state of each module may diffe
 
 ## Supported Platforms
 
-Qt supports a variety of platforms including all major desktop and embedded platforms. Through the Qt Application Abstraction, it’s now easier than ever to port Qt to your own platform if required.
+Qt supports a variety of platforms including all major desktop and embedded platforms. Through the Qt Platform Abstraction, it’s now easier than ever to port Qt to your own platform if required.
 
 Testing Qt 6 on a platform is time-consuming. A subset of platforms was selected by the Qt Project to build the reference platforms set. These platforms are thoroughly tested through the system testing to ensure the best quality. However, keep in mind that no code is error-free.
 
