@@ -32,9 +32,8 @@ Window {
     width: 640
     height: 480
     visible: true
-    title: qsTr("Basic Asset")
+    title: qsTr("Basic Materials")
 
-    // #region mesh
     View3D {
         anchors.fill: parent
 
@@ -44,24 +43,21 @@ Window {
             lightProbe: Texture {
                 source: "maps/skybox.jpg"
             }
+            probeExposure: 0.75
         }
 
-        Node {
+        Model {
+            source: "meshes/suzanne.mesh"
+
             position: Qt.vector3d(5, 4, 0)
-            Model {
-                source: "meshes/suzanne.mesh"
+            scale: Qt.vector3d(2, 2, 2)
+            rotation: Quaternion.fromEulerAngles(Qt.vector3d(-80, 30, 0))
 
-                scale: Qt.vector3d(2, 2, 2)
-
-                eulerRotation.y: 30
-                eulerRotation.x: -80
-
-                materials: [ DefaultMaterial {
-                        diffuseColor: "yellow";
-                        specularTint: "red";
-                        specularRoughness: 0.3
-                    } ]
-            }
+            materials: [ DefaultMaterial {
+                    diffuseColor: "yellow";
+                    specularTint: "red";
+                    specularAmount: 0.7
+                } ]
         }
 
         Model {
@@ -73,26 +69,22 @@ Window {
             materials: [ DefaultMaterial {
                     diffuseColor: "blue";
                     specularTint: "teal";
-                    specularRoughness: 0.3
+                    specularAmount: 0.7
                 } ]
         }
 
-        Node {
+        Model {
+            source: "meshes/suzanne.mesh"
+
             position: Qt.vector3d(-5, 4, 0)
-            Model {
-                source: "meshes/suzanne.mesh"
+            scale: Qt.vector3d(2, 2, 2)
+            rotation: Quaternion.fromEulerAngles(Qt.vector3d(-80, 30, 0))
 
-                scale: Qt.vector3d(2, 2, 2)
-
-                eulerRotation.y: 30
-                eulerRotation.x: -80
-
-                materials: [ PrincipledMaterial {
-                        baseColor: "yellow";
-                        metalness: 0.8
-                        roughness: 0.3
-                    } ]
-            }
+            materials: [ PrincipledMaterial {
+                    baseColor: "yellow";
+                    metalness: 0.8
+                    roughness: 0.3
+                } ]
         }
 
         Model {
@@ -120,5 +112,4 @@ Window {
             castsShadow: true
         }
     }
-    // #endregion mesh
 }
