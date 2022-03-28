@@ -104,6 +104,3 @@ The resulting view is shown below.
 ![image](./assets/asset-second-input.png)
 
 This demonstrates how a simple mesh can be exported from a 3D design tool such as blender, converted to a Qt Quick 3D format and then used from QML. One thing to think about is that we can import the entire scene as is, i.e. using ``Monkey.qml``, or use only the assets, e.g. ``suzanne.mesh``. This puts you in control of the trade-off between simple importing of a scene, and added complexity while gaining flexibility by setting up the scene in QML.
-
-## Tweaking
-
