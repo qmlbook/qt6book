@@ -37,6 +37,7 @@ Window {
     View3D {
         anchors.fill: parent
 
+// #region skybox
         environment: SceneEnvironment {
             clearColor: "#222222"
             backgroundMode: SceneEnvironment.SkyBox
@@ -45,7 +46,9 @@ Window {
             }
             probeExposure: 0.75
         }
+// #endregion skybox
 
+// #region suzannedefault
         Model {
             source: "meshes/suzanne.mesh"
 
@@ -59,6 +62,7 @@ Window {
                     specularAmount: 0.7
                 } ]
         }
+// #endregion suzannedefault
 
         Model {
             source: "#Sphere"
@@ -73,6 +77,7 @@ Window {
                 } ]
         }
 
+// #region suzanneprincipled
         Model {
             source: "meshes/suzanne.mesh"
 
@@ -86,6 +91,7 @@ Window {
                     roughness: 0.3
                 } ]
         }
+// #endregion suzanneprincipled
 
         Model {
             source: "#Sphere"
