@@ -37,133 +37,151 @@ module.exports = {
       ch17Sidebar(),
       ch18Sidebar(),
       ch19Sidebar(),
+      ch20Sidebar(),
     ],
   },  
 }
 
-function ch19Sidebar() {
+function ch20Sidebar() {
   return {
     title: "Qt for MCUs",
-    path: '/ch19-qtformcu/qtformcu',
+    path: '/ch20-qtformcu/qtformcu',
     collapsable: false,
     children: [
-      '/ch19-qtformcu/qtformcu',
-      '/ch19-qtformcu/setup',
-      '/ch19-qtformcu/helloworld',
-      '/ch19-qtformcu/cpp',
-      '/ch19-qtformcu/models',
-      '/ch19-qtformcu/summary',
+      '/ch20-qtformcu/qtformcu',
+      '/ch20-qtformcu/setup',
+      '/ch20-qtformcu/helloworld',
+      '/ch20-qtformcu/cpp',
+      '/ch20-qtformcu/models',
+      '/ch20-qtformcu/summary',
+    ]
+  }
+}
+
+function ch19Sidebar() {
+  return {
+    title: "Qt for Python",
+    path: '/ch19-python/qt-python',
+    collapsable: false,
+    children: [
+      '/ch19-python/qt-python',
+      '/ch19-python/introduction',
+      '/ch19-python/installing',
+      '/ch19-python/build-app',
+      '/ch19-python/limitations',
+      '/ch19-python/summary',
     ]
   }
 }
 
 function ch18Sidebar() {
   return {
-    title: "Qt for Python",
-    path: '/ch18-python/qt-python',
+    title: "Extending QML",
+    path: '/ch18-extensions/extending-qml',
     collapsable: false,
     children: [
-      '/ch18-python/qt-python',
-      '/ch18-python/introduction',
-      '/ch18-python/installing',
-      '/ch18-python/build-app',
-      '/ch18-python/limitations',
-      '/ch18-python/summary',
+      '/ch18-extensions/extending-qml',
+      '/ch18-extensions/qml-runtime',
+      '/ch18-extensions/plugin-content',
+      '/ch18-extensions/create-plugin',
+      '/ch18-extensions/fileio-demo',
+      '/ch18-extensions/using-fileio',
+      '/ch18-extensions/summary',
     ]
   }
 }
 
 function ch17Sidebar() {
   return {
-    title: "Extending QML",
-    path: '/ch17-extensions/extending-qml',
+    title: "Qt C++",
+    path: '/ch17-qtcpp/qtcpp',
     collapsable: false,
     children: [
-      '/ch17-extensions/extending-qml',
-      '/ch17-extensions/qml-runtime',
-      '/ch17-extensions/plugin-content',
-      '/ch17-extensions/create-plugin',
-      '/ch17-extensions/fileio-demo',
-      '/ch17-extensions/using-fileio',
-      '/ch17-extensions/summary',
+      '/ch17-qtcpp/qtcpp',
+      '/ch17-qtcpp/boilerplate',
+      '/ch17-qtcpp/qobject',
+      '/ch17-qtcpp/build-system',
+      '/ch17-qtcpp/common-classes',
+      '/ch17-qtcpp/cpp-models',
     ]
   }
 }
 
 function ch16Sidebar() {
   return {
-    title: "Qt C++",
-    path: '/ch16-qtcpp/qtcpp',
+    title: "Javascript",
+    path: '/ch16-javascript/javascript',
     collapsable: false,
     children: [
-      '/ch16-qtcpp/qtcpp',
-      '/ch16-qtcpp/boilerplate',
-      '/ch16-qtcpp/qobject',
-      '/ch16-qtcpp/build-system',
-      '/ch16-qtcpp/common-classes',
-      '/ch16-qtcpp/cpp-models',
+      '/ch16-javascript/javascript',
+      '/ch16-javascript/html-qml',
+      '/ch16-javascript/js-language',
+      '/ch16-javascript/js-objects',
+      '/ch16-javascript/js-console',
     ]
   }
 }
 
 function ch15Sidebar() {
   return {
-    title: "Javascript",
-    path: '/ch15-javascript/javascript',
+    title: "Dynamic QML",
+    path: '/ch15-dynamicqml/dynamic-qml',
     collapsable: false,
     children: [
-      '/ch15-javascript/javascript',
-      '/ch15-javascript/html-qml',
-      '/ch15-javascript/js-language',
-      '/ch15-javascript/js-objects',
-      '/ch15-javascript/js-console',
+      '/ch15-dynamicqml/dynamic-qml',
+      '/ch15-dynamicqml/loading-components',
+      '/ch15-dynamicqml/dynamic-objects',
+      '/ch15-dynamicqml/tracking-objects',
+      '/ch15-dynamicqml/summary',
     ]
   }
 }
 
 function ch14Sidebar() {
   return {
-    title: "Dynamic QML",
-    path: '/ch14-dynamicqml/dynamic-qml',
+    title: "Storage",
+    path: '/ch14-storage/storage',
     collapsable: false,
     children: [
-      '/ch14-dynamicqml/dynamic-qml',
-      '/ch14-dynamicqml/loading-components',
-      '/ch14-dynamicqml/dynamic-objects',
-      '/ch14-dynamicqml/tracking-objects',
-      '/ch14-dynamicqml/summary',
+      '/ch14-storage/storage',
+      '/ch14-storage/settings',
+      '/ch14-storage/local-storage',
     ]
   }
 }
 
 function ch13Sidebar() {
   return {
-    title: "Storage",
-    path: '/ch13-storage/storage',
+    title: "Networking",
+    path: '/ch13-networking/networking',
     collapsable: false,
     children: [
-      '/ch13-storage/storage',
-      '/ch13-storage/settings',
-      '/ch13-storage/local-storage',
+      '/ch13-networking/networking',
+      '/ch13-networking/serve-qml',
+      '/ch13-networking/templates',
+      '/ch13-networking/http-requests',
+      '/ch13-networking/local-files',
+      '/ch13-networking/rest-api',
+      '/ch13-networking/authentication',
+      '/ch13-networking/web-sockets',
+      '/ch13-networking/summary',
     ]
   }
 }
 
 function ch12Sidebar() {
   return {
-    title: "Networking",
-    path: '/ch12-networking/networking',
+    title: "Qt Quick 3D",
+    path: '/ch12-qtquick3d/intro',
     collapsable: false,
     children: [
-      '/ch12-networking/networking',
-      '/ch12-networking/serve-qml',
-      '/ch12-networking/templates',
-      '/ch12-networking/http-requests',
-      '/ch12-networking/local-files',
-      '/ch12-networking/rest-api',
-      '/ch12-networking/authentication',
-      '/ch12-networking/web-sockets',
-      '/ch12-networking/summary',
+      '/ch12-qtquick3d/intro',
+      '/ch12-qtquick3d/basics',
+      '/ch12-qtquick3d/assets',
+      '/ch12-qtquick3d/materials-and-light',
+      '/ch12-qtquick3d/animations',
+      '/ch12-qtquick3d/mixing-2d-and-3d',
+      '/ch12-qtquick3d/summary',
     ]
   }
 }
