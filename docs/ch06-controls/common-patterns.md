@@ -302,7 +302,7 @@ Page {
 
 This example shows how to implement a desktop-oriented, document-centric user interface. The idea is to have one window per document. When opening a new document, a new window is opened. To the user, each window is a self contained world with a single document.
 
-![Two document windows and the close warning dialog.](assets/interface-document-window.png)
+![Two document windows and the close warning dialog.](./assets/interface-document-window.png)
 
 
 The code starts from an `ApplicationWindow` with a *File* menu with the standard operations: *New*, *Open*, *Save* and *Save As*. We put this in the `DocumentWindow.qml`.
