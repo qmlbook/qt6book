@@ -7,7 +7,7 @@ This chapter shall provide a high-level overview of Qt 6. It shows the different
 
 ## Qt 6 Focus
 
-Qt 5 was released many years ago and introduced a new declarative way of writing stunning user interfaces. Since then a lot has changed in the world around us. The
+Qt 5 was released many years ago and introduced a new declarative way of writing stunning user interfaces. Since then a lot has changed in the world around us.
 
 Qt 6 will be a continuation of what has been done with Qt 5 and should not be disruptive to the majority of users. What make Qt valuable to the users?
 
