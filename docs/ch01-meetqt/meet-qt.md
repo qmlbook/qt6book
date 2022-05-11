@@ -19,7 +19,7 @@ Qt 6 will be a continuation of what has been done with Qt 5 and should not be di
 
 Qt 6 evolves the Qt product to new markets while keeping close to the users values.
 
-The desktop market is the root of the Qts offering. It is where most users get the first contact with Qt and it forms the base for the Qt tools and its success.
+The desktop market is the root of the Qt offering. It is where most users get the first contact with Qt and it forms the base for the Qt tools and its success.
 
 It is expected that Qt 6 will grow most in the embedded and connected devices market from high-end near desktop performing devices to low-end devices like microcontrollers. Touch screens will come to an exponential increasing number to these devices. Many of these devices will have relatively simple functionality but require a polished and smooth user interface.
 
