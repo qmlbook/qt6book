@@ -1,6 +1,6 @@
 # Hello World
 
-To test your installation, we will create a small *hello world* application. Please, open Qt Creator and create a Qt Quick UI Project ( `File ‣ New File or Project ‣ Other Project ‣ Qt Quick UI prototype` ) and name the project `HelloWorld`.
+To test your installation, we will create a small *hello world* application. Please, open Qt Creator and create a Qt Quick UI Project ( `File ‣ New File or Project ‣ Other Project ‣ Qt Quick UI Prototype` ) and name the project `HelloWorld`.
 
 ::: tip
 The Qt Creator IDE allows you to create various types of applications. If not otherwise stated, we always use a Qt Quick UI prototype project. For a production application you would often prefer a `CMake` based project, but for fast prototyping this type is better suited.
