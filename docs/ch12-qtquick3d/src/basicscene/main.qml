@@ -49,13 +49,13 @@ Window {
             position: Qt.vector3d(0, 0, 0)
             scale: Qt.vector3d(1, 1.25, 1)
             source: "#Cone"
-            materials: [ DefaultMaterial { diffuseColor: "yellow"; } ]
+            materials: [ PrincipledMaterial { baseColor: "yellow"; } ]
         }
 
         Model {
             position: Qt.vector3d(80, 0, 50)
             source: "#Sphere"
-            materials: [ DefaultMaterial { diffuseColor: "green"; } ]
+            materials: [ PrincipledMaterial { baseColor: "green"; } ]
         }
 // #endregion meshes
 

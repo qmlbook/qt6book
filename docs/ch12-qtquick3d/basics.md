@@ -49,7 +49,7 @@ The next step is to add _meshes_ to the scene. A mesh represents an object in 3D
 
 A model can be used to load 3D assets, but there are a few built-in meshes allowing us to get started without involving the complexity of 3D assets management. In the code below, we create a ``#Cone`` and a ``#Sphere``.
 
-In addition to the shape of the mesh, we position them in 3D space and provide them with a material with a simple, diffuse colour. We will discuss materials more in the [Materials and Light]("Materials and Lights") section
+In addition to the shape of the mesh, we position them in 3D space and provide them with a material with a simple, diffuse base colour. We will discuss materials more in the [Materials and Light]("Materials and Lights") section
 
 When positioning elements in 3D space, coordinates are expressed as ``Qt.vector3d(x, y, z)`` where the `x` axis controls the horizontal movement, `y` is the vertical movement, and `z` the how close or far away something is. 
 
