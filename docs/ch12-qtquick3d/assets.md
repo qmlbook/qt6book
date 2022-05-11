@@ -12,15 +12,11 @@ The purpose of Balsam is to make it easy to take assets created in common tools 
 
 For some format, texture assets can also be exported into a Qt Quick 3D-friendly format, as long as Qt Quick 3D supports the given asset.
 
-::: tip Tip
-Balsam also supports converting Qt 3D Studio projects (``*.uia``, ``*.uip``) to Qt Quick 3D. As the feature set is not identical, only the features supported by Qt Quick 3D can be converted.
-:::
-
 ## Blender
 
 To generate an asset that we can import, we will use Blender to create a scene with a monkey head in it. We will then export this as a [COLLADA](https://en.wikipedia.org/wiki/COLLADA) file to be able to convert it to a Qt Quick 3D friendly file format using Balsam.
 
-Blender is available from [https://www.blender.org/](https://www.blender.org/), and mastering Blender is a topic for another book, so we will do the most basic thing possible. Remove the original cube, add a mesh, and select to add a monkey. There are a number of video tutorials demonstrating how to do this. The resulting Blender user interface with the monkey head scene can be seen below.
+Blender is available from [https://www.blender.org/](https://www.blender.org/), and mastering Blender is a topic for another book, so we will do the most basic thing possible. Remove the original cube (select the cube with the left mouse button, press``shift + x``, select _Delete_), add a mesh (from the keyboard ``shift + a``, select _Mesh_), and select to add a monkey (select _Monkey_ from the list of available meshes). There are a number of video tutorials demonstrating how to do this. The resulting Blender user interface with the monkey head scene can be seen below.
 
 ![image](./assets/blender-monkey.png)
 
