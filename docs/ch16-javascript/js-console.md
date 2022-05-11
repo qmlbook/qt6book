@@ -22,19 +22,19 @@ Our application will be split in two files:
 ## JSConsole.qml
 
 ### Application window
-<<< @/docs/ch15-javascript/src/JSConsole/JSConsole.qml#application-window
+<<< @/docs/ch16-javascript/src/JSConsole/JSConsole.qml#application-window
 
 ### Form
 
-<<< @/docs/ch15-javascript/src/JSConsole/JSConsole.qml#form{12,19,40-42,45,50,54-55}
+<<< @/docs/ch16-javascript/src/JSConsole/JSConsole.qml#form{12,19,40-42,45,50,54-55}
 
 ### Calling the library
 
 The evaluation function `jsCall` does the evaluation not by itself this has been moved to a JS module (`jsconsole.js`) for clearer separation.
 
-<<< @/docs/ch15-javascript/src/JSConsole/JSConsole.qml#import
+<<< @/docs/ch16-javascript/src/JSConsole/JSConsole.qml#import
 
-<<< @/docs/ch15-javascript/src/JSConsole/JSConsole.qml#js-call
+<<< @/docs/ch16-javascript/src/JSConsole/JSConsole.qml#js-call
 
 ::: tip
 For safety, we do not use the `eval` function from JS as this would allow the user to modify the local scope. We use the Function constructor to create a JS function on runtime and pass in our scope as this variable. As the function is created every time it does not act as a closure and stores its own scope, we need to use `this.a = 10` to store the value inside this scope of the function. This scope is set by the script to the scope variable.
@@ -42,6 +42,6 @@ For safety, we do not use the `eval` function from JS as this would allow the us
 
 ## jsconsole.js
 
-<<< @/docs/ch15-javascript/src/JSConsole/jsconsole.js#global
+<<< @/docs/ch16-javascript/src/JSConsole/jsconsole.js#global
 
 The data return from the call function is a JS object with a result, expression and error property: `data: { expression: "", result: "", error: "" }`. We can use this JS object directly inside the ListModel and access it then from the delegate, e.g. `delegate.model.expression` gives us the input expression.

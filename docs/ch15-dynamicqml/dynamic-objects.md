@@ -14,11 +14,11 @@ The status of a component being created can be tracked by it is `status` propert
 
 When loading components over slow connections, the `progress` property can be of use. It ranges from `0.0`, meaning nothing has been loaded, to `1.0` indicating that all have been loaded. When the component’s `status` changes to `Ready`, the component can be used to instantiate objects. The code below demonstrates how that can be achieved, taking into account the event of the component becoming ready or failing to be created directly, as well as the case where a component is ready slightly later.
 
-<<< @/docs/ch14-dynamicqml/src/load-component/create-component.js#M1
+<<< @/docs/ch15-dynamicqml/src/load-component/create-component.js#M1
 
 The code above is kept in a separate JavaScript source file, referenced from the main QML file.
 
-<<< @/docs/ch14-dynamicqml/src/load-component/main.qml#M1
+<<< @/docs/ch15-dynamicqml/src/load-component/main.qml#M1
 
 The `createObject` function of a component is used to create object instances, as shown above. This not only applies to dynamically loaded components but also `Component` elements inlined in the QML code. The resulting object can be used in the QML scene like any other object. The only difference is that it does not have an `id`.
 
@@ -69,7 +69,7 @@ The `createQmlObject` function always returns immediately. For the function to s
 
 The objects created using the `Qt.createQmlObject` function resembles any other dynamically created object. That means that it is identical to every other QML object, apart from not having an `id`. In the example below, a new `Rectangle` element is instantiated from in-line QML code when the `root` element has been created.
 
-<<< @/docs/ch14-dynamicqml/src/create-object/main.qml#M1
+<<< @/docs/ch15-dynamicqml/src/create-object/main.qml#M1
 
 ### Managing Dynamically Created Elements
 

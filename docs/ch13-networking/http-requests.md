@@ -87,11 +87,11 @@ for(var i=0; i<obj.items.length; i++) {
 
 As a valid JS array, we can use the `obj.items` array also as a model for a list view. We will try to accomplish this now. First, we need to retrieve the response and convert it into a valid JS object. And then we can just set the `response.items` property as a model to a list view.
 
-<<< @/docs/ch12-networking/src/httprequest/httprequest.qml#request
+<<< @/docs/ch13-networking/src/httprequest/httprequest.qml#request
 
 Here is the full source code, where we create the request when the component is loaded. The request response is then used as the model for our simple list view.
 
-<<< @/docs/ch12-networking/src/httprequest/httprequest.qml#global
+<<< @/docs/ch13-networking/src/httprequest/httprequest.qml#global
 
 When the document is fully loaded ( `Component.onCompleted` ) we request the latest feed content from Flickr. On arrival, we parse the JSON response and set the `items` array as the model for our view. The list view has a delegate, which displays the thumbnail icon and the title text in a row.
 

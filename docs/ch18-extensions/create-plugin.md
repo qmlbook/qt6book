@@ -10,7 +10,7 @@ The project should consist of the `fileio.h` and `fileio.cpp`, that declare and 
 
 The plugin class is derived from the `QQmlEngineExtensionPlugin` class, and contains a the `Q_OBJECT` and `Q_PLUGIN_METADATA` macros. The entire file can be seen below.
 
-<<< @/docs/ch17-extensions/src/fileio/fileio_plugin.cpp
+<<< @/docs/ch18-extensions/src/fileio/fileio_plugin.cpp
 
 The extension will automatically discover and register all types marked with `QML_ELEMENT` and `QML_NAMED_ELEMENT`. We will see how this is done in the FileIO Implementation section below.
 

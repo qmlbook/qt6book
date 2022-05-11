@@ -31,7 +31,7 @@ The npm tool downloads and installs the ws package and dependencies into your lo
 
 A `server.js` file will be our server implementation. The server code will create a web socket server on port 3000 and listens to an incoming connection. On an incoming connection, it will send out a greeting and waits for client messages. Each message a client sends on a socket will be sent back to the client.
 
-<<< @/docs/ch12-networking/src/ws/ws_server/server.js#global
+<<< @/docs/ch13-networking/src/ws/ws_server/server.js#global
 
 You need to get used to the notation of JavaScript and the function callbacks.
 
@@ -41,19 +41,19 @@ On the client side, we need a list view to display the messages and a TextInput 
 
 We will use a label with white color in the example.
 
-<<< @/docs/ch12-networking/src/ws/ws_client/Label.qml#global
+<<< @/docs/ch13-networking/src/ws/ws_client/Label.qml#global
 
 Our chat view is a list view, where the text is appended to a list model. Each entry is displayed using a row of prefix and message label. We use a cell width `cw` factor to split the with into 24 columns.
 
-<<< @/docs/ch12-networking/src/ws/ws_client/ChatView.qml#global
+<<< @/docs/ch13-networking/src/ws/ws_client/ChatView.qml#global
 
 The chat input is just a simple text input wrapped with a colored border.
 
-<<< @/docs/ch12-networking/src/ws/ws_client/ChatInput.qml#global
+<<< @/docs/ch13-networking/src/ws/ws_client/ChatInput.qml#global
 
 When the web socket receives a message it appends the message to the chat view. Same applies for a status change. Also when the user enters a chat message a copy is appended to the chat view on the client side and the message is sent to the server.
 
-<<< @/docs/ch12-networking/src/ws/ws_client/ws_client.qml#global
+<<< @/docs/ch13-networking/src/ws/ws_client/ws_client.qml#global
 
 You need first run the server and then the client. There is no retry connection mechanism in our simple client.
 

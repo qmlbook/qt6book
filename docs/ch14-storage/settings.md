@@ -4,7 +4,7 @@ Qt comes with a `Settings` element for loading and storing settings. The is stil
 
 Here is a small example which applies a color value to a base rectangle. Every time the user clicks on the window a new random color is generated. When the application is closed and relaunched again you should see your last color. The default color should be the color initially set on the root rectangle.
 
-<<< @/docs/ch13-storage/src/colorstore/colorstore.qml#M1
+<<< @/docs/ch14-storage/src/colorstore/colorstore.qml#M1
 
 The settings value are stored every time the value changes. This might be not always what you want. To store the settings only when required you can use standard properties combined with a function that alters the setting when called.
 

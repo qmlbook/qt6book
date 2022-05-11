@@ -19,13 +19,13 @@ We will leave out the properties, as they are simple setters and getters.
 
 The read method opens a file in reading mode and reads the data using a text stream.
 
-<<< @/docs/ch17-extensions/src/fileio/fileio.cpp#read
+<<< @/docs/ch18-extensions/src/fileio/fileio.cpp#read
 
 When the text is changed it is necessary to inform others about the change using `emit textChanged(m_text)`. Otherwise, property binding will not work.
 
 The write method does the same but opens the file in write mode and uses the stream to write the contents of the `text` property.
 
-<<< @/docs/ch17-extensions/src/fileio/fileio.cpp#read
+<<< @/docs/ch18-extensions/src/fileio/fileio.cpp#read
 
 To make the type visible to QML, we add the `QML_ELEMENT` macro just after the `Q_PROPERTY` lines. This tells Qt that the type should be made available to QML. If you want to provide a different name than the C++ class, you can use the `QML_NAMED_ELEMENT` macro.
 

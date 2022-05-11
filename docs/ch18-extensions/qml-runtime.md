@@ -2,7 +2,7 @@
 
 When running QML, it is being executed inside of a run-time environment. The run-time is implemented in C++ in the `QtQml` module. It consists of an engine, responsible for the execution of QML, contexts, holding global properties accessible for each component, and components - QML elements that can be instantiated from QML.
 
-<<< @/docs/ch17-extensions/src/basicmain/main.cpp
+<<< @/docs/ch18-extensions/src/basicmain/main.cpp
 
 In the example, the `QGuiApplication` encapsulates all that is related to the application instance (e.g. application name, command line arguments and managing the event loop). The `QQmlApplicationEngine` manages the hierarchical order of contexts and components. It requires typical a QML file to be loaded as the starting point of your application. In this case, it is a `main.qml` containing a window and a text type.
 
@@ -10,7 +10,7 @@ In the example, the `QGuiApplication` encapsulates all that is related to the ap
 Loading a `main.qml` with a simple `Item` as the root type through the `QmlApplicationEngine` will not show anything on your display, as it requires a window to manage a surface for rendering. The engine is capable of loading QML code which does not contain any user interface (e.g plain objects). Because of this, it does not create a window for you by default. The `qml` runtime will internally first check if the main QML file contains a window as a root item and if not create one for you and set the root item as a child to the newly created window.
 :::
 
-<<< @/docs/ch17-extensions/src/basicmain/main.qml
+<<< @/docs/ch18-extensions/src/basicmain/main.qml
 
 In the QML file we declare our dependencies here it is `QtQuick` and `QtQuick.Window`. These declarations will trigger a lookup for these modules in the import paths and on success will load the required plugins by the engine. The newly loaded types will then be made available to the QML environmetn through a declaration in a a `qmldir` file representing the report.
 
@@ -81,7 +81,7 @@ The most flexible system is provided by the **QML extension plugins**. They allo
 
 Going back to our simple example `main.qml` file:
 
-<<< @/docs/ch17-extensions/src/basicmain/main.qml
+<<< @/docs/ch18-extensions/src/basicmain/main.qml
 
 When we import the  `QtQuick` and `QtQuick.Window`, what we do is that we tell the QML run-time to find the corresponding QML extension plugins and load them. This is done by the QML engine by looking for these modules in the QML import paths. The newly loaded types will then be made available to the QML environment.
 

@@ -24,7 +24,7 @@ Once the basic project is setup, run the project on your desktop and ensure that
 
 Now that we know that the installation works, replace the QML in ``helloworld.qml`` with the code shown below. We will walk through this example line by line below, but first, build and run it for your _Qt for MCU Desktop_ target. This should result in a window looking like the screenshot below the code.
 
-<<< @/docs/ch19-qtformcu/src/helloworld/helloworld.qml#global
+<<< @/docs/ch20-qtformcu/src/helloworld/helloworld.qml#global
 
 ![](./assets/hello-world-orange.png)
 

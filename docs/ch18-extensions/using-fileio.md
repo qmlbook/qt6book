@@ -6,7 +6,7 @@ Now we can use our newly created file to access some data. In this example, we w
 
 JSON data is just text that is formatted in such a way that it can be converted into a valid JS object/array and back to text. We use our `FileIO` to read the JSON formatted data and convert it into a JS object using the built in Javascript function `JSON.parse()`. The data is later used as a model for the table view. This is implemented in the read document and write document functions shown below. 
 
-<<< @/docs/ch17-extensions/src/CityUI/main.qml#readwrite
+<<< @/docs/ch18-extensions/src/CityUI/main.qml#readwrite
 
 The JSON data used in this example is in the `cities.json` file.
 It contains a list of city data entries, where each entry contains interesting data about the city such as what is shown below.
@@ -49,7 +49,7 @@ ApplicationWindow {
 
 To better use/reuse our commands we use the QML `Action` type. This will allow us later to use the same action also for a potential toolbar. The open and save and exit actions are quite standard. The open and save action do not contain any logic yet, this we will come later. The menubar is created with a file menu and these three action entries. Additional we prepare already a file dialog, which will allow us to pick our city document later. A dialog is not visible when declared, you need to use the `open()` method to show it.
 
-<<< @/docs/ch17-extensions/src/CityUI/main.qml#actions
+<<< @/docs/ch18-extensions/src/CityUI/main.qml#actions
 
 ## Formatting the Table
 

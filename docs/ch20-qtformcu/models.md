@@ -10,15 +10,15 @@ In this chapter we will create a list of cities in Europe, listing the name of t
 
 To create a model in Qt Quick Ultralite, the first thing we need to do is to define a ``struct`` with the data of each list item. For this struct, we also need to provide a ``==`` operator. This is what we do with the ``CityData`` struct shown below. Notice that we use ``std::string`` rather than ``QString`` in Qt Quick Ultralite. The assumption is that UTF-8 encoding is used.
 
-<<< @/docs/ch19-qtformcu/src/cppmodel/citymodel.h#data
+<<< @/docs/ch20-qtformcu/src/cppmodel/citymodel.h#data
 
 Once the data type has been prepared, we declare the ``CityModel`` struct, inheriting from ``Qul::ListModel``. This lets us define a model that can be accessed from QML. We must implement the ``count`` and ``data`` methods, which are similar, but not identical to, the corresponding methods from the ``QAbstractListModel`` class. We also use the `CMake macro ``qul_target_generate_interfaces`` to make the types available to QML.
 
-<<< @/docs/ch19-qtformcu/src/cppmodel/citymodel.h#model
+<<< @/docs/ch20-qtformcu/src/cppmodel/citymodel.h#model
 
 We also implement a constructor for the ``CityModel`` struct that populates the ``m_data`` vector with data.
 
-<<< @/docs/ch19-qtformcu/src/cppmodel/citymodel.cpp#global
+<<< @/docs/ch20-qtformcu/src/cppmodel/citymodel.cpp#global
 
 ## The QML
 
@@ -28,7 +28,7 @@ In the example, we show the model as a scrollable list, as shown below.
 
 The QML code is shown in its entirety below:
 
-<<< @/docs/ch19-qtformcu/src/cppmodel/cppmodel.qml#global
+<<< @/docs/ch20-qtformcu/src/cppmodel/cppmodel.qml#global
 
 The example starts by instantiating the ``cityModel``. As the model is not a singleton, it has to be instantiated from QML.
 

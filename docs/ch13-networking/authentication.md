@@ -42,15 +42,15 @@ The process is divided in two phases:
 
 Let's start with the first step:
 
-<<< @/docs/ch12-networking/src/oauth/main.qml#imports
+<<< @/docs/ch13-networking/src/oauth/main.qml#imports
 
 When the application starts, we will first import a custom library, `Spotify`, that defines a `SpotifyAPI` component (we'll come to that later). This component will then be instanciated:
 
-<<< @/docs/ch12-networking/src/oauth/main.qml#setup
+<<< @/docs/ch13-networking/src/oauth/main.qml#setup
 
 Once the application has been loaded, the `SpotifyAPI` component will request an authorization to Spotify:
 
-<<< @/docs/ch12-networking/src/oauth/main.qml#on-completed
+<<< @/docs/ch13-networking/src/oauth/main.qml#on-completed
 
 Until the authorization is provided, a busy indicator will be displayed in the center of the app.
 
@@ -62,7 +62,7 @@ Please note that for security reasons, the API credentials should never be put d
 
 The next step happens when the authorization has been granted. To display the list of artists, we will use the Model/View/Delegate pattern:
 
-<<< @/docs/ch12-networking/src/oauth/main.qml#model-view{3,10,13,22,42,51,57,61}
+<<< @/docs/ch13-networking/src/oauth/main.qml#model-view{3,10,13,22,42,51,57,61}
 
 The model `SpotifyModel` is defined in the `Spotify` library. To work properly, it needs a `SpotifyAPI`.
 
