@@ -346,7 +346,7 @@ Filtering is done based on the column that is to be filters, and a string as fil
 
 ```cpp
 proxy->setFilterKeyColumn(0);
-proxy->setFilterCaseSensitive(Qt::CaseInsensitive);
+proxy->setFilterCaseSensitivity(Qt::CaseInsensitive);
 proxy->setFilterFixedString(QString)
 ```
 
