@@ -18,7 +18,7 @@ class Person : public QObject
     Q_PROPERTY(Gender gender READ gender WRITE setGender NOTIFY genderChanged)
 
     // enables enum introspections
-    Q_ENUMS(Gender)
+    Q_ENUM(Gender)
     
     // makes the type creatable in QML
     QML_ELEMENT
