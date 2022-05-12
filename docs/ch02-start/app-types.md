@@ -12,7 +12,7 @@ This first example demonstrates how you could add 2 constant strings. Admittedly
 
 ```cpp
 // module or class includes
-include <QtCore>
+#include <QtCore>
 
 // text stream is text-codec aware
 QTextStream cout(stdout, QIODevice::WriteOnly);
@@ -26,7 +26,7 @@ int main(int argc, char** argv)
     QString s2("London");
     // string concatenation
     QString s = s1 + " " + s2 + "!";
-    cout << s << endl;
+    cout << s << Qt::endl;
 }
 ```
 
@@ -48,7 +48,7 @@ while(iter.hasNext()) {
         cout << " ";
     }
 }
-cout << "!" << endl;
+cout << "!" << Qt::endl;
 ```
 
 Here is a more advanced list function, that allows you to join a list of strings into one string. This is very handy when you need to proceed line based text input. The inverse (string to string-list) is also possible using the `QString::split()` function.
@@ -61,7 +61,7 @@ QStringList list;
 list <<  s1 << s2;
 // join strings
 QString s = list.join(" ") + "!";
-cout << s << endl;
+cout << s << Qt::endl;
 ```
 
 ### File IO
