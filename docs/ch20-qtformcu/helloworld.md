@@ -87,13 +87,13 @@ Finally, the text is rendered using a ``StaticText`` element, which is a version
 }
 ```
 
-In Qt Creator, you will notice that the you get warnings around the ``StaticText`` element. This is because Qt Creator assumes that you are working with Qt Quick. To make Qt Creator aware of Qt Quick Ultralite, you need to set the ``QML_IMPORT_PATH`` to the path of your Qt for MCUs compatibility module. You can do this in your CMakeLists.txt file, or in your project settings. The project settings for a standard Windows 10 install is shown below.
+In Qt Creator, you will notice that you get warnings around the ``StaticText`` element. This is because Qt Creator assumes that you are working with Qt Quick. To make Qt Creator aware of Qt Quick Ultralite, you need to set the ``QML_IMPORT_PATH`` to the path of your Qt for MCUs compatibility module. You can do this in your CMakeLists.txt file, or in your project settings. The project settings for a standard Windows 10 install is shown below.
 
 ![](./assets/qtcreator-qml-import-path.png)
 
 In addition to what has been stated above, there are more differences. For instance, the Qt Quick Ultralite ``Item`` class, and hence the ``Rectangle`` class, lacks a lot of properties that could be found in Qt Quick. For instance, the ``scale`` and ``rotation`` properties are missing. These are only available for specific elements such as ``Image``, and there it is made available through the ``Rotation`` and ``Scale`` types instead of properties.
 
-Going beyond the eaxmple above, there are fewer QML elements in general in Qt Quick Ultralite, but the supported types is continously growing. The intention is that the provided types cover the use-cases of the intended target devices. You can read more about this and general compatibility issues in the links provided below.
+Going beyond the example above, there are fewer QML elements in general in Qt Quick Ultralite, but the supported types is continuously growing. The intention is that the provided types cover the use-cases of the intended target devices. You can read more about this and general compatibility issues in the links provided below.
 
 ::: tip Links
 Further reading at qt.io:

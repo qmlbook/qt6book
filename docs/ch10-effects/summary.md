@@ -6,4 +6,4 @@ Particles provide a powerful and fun way to express graphical phenomena like smo
 
 Shaders can be used to take the QML scene to the next level. Using vertex shaders it is possible to change the shape of elements, while fragment shaders are used to alter the texture of an element, e.g. changing the colour, or transforming the surface to produce effects such as waves.
 
-In this chapter we've scratched the surface of these two topics. For the interested reader, there are many more possibities to explore.
+In this chapter we've scratched the surface of these two topics. For the interested reader, there are many more possibilities to explore.

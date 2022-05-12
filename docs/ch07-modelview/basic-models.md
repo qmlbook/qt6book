@@ -6,7 +6,7 @@ The most basic way to visualize data from a model is to use the `Repeater` eleme
 
 In its simplest form, the repeater can be used to instantiate a specified number of items. Each item will have access to an attached property, the variable `index`, that can be used to tell the items apart. 
 
-In the example below, a repeater is used to create 10 instances of an item. The number of items is controlled using the `model` property and their visual representation is controlled using the `delegate` property. For each item in the model, a delegate is instantiated (here, the delegate is a `BlueBox`, which is a customized `Rectangle` containing a `Text` element. As you can tell, the `text` property is set to the `index` value, thus the items are numbered from zero to nine.
+In the example below, a repeater is used to create 10 instances of an item. The number of items is controlled using the `model` property and their visual representation is controlled using the `delegate` property. For each item in the model, a delegate is instantiated (here, the delegate is a `BlueBox`, which is a customized `Rectangle` containing a `Text` element). As you can tell, the `text` property is set to the `index` value, thus the items are numbered from zero to nine.
 
 <<< @/docs/ch07-modelview/src/repeater/number.qml#global
 
@@ -32,6 +32,6 @@ The properties bound inside each element are attached to each instantiated item 
 
 ## Using a delegate as default property
 
-The `delegate` property of the `Repeater` is its default property. This means that it's also possible to write the code of example Example 01 as follows:
+The `delegate` property of the `Repeater` is its default property. This means that it's also possible to write the code of Example 01 as follows:
 
 <<< @/docs/ch07-modelview/src/repeater/delegate.qml#global

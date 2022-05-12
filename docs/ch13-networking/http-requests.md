@@ -95,4 +95,4 @@ Here is the full source code, where we create the request when the component is 
 
 When the document is fully loaded ( `Component.onCompleted` ) we request the latest feed content from Flickr. On arrival, we parse the JSON response and set the `items` array as the model for our view. The list view has a delegate, which displays the thumbnail icon and the title text in a row.
 
-The other option would be to have a placeholder `ListModel` and append each item onto the list model. To support larger models it is required to support pagination (e.g page 1 of 10) and lazy content retrieval.
+The other option would be to have a placeholder `ListModel` and append each item onto the list model. To support larger models it is required to support pagination (e.g. page 1 of 10) and lazy content retrieval.

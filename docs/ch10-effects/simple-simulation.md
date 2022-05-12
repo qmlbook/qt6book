@@ -25,7 +25,7 @@ The emitter emits logical particles. A logical particle is visualized using a `P
 * `lifeSpan`: milliseconds the particle should last for (defaults to 1000 msec)
 * `size`, `endSize`: size of the particles at the beginning and end of their life  (defaults to 16 px)
 
-Changing these properties can influence the result in a drastically way
+Changing these properties can influence the result in a drastical way
 
 <<< @/docs/ch10-effects/src/particles/simple2.qml#M1
 

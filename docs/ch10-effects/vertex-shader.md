@@ -36,7 +36,7 @@ pos.y = mix(qt_Vertex.y, ubuf.height, ubuf.minimize);
 pos.x = mix(qt_Vertex.x, ubuf.width, ubuf.minimize);
 ```
 
-The `mix(…)` function provides a linear interpolation between the first 2 parameters on the point (0.0-1.0) provided by the 3rd parameter. So in our case, we interpolate for y between the current y position and the hight based on the current minimized value, similar for x. Bear in mind the minimized value is animated by our sequential animation and travels from 0.0 to 1.0 (or vice versa).
+The `mix(…)` function provides a linear interpolation between the first 2 parameters on the point (0.0-1.0) provided by the 3rd parameter. So in our case, we interpolate for y between the current y position and the height based on the current minimized value, similar for x. Bear in mind the minimized value is animated by our sequential animation and travels from 0.0 to 1.0 (or vice versa).
 
 ![image](./assets/genieminimize.png)
 
@@ -64,7 +64,7 @@ We first add and animate `bend` from QML.
 
 <<< @/docs/ch10-effects/src/effects/genie/3/genie3.qml#M1
 
-We then add `bend` to the uniform buffer, `ubuf` and use it in the shader to achive a smoother bending.
+We then add `bend` to the uniform buffer, `ubuf` and use it in the shader to achieve a smoother bending.
 
 <<< @/docs/ch10-effects/src/effects/genie/3/genie3.vert#M1
 

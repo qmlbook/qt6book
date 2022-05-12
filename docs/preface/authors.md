@@ -19,7 +19,7 @@ with automated monitoring and simulation solutions.
 
 He was the co-founder of Pelagicore AG and was responsible there as Chief User Interface Architect for the early versions of the Daimler MBUX.
 
-He focus currently on an API driven workflow to design and create the interfaces between the user experience and the underlying services for different platforms. 
+He focuses currently on an API driven workflow to design and create the interfaces between the user experience and the underlying services for different platforms. 
 
 You can find out more about Jürgen at [LinkedIn](https://www.linkedin.com/in/jryannel/).
 
