@@ -58,7 +58,7 @@ Here some classes whose documentation the author thinks are a must read:
 * [QTextStream](http://doc.qt.io/qt-6/qtextstream.html), [QDataStream](http://doc.qt.io/qt-6/qdatastream.html) 
 * [QDebug](http://doc.qt.io/qt-6/qdebug.html), [QLoggingCategory](http://doc.qt.io/qt-6/qloggingcategory.html)
 * [QTcpServer](http://doc.qt.io/qt-6/qtcpserver.html), [QTcpSocket](http://doc.qt.io/qt-6/qtcpsocket.html), [QNetworkRequest](http://doc.qt.io/qt-6/qnetworkrequest.html), [QNetworkReply](http://doc.qt.io/qt-6/qnetworkreply.html)
-* [QAbstractItemModel](http://doc.qt.io/qt-6/qabstractitemmodel.html), [QRegExp](http://doc.qt.io/qt-6/qregexp.html)
+* [QAbstractItemModel](http://doc.qt.io/qt-6/qabstractitemmodel.html), [QRegularExpression](http://doc.qt.io/qt-6/qregularexpression.html)
 * [QList](http://doc.qt.io/qt-6/qlist.html), [QHash](http://doc.qt.io/qt-6/qhash.html)
 * [QThread](http://doc.qt.io/qt-6/qthread.html), [QProcess](http://doc.qt.io/qt-6/qprocess.html)
 * [QJsonDocument](http://doc.qt.io/qt-6/qjsondocument.html), [QJSValue](http://doc.qt.io/qt-6/qjsvalue.html)
