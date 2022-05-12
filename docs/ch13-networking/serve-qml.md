@@ -17,9 +17,9 @@ Now our file should be reachable via `http://localhost:8080/RemoteComponent.qml`
 curl http://localhost:8080/RemoteComponent.qml
 ```
 
-Or just point your browser to the location. Your browser does not understand QML and will not be able to render the document through. 
+Or just point your browser to the location. Unfortunately, your browser does not understand QML and will not be able to render the document. Fortunately, a QML web browser does exist. It's called [Canonic](https://www.canonic.com). Canonic is itself built with QML and runs in your web browser via WebAssembly. However, if you are using the WebAssembly version of Canonic, you won't be able to view files served from `localhost`; in a bit, you'll see how to make your QML files available to use with the WebAssembly version of Canonic. If you want, you can download the code to run Canonic as an app on your desktop, but there are security concerns related to doing so (see [here](https://docs.page/canonic/canonic) and [here](https://doc.qt.io/qt-6/qtqml-documents-networktransparency.html#implications-for-application-security) for more details).
 
-Hopefully, Qt 6 provides such a browser in the form of the `qml` binary. You can directly load a remote QML document by using the following command:
+Furthermore, Qt 6 provides the `qml` binary, which can be used like a web browser. You can directly load a remote QML document by using the following command:
 
 ```sh
 qml http://localhost:8080/RemoteComponent.qml
@@ -42,7 +42,9 @@ qml LocalHostExample.qml
 ```
 
 ::: tip
-If you do not want to run a local server you can also use the gist service from GitHub. The gist is a clipboard like online services like Pastebin and others. It is available under [https://gist.github.com](https://gist.github.com). I created for this example a small gist under the URL [https://gist.github.com/jryannel/7983492](https://gist.github.com/jryannel/7983492). This will reveal a green rectangle. As the gist URL will provide the website as HTML code we need to attach a `/raw` to the URL to retrieve the raw file and not the HTML code.
+If you do not want to run a local server you can also use the gist service from GitHub. The gist is a clipboard like online services like Pastebin and others. It is available under [https://gist.github.com](https://gist.github.com). For this example, I created a small gist under the URL [https://gist.github.com/jryannel/7983492](https://gist.github.com/jryannel/7983492). This will reveal a green rectangle. As the gist URL will provide the website as HTML code we need to attach a `/raw` to the URL to retrieve the raw file and not the HTML code.
+
+Since this content is hosted on a web server with a public web address, you can now use the web-based version of Canonic to view it. To do so, simply point your web browser to [https://app.canonic.com/#http://gist.github.com/jryannel/7983492](https://app.canonic.com/#http://gist.github.com/jryannel/7983492). Of course, you'll need to change the part after the `#` to view your own files.
 :::
 
 <<< @/docs/ch13-networking/src/serve-qml-basics/GistExample.qml#global
@@ -101,4 +103,6 @@ By defining a `qmldir` file, it's also possible to directly import a library of 
 When using components from a local file system, they are created immediately without a latency. When components are loaded via the network they are created asynchronously. This has the effect that the time of creation is unknown and an element may not yet be fully loaded when others are already completed. Take this into account when working with components loaded over the network.
 :::
 
-
+::: warning
+Be very cautious about loading QML components from the Internet. By doing so, you introduce the risk of accidentally downloading malicious components that will do evil things to your computer. These security risks have been [documented](https://doc.qt.io/qt-6/qtqml-documents-networktransparency.html#implications-for-application-security) by Qt. The Qt page was already linked to on this page, but the warning is worth repeating.
+:::
