@@ -6,7 +6,7 @@ This section is a run through of different application types one can write with 
 
 A console application does not provide a graphical user interface, and is usually called as part of a system service or from the command line. Qt 6 comes with a series of ready-made components which help you create cross-platform console applications very efficiently. For example, the networking file APIs, string handling, and an efficient command line parser. As Qt is a high-level API on top of C++, you get programming speed paired with execution speed. Don’t think of Qt as being *just* a UI toolkit - it has so much more to offer!
 
-## String Handling
+### String Handling
 
 This first example demonstrates how you could add 2 constant strings. Admittedly, this is not a very useful application, but it gives you an idea of what a native C++ application without an event loop may look like.
 
@@ -30,7 +30,7 @@ int main(int argc, char** argv)
 }
 ```
 
-## Container Classes
+### Container Classes
 
 This example adds a list, and list iteration, to the application. Qt comes with a large collection of container classes that are easy to use, and has the same API paradigms as other Qt classes.
 
@@ -64,7 +64,7 @@ QString s = list.join(" ") + "!";
 cout << s << endl;
 ```
 
-## File IO
+### File IO
 
 In the next snippet, we read a CSV file from the local directory and loop over the rows to extract the cells from each row. Doing this, we get the table data from the CSV file in ca. 20 lines of code. File reading gives us a byte stream, to be able to convert this into valid Unicode text, we need to use the text stream and pass in the file as a lower-level stream. For writing CSV files, you would just need to open the file in write mode, and pipe the lines into the text stream.
 
@@ -119,7 +119,7 @@ int main(int argc, char** argv)
 }
 ```
 
-## Custom Widgets
+### Custom Widgets
 
 When you work on user interfaces, you may need to create custom-made widgets. Typically, a widget is a window area filled with painting calls. Additionally, the widget has internal knowledge of how to handle keyboard and mouse input, as well as how to react to external triggers. To do this in Qt, we need to derive from QWidget and overwrite several functions for painting and event handling.
 
@@ -180,7 +180,7 @@ void CustomWidget::mouseMoveEvent(QMouseEvent *event)
 }
 ```
 
-## Desktop Widgets
+### Desktop Widgets
 
 The Qt developers have done all of this for you already and provide a set of desktop widgets, with a native look on different operating systems. Your job, then, is to arrange these different widgets in a widget container into larger panels. A widget in Qt can also be a container for other widgets. This is accomplished through the parent-child relationship. This means we need to make our ready-made widgets, such as buttons, checkboxes, radio buttons, lists, and grids, children of other widgets. One way to accomplish this is displayed below.
 
@@ -245,7 +245,7 @@ void CustomWidget::updateItem()
 }
 ```
 
-## Drawing Shapes
+### Drawing Shapes
 
 Some problems are better visualized. If the problem at hand looks remotely like geometrical objects, Qt graphics view is a good candidate. A graphics view arranges simple geometrical shapes in a scene. The user can interact with these shapes, or they are positioned using an algorithm. To populate a graphics view, you need a graphics view and a graphics scene. The scene is attached to the view and is populated with graphics items.
 
