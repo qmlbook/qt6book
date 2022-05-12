@@ -250,7 +250,7 @@ The next step is to add the background, which in our case are 2 rectangles with 
 
 ![](./assets/soccer_stage1.png)
 
-The upper blue rectangle takes 200 pixels of the height and the lower one is anchored to the top of the sky and to the bottom of the root element.
+The upper blue rectangle takes 200 pixels of the height and the lower one is anchored to the bottom of the sky and to the bottom of the root element.
 
 Let’s bring the soccer ball onto the green. The ball is an image, stored under “assets/soccer_ball.png”. For the beginning, we would like to position it in the lower left corner, near the edge.
 
