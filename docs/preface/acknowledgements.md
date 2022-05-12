@@ -8,9 +8,30 @@ This book would not have been possible to create without the kind sponsorship fr
 - magoldst-qt 
 - Maurice Kalinowski
 - Mitch Curtis
+- nezticle
 - Tino Pyssysalo
 - Ulf Hermann
 - Vladimir Minenko
+
+## Contributors
+
+This book was made possible by the great community contributors. I would like to thank them all (alphabetically):
+
+- alexshen
+- arky
+- DavidAdamsPerimeter
+- delvianv
+- guoci
+- nittwitt
+- oleksis
+- LorenDB
+- paulmasri
+- QtSCH
+- ruudschouten
+- task-jp
+- topecongiro
+- VideoCarp
+- wangchunlin5013
 
 ## History
 
