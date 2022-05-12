@@ -9,7 +9,7 @@ This chapter shall provide a high-level overview of Qt 6. It shows the different
 
 Qt 5 was released many years ago and introduced a new declarative way of writing stunning user interfaces. Since then a lot has changed in the world around us.
 
-Qt 6 will be a continuation of what has been done with Qt 5 and should not be disruptive to the majority of users. What makes Qt valuable to the users?
+Qt 6 will be a continuation of what has been done with Qt 5 and should not be disruptive to the majority of users. What makes Qt valuable to its users?
 
 * Its cross-platform nature
 * Its scalability
@@ -27,7 +27,7 @@ At the other end of the spectrum there is a demand for more complex and 2D/3D in
 
 The growth of connected devices and the higher demand for smooth user interfaces require a simpler workflow to create applications and devices. Integrating UX designers into the development workflow is one of the goals of the Qt 6 series.
 
-## Qt 6 does bring us:
+## Qt 6 brings us:
 
 * Next generation QML
 * Next generation graphics
