@@ -14,8 +14,13 @@
   "scripts": {
     "docs:dev": "vuepress dev docs --host 127.0.0.1",
     "docs:build": "vuepress build docs",
+    "docs:pdf": "vuepress export docs",
     "examples:build": "./scripts/build-examples.sh",
     "examples:lint": "./scripts/lint-examples.sh",
     "examples:package": "./scripts/package-examples.sh"
+  },
+  "dependencies": {
+    "@e8johan/vuepress-plugin-pdf-export": "^1.2.0",
+    "vuepress-plugin-export": "^0.2.0"
   }
 }
