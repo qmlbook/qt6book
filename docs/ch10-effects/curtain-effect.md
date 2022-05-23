@@ -6,19 +6,19 @@ In the last example for custom shader effects, I would like to bring you the cur
 
 At that time I really loved these effects and the curtain effect was my favorite out of them. I just love how the curtain opens and hide the background object.
 
-For this chapter, the effect has been adapted for Qt 6. It has also been slghtly simplifed to make it a better showcase.
+For this chapter, the effect has been adapted for Qt 6. It has also been slightly simplified to make it a better showcase.
 
 The curtain image is called `fabric.png`. The effect then uses a vertex shader to swing the curtain forth and back and a fragment shader to apply shadows to show how the fabric folds.
 
-The diagram below shows how the shader works. The waves are computed through a sin curve with 7 periods (7\*PI=21.99…). The other part is the swinging. The `topWidht` of the curtain is animated when the curtain is opened or closed. The `bottomWidth` follows the `topWidth` using a `SpringAnimation`. This creates the effect of the bottom part of the curtain swinging freely. The calulated `swing` component is the strengh of the swing based on the y-component of the vertexes.
+The diagram below shows how the shader works. The waves are computed through a sin curve with 7 periods (7\*PI=21.99…). The other part is the swinging. The `topWidht` of the curtain is animated when the curtain is opened or closed. The `bottomWidth` follows the `topWidth` using a `SpringAnimation`. This creates the effect of the bottom part of the curtain swinging freely. The calculated `swing` component is the strength of the swing based on the y-component of the vertexes.
 
 ![image](./assets/curtain_diagram.png)
 
-The curtain effect is implemed in the `CurtainEffect.qml` file where the fabric image act as the texture source. In the QML code, the `mesh` property is adjusted to make sure that the number of vertixes is increased to give a smoother result.
+The curtain effect is implemented in the `CurtainEffect.qml` file where the fabric image act as the texture source. In the QML code, the `mesh` property is adjusted to make sure that the number of vertices is increased to give a smoother result.
 
 <<< @/docs/ch10-effects/src/effects/curtain/CurtainEffect.qml#M1
 
-The vertex shader, shown below, reshapes the curtain based on the `topWidth` and `bottomWidth` properies, extrapolating the shift based on the y-coordinate. It also calculates the `shade` value, which is used in the fragment shader. The `shade` property is passed through an additional output in `location` 1.
+The vertex shader, shown below, reshapes the curtain based on the `topWidth` and `bottomWidth` properties, extrapolating the shift based on the y-coordinate. It also calculates the `shade` value, which is used in the fragment shader. The `shade` property is passed through an additional output in `location` 1.
 
 <<< @/docs/ch10-effects/src/effects/curtain/curtain.vert#M1
 

@@ -69,7 +69,7 @@ We could have achieved the same effect with only a `"go"` state and no explicit 
 
 <<< @/docs/ch05-fluid/src/animation/StatesExample.qml#states
 
-Using `PropertyChanges { target: light2; color: "black" }` is not really required in this examples as the initial color of `light2` is already black. In a state, it’s only necessary to describe how the properties shall change from their default state (and not from the previous state).
+Using `PropertyChanges { target: light2; color: "black" }` is not really required in these examples as the initial color of `light2` is already black. In a state, it’s only necessary to describe how the properties shall change from their default state (and not from the previous state).
 
 A state change is triggered using a mouse area which covers the whole traffic light and toggles between the go- and stop-state when clicked.
 

@@ -1,0 +1,11 @@
+# Summary
+
+The plugin created in this chapter is a very simple plugin. but it can be re-used and extended by other types for different applications. Using plugins creates a very flexible solution. For example, you can now start the UI by just using the `qml`. Open the folder where your `CityUI` project is a start the UI with `qml main.qml`. The extension is readily available to the QML engine from any project and can be imported anywhere.
+
+You are encouraged to write your applications in a way so that they work with a `qml`. This has a tremendous increase in turnaround time for the UI developer and it is also a good habit to keep a clear separation of the logic and the presentation of an application.
+
+The only drawback with using plugins is that the deployment gets more difficult. This becomes more apparent the simpler the application is (as the overhead of creating and deploying the plugin stays the same). You need now to deploy your plugin with your application. If this is a problem for you, you can still use the same `FileIO` class and register it directly in your `main.cpp` using `qmlRegisterType`. The QML code would stay the same.
+
+In larger projects, you do not use an application as such. You have a simple qml runtime similar to the `qml` command provided with Qt, and require all native functionality to come as plugins. And your projects are simple pure qml projects using these qml extension plugins. This provides greater flexibility and removes the compilation step for UI changes. After editing a QML file you just need to run the UI. This allows the user interface writers to stay flexible and agile to make all these little changes to push pixels.
+
+Plugins provide a nice and clean separation between C++ backend development and QML frontend development. When developing QML plugins always have the QML side in mind and do not hesitate to start with a QML only mockup first to validate your API before you implement it in C++. If an API is written in C++ people often hesitate to change it or not to speak of to rewrite it. Mocking an API in QML provides much more flexibility and less initial investment. When using plugins the switch between a mocked API and the real API is just changing the import path for the qml runtime.

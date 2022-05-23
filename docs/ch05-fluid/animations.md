@@ -17,7 +17,7 @@ You will catch yourself looking at some animations and just admiring their beaut
 
 <<< @/docs/ch05-fluid/src/animation/AnimationExample.qml#global
 
-The example above shows a simple animation applied on the `x` and `rotation` properties. Each animation has a duration of 4000 milliseconds (msec) and loops forever. The animation on `x` moves the x-coordinate from the object gradually over to 240px. The animation on rotation runs from the current angle to 360 degrees. Both animations run in parallel and are started as soon as the UI is loaded.
+The example above shows a simple animation applied on the `x` and `rotation` properties. Each animation has a duration of 4000 milliseconds (msec). The animation on `x` moves the x-coordinate from the object gradually over to 240px. The animation on rotation runs from the current angle to 360 degrees. Both animations run in parallel and are started when the `MouseArea` is clicked.
 
 You can play around with the animation by changing the `to` and `duration` properties, or you could add another animation (for example, on the `opacity` or even the `scale`). **Combining these it could look like the object is disappearing into deep space. Try it out!**
 
@@ -250,7 +250,7 @@ The next step is to add the background, which in our case are 2 rectangles with 
 
 ![](./assets/soccer_stage1.png)
 
-The upper blue rectangle takes 200 pixels of the height and the lower one is anchored to the top of the sky and to the bottom of the root element.
+The upper blue rectangle takes 200 pixels of the height and the lower one is anchored to the bottom of the sky and to the bottom of the root element.
 
 Let’s bring the soccer ball onto the green. The ball is an image, stored under “assets/soccer_ball.png”. For the beginning, we would like to position it in the lower left corner, near the edge.
 

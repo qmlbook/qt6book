@@ -6,13 +6,13 @@ This section is a run through of different application types one can write with 
 
 A console application does not provide a graphical user interface, and is usually called as part of a system service or from the command line. Qt 6 comes with a series of ready-made components which help you create cross-platform console applications very efficiently. For example, the networking file APIs, string handling, and an efficient command line parser. As Qt is a high-level API on top of C++, you get programming speed paired with execution speed. Don’t think of Qt as being *just* a UI toolkit - it has so much more to offer!
 
-## String Handling
+### String Handling
 
 This first example demonstrates how you could add 2 constant strings. Admittedly, this is not a very useful application, but it gives you an idea of what a native C++ application without an event loop may look like.
 
 ```cpp
 // module or class includes
-include <QtCore>
+#include <QtCore>
 
 // text stream is text-codec aware
 QTextStream cout(stdout, QIODevice::WriteOnly);
@@ -26,11 +26,11 @@ int main(int argc, char** argv)
     QString s2("London");
     // string concatenation
     QString s = s1 + " " + s2 + "!";
-    cout << s << endl;
+    cout << s << Qt::endl;
 }
 ```
 
-## Container Classes
+### Container Classes
 
 This example adds a list, and list iteration, to the application. Qt comes with a large collection of container classes that are easy to use, and has the same API paradigms as other Qt classes.
 
@@ -48,7 +48,7 @@ while(iter.hasNext()) {
         cout << " ";
     }
 }
-cout << "!" << endl;
+cout << "!" << Qt::endl;
 ```
 
 Here is a more advanced list function, that allows you to join a list of strings into one string. This is very handy when you need to proceed line based text input. The inverse (string to string-list) is also possible using the `QString::split()` function.
@@ -61,10 +61,10 @@ QStringList list;
 list <<  s1 << s2;
 // join strings
 QString s = list.join(" ") + "!";
-cout << s << endl;
+cout << s << Qt::endl;
 ```
 
-## File IO
+### File IO
 
 In the next snippet, we read a CSV file from the local directory and loop over the rows to extract the cells from each row. Doing this, we get the table data from the CSV file in ca. 20 lines of code. File reading gives us a byte stream, to be able to convert this into valid Unicode text, we need to use the text stream and pass in the file as a lower-level stream. For writing CSV files, you would just need to open the file in write mode, and pipe the lines into the text stream.
 
@@ -119,7 +119,7 @@ int main(int argc, char** argv)
 }
 ```
 
-## Custom Widgets
+### Custom Widgets
 
 When you work on user interfaces, you may need to create custom-made widgets. Typically, a widget is a window area filled with painting calls. Additionally, the widget has internal knowledge of how to handle keyboard and mouse input, as well as how to react to external triggers. To do this in Qt, we need to derive from QWidget and overwrite several functions for painting and event handling.
 
@@ -180,7 +180,7 @@ void CustomWidget::mouseMoveEvent(QMouseEvent *event)
 }
 ```
 
-## Desktop Widgets
+### Desktop Widgets
 
 The Qt developers have done all of this for you already and provide a set of desktop widgets, with a native look on different operating systems. Your job, then, is to arrange these different widgets in a widget container into larger panels. A widget in Qt can also be a container for other widgets. This is accomplished through the parent-child relationship. This means we need to make our ready-made widgets, such as buttons, checkboxes, radio buttons, lists, and grids, children of other widgets. One way to accomplish this is displayed below.
 
@@ -245,7 +245,7 @@ void CustomWidget::updateItem()
 }
 ```
 
-## Drawing Shapes
+### Drawing Shapes
 
 Some problems are better visualized. If the problem at hand looks remotely like geometrical objects, Qt graphics view is a good candidate. A graphics view arranges simple geometrical shapes in a scene. The user can interact with these shapes, or they are positioned using an algorithm. To populate a graphics view, you need a graphics view and a graphics scene. The scene is attached to the view and is populated with graphics items.
 
@@ -304,9 +304,9 @@ Another popular way to store and retrieve data is SQL. Qt comes with SQLite embe
 
 ```sql
 CREATE TABLE city (name TEXT, country TEXT);
-INSERT INTO city value ("Munich", "Germany");
-INSERT INTO city value ("Paris", "France");
-INSERT INTO city value ("London", "United Kingdom");
+INSERT INTO city VALUES ("Munich", "Germany");
+INSERT INTO city VALUES ("Paris", "France");
+INSERT INTO city VALUES ("London", "United Kingdom");
 ```
 
 To use SQL, we need to add the SQL module to our .pro file
@@ -346,7 +346,7 @@ Filtering is done based on the column that is to be filters, and a string as fil
 
 ```cpp
 proxy->setFilterKeyColumn(0);
-proxy->setFilterCaseSensitive(Qt::CaseInsensitive);
+proxy->setFilterCaseSensitivity(Qt::CaseInsensitive);
 proxy->setFilterFixedString(QString)
 ```
 

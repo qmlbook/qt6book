@@ -1,6 +1,6 @@
 # QML Syntax
 
-QML is a declarative language used to describe how objects relate to each other. QtQuick is a framework built on QML for buidling the user interface of your application. It breaks down the user interface into smaller elements, which can be combined into components. QtQuick describes the look and the behavior of these user interface elements. This user interface description can be enriched with JavaScript code to provide simple but also more complex logic. In this perspective, it follows the HTML-JavaScript pattern but QML and QtQuick are designed from the ground up to describe user interfaces, not text-documents.
+QML is a declarative language used to describe how objects relate to each other. QtQuick is a framework built on QML for building the user interface of your application. It breaks down the user interface into smaller elements, which can be combined into components. QtQuick describes the look and the behavior of these user interface elements. This user interface description can be enriched with JavaScript code to provide simple but also more complex logic. In this perspective, it follows the HTML-JavaScript pattern but QML and QtQuick are designed from the ground up to describe user interfaces, not text-documents.
 
 In its simplest form, QtQuick lets you create a hierarchy of elements. Child elements inherit the coordinate system from the parent. An `x,y` coordinate is always relative to the parent.
 
@@ -15,7 +15,7 @@ Let’s start with a simple example of a QML file to explain the different synta
 <<< @/docs/ch04-qmlstart/src/concepts/RectangleExample.qml#global
 
 * The `import` statement imports a module. An optional version in the form of `<major>.<minor>` can be added.
-* Comments can be made using `//` for single line comments or `/\* \*/` for multi-line comments. Just like in C/C++ and JavaScript
+* Comments can be made using `//` for single line comments or `/* */` for multi-line comments. Just like in C/C++ and JavaScript
 * Every QML file needs to have exactly one root element, like HTML
 * An element is declared by its type followed by `{ }`
 * Elements can have properties, they are in the form `name: value`
@@ -124,7 +124,7 @@ QML and JavaScript (also known as ECMAScript) are best friends. In the *JavaScri
 * **(2)** When the text element receives the space key (because the user pressed the space bar on the keyboard) we call a JavaScript function `increment()`.
 
 
-* **(3)** Definition of a JavaScript function in the form of `function <name>(<parameters>) { ... }`, which increments our counter `spacePressed`. Every time `spacePressed` is incremented, bound properties will also be updated.
+* **(3)** Definition of a JavaScript function in the form of `function <name>(<parameters>) { ... }`, which increments our counter `spacePresses`. Every time `spacePresses` is incremented, bound properties will also be updated.
 
 ## Binding
 
