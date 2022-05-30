@@ -25,10 +25,25 @@ plugin fileio
 
 The module is the URI that the user imports, and after it you name which plugin to load for the said URI. The plugin line must be identical with your plugin file name (under mac this would be *libfileio_debug.dylib* on the file system and *fileio* in the *qmldir*, for a Linux system, the same line would look for *libfileio.so*). These files are created by Qt Creator based on the given information. 
 
-The easier way to create a correct `qmldir` file is in the `CMakeLists.txt` for your project, in the `qt_add_qml_module` macro. Here, the `URI` parameter is used to specify the URI of the plugin, e.g. `org.example.io`. This way, the `qmldir` file is generated when the project is built.
+The easier way to create a correct `qmldir` file is in the `CMakeLists.txt` for your project, in the `qt_add_qml_module` macro. Here, the `URI` parameter is used to specify the URI of the plugin, e.g. `org.example.io`. This way, the `qmldir` file is generated when the project is built. For the example here, the `qt_add_qml_module` macro looks as follows:
 
-::: TODO
-How to install the module? 
-:::
+```
+qt_add_qml_module(fileio PLUGIN_TARGET
+    VERSION 1.0.0
+    URI "org.example.io"
+    OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/imports/org/example/io/"
+    SOURCES
+        fileio.cpp
+        fileio.h
+        fileio_plugin.cpp
+)
+```
 
-When importing a module called “org.example.io”, the QML engine will look in one of the import paths and tries to locate the “org/example/io” path with a qmldir. The qmldir then will tell the engine which library to load as a QML extension plugin using which module URI. Two modules with the same URI will override each other.
+When importing a module called `org.example.io`, the QML engine will look in one of the import paths , e.g. the `QML2_IMPORT_PATH` environment variable, and try to locate the `org/example/io` path with a `qmldir` file. The `qmldir` file will tell the engine which library to load as a QML extension plugin using which module URI. Two modules with the same URI will override each other. For the example above, the module can be imported with the following command:
+
+```
+QML2_IMPORT_PATH=/home/.../ch18-extensions/src/fileio/imports \
+./.../ch18-extensions/src/CityUI/CityUI
+```
+
+Notice that the `QML2_IMPORT_PATH` points to the `imports` directory, and that the `org/example/io` sub-path is found via the `org.example.io` part of the import statement.
