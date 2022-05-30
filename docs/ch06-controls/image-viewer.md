@@ -15,7 +15,7 @@ We use the Qt Creator project template for an empty Qt Quick application as a st
 ```qml
 import QtQuick
 import QtQuick.Controls
-import Qt.labs.platform
+import Qt.labs.platform as Platform
 
 ApplicationWindow {
     visible: true
@@ -87,7 +87,7 @@ ApplicationWindow {
 }
 ```
 
-The `fileOpenDialog` element is a `FileDialog` control from the `Qt.labs.platform` module. The file dialog can be used to open or save files.
+The `fileOpenDialog` element is a `FileDialog` control from the `Qt.labs.platform` module. The file dialog can be used to open or save files. We import the `Qt.labs.platform` as `Platform`, to avoid a naming collision with the `QtQuick.Controls` import, hence we refer to it as `Platform.FileDialog`.
 
 In the code we start by assigning a `title`. Then we set the starting folder using the `StandardsPaths` class. The `StandardsPaths` class holds links to common folders such as the user’s home, documents, and so on. After that we set a name filter that controls which files the user can see and pick using the dialog.
 
@@ -320,7 +320,7 @@ The first step to do this change is to isolate the shared code. We do this by cr
 ```qml
 import QtQuick
 import QtQuick.Controls
-import Qt.labs.platform
+import Qt.labs.platform as Platform
 
 ApplicationWindow {
     function openFileDialog() { fileOpenDialog.open(); }
@@ -340,7 +340,7 @@ ApplicationWindow {
         asynchronous: true
     }
 
-    FileDialog {
+    Platform.FileDialog {
         id: fileOpenDialog
 
         // ...
@@ -474,13 +474,13 @@ In the actual file dialog element, we have to change how the `folder` property i
 ```qml
 import QtQuick
 import QtQuick.Controls
-import Qt.labs.platform
+import Qt.labs.platform as Platform
 
 ApplicationWindow {
     
     // ...
     
-    FileDialog {
+    Platform.FileDialog {
         id: fileOpenDialog
         title: "Select an image file"
         folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
