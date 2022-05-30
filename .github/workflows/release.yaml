@@ -1,0 +1,14 @@
+name: build-release
+on:
+  push:
+    branches:
+      - 'release'
+
+jobs:
+  build-qt-io:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger qt.io build
+        env:
+            QT_IO_TRIGGER: ${{ secrets.QT_IO_TRIGGER }}
+        run: curl $QT_IO_TRIGGER
