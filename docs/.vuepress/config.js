@@ -7,7 +7,9 @@ module.exports = {
         puppeteerLaunchOptions: { args: [ '--no-sandbox', '--disable-setuid-sandbox' ] },
         outputFileName: 'qt6book.pdf',
         sorter: (a, b) => { return pageSorter(a.relativePath, b.relativePath); },
-        filter: (p) => { return pageFilter(p.relativePath); }
+        filter: (p) => { return pageFilter(p.relativePath); },
+        tocLevel: (p) => { return tocLevel(p.relativePath); },
+        frontPage: 'assets/frontpage.pdf',
     }],
   ],  
   themeConfig: {
@@ -29,7 +31,7 @@ module.exports = {
 function _pageOrder() {
     pageOrder = []
 
-    chapterOrder = sidebarOrder();
+    const chapterOrder = sidebarOrder();
     chapterOrder.forEach(chapter => {
         pages = chapter.children
         pages.forEach(page => pageOrder.push(page));
@@ -38,27 +40,37 @@ function _pageOrder() {
     return pageOrder;
 }
 
+function tocLevel(p) {
+    const tocTopLevel = sidebarOrder().map(s => { return s.path; });
+    if (p.endsWith('.md'))
+        p = '/' + p.slice(0, -3)
+    if (tocTopLevel.indexOf(p) != -1)
+        return 0;
+    else
+        return 1;
+}
+
 function pageFilter(p) {
-    pageOrder = _pageOrder()
+    const pageOrder = _pageOrder()
 
     if (p.endsWith('.md'))
         p = '/' + p.slice(0, -3);
 
-    indexP = pageOrder.indexOf(p);
+    const indexP = pageOrder.indexOf(p);
 
     return (indexP != -1);
 }
 
 function pageSorter(a, b) {
-    pageOrder = _pageOrder();
+    const pageOrder = _pageOrder();
 
     if (a.endsWith('.md'))
         a = '/' + a.slice(0, -3);
     if (b.endsWith('.md'))
         b = '/' + b.slice(0, -3);
 
-    indexA = pageOrder.indexOf(a);
-    indexB = pageOrder.indexOf(b);
+    const indexA = pageOrder.indexOf(a);
+    const indexB = pageOrder.indexOf(b);
 
     if (indexA == -1)
         console.log("Page not found in index " + a);

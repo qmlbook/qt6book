@@ -908,10 +908,10 @@
   resolved "https://registry.npmjs.org/@braintree/sanitize-url/-/sanitize-url-3.1.0.tgz"
   integrity sha512-GcIY79elgB+azP74j8vqkiXz8xLFfIzbQJdlwOPisgbKT00tviJQuEghOXSMVxJ00HoYJbGswr4kcllUc4xCcg==
 
-"@e8johan/vuepress-plugin-pdf-export@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@e8johan/vuepress-plugin-pdf-export/-/vuepress-plugin-pdf-export-1.2.0.tgz#4dacb74072bdf0d5e866126d4b2748d8aa2ef09b"
-  integrity sha512-S5oAGiOOYXUjO8NroVNIsyMrFpd9YWM5DK4pNzshOCccIJAW1TuV2IFlIJgLDn7fgw3j5KcP/tO3oLg4ZcBl4Q==
+"@e8johan/vuepress-plugin-pdf-export@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@e8johan/vuepress-plugin-pdf-export/-/vuepress-plugin-pdf-export-1.4.0.tgz#710620df9039fca71f5180a3909debad48dc5c6e"
+  integrity sha512-q+QeSKwtVznNTITDQhbglyVUDFwpbt+01Rf7I9TpKB1HP/K0z5HuKq5sEiNXkl+Nt2Yp6PZ/UFYvrJkQN/coTw==
   dependencies:
     pdfjs "^2.3.5"
     puppeteer "^2.1.1"

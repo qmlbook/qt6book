@@ -20,7 +20,7 @@
     "examples:package": "./scripts/package-examples.sh"
   },
   "dependencies": {
-    "@e8johan/vuepress-plugin-pdf-export": "^1.2.0",
+    "@e8johan/vuepress-plugin-pdf-export": "^1.4.0",
     "vuepress-plugin-export": "^0.2.0"
   }
 }
