@@ -1,0 +1,35 @@
+@media print {
+
+/* The page */
+@page {
+    size: portrait;
+
+    margin-left: 2.54cm;
+    margin-right: 2.54cm;
+    margin-top: 2.54cm;
+    margin-bottom: 3.76cm;
+}
+
+/* Tips, caveats, etc */
+div.custom-block {
+    /* Avoid page-breaks */
+    page-break-inside: avoid;
+}
+
+/* All images */
+img {
+    /* Center */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    /* Avoid page-breaks */
+    page-break-inside: avoid;
+}
+
+/* Print links */
+p a::after {
+    content: " (" attr(href) ") ";
+}
+
+}

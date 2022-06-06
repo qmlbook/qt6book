@@ -2,7 +2,15 @@ module.exports = {
   title: 'The Qt 6 Book',
   description: "A book about QML",  
   plugins: [
-    'vuepress-plugin-mermaidjs'
+    'vuepress-plugin-mermaidjs',
+    [ '@e8johan/vuepress-plugin-pdf-export', {
+        puppeteerLaunchOptions: { args: [ '--no-sandbox', '--disable-setuid-sandbox' ] },
+        outputFileName: 'qt6book.pdf',
+        sorter: (a, b) => { return pageSorter(a.relativePath, b.relativePath); },
+        filter: (p) => { return pageFilter(p.relativePath); },
+        tocLevel: (p) => { return tocLevel(p.relativePath); },
+        frontPage: 'assets/frontpage.pdf',
+    }],
   ],  
   themeConfig: {
     displayAllHeaders: false,
@@ -16,7 +24,69 @@ module.exports = {
     lastUpdated: 'Last Updated',
     nav: [
     ],
-    sidebar: [
+    sidebar: sidebarOrder(),
+  },
+}
+
+function _pageOrder() {
+    pageOrder = []
+
+    const chapterOrder = sidebarOrder();
+    chapterOrder.forEach(chapter => {
+        pages = chapter.children
+        pages.forEach(page => pageOrder.push(page));
+    });
+
+    return pageOrder;
+}
+
+function tocLevel(p) {
+    const tocTopLevel = sidebarOrder().map(s => { return s.path; });
+    if (p.endsWith('.md'))
+        p = '/' + p.slice(0, -3)
+    if (tocTopLevel.indexOf(p) != -1)
+        return 0;
+    else
+        return 1;
+}
+
+function pageFilter(p) {
+    const pageOrder = _pageOrder()
+
+    if (p.endsWith('.md'))
+        p = '/' + p.slice(0, -3);
+
+    const indexP = pageOrder.indexOf(p);
+
+    return (indexP != -1);
+}
+
+function pageSorter(a, b) {
+    const pageOrder = _pageOrder();
+
+    if (a.endsWith('.md'))
+        a = '/' + a.slice(0, -3);
+    if (b.endsWith('.md'))
+        b = '/' + b.slice(0, -3);
+
+    const indexA = pageOrder.indexOf(a);
+    const indexB = pageOrder.indexOf(b);
+
+    if (indexA == -1)
+        console.log("Page not found in index " + a);
+    if (indexB == -1)
+        console.log("Page not found in index " + b);
+
+    if (indexA < indexB)
+        return -1;
+    if (indexA > indexB)
+        return 1;
+
+    return 0;
+}
+
+function sidebarOrder() {
+    return [
       prefaceSidebar(),
       ch01Sidebar(),
       ch02Sidebar(),
@@ -38,8 +108,7 @@ module.exports = {
       ch18Sidebar(),
       ch19Sidebar(),
       ch20Sidebar(),
-    ],
-  },  
+    ];
 }
 
 function ch20Sidebar() {
