@@ -46,7 +46,7 @@ Window {
         id: background
     }
 
-    // our dyanmic model
+    // our dynamic model
     DynamicEntryModel {
         id: dynamic
         onCountChanged: {
