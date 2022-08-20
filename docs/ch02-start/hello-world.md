@@ -18,7 +18,6 @@ Another file, `HelloWorld.qml`, is our application code. Open it and try to unde
 // HelloWorld.qml
 
 import QtQuick
-import QtQuick.Window
 
 Window {
     width: 640
