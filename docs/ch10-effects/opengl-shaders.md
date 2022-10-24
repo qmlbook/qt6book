@@ -8,4 +8,4 @@ In the pipeline, the vertex shader receives vertex data, i.e. the location of th
 
 To summarize: the vertex shader is called for each corner point of your polygon (vertex = point in 3D) and is responsible for any 3D manipulation of these points. The fragment (fragment = pixel) shader is called for each pixel and determines the color of that pixel.
 
-As Qt is independent of the underlying rendering API, Qt relies on a standard language for writing shaders. The Qt Shader Tools rely on a _Vulcan-compatible GLSL_. We will look more at this in the examples in this chapter.
+As Qt is independent of the underlying rendering API, Qt relies on a standard language for writing shaders. The Qt Shader Tools rely on a _Vulkan-compatible GLSL_. We will look more at this in the examples in this chapter.
