@@ -1,10 +1,10 @@
 # Using FileIO
 
-Now we can use our newly created file to access some data. In this example, we will some city data in a JSON format and display it in a table. We build this as two projects: one for the extension plugin (called `fileio`) which provides us a way to read and write text from a file, and the other, which displays the data in a table, (`CityUI`). The `CityUI` uses the `fileio`extension for reading and writing files. 
+Now we can use our newly created file to access some data. In this example, we will read some city data in a JSON format and display it in a table. We build this as two projects; One for the extension plugin (called `fileio`) which provides us a way to read and write text from a file, and the other, which displays the data in a table (`CityUI`). The `CityUI` uses the `fileio`extension for reading and writing files. 
 
 ![image](./images/cityui_mock.png)
 
-JSON data is just text that is formatted in such a way that it can be converted into a valid JS object/array and back to text. We use our `FileIO` to read the JSON formatted data and convert it into a JS object using the built-in Javascript function `JSON.parse()`. The data is later used as a model for the table view. This is implemented in the read document and write document functions shown below. 
+JSON data is just text that is formatted in such a way that it can be converted into a valid JS object/array and back to text. We use our `FileIO` to read the JSON formatted data and convert it into a JS object using the built-in Javascript function `JSON.parse()`. The data is later used as a model for the table view. This is implemented in the read document and write document functions in the `main.qml` file shown below. 
 
 <<< @/docs/ch18-extensions/src/CityUI/main.qml#readwrite
 
