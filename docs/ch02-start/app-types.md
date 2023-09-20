@@ -293,7 +293,7 @@ Up to now, we have mostly covered basic data types and how to use widgets and gr
 ```cpp
 m_view = new QListView(this);
 m_model = new QStringListModel(this);
-view->setModel(m_model);
+m_view->setModel(m_model);
 
 QList<QString> cities;
 cities << "Munich" << "Paris" << "London";
