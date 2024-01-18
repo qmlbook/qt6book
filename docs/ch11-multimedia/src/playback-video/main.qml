@@ -39,7 +39,7 @@ Window {
 
     MediaPlayer {
         id: player
-        source: "https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4"
+        source: "https://file-examples.com/wp-content/storage/2017/04/file_example_MP4_1920_18MG.mp4"
         audioOutput: AudioOutput {}
         videoOutput: videoOutput
     }
