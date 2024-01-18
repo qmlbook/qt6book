@@ -39,7 +39,7 @@ Window {
 
     MediaPlayer {
         id: player
-        source: "https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_2MG.mp3"
+        source: "https://file-examples.com/wp-content/storage/2017/11/file_example_MP3_2MG.mp3"
         audioOutput: AudioOutput {}
     }
 
