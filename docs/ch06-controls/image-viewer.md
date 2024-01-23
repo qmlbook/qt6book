@@ -98,15 +98,15 @@ ApplicationWindow {
     
     // ...
     
-    FileDialog {
+    Platform.FileDialog {
         id: fileOpenDialog
         title: "Select an image file"
-        folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
+        folder: Platform.StandardPaths.writableLocation(Platform.StandardPaths.DocumentsLocation)
         nameFilters: [
             "Image files (*.png *.jpeg *.jpg)",
         ]
         onAccepted: {
-            image.source = fileOpenDialog.fileUrl
+            image.source = fileOpenDialog.file
         }
     }
 
@@ -163,6 +163,8 @@ ApplicationWindow {
     
     Dialog {
         id: aboutDialog
+        modal: true
+        anchors.centerIn: parent
         title: qsTr("About")
         Label {
             anchors.fill: parent
@@ -170,7 +172,7 @@ ApplicationWindow {
             horizontalAlignment: Text.AlignHCenter
         }
 
-        standardButtons: StandardButton.Ok
+        standardButtons: Platform.StandardButton.Ok
     }
 
     // ...
