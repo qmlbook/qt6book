@@ -98,7 +98,7 @@ QVariant DataEntryModel::data(const QModelIndex &index, int role) const
 
     // A model can return data for different roles.
     // The default role is the display role.
-    // it can be accesses in QML with "model.display"
+    // it can be accessed in QML with "model.display"
     switch(role) {
         case Qt::DisplayRole:
             // Return the color name for the particular row
