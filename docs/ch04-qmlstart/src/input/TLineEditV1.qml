@@ -31,7 +31,7 @@
 import QtQuick
 
 Rectangle {
-    width: 96; height: input.height + 8
+    width: 96; height: input.implicitHeight + 8
     color: "lightsteelblue"
     border.color: "gray"
 
