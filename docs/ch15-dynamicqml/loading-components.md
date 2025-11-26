@@ -1,4 +1,4 @@
-## Loading Components Dynamically
+# Loading Components Dynamically
 
 The easiest way to dynamically load different parts of QML is to use the `Loader` element. It serves as a placeholder to the item that is being loaded. The item to load is controlled through either the `source` property or the `sourceComponent` property. The former loads the item from a given URL, while the latter instantiates a `Component`.
 
@@ -34,7 +34,7 @@ In order to make the loaded item come alive, it is `speed` property must be boun
 
 The `onLoaded` signal lets the loading QML act when the item has been loaded. In a similar fashion, the QML being loaded can rely on the `Component.onCompleted` signal. This signal is actually available for all components, regardless of how they are loaded. For instance, the root component of an entire application can use it to kick-start itself when the entire user interface has been loaded.
 
-### Connecting Indirectly
+## Connecting Indirectly
 
 When creating QML elements dynamically, you cannot connect to signals using the `onSignalName` approach used for static setup. Instead, the `Connections` element must be used. It connects to any number of signals of a `target` element.
 
@@ -82,7 +82,7 @@ When using a `Connections` element to monitor the signals of multiple types of `
 It is usually a bad idea to suppress error messages, and if you do, make sure to document why in a comment.
 :::
 
-### Binding Indirectly
+## Binding Indirectly
 
 Just as it is not possible to connect to signals of dynamically created elements directly, nor it is possible to bind properties of a dynamically created element without working with a bridge element. To bind a property of any element, including dynamically created elements, the `Binding` element is used.
 

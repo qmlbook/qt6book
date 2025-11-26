@@ -1,4 +1,4 @@
-## Simple Transformations
+# Simple Transformations
 
 A transformation manipulates the geometry of an object. QML Items can, in general, be translated, rotated and scaled. There is a simple form of these operations and a more advanced way.
 

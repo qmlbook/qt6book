@@ -1,4 +1,4 @@
-## Tracking Dynamic Objects
+# Tracking Dynamic Objects
 
 Working with dynamic objects, it is often necessary to track the created objects. Another common feature is to be able to store and restore the state of the dynamic objects. Both these tasks are easily handled using an `XmlListModel` that is dynamically populated.
 

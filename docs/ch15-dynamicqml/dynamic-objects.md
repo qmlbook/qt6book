@@ -1,4 +1,4 @@
-## Creating and Destroying Objects
+# Creating and Destroying Objects
 
 The `Loader` element makes it possible to populate part of a user interface dynamically. However, the overall structure of the interface is still static. Through JavaScript, it is possible to take one more step and to instantiate QML elements completely dynamically.
 
@@ -6,7 +6,7 @@ Before we dive into the details of creating elements dynamically, we need to und
 
 In addition to creating elements from QML code stored in files or on servers, it is also possible to create QML objects directly from text strings containing QML code. The dynamically created items are then treated in a similar fashion once instantiated.
 
-### Dynamically Loading and Instantiating Items
+## Dynamically Loading and Instantiating Items
 
 When loading a piece of QML, it is first interpreted as a component. This includes loading dependencies and validating the code. The location of the QML being loaded can be either a local file, a Qt resource, or even a distance network location specified by a URL. This means that the loading time can be everything from instant, for instance, a Qt resource located in RAM without any non-loaded dependencies, to very long, meaning a piece of code located on a slow server with multiple dependencies that need to be loaded.
 
@@ -36,7 +36,7 @@ var image = component.createObject(root, {"x": 100, "y": 100});
 A dynamically created component instance is not different to an in-line `Component` element. The in-line `Component` element also provides functions to instantiate objects dynamically.
 :::
 
-#### Incubating Components
+### Incubating Components
 
 When components are created using `createObject` the creation of the object component is blocking. This means that the instantiation of a complex element may block the main thread, causing a visible glitch. Alternatively, complex components may have to be broken down and loaded in stages using `Loader` elements.
 
@@ -61,7 +61,7 @@ function finishCreate() {
 }
 ```
 
-### Dynamically Instantiating Items from Text
+## Dynamically Instantiating Items from Text
 
 Sometimes, it is convenient to be able to instantiate an object from a text string of QML. If nothing else, it is quicker than putting the code in a separate source file. For this, the `Qt.createQmlObject` function is used.
 
@@ -77,7 +77,7 @@ The objects created using the `Qt.createQmlObject` function resembles any other 
 <!-- @include: src/create-object/main.qml#M1 -->
 ```
 
-### Managing Dynamically Created Elements
+## Managing Dynamically Created Elements
 
 Dynamically created objects can be treated as any other object in a QML scene. However, there are some pitfalls that we need to be aware of. The most important is the concept of the creation contexts.
 
