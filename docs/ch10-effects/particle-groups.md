@@ -228,4 +228,6 @@ Here is the final result.
 
 Here is the full source code of the rocket firework.
 
-<<< @/docs/ch10-effects/src/particles/firework.qml#M1
+```qml
+<!-- @include: src/particles/firework.qml#M1 -->
+```

@@ -7,7 +7,9 @@ Let us have a look at a very simple simulation to get started. Qt Quick makes it
 * An `Emitter` which emits particles into the system
 * A `ParticlePainter` derived element, which visualizes the particles
 
-<<< @/docs/ch10-effects/src/particles/simple.qml#M1
+```qml
+<!-- @include: src/particles/simple.qml#M1 -->
+```
 
 The outcome of the example will look like this:
 
@@ -27,7 +29,9 @@ The emitter emits logical particles. A logical particle is visualized using a `P
 
 Changing these properties can influence the result in a drastical way
 
-<<< @/docs/ch10-effects/src/particles/simple2.qml#M1
+```qml
+<!-- @include: src/particles/simple2.qml#M1 -->
+```
 
 Besides increasing the emit rate to 40 and the lifespan to 2 seconds the size now starts at 64 pixels and decreases 32 pixels at the end of a particle lifespan.
 

@@ -6,6 +6,8 @@ In the example below, the path shown in the screenshot here is created. The enti
 
 ![](./assets/automatic/basic.png)
 
-<<< @/docs/ch09-shapes/src/shapes/basic.qml#global
+```qml
+<!-- @include: src/shapes/basic.qml#global -->
+```
 
 The path is made up of the children to the ``ShapePath``, i.e. the ``PathArc``, ``PathLine``, and ``PathMove`` elements in the example above. In the next section, we will have a close look at the building blocks of paths.

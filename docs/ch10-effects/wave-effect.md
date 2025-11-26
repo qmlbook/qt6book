@@ -4,11 +4,15 @@ In this more complex example, we will create a wave effect with the fragment sha
 
 The qml file defines the properties and animation.
 
-<<< @/docs/ch10-effects/src/effects/wave/wave.qml#M1
+```qml
+<!-- @include: src/effects/wave/wave.qml#M1 -->
+```
 
 The fragment shader takes the properties and calculates the color of each pixel based on the properties.
 
-<<< @/docs/ch10-effects/src/effects/wave/wave.frag#M1
+```qml
+<!-- @include: src/effects/wave/wave.frag#M1 -->
+```
 
 The wave calculation is based on a pulse and the texture coordinate manipulation. The pulse equation gives us a sine wave depending on the current time and the used texture coordinate:
 

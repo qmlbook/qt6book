@@ -41,7 +41,9 @@ Window {
 
 Then we setup the ``SceneEnvironment`` with a solid background colour. This is done inside the ``View3D`` element.
 
-<<< @/docs/ch12-qtquick3d/src/basicscene/main.qml#environment
+```qml
+<!-- @include: src/basicscene/main.qml#environment -->
+```
 
 The ``SceneEnvironment`` can be used to control a lot more rendering parameters, but for now, we only use it to set a solid background colour.
 
@@ -55,19 +57,25 @@ When positioning elements in 3D space, coordinates are expressed as ``Qt.vector3
 
 By default, the positive direction of the `x` axis is to the right, positive `y` points upwards, and positive `z` out of the screen. I say default, because this depends on the projection matrix of the camera.
 
-<<< @/docs/ch12-qtquick3d/src/basicscene/main.qml#meshes
+```qml
+<!-- @include: src/basicscene/main.qml#meshes -->
+```
 
 Once we have lights in the scene we add a ``DirectionalLight``, which is a light that works much like the sun. It adds an even light in a pre-determined direction. The direction is controlled using the ``eulerRotation`` property where we can rotate the light direction around the various axes.
 
 By setting the ``castsShadow`` property to ``true`` we ensure that the light generates shadows as can be seen on cone, where the shadow from the sphere is visible.
 
-<<< @/docs/ch12-qtquick3d/src/basicscene/main.qml#light
+```qml
+<!-- @include: src/basicscene/main.qml#light -->
+```
 
 The last piece of the puzzle is to add a camera to the scene. There are various cameras for various perspectives, but for a realistic projection, the ``ProjectionCamera`` is the one to use.
 
 In the code, we place the camera using the ``position`` property. It is then possible to direct the camera using the ``eulerRotation`` property, but instead we call the ``lookAt`` method from the ``Component.onCompleted`` signal handler. This rotates the camera to look at a specific direction once it has been created and initialized.
 
-<<< @/docs/ch12-qtquick3d/src/basicscene/main.qml#camera
+```qml
+<!-- @include: src/basicscene/main.qml#camera -->
+```
 
 The resulting scene can be seen below.
 
@@ -107,13 +115,17 @@ The first one, ``DirectionalLight``, should be familiar from our previous exampl
 
 ![image](./assets/light_directional.png)
 
-<<< @/docs/ch12-qtquick3d/src/lights/main.qml#directional
+```qml
+<!-- @include: src/lights/main.qml#directional -->
+```
 
 The next light source is the ``PointLight``. It is a light that eminates from a given point in space and then falls off towards darkness based on the values of the ``constantFade``, ``linearFade``, and ``quadraticFace`` properties, where the light is calculated as ``constantFade + distance * (linearFade * 0.01) + distance^2 * (quadraticFade * 0.0001)``. The default values are ``1.0`` constant and quadratic fade, and ``0.0`` for the linear fade, meaning that the light falls off according to the inverse square law.
 
 ![image](./assets/light_point.png)
 
-<<< @/docs/ch12-qtquick3d/src/lights/main.qml#point
+```qml
+<!-- @include: src/lights/main.qml#point -->
+```
 
 The last of the light sources is the ``SpotLight`` which emits a cone of light in a given direction, much like a real world spotlight. The cone consists of an inner and an outer cone. The width of these is controlled by the ``innerConeAngle`` and ``coneAngle``, specified in degrees between zero and 180 degrees.
 
@@ -121,7 +133,9 @@ The light in the inner cone behaves much like a ``PointLight`` and can be contro
 
 ![image](./assets/light_spot.png)
 
-<<< @/docs/ch12-qtquick3d/src/lights/main.qml#spot
+```qml
+<!-- @include: src/lights/main.qml#spot -->
+```
 
 In addition to the ``castsShadow`` property, all lights also has the commonly used properties ``color`` and ``brightness`` which control the color and intensity of the light emitted. The lights also has an ``ambientColor`` property defining a base color to be applied to materials, before they are lit by the light source. This property is set to black by default, but can be used to provide a base lighting in a scene.
 

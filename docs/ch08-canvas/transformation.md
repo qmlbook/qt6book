@@ -2,7 +2,9 @@
 
 The canvas allows you to transform the coordinate system in several ways. This is very similar to the transformation offered by QML items. You have the possibility to `scale`, `rotate`, `translate` the coordinate system. Indifference to QML the transform origin is always the canvas origin. For example to scale a path around its center you would need to translate the canvas origin to the center of the path. It is also possible to apply a more complex transformation using the transform method.
 
-<<< @/docs/ch08-canvas/src/canvas/transform.qml#M1
+```qml
+<!-- @include: src/canvas/transform.qml#M1 -->
+```
 
 ![image](./assets/transform.png)
 

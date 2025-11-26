@@ -12,7 +12,9 @@ QtQuick builds on QML. The QML language only knows of elements, properties, sign
 
 Let’s start with a simple example of a QML file to explain the different syntax.
 
-<<< @/docs/ch04-qmlstart/src/concepts/RectangleExample.qml#global
+```qml
+<!-- @include: src/concepts/RectangleExample.qml#global -->
+```
 
 * The `import` statement imports a module. An optional version in the form of `<major>.<minor>` can be added.
 * Comments can be made using `//` for single line comments or `/* */` for multi-line comments. Just like in C/C++ and JavaScript
@@ -116,7 +118,9 @@ An element id should only be used to reference elements inside your document (e.
 
 QML and JavaScript (also known as ECMAScript) are best friends. In the *JavaScript* chapter we will go into more detail on this symbiosis. Currently, we just want to make you aware of this relationship.
 
-<<< @/docs/ch04-qmlstart/src/concepts/ScriptingExample.qml#text
+```qml
+<!-- @include: src/concepts/ScriptingExample.qml#text -->
+```
 
 * **(1)** The text changed handler `onTextChanged` prints the current text every time the text changed due to the space bar being pressed. As we use a parameter injected by the signal, we need to use the function syntax here. It's also possible to use an arrow function (`(text) => {}`), but we feel `function(text) {}` is more readable.
 
@@ -132,7 +136,9 @@ The difference between the QML `:` (binding) and the JavaScript `=` (assignment)
 
 The lifetime of a binding ends when a new binding is set on the property or even when a JavaScript value is assigned to the property. For example, a key handler setting the text property to an empty string would destroy our increment display:
 
-<<< @/docs/ch04-qmlstart/src/concepts/ScriptingExample.qml#clear-binding{2}
+```qml
+<!-- @include: src/concepts/ScriptingExample.qml#clear-binding{2} -->
+```
 
 
 After pressing escape, pressing the space bar will not update the display anymore, as the previous binding of the `text` property (*text: “Space pressed: ” + spacePresses + ” times”*) was destroyed.

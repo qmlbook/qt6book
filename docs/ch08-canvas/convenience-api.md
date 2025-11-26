@@ -2,7 +2,9 @@
 
 For operations on rectangles, a convenience API is provided which draws directly and does need a stroke or fill call.
 
-<<< @/docs/ch08-canvas/src/canvas/convenient.qml#M1
+```qml
+<!-- @include: src/canvas/convenient.qml#M1 -->
+```
 
 ![image](./assets/convenient.png)
 

@@ -41,7 +41,9 @@ velocity: AngleDirection {
 
 Here is the full source code, with an average lifetime set to 6.4 seconds. We set the emitter width and height to 1px. This means all particles are emitted at the same location and from thereon travel based on our given trajectory.
 
-<<< @/docs/ch10-effects/src/particles/angledirection.qml#M1
+```qml
+<!-- @include: src/particles/angledirection.qml#M1 -->
+```
 
 So what is then the acceleration doing? The acceleration adds an acceleration vector to each particle, which changes the velocity vector over time. For example, let’s make a trajectory like an arc of stars. For this we change our velocity direction to -45 degree and remove the variations, to better visualize a coherent arc:
 
@@ -69,7 +71,9 @@ The values are discovered by trial-and-error.
 
 Here is the full code of our emitter.
 
-<<< @/docs/ch10-effects/src/particles/angledirection2.qml#M1
+```qml
+<!-- @include: src/particles/angledirection2.qml#M1 -->
+```
 
 In the next example we would like that the particles again travel from left to right but this time we use the `PointDirection` vector space.
 

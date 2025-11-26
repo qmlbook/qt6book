@@ -15,7 +15,9 @@ You will catch yourself looking at some animations and just admiring their beaut
 
 ![](./assets/animation_sequence.png)
 
-<<< @/docs/ch05-fluid/src/animation/AnimationExample.qml#global
+```qml
+<!-- @include: src/animation/AnimationExample.qml#global -->
+```
 
 The example above shows a simple animation applied on the `x` and `rotation` properties. Each animation has a duration of 4000 milliseconds (msec). The animation on `x` moves the x-coordinate from the object gradually over to 240px. The animation on rotation runs from the current angle to 360 degrees. Both animations run in parallel and are started when the `MouseArea` is clicked.
 
@@ -81,7 +83,9 @@ Animation can be applied in several ways:
 
 To demonstrate the usage of animations we reuse our ClickableImage component from an earlier chapter and extended it with a text element.
 
-<<< @/docs/ch05-fluid/src/animation/ClickableImageV2.qml#global
+```qml
+<!-- @include: src/animation/ClickableImageV2.qml#global -->
+```
 
 To organize the element below the image we used a Column positioner and calculated the width and height based on the column’s childrenRect property. We exposed text and image source properties, and a clicked signal. We also wanted the text to be as wide as the image, and for it to wrap. We achieve the latter by using the Text element's `wrapMode` property.
 
@@ -101,7 +105,9 @@ The three objects are all at the same y-position (`y=200`). They all need to tra
 
 The first object travels using the `Animation on <property>` strategy. The animation starts immediately. 
 
-<<< @/docs/ch05-fluid/src/animation/AnimationTypesExample.qml#animation-on-property
+```qml
+<!-- @include: src/animation/AnimationTypesExample.qml#animation-on-property -->
+```
 
 When an object is clicked, its y-position is reset to the start position, and this applies to all of the objects. On the first object, the reset does not have any effect as long as the animation is running. 
 
@@ -111,7 +117,9 @@ This can be visually disturbing, as the y-position is set to a new value for a f
 
 The second object travels using a `Behavior on` animation. This behavior tells the property it should animate each change in value. The behavior can be disabled by setting `enabled: false` on the `Behavior` element. 
 
-<<< @/docs/ch05-fluid/src/animation/AnimationTypesExample.qml#behavior-on
+```qml
+<!-- @include: src/animation/AnimationTypesExample.qml#behavior-on -->
+```
 
 The object will start traveling when you click it (its y-position is then set to 40). Another click has no influence, as the position is already set. 
 
@@ -121,7 +129,9 @@ You could try to use a random value (e.g. `40 + (Math.random() \* (205-40)`) for
 
 The third object uses a standalone animation. The animation is defined as its own element and can be almost anywhere in the document. 
 
-<<< @/docs/ch05-fluid/src/animation/AnimationTypesExample.qml#standalone
+```qml
+<!-- @include: src/animation/AnimationTypesExample.qml#standalone -->
+```
 
 The click will start the animation using the animation's `start()` function. Each animation has start(), stop(), resume(), and restart() functions. The animation itself contains much more information than the other animation types earlier. 
 
@@ -170,7 +180,9 @@ The code for this example was made a little bit more complicated. We first creat
 The internals of the EasingType renders the curve in real time, and the interested reader can look it up in the `EasingCurves` example.
 :::
 
-<<< @/docs/ch05-fluid/src/easing/EasingCurves.qml#global
+```qml
+<!-- @include: src/easing/EasingCurves.qml#global -->
+```
 
 Please play with the example and observe the change of speed during an animation. Some animations feel more natural for the object and some feel irritating.
 
@@ -195,7 +207,9 @@ For this, grouped animations can be used. As the name suggests, it’s possible 
 
 All direct child animations of a parallel animation run in parallel when started. This allows you to animate different properties at the same time.
 
-<<< @/docs/ch05-fluid/src/animation/ParallelAnimationExample.qml#global
+```qml
+<!-- @include: src/animation/ParallelAnimationExample.qml#global -->
+```
 
 ![](./assets/parallelanimation_sequence.png)
 
@@ -203,7 +217,9 @@ All direct child animations of a parallel animation run in parallel when started
 
 A sequential animation runs each child animation in the order in which it is declared: top to bottom.
 
-<<< @/docs/ch05-fluid/src/animation/SequentialAnimationExample.qml#global
+```qml
+<!-- @include: src/animation/SequentialAnimationExample.qml#global -->
+```
 
 ![](./assets/sequentialanimation_sequence.png)
 
@@ -246,7 +262,9 @@ We have defined our total animation duration as a reference to better synchroniz
 
 The next step is to add the background, which in our case are 2 rectangles with green and blue gradients.
 
-<<< @/docs/ch05-fluid/src/animation/BouncingBallExample.qml#background
+```qml
+<!-- @include: src/animation/BouncingBallExample.qml#background -->
+```
 
 ![](./assets/soccer_stage1.png)
 
@@ -254,7 +272,9 @@ The upper blue rectangle takes 200 pixels of the height and the lower one is anc
 
 Let’s bring the soccer ball onto the green. The ball is an image, stored under “assets/soccer_ball.png”. For the beginning, we would like to position it in the lower left corner, near the edge.
 
-<<< @/docs/ch05-fluid/src/animation/BouncingBallExample.qml#soccer-ball
+```qml
+<!-- @include: src/animation/BouncingBallExample.qml#soccer-ball -->
+```
 
 ![](./assets/soccer_stage2.png)
 
@@ -329,4 +349,6 @@ The *X1* and *ROT1* animation are left as-is, with a linear curve.
 
 Here is the final animation code for your reference:
 
-<<< @/docs/ch05-fluid/src/animation/BouncingBallExample.qml#parallel-animation
+```qml
+<!-- @include: src/animation/BouncingBallExample.qml#parallel-animation -->
+```

@@ -6,7 +6,9 @@ Each delegate gets access to a number of attached properties, some from the data
 
 The most commonly used properties attached from the view are `ListView.isCurrentItem` and `ListView.view`. The first is a boolean indicating if the item is the current item, while the latter is a read-only reference to the actual view. Through access to the view, it is possible to create general, reusable delegates that adapt to the size and nature of the view in which they are contained. In the example below, the `width` of each delegate is bound to the `width` of the view, while the background `color` of each delegate depends on the attached `ListView.isCurrentItem` property.
 
-<<< @/docs/ch07-modelview/src/delegates/basic.qml#global
+```qml
+<!-- @include: src/delegates/basic.qml#global -->
+```
 
 ![image](./assets/automatic/delegates-basic.png)
 
@@ -22,15 +24,21 @@ Conveniently enough, QML views attach two signals, `onAdd` and `onRemove`, to ea
 
 The example below demonstrates this through the use of a dynamically populated `ListModel`. At the bottom of the screen, a button for adding new items is shown. When it is clicked, a new item is added to the model using the `append` method. This triggers the creation of a new delegate in the view, and the emission of the `GridView.onAdd` signal. The `SequentialAnimation` called `addAnimation` is started from the signal causes the item to zoom into view by animating the `scale` property of the delegate.
 
-<<< @/docs/ch07-modelview/src/delegates/add-remove-effects.qml#add-animation
+```qml
+<!-- @include: src/delegates/add-remove-effects.qml#add-animation -->
+```
 
 When a delegate in the view is clicked, the item is removed from the model through a call to the `remove` method. This causes the `GridView.onRemove` signal to be emitted, starting the `removeAnimation` `SequentialAnimation`. This time, however, the destruction of the delegate must be delayed until the animation has completed. To do this, `PropertyAction` element is used to set the `GridView.delayRemove` property to `true` before the animation, and `false` after. This ensures that the animation is allowed to complete before the delegate item is removed.
 
-<<< @/docs/ch07-modelview/src/delegates/add-remove-effects.qml#remove-animation
+```qml
+<!-- @include: src/delegates/add-remove-effects.qml#remove-animation -->
+```
 
 Here is the complete code:
 
-<<< @/docs/ch07-modelview/src/delegates/add-remove-effects.qml#global
+```qml
+<!-- @include: src/delegates/add-remove-effects.qml#global -->
+```
 
 ## Shape-Shifting Delegates
 
@@ -44,7 +52,9 @@ Setting up the `ListView` involves setting the `contentsY`, that is the top of t
 
 As the item first is clicked, it enters the `expanded` state, causing the item delegate to fill the `ListView` and the contents to rearrange. When the close button is clicked, the state is cleared, causing the delegate to return to its previous state and re-enabling the `ListView`.
 
-<<< @/docs/ch07-modelview/src/delegates/expanding.qml#global
+```qml
+<!-- @include: src/delegates/expanding.qml#global -->
+```
 
 ![image](./assets/automatic/delegates-expanding-small.png)
 

@@ -8,7 +8,9 @@ The fundamental idea of the canvas element is to render paths using a context 2D
 
 Let’s see an example of a simple path drawing:
 
-<<< @/docs/ch08-canvas/src/canvas/rectangle.qml#M1
+```qml
+<!-- @include: src/canvas/rectangle.qml#M1 -->
+```
 
 This produces a filled rectangle with a starting point at 50,50 and a size of 100 and a stroke used as a border decoration.
 
@@ -37,7 +39,9 @@ A typical order of commands for this path based API is the following:
 2. Create path
 3. Stroke and/or fill
 
-<<< @/docs/ch08-canvas/src/canvas/line.qml#M1
+```qml
+<!-- @include: src/canvas/line.qml#M1 -->
+```
 
 This produces a horizontal stroked line from point `P1(50,50)` to point `P2(150,50)`.
 
