@@ -96,7 +96,7 @@ class NumberGenerator(QObject):
         return self.__number
 ```
 
-In order to define properties, we need to import the concepts of `Signal`, `Slot`, and `Property` from `PySide2.QtCore`. In the full example, there are more imports, but these are the ones relevant to the properties.
+In order to define properties, we need to import the concepts of `Signal`, `Slot`, and `Property` from `PySide6.QtCore`. In the full example, there are more imports, but these are the ones relevant to the properties.
 
 ```py
 from PySide6.QtCore import QObject, Signal, Slot, Property
@@ -188,7 +188,7 @@ In QML, we can bind to the `number` as well as the `maxNumber` properties of the
 
 Up until now, we’ve instantiated an object Python and used the `setContextProperty` method of the `rootContext` to make it available to QML. Being able to instantiate the object from QML allows better control over object life-cycles from QML. To enable this, we need to expose the *class*, instead of the *object*, to QML.
 
-The class that is being exposed to QML is not affected by where it is instantiated. No change is needed to the class definition. However, instead of calling `setContextProperty`, the `qmlRegisterType` function is used. This function comes from the `PySide2.QtQml` module and takes five arguments:
+The class that is being exposed to QML is not affected by where it is instantiated. No change is needed to the class definition. However, instead of calling `setContextProperty`, the `qmlRegisterType` function is used. This function comes from the `PySide6.QtQml` module and takes five arguments:
 
 
 * A reference to the class, `NumberGenerator` in the example below.
