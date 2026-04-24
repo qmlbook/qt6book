@@ -117,7 +117,7 @@ We will not go into the depths of this file. Just remember Qt uses CMake's `CMak
 
 The simple code example above just writes the text and exits the application. For a command line tool, this is good enough. For a user interface you need an event loop which waits for user input and somehow schedules draw operations. Here follows the same example now uses a button to trigger the writing.
 
-Our `main.cpp` surprisingly got smaller. We moved code into an own class to be able to use Qt's signal and slots for the user input, i.e. to handle the button click. The signal and slot mechanism normally needs an object instance as you will see shortly, but it can also be used with C++ lambdas.
+Our `main.cpp` surprisingly got smaller. We moved code into our own class to be able to use Qt's signal and slots for the user input, i.e. to handle the button click. The signal and slot mechanism normally needs an object instance as you will see shortly, but it can also be used with C++ lambdas.
 
 ```cpp
 #include <QtCore>
