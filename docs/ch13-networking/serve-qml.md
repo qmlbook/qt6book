@@ -2,7 +2,9 @@
 
 To load a simple user interface via HTTP we need to have a web-server, which serves the UI documents. We start off with our own simple web-server using a python one-liner. But first, we need to have our demo user interface. For this, we create a small `RemoteComponent.qml` file in our project folder and create a red rectangle inside.
 
-<<< @/docs/ch13-networking/src/serve-qml-basics/RemoteComponent.qml#global
+```qml
+<!-- @include: src/serve-qml-basics/RemoteComponent.qml#global -->
+```
 
 To serve this file we can start a small python script:
 
@@ -33,7 +35,9 @@ If the `qml` program is not in your path, you can find it in the Qt binaries: `<
 
 Another way of importing a remote QML document is to dynamically load it using QML ! For this, we use a `Loader` element to retrieve for us the remote document.
 
-<<< @/docs/ch13-networking/src/serve-qml-basics/LocalHostExample.qml#global
+```qml
+<!-- @include: src/serve-qml-basics/LocalHostExample.qml#global -->
+```
 
 Now we can ask the `qml` executable to load the local `LocalHostExample.qml` loader document.
 
@@ -47,7 +51,9 @@ If you do not want to run a local server you can also use the gist service from 
 Since this content is hosted on a web server with a public web address, you can now use the web-based version of Canonic to view it. To do so, simply point your web browser to [https://app.canonic.com/#http://gist.github.com/jryannel/7983492](https://app.canonic.com/#http://gist.github.com/jryannel/7983492). Of course, you'll need to change the part after the `#` to view your own files.
 :::
 
-<<< @/docs/ch13-networking/src/serve-qml-basics/GistExample.qml#global
+```qml
+<!-- @include: src/serve-qml-basics/GistExample.qml#global -->
+```
 
 To load another file over the network from `RemoteComponent.qml`, you will need to create a dedicated `qmldir` file in the same directory on the server. Once done, you will be able to reference the component by its name. 
 
@@ -66,19 +72,27 @@ Here's the directory structure that we will use:
 
 Our `SimpleExample.qml` is the same as our previous `main.qml` example:
 
-<<< @/docs/ch13-networking/src/serve-qml-networked-components/SimpleExample.qml#global
+```qml
+<!-- @include: src/serve-qml-networked-components/SimpleExample.qml#global -->
+```
 
 In the `remote` directory, we will update the `RemoteComponent.qml` file so that it uses a custom `Button` component:
 
-<<< @/docs/ch13-networking/src/serve-qml-networked-components/remote/RemoteComponent.qml#global
+```qml
+<!-- @include: src/serve-qml-networked-components/remote/RemoteComponent.qml#global -->
+```
 
 As our components are hosted remotely, the QML engine needs to know what other components are available remotely. To do so, we define the content of our remote directory within a `qmldir` file:
 
-<<< @/docs/ch13-networking/src/serve-qml-networked-components/remote/qmldir
+```qml
+<!-- @include: src/serve-qml-networked-components/remote/qmldir -->
+```
 
 And finally we will create our dummy `Button.qml` file:
 
-<<< @/docs/ch13-networking/src/serve-qml-networked-components/remote/Button.qml#global
+```qml
+<!-- @include: src/serve-qml-networked-components/remote/Button.qml#global -->
+```
 
 We can now launch our web-server (keep in mind that we now have a `remote` subdirectory):
 
@@ -97,7 +111,9 @@ qml SimpleExample.qml
 
 By defining a `qmldir` file, it's also possible to directly import a library of components from a remote repository. To do so, a classical import works:
 
-<<< @/docs/ch13-networking/src/serve-qml-networked-components/LibraryExample.qml#global
+```qml
+<!-- @include: src/serve-qml-networked-components/LibraryExample.qml#global -->
+```
 
 ::: tip
 When using components from a local file system, they are created immediately without a latency. When components are loaded via the network they are created asynchronously. This has the effect that the time of creation is unknown and an element may not yet be fully loaded when others are already completed. Take this into account when working with components loaded over the network.

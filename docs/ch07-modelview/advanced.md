@@ -20,13 +20,17 @@ The example below demonstrates how the `PathView` element is used to create a vi
 
 In addition to the `path`, the `pathItemCount` property of the `PathView` has been set. This controls how densely populated the path will be. The `preferredHighlightBegin` and `preferredHighlightEnd` the `PathView.onPath` is used to control the visibility of the delegates.
 
-<<< @/docs/ch07-modelview/src/pathview/coverview.qml#pathview
+```qml
+<!-- @include: src/pathview/coverview.qml#pathview -->
+```
 
 The delegate, shown below, utilizes the attached properties `itemZ`, `itemAngle` and `itemScale` from the `PathAttribute` elements. It is worth noticing that the attached properties of the delegate only are available from the `wrapper`. Thus, the `rotX` property is defined to be able to access the value from within the `Rotation` element.
 
 Another detail specific to `PathView` worth noticing is the usage of the attached `PathView.onPath` property. It is common practice to bind the visibility to this, as this allows the `PathView` to keep invisible elements for caching purposes. This can usually not be handled through clipping, as the item delegates of a `PathView` are placed more freely than the item delegates of `ListView` or `GridView` views.
 
-<<< @/docs/ch07-modelview/src/pathview/coverview.qml#delegate
+```qml
+<!-- @include: src/pathview/coverview.qml#delegate -->
+```
 
 When transforming images or other complex elements on in `PathView`, a performance optimization trick that is common to use is to bind the `smooth` property of the `Image` element to the attached property `PathView.view.moving`. This means that the images are less pretty while moving but smoothly transformed when stationary. There is no point spending processing power on smooth scaling when the view is in motion, as the user will not be able to see this anyway.
 
@@ -48,11 +52,15 @@ In the example below, we set up a simple `TableView` with a custom model exposed
 
 In the example below, we create a `TableView` and set the `rowSpacing` and `columnSpacing` to control the horizontal and vertical gaps between delegates. The rest of the properties are set up as for any other type of view.
 
-<<< @/docs/ch07-modelview/src/tableview/main.qml#tableview
+```qml
+<!-- @include: src/tableview/main.qml#tableview -->
+```
 
 The delegate itself can carry an implicit size through the `implicitWidth` and `implicitHeight`. This is what we do in the example below. The actual data contents, i.e. the data returned from the model’s `display` role.
 
-<<< @/docs/ch07-modelview/src/tableview/main.qml#delegate
+```qml
+<!-- @include: src/tableview/main.qml#delegate -->
+```
 
 It is possible to provide delegates with different sizes depending on the model contents, e.g.:
 
@@ -92,7 +100,9 @@ For every model item, a number of roles are extracted. These are represented by 
 
 The `imageSource` property extracts the value of an attribute of a tag instead of the contents of the tag. In this case, the `url` attribute of the `enclosure` tag is extracted as a string. The `imageSource` property can then be used directly as the `source` for an `Image` element, which loads the image from the given URL.
 
-<<< @/docs/ch07-modelview/src/xmllistmodel/images.qml#global
+```qml
+<!-- @include: src/xmllistmodel/images.qml#global -->
+```
 
 ## Lists with Sections
 
@@ -110,7 +120,9 @@ It is also possible to assign a section delegate component to the `section.deleg
 
 The example below demonstrates the section concept by showing a list of spacemen sectioned after their nationality. The `nation` is used as the `section.property`. The `section.delegate` component, `sectionDelegate`, shows a heading for each nation, displaying the name of the nation. In each section, the names of the spacemen are shown using the `spaceManDelegate` component.
 
-<<< @/docs/ch07-modelview/src/listview/sections.qml#global
+```qml
+<!-- @include: src/listview/sections.qml#global -->
+```
 
 ## The ObjectModel
 
@@ -121,7 +133,9 @@ In some cases you might want to use a list view for a large set of different ite
 
 In the example below we put three `Rectangle` elements into the `ObjectModel`. However, one rectangle has a `Text` element child while the last one has rounded corners. This would have resulted in a table-style model using something like a `ListModel`. It would also have resulted in empty `Text` elements in the model.
 
-<<< @/docs/ch07-modelview/src/delegates/objectmodel.qml#global
+```qml
+<!-- @include: src/delegates/objectmodel.qml#global -->
+```
 
 Another aspect of the `ObjectModel` is that is can be dynamically populated using the `get`, `insert`, `move`, `remove`, and `clear` methods. This way, the contents of the model can be dynamically generated from various sources and still easily shown in a single view.
 
@@ -133,7 +147,9 @@ The example below demonstrates this by having a model of cities that greet you i
 
 In the delegate `actionDelegate`, the `MouseArea` calls the function `hello` as an ordinary function and this results a call to the corresponding `hello` property in the model.
 
-<<< @/docs/ch07-modelview/src/delegates/model-action.qml#global
+```qml
+<!-- @include: src/delegates/model-action.qml#global -->
+```
 
 ## Tuning Performance
 

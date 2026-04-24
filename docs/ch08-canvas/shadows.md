@@ -6,15 +6,21 @@ A shadow can also be used to create a glow effect around a path. In the next exa
 
 First, we draw the dark background:
 
-<<< @/docs/ch08-canvas/src/canvas/shadow.qml#M1
+```qml
+<!-- @include: src/canvas/shadow.qml#M1 -->
+```
 
 then we define our shadow configuration, which will be used for the next path:
 
-<<< @/docs/ch08-canvas/src/canvas/shadow.qml#M2
+```qml
+<!-- @include: src/canvas/shadow.qml#M2 -->
+```
 
 Finally, we draw our “Canvas” text using a large bold 80px font from the *Ubuntu* font family.
 
-<<< @/docs/ch08-canvas/src/canvas/shadow.qml#M3
+```qml
+<!-- @include: src/canvas/shadow.qml#M3 -->
+```
 
 ![image](./assets/shadow.png)
 

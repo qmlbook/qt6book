@@ -35,24 +35,34 @@ qt_add_qml_module(appanimations
 
 Exploring the generated QML, we notice that the skeleton is built up from QML elements of the types ``Skeleton`` and ``Joint``. It is possible to work with these elements as code in QML, but it is much more common to create them in a design tool.
 
-<<< @/docs/ch12-qtquick3d/src/animations/Monkey_with_bones.qml#armature
+```qml
+<!-- @include: src/animations/Monkey_with_bones.qml#armature -->
+```
 
 The ``Skeleton`` element is then referred to by the ``skeleton`` property of the ``Model`` element, before the ``inverseBindPoses`` property, linking the joints to the model.
 
-<<< @/docs/ch12-qtquick3d/src/animations/Monkey_with_bones.qml#model
+```qml
+<!-- @include: src/animations/Monkey_with_bones.qml#model -->
+```
 
 The next step is to include the newly created ``Monkey_with_bones`` element into our main ``View3D`` scene:
 
-<<< @/docs/ch12-qtquick3d/src/animations/main.qml#monkey
+```qml
+<!-- @include: src/animations/main.qml#monkey -->
+```
 
 And then we create a ``SequentialAnimation`` built from two ``NumberAnimations`` to make the ear flop forth and back.
 
-<<< @/docs/ch12-qtquick3d/src/animations/main.qml#animation
+```qml
+<!-- @include: src/animations/main.qml#animation -->
+```
 
 ::: tip Caveat
 In order to be able to access the ``Joint``'s ``eulerRotation.y`` from outside of the ``Monkey_with_bones`` file, we need to expose it as a top level property alias. This means modifying a generated file, which is not very nice, but it solves the problem.
 
-<<< @/docs/ch12-qtquick3d/src/animations/Monkey_with_bones.qml#hack
+```qml
+<!-- @include: src/animations/Monkey_with_bones.qml#hack -->
+```
 :::
 
 The resulting floppy ear can be enjoyed below:

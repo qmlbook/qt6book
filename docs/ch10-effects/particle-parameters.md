@@ -39,4 +39,6 @@ So now we have rotating golden stars appearing all over the place.
 
 Here is the code we changed for the image-particle in one block.
 
-<<< @/docs/ch10-effects/src/particles/particlevariation.qml#M1
+```qml
+<!-- @include: src/particles/particlevariation.qml#M1 -->
+```

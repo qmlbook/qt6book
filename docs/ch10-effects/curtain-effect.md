@@ -16,20 +16,28 @@ The diagram below shows how the shader works. The waves are computed through a s
 
 The curtain effect is implemented in the `CurtainEffect.qml` file where the fabric image act as the texture source. In the QML code, the `mesh` property is adjusted to make sure that the number of vertices is increased to give a smoother result.
 
-<<< @/docs/ch10-effects/src/effects/curtain/CurtainEffect.qml#M1
+```qml
+<!-- @include: src/effects/curtain/CurtainEffect.qml#M1 -->
+```
 
 The vertex shader, shown below, reshapes the curtain based on the `topWidth` and `bottomWidth` properties, extrapolating the shift based on the y-coordinate. It also calculates the `shade` value, which is used in the fragment shader. The `shade` property is passed through an additional output in `location` 1.
 
-<<< @/docs/ch10-effects/src/effects/curtain/curtain.vert#M1
+```qml
+<!-- @include: src/effects/curtain/curtain.vert#M1 -->
+```
 
 In the fragment shader below, the `shade` is picked up as an input in `location` 1 and is then used to calculate the `fragColor`, which is used to draw the pixel in question.
 
-<<< @/docs/ch10-effects/src/effects/curtain/curtain.frag#M1
+```qml
+<!-- @include: src/effects/curtain/curtain.frag#M1 -->
+```
 
 The combination of QML animations and passing variables from the vertex shader to the fragment shader demonstrates how QML and shaders can be used together to build complex, animated, effects.
 
 The effect itself is used from the `curtaindemo.qml` file shown below.
 
-<<< @/docs/ch10-effects/src/effects/curtain/curtaindemo.qml#M1
+```qml
+<!-- @include: src/effects/curtain/curtaindemo.qml#M1 -->
+```
 
 The curtain is opened through a custom `open` property on the curtain effect. We use a `MouseArea` to trigger the opening and closing of the curtain when the user clicks or taps the area.

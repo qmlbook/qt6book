@@ -48,7 +48,9 @@ ApplicationWindow {
 
 The home page, `Home.qml` consists of a `Page`, which is n control element that support headers and footers. In this example we simply center a `Label` with the text *Home Screen* on the page. This works because the contents of a `StackView` automatically fill the stack view, so the page will have the right size for this to work.
 
-<<< @/docs/ch06-controls/src/interface-stack/Home.qml
+```qml
+<!-- @include: src/interface-stack/Home.qml -->
+```
 
 Returning to `main.qml`, we now look at the drawer part. This is where the navigation to the pages begin. The active parts of the user interface are the `ÌtemDelegate` items. In the `onClicked` handler, the next page is pushed onto the `stackView`.
 
@@ -141,7 +143,9 @@ Now we’ve seen how to reach the *About* and *Profile* pages, but we also want 
 
 ![](./assets/interface-stack-profile.png)
 
-<<< @/docs/ch06-controls/src/interface-stack/Profile.qml
+```qml
+<!-- @include: src/interface-stack/Profile.qml -->
+```
 
 ## Side by Side Screens
 
@@ -330,7 +334,9 @@ ApplicationWindow {
 
 To bootstrap the program, we create the first `DocumentWindow` instance from `main.qml`, which is the entry point of the application.
 
-<<< @/docs/ch06-controls/src/interface-document-window/main.qml
+```qml
+<!-- @include: src/interface-document-window/main.qml -->
+```
 
 In the example at the beginning of this chapter, each `MenuItem` calls a corresponding function when triggered. Let’s start with the *New* item, which calls the `newDocument` function.
 

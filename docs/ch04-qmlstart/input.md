@@ -225,7 +225,9 @@ Rectangle {
 
 The attached property `Keys` allows executing code based on certain key presses. For example, to move and scale a square, we can hook into the up, down, left and right keys to translate the element, and the plus and minus keys to scale the element.
 
-<<< @/docs/ch04-qmlstart/src/input/KeysExample.qml#global
+```qml
+<!-- @include: src/input/KeysExample.qml#global -->
+```
 
 ![](./assets/keys.png)
 

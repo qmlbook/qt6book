@@ -1,0 +1,7 @@
+{
+    "name": "qt6book",
+    "compatibility_date": "2025-11-26",
+    "assets": {
+        "directory": "./docs/.vuepress/dist/"
+    }
+}

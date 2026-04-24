@@ -4,7 +4,9 @@ The `VideoOutput` element is not limited to be used in combination with a `Media
 
 For instance, we can use the `VideoOutput` to display the live video stream of the user's `Camera`. To do so, we will combine it with two components: `Camera` and `CaptureSession`.
 
-<<< @/docs/ch11-multimedia/src/camera-capture/basic.qml#global
+```qml
+<!-- @include: src/camera-capture/basic.qml#global -->
+```
 
 The `CaptureSession` component provides a simple way to read a camera stream, capture still images or record videos.
 

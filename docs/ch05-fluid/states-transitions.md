@@ -59,7 +59,9 @@ An external event can now trigger a state switch to the `"go"` state. In the go 
 
 To realize this scenario we start sketching our user interface for the 2 lights. For simplicity, we use 2 rectangles with the radius set to the half of the width (and the width is the same as the height, which means it’s a square).
 
-<<< @/docs/ch05-fluid/src/animation/StatesExample.qml#lights
+```qml
+<!-- @include: src/animation/StatesExample.qml#lights -->
+```
 
 As defined in the state chart we want to have two states: one being the `"go"` state and the other the `"stop"` state, where each of them changes the traffic light's respective color to red or green. We set the `state` property to `stop` to ensure the initial state of our traffic light is the `stop` state.
 
@@ -67,13 +69,17 @@ As defined in the state chart we want to have two states: one being the `"go"` s
 We could have achieved the same effect with only a `"go"` state and no explicit `"stop"` state by setting the color of `light1` to red and the color of `light2` to black. The initial state `""` defined by the initial property values would then act as the `"stop"` state.
 :::
 
-<<< @/docs/ch05-fluid/src/animation/StatesExample.qml#states
+```qml
+<!-- @include: src/animation/StatesExample.qml#states -->
+```
 
 Using `PropertyChanges { target: light2; color: "black" }` is not really required in these examples as the initial color of `light2` is already black. In a state, it’s only necessary to describe how the properties shall change from their default state (and not from the previous state).
 
 A state change is triggered using a mouse area which covers the whole traffic light and toggles between the go- and stop-state when clicked.
 
-<<< @/docs/ch05-fluid/src/animation/StatesExample.qml#interaction
+```qml
+<!-- @include: src/animation/StatesExample.qml#interaction -->
+```
 
 ![](./assets/trafficlight_ui.png)
 
@@ -96,7 +102,9 @@ For this example, we would like to animate the color changes when switching stat
 
 We restrict the transition with the `from` and `to` properties to filter only the state change from “go” to “stop”. Inside the transition, we add two color animations for each light, which shall animate the property changes defined in the state description.
 
-<<< @/docs/ch05-fluid/src/animation/StatesExample.qml#transitions
+```qml
+<!-- @include: src/animation/StatesExample.qml#transitions -->
+```
 
 You can change the state though clicking the UI. The state is applied immediately and will also change the state while a transition is running. So, try to click the UI while the state is in the transition from “stop” to “go”. You will see the change will happen immediately.
 

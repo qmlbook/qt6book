@@ -1,4 +1,4 @@
-## Summary
+# Summary
 
 In this chapter, we have looked at creating QML elements dynamically. This lets us create QML scenes freely, opening the door for user configurable and plug-in based architectures.
 

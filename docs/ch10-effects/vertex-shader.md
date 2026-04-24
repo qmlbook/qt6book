@@ -10,7 +10,9 @@ The vertex shader can be used to manipulate the vertexes provided by the shader 
 
 First, we will set up our scene with an image and a shader effect.
 
-<<< @/docs/ch10-effects/src/effects/genie/0/genie0.qml#M1
+```qml
+<!-- @include: src/effects/genie/0/genie0.qml#M1 -->
+```
 
 This provides a scene with a dark background and a shader effect using an image as the source texture. The original image is not visible on the image produced by our genie effect. Additional we added a dark rectangle on the same geometry as the shader effect so we can better detect where we need to click to revert the effect.
 
@@ -22,11 +24,15 @@ The effect is triggered by clicking on the image, this is defined by the mouse a
 
 After we have set up the scene, we define a property of type real called *minimize*, the property will contain the current value of our minimization. The value will vary from 0.0 to 1.0 and is controlled by a sequential animation.
 
-<<< @/docs/ch10-effects/src/effects/genie/1/genie1.qml#M1
+```qml
+<!-- @include: src/effects/genie/1/genie1.qml#M1 -->
+```
 
 The animation is triggered by the toggling of the *minimized* property. Now that we have set up all our surroundings we finally can look at our vertex shader.
 
-<<< @/docs/ch10-effects/src/effects/genie/1/genie1.vert#M1
+```qml
+<!-- @include: src/effects/genie/1/genie1.vert#M1 -->
+```
 
 The vertex shader is called for each vertex so four times, in our case. The default qt defined parameters are provided, like *qt_Matrix*, *qt_Vertex*, *qt_MultiTexCoord0*, *qt_TexCoord0*. We have discussed the variable already earlier. Additional we link the *minimize*, *width* and *height* variables from our shader effect into our vertex shader code. In the main function, we store the current texture coordinate in our *qt_TexCoord0* to make it available to the fragment shader. Now we copy the current position and modify the x and y position of the vertex:
 
@@ -62,11 +68,15 @@ First, we enhance our animation to support an own bending property. This is nece
 
 We first add and animate `bend` from QML.
 
-<<< @/docs/ch10-effects/src/effects/genie/3/genie3.qml#M1
+```qml
+<!-- @include: src/effects/genie/3/genie3.qml#M1 -->
+```
 
 We then add `bend` to the uniform buffer, `ubuf` and use it in the shader to achieve a smoother bending.
 
-<<< @/docs/ch10-effects/src/effects/genie/3/genie3.vert#M1
+```qml
+<!-- @include: src/effects/genie/3/genie3.vert#M1 -->
+```
 
 The curve starts smooth at the 0.0 value, grows then and stops smoothly towards the 1.0 value. Here is a plot of the function in the specified range. For us, only the range from 0..1 is from interest.
 
@@ -96,7 +106,9 @@ ShaderEffect {
 }
 ```
 
-<<< @/docs/ch10-effects/src/effects/genie/4/genie4.vert#M1
+```qml
+<!-- @include: src/effects/genie/4/genie4.vert#M1 -->
+```
 
 ![image](./assets/geniehalfside.png)
 
@@ -104,11 +116,17 @@ ShaderEffect {
 
 The last thing to-do is packaging our effect nicely. For this, we extract our genie effect code into an own component called `GenieEffect`. It has the shader effect as the root element. We removed the mouse area as this should not be inside the component as the triggering of the effect can be toggled by the `minimized` property.
 
-<<< @/docs/ch10-effects/src/effects/genie/demo/GenieEffect.qml#M1
-<<< @/docs/ch10-effects/src/effects/genie/demo/genieeffect.vert#M1
+```qml
+<!-- @include: src/effects/genie/demo/GenieEffect.qml#M1 -->
+```
+```qml
+<!-- @include: src/effects/genie/demo/genieeffect.vert#M1 -->
+```
 
 You can use now the effect simply like this:
 
-<<< @/docs/ch10-effects/src/effects/genie/demo/geniedemo.qml#M1
+```qml
+<!-- @include: src/effects/genie/demo/geniedemo.qml#M1 -->
+```
 
 We have simplified the code by removing our background rectangle and we assigned the image directly to the effect, instead of loading it inside a standalone image element.

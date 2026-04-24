@@ -4,7 +4,9 @@ For programming shaders, Qt Quick provides two elements. The `ShaderEffectSource
 
 The default shader uses the source and renders it unmodified. Below, we first see the QML file with two `ShaderEffect` elements. One without any shaders specified, and one explicitly specifying default vertex and fragment shaders. We will look at the shaders shortly.
 
-<<< @/docs/ch10-effects/src/effects/default/defaultshader.qml#M1
+```qml
+<!-- @include: src/effects/default/defaultshader.qml#M1 -->
+```
 
 ![image](./assets/defaultshader.png)
 
@@ -12,11 +14,15 @@ In the above example, we have a row of 3 images. The first is the real image. Th
 
 The vertex shader takes the texture coordinate, `qt_MultiTexCoord0`, and propagates it to the `qt_TexCoord0` variable. It also takes the `qt_Vertex` position and multiplies it with Qt's transformation matrix, `ubuf.qt_Matrix`, and returns it through the `gl_Position` variable. This leaves the texture and vertex position on the screen unmodified.
 
-<<< @/docs/ch10-effects/src/effects/default/default.vert#M1
+```qml
+<!-- @include: src/effects/default/default.vert#M1 -->
+```
 
 The fragment shader takes the texture from the `source` 2D sampler, i.e. the texture, at the coordinate `qt_TexCoord0` and multiplies it with the Qt opacity, `ubuf.qt_Opacity` to calculate the `fragColor` which is the color to be used for the pixel.
 
-<<< @/docs/ch10-effects/src/effects/default/default.frag#M1
+```qml
+<!-- @include: src/effects/default/default.frag#M1 -->
+```
 
 Notice that these two shaders can serve as the boilerplate code for your own shaders. The variables, locations and bindings, are what Qt expects. You can read more about the exact details of this on the [Shader Effect Documentation](https://doc-snapshots.qt.io/qt6-6.2/qml-qtquick-shadereffect.html#details).
 

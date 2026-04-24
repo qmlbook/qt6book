@@ -77,7 +77,9 @@ qt_add_qml_module(appbasicasset
 
 Having done this, we can populate a ``View3D`` with the ``Monkey.qml`` as shown below. 
 
-<<< @/docs/ch12-qtquick3d/src/basicasset/main.qml#scene
+```qml
+<!-- @include: src/basicasset/main.qml#scene -->
+```
 
 The ``Monkey.qml`` contains the entire Blender scene, including the camera and a light, so the result is a complete scene as shown below.
 
@@ -93,7 +95,9 @@ An alternative to using the entire scene from Blender is to use the ``*.mesh`` f
 
 Here, we put a ``DirectionalLight`` and ``PerspectiveCamera`` into a ``View3D``, and combine it with the mesh using a ``Model`` element. This way, we can control the positioning, scale, and lighting from QML. We also specify a different, yellow, material for the monkey head.
 
-<<< @/docs/ch12-qtquick3d/src/basicasset/main.qml#mesh
+```qml
+<!-- @include: src/basicasset/main.qml#mesh -->
+```
 
 The resulting view is shown below.
 

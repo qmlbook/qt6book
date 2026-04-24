@@ -8,7 +8,9 @@ The `MediaPlayer` component is a non-visual item that connects a media source to
 
 In the following example, the `MediaPlayer` plays a mp3 sample audio file from a remote URL in an empty window:
 
-<<< @/docs/ch11-multimedia/src/playback-audio/main.qml#global
+```qml
+<!-- @include: src/playback-audio/main.qml#global -->
+```
 
 In this example, the `MediaPlayer` defines two attributes: 
 
@@ -17,7 +19,9 @@ In this example, the `MediaPlayer` defines two attributes:
 
 As soon as the main component has been fully initialized, the player’s `play` function is called:
 
-<<< @/docs/ch11-multimedia/src/playback-audio/main.qml#play
+```qml
+<!-- @include: src/playback-audio/main.qml#play -->
+```
 
 
 ## Playing a video
@@ -26,7 +30,9 @@ If you want to play visual media such as pictures or videos, you must also defin
 
 In the following example, the `MediaPlayer` plays a mp4 sample video file from a remote URL and centers the video content in the window:
 
-<<< @/docs/ch11-multimedia/src/playback-video/main.qml#global
+```qml
+<!-- @include: src/playback-video/main.qml#global -->
+```
 
 In this example, the `MediaPlayer` defines a third attribute:
 
@@ -49,22 +55,30 @@ The following example adds custom controls for the playback:
 * a play/pause button
 * a progress slider
 
-<<< @/docs/ch11-multimedia/src/playback-controls/main.qml#global
+```qml
+<!-- @include: src/playback-controls/main.qml#global -->
+```
 
 ### The volume slider
 A vertical `Slider` component is added on the top right corner of the window, allowing the user to control the volume of the media:
 
-<<< @/docs/ch11-multimedia/src/playback-controls/main.qml#volume-slider
+```qml
+<!-- @include: src/playback-controls/main.qml#volume-slider -->
+```
 
 The volume attribute of the `AudioOutput` is then mapped to the value of the slider:
 
-<<< @/docs/ch11-multimedia/src/playback-controls/main.qml#audio-output
+```qml
+<!-- @include: src/playback-controls/main.qml#audio-output -->
+```
 
 ### Play / Pause
 
 A `Button` component reflects the playback state of the media and allows the user to control this state: 
 
-<<< @/docs/ch11-multimedia/src/playback-controls/main.qml#button
+```qml
+<!-- @include: src/playback-controls/main.qml#button -->
+```
 
 Depending on the playback state, a different text will be displayed in the button. When clicked, the corresponding action will be triggered and will either play or pause the media.
 
@@ -80,7 +94,9 @@ The possible playback states are listed below:
 
 A `Slider` component is added to reflect the current progress of the playback. It also allows the user to control the current position of the playback.
 
-<<< @/docs/ch11-multimedia/src/playback-controls/main.qml#progress-slider{5,6,19-21}
+```qml
+<!-- @include: src/playback-controls/main.qml#progress-slider{5,6,19-21} -->
+```
 
 A few things to note on this sample: 
 * This slider will only be enabled when the media is `seekable` (line 5)

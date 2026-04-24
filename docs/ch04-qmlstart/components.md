@@ -4,7 +4,9 @@ A component is a reusable element. QML provides different ways to create compone
 
 For example, let’s create a rectangle containing a text component and a mouse area. This resembles a simple button and doesn’t need to be more complicated for our purposes.
 
-<<< @/docs/ch04-qmlstart/src/components/InlinedComponentExample.qml#button
+```qml
+<!-- @include: src/components/InlinedComponentExample.qml#button -->
+```
 
 The UI will look similar to this. In the first image, the UI is in its initial state, and in the second image the button has been clicked.
 
@@ -27,13 +29,17 @@ I would like to set the text using a `text` property and to implement my own cli
 
 To achieve this we create a `Button.qml` file and copy our button UI inside. Additionally, we need to export the properties a user might want to change at the root level.
 
-<<< @/docs/ch04-qmlstart/src/components/Button.qml#global
+```qml
+<!-- @include: src/components/Button.qml#global -->
+```
 
 We have exported the text property and the clicked signal at the root level. Typically we name our root element root to make referencing it easier. We use the `alias` feature of QML, which is a way to export properties inside nested QML elements to the root level and make this available for the outside world. It is important to know that only the root level properties can be accessed from outside this file by other components.
 
 To use our new `Button` element we can simply declare it in our file. So the earlier example will become a little bit simplified.
 
-<<< @/docs/ch04-qmlstart/src/components/ReusableComponentExample.qml#reusability
+```qml
+<!-- @include: src/components/ReusableComponentExample.qml#reusability -->
+```
 
 Now you can use as many buttons as you like in your UI by just using `Button { ... }`. A real button could be more complex, e.g. providing feedback when clicked or showing a nicer decoration.
 

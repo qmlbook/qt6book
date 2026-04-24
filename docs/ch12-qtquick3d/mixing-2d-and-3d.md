@@ -24,4 +24,6 @@ Another apporoach is to put the 2D Qt Quick elements directly into the scene. Th
 
 What we do here is that we instantiate a ``Node`` that serves as an anchor point in the 3D scene. We then place a ``Rectangle`` and a ``Text`` element inside the ``Node``. These two are 2D Qt Quick elements. We can then control the 3D position, rotation, and scale through the corresponding properties of the ``Node`` element.
 
-<<< @/docs/ch12-qtquick3d/src/mix2d3d/main.qml#2dnode
+```qml
+<!-- @include: src/mix2d3d/main.qml#2dnode -->
+```

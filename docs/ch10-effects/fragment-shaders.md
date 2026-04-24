@@ -6,7 +6,9 @@ The fragment shader is called for every pixel to be rendered. In this chapter, w
 
 First, we set up our scene, with a grid centered in the field and our source image be displayed.
 
-<<< @/docs/ch10-effects/src/effects/redlense/1/redlense1.qml#M1
+```qml
+<!-- @include: src/effects/redlense/1/redlense1.qml#M1 -->
+```
 
 ![image](./assets/redlense1.png)
 
@@ -14,7 +16,9 @@ First, we set up our scene, with a grid centered in the field and our source ima
 
 Next, we will add a shader, which displays a red rectangle by providing for each fragment a red color value.
 
-<<< @/docs/ch10-effects/src/effects/redlense/2/red1.frag#M1{14-16}
+```qml
+<!-- @include: src/effects/redlense/2/red1.frag#M1{14-16} -->
+```
 
 In the fragment shader we simply assign a `vec4(1.0, 0.0, 0.0, 1.0)`, representing the color red with full opacity (alpha=1.0), to the `fragColor` for each fragment, turning each pixel to a solid red.
 
@@ -24,7 +28,9 @@ In the fragment shader we simply assign a `vec4(1.0, 0.0, 0.0, 1.0)`, representi
 
 Now we want to apply the red color to each texture pixel. For this, we need the texture back in the vertex shader. As we don’t do anything else in the vertex shader the default vertex shader is enough for us. We just need to provide a compatible fragment shader.
 
-<<< @/docs/ch10-effects/src/effects/redlense/2/red2.frag#M1{14-16}
+```qml
+<!-- @include: src/effects/redlense/2/red2.frag#M1{14-16} -->
+```
 
 The full shader contains now back our image source as variant property and we have left out the vertex shader, which if not specified is the default vertex shader.
 
@@ -40,7 +46,9 @@ It’s not really nice to hard code the red channel value, so we would like to c
 Notice that the `redChannel` must come after the implicit `qt_Matrix` and `qt_Opacity` in the uniform buffer, `ubuf`. The order of the parameters after the `qt_` parameters is up to you, but `qt_Matrix` and `qt_Opacity` must come first and in that order.
 :::
 
-<<< @/docs/ch10-effects/src/effects/redlense/2/red3.frag#M1{11}
+```qml
+<!-- @include: src/effects/redlense/2/red3.frag#M1{11} -->
+```
 
 To make the lens really a lens, we change the *vec4* color to be *vec4(redChannel, 1.0, 1.0, 1.0)* so that the other colors are multiplied by 1.0 and only the red portion is multiplied by our *redChannel* variable.
 
@@ -50,7 +58,9 @@ To make the lens really a lens, we change the *vec4* color to be *vec4(redChanne
 
 As the *redChannel* property is just a normal property it can also be animated as all properties in QML. So we can use QML properties to animate values on the GPU to influence our shaders. How cool is that!
 
-<<< @/docs/ch10-effects/src/effects/redlense/2/redlense2.qml#M1{7-9}
+```qml
+<!-- @include: src/effects/redlense/2/redlense2.qml#M1{7-9} -->
+```
 
 Here the final result.
 
