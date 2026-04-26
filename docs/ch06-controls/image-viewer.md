@@ -503,7 +503,7 @@ In addition to the QML changes, we also need to alter the project file of the im
 QT += quick quickcontrols2 widgets
 ```
 
-And we need to update `main.qml` to instantiate a `QApplication` object instead of a `QGuiApplication` object. This is because the `QGuiApplication` class contains the minimal environment needed for a graphical application, while `QApplication` extends `QGuiApplication` with features needed to support `QtWidgets`.
+And we need to update `main.cpp` to instantiate a `QApplication` object instead of a `QGuiApplication` object. This is because the `QGuiApplication` class contains the minimal environment needed for a graphical application, while `QApplication` extends `QGuiApplication` with features needed to support `QtWidgets`.
 
 ```cpp
 include <QApplication>
