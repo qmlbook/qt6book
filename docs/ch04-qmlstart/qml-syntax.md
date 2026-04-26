@@ -5,7 +5,7 @@ QML is a declarative language used to describe how objects relate to each other.
 In its simplest form, QtQuick lets you create a hierarchy of elements. Child elements inherit the coordinate system from the parent. An `x,y` coordinate is always relative to the parent.
 
 ::: tip
-QtQuick builds on QML. The QML language only knows of elements, properties, signals and bindings. QtQuick is a framework built on QML. Using default properties, the hierarchy of QtQuick elements can be constructed in an elegant way.
+QtQuick is a framework built on QML. The QML language only knows of elements, properties, signals and bindings. Using default properties, the hierarchy of QtQuick elements can be constructed in an elegant way.
 :::
 
 ![](./assets/scene.png)
