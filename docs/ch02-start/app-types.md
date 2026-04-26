@@ -58,7 +58,7 @@ QString s1("Hello");
 QString s2("Qt");
 // convenient container classes
 QStringList list;
-list <<  s1 << s2;
+list << s1 << s2;
 // join strings
 QString s = list.join(" ") + "!";
 cout << s << Qt::endl;
