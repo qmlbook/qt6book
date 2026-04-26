@@ -13,7 +13,7 @@ Before we show off the example I would like to introduce a little helper: the `C
 ![](./assets/objects.png)
 
 
-We use our clickable image to present three objects (box, circle, triangle). Each object performs a simple transformation when clicked. Clicking the background will reset the scene.
+We use our clickable image to present three objects (circle, box, triangle). Each object performs a simple transformation when clicked. Clicking the background will reset the scene.
 
 <<< @/docs/ch04-qmlstart/src/transformation/TransformationExample.qml#no-tests
 
