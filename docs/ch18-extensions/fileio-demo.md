@@ -25,7 +25,7 @@ When the text is changed it is necessary to inform others about the change using
 
 The write method does the same but opens the file in write mode and uses the stream to write the contents of the `text` property.
 
-<<< @/docs/ch18-extensions/src/fileio/fileio.cpp#read
+<<< @/docs/ch18-extensions/src/fileio/fileio.cpp#write
 
 To make the type visible to QML, we add the `QML_ELEMENT` macro just after the `Q_PROPERTY` lines. This tells Qt that the type should be made available to QML. If you want to provide a different name than the C++ class, you can use the `QML_NAMED_ELEMENT` macro.
 
