@@ -1,6 +1,6 @@
 # Qt and C++
 
-Qt is a C++ toolkit with an extension for QML and Javascript. There exist many language bindings for Qt, but as Qt itself is developed in C++. The spirit of C++ can be found throughout the classes. In this section, we will look at Qt from a C++ perspective to build a better understanding of how to extend QML with native plugins developed using C++. Through C++, it is possible to extend and control the execution environment provided to QML.
+Qt is a C++ toolkit that features extensions for QML and JavaScript. While there are many language bindings available for Qt, the fact that it is developed in C++ makes C++ itself a natural development choice. The spirit of C++ can be found throughout the classes of Qt and, in this section, we will look at Qt from a C++ perspective to build a better understanding of how to extend QML with native plugins developed using C++. Through C++, it is possible to extend and control the execution environment provided to QML.
 
 ![image](./images/yourapplication.png)
 
