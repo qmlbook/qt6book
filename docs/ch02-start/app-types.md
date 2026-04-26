@@ -132,7 +132,7 @@ class CustomWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit CustomWidget(QWidget *parent = 0);
+    explicit CustomWidget(QWidget *parent = nullptr);
     void paintEvent(QPaintEvent *event);
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
@@ -191,7 +191,7 @@ class CustomWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit CustomWidget(QWidget *parent = 0);
+    explicit CustomWidget(QWidget *parent = nullptr);
 private slots:
     void itemClicked(QListWidgetItem* item);
     void updateItem();
@@ -225,9 +225,9 @@ CustomWidget::CustomWidget(QWidget *parent) :
         m_widget->addItem(city);
     }
 
-    connect(m_widget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(itemClicked(QListWidgetItem*)));
-    connect(m_edit, SIGNAL(editingFinished()), this, SLOT(updateItem()));
-    connect(m_button, SIGNAL(clicked()), qApp, SLOT(quit()));
+    connect(m_widget, &QListWidget::itemClicked, this, &CustomWidget::itemClicked);
+    connect(m_edit, &QLineEdit::editingFinished, this, &CustomWidget::updateItem);
+    connect(m_button, &QPushButton::clicked, qApp, &QApplication::quit);
 }
 
 void CustomWidget::itemClicked(QListWidgetItem *item)
@@ -256,7 +256,7 @@ class CustomWidgetV2 : public QWidget
 {
     Q_OBJECT
 public:
-    explicit CustomWidgetV2(QWidget *parent = 0);
+    explicit CustomWidgetV2(QWidget *parent = nullptr);
 private:
     QGraphicsView *m_view;
     QGraphicsScene *m_scene;
@@ -269,7 +269,7 @@ In the implementation, the scene gets attached to the view first. The view is a 
 ```cpp
 include "customwidgetv2.h"
 
-CustomWidget::CustomWidget(QWidget *parent) :
+CustomWidgetV2::CustomWidgetV2(QWidget *parent) :
     QWidget(parent)
 {
     m_view = new QGraphicsView(this);
@@ -277,7 +277,7 @@ CustomWidget::CustomWidget(QWidget *parent) :
     m_view->setScene(m_scene);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
     layout->addWidget(m_view);
     setLayout(layout);
 
@@ -293,7 +293,7 @@ Up to now, we have mostly covered basic data types and how to use widgets and gr
 ```cpp
 m_view = new QListView(this);
 m_model = new QStringListModel(this);
-view->setModel(m_model);
+m_view->setModel(m_model);
 
 QList<QString> cities;
 cities << "Munich" << "Paris" << "London";
@@ -333,7 +333,7 @@ view->setModel(m_model);
 m_model->select();
 ```
 
-For a higher level model operations, Qt provides a sorting file proxy model that allows you sort, filter, and transform models.
+For a higher level model operations, Qt provides a sorting filter proxy model that allows you sort, filter, and transform models.
 
 ```cpp
 QSortFilterProxyModel* proxy = new QSortFilterProxyModel(this);
@@ -342,7 +342,7 @@ view->setModel(proxy);
 view->setSortingEnabled(true);
 ```
 
-Filtering is done based on the column that is to be filters, and a string as filter argument.
+Filtering is done based on the column that is to be filtered, and a string as filter argument.
 
 ```cpp
 proxy->setFilterKeyColumn(0);
@@ -354,7 +354,7 @@ The filter proxy model is much more powerful than demonstrated here. For now, it
 
 !!! note
 
-    This has been an overview of the different kind of classic applications you can develop with Qt 5. The desktop is moving, and soon the mobile devices will be our desktop of tomorrow. Mobile devices have a different user interface design. They are much more simplistic than desktop applications. They do one thing and they do it with simplicity and focus. Animations are an important part of the mobile experience. A user interface needs to feel alive and fluent. The traditional Qt technologies are not well suited for this market.
+    This has been an overview of the different kind of classic applications you can develop with Qt 6. The desktop is moving, and soon the mobile devices will be our desktop of tomorrow. Mobile devices have a different user interface design. They are much more simplistic than desktop applications. They do one thing and they do it with simplicity and focus. Animations are an important part of the mobile experience. A user interface needs to feel alive and fluent. The traditional Qt technologies are not well suited for this market.
 
 *Coming next: Qt Quick to the rescue.*
 
