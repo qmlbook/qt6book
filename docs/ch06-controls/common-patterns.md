@@ -50,7 +50,7 @@ The home page, `Home.qml` consists of a `Page`, which is n control element that 
 
 <<< @/docs/ch06-controls/src/interface-stack/Home.qml
 
-Returning to `main.qml`, we now look at the drawer part. This is where the navigation to the pages begin. The active parts of the user interface are the `ÌtemDelegate` items. In the `onClicked` handler, the next page is pushed onto the `stackView`.
+Returning to `main.qml`, we now look at the drawer part. This is where the navigation to the pages begin. The active parts of the user interface are the `ItemDelegate` items. In the `onClicked` handler, the next page is pushed onto the `stackView`.
 
 As shown in the code below, it is possible to push either a `Component` or a reference to a specific QML file. Either way results in a new instance being created and pushed onto the stack.
 
