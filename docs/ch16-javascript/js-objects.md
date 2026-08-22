@@ -45,9 +45,10 @@ Item {
 
     Component.onCompleted: {
         var data = JSON.stringify(obj);
-        console.log(data);
-        var obj = JSON.parse(data);
-        console.log(obj.key); // > 'value'
+        console.log(data); // > "value"
+        var obj2 = JSON.parse(data);
+        console.log(obj2); // > 'value'
+        console.log(obj.key); // > 'undefined'
     }
 }
 ```
