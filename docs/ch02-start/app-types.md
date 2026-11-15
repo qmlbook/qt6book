@@ -107,7 +107,7 @@ In this first snippet for widget-based applications, we do as little as needed t
 When you run the code, you will see a window with the size of 240 x 120 pixels. That’s all.
 
 ```cpp
-include <QtGui>
+#include <QtGui>
 
 int main(int argc, char** argv)
 {
@@ -126,7 +126,7 @@ When you work on user interfaces, you may need to create custom-made widgets. Ty
 ```cpp
 #pragma once
 
-include <QtWidgets>
+#include <QtWidgets>
 
 class CustomWidget : public QWidget
 {
@@ -144,7 +144,7 @@ private:
 In the implementation, we draw a small border on our widget and a small rectangle on the last mouse position. This is very typical for a low-level custom widget. Mouse and keyboard events change the internal state of the widget and trigger a painting update. We won’t go into too much detail about this code, but it is good to know that you have the possibility. Qt comes with a large set of ready-made desktop widgets, so it’s likely that you don’t have to do this.
 
 ```cpp
-include "customwidget.h"
+#include "customwidget.h"
 
 CustomWidget::CustomWidget(QWidget *parent) :
     QWidget(parent)
@@ -267,7 +267,7 @@ private:
 In the implementation, the scene gets attached to the view first. The view is a widget and gets arranged in our container widget. In the end, we add a small rectangle to the scene, which is then rendered on the view.
 
 ```cpp
-include "customwidgetv2.h"
+#include "customwidgetv2.h"
 
 CustomWidget::CustomWidget(QWidget *parent) :
     QWidget(parent)
