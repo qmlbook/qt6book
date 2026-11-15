@@ -215,7 +215,7 @@ void FoundationTest::testDictionary()
     { // hash find successfull
         QHash<QString, int>::const_iterator i = hash.find("c");
         while (i != hash.end()) {
-            qDebug() << i.value() << " = " << i.key();
+            qDebug() << i.key() << " = " << i.value();
             i++;
         }
     }
