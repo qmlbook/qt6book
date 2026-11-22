@@ -18,7 +18,7 @@
 
 下面的例子演示了如何使用 `PathView` 元素创建一个用户可以翻阅的卡片视图。它使用了若干技巧来实现这一点。路径由三个 `PathLine` 元素组成。使用 `PathPercent` 元素，中心元素被正确居中，并获得足够的空间而不被其他元素挤占。使用 `PathAttribute` 元素，控制旋转、大小和 `z` 值。
 
-除了 `path` 之外，还设置了 `pathItemCount`，它是 `PathView` 的属性。它控制路径上分布的项目密度。`preferredHighlightBegin` 和 `preferredHighlightEnd`；`PathView.onPath` 用于控制委托的可见性。
+除了 `path` 之外，还设置了 `pathItemCount`，它是 `PathView` 的属性。它控制路径上分布的项密度。`preferredHighlightBegin` 和 `preferredHighlightEnd`；`PathView.onPath` 用于控制委托的可见性。
 
 <<< @/docs/ch07-modelview/src/pathview/coverview.qml#pathview
 
