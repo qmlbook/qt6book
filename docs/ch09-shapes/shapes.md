@@ -1,5 +1,5 @@
-# Shapes
+# 形状
 
-Until now we've used the ``Rectangle`` element and controls, but for free form shapes, we have to rely on images. Using the Qt Quick Shapes module it is possible to create truly free form shapes. This makes it possible to create visualizations directly from QML in a flexible manner.
+到目前为止，我们使用的都是 ``Rectangle`` 元素和控件，但要绘制自由形状，就不得不依赖图像了。借助 Qt Quick Shapes 模块，可以创建真正的自由形状。这样一来，就能以灵活的方式直接用 QML 创建可视化图形。
 
-In this chapter we will look at how to use shapes, the various path elements available, how shapes can be filled in different ways, and how to combine shapes with the power of QML to smoothly animate shapes.
+本章将介绍如何使用形状、可用的各种路径元素、填充形状的不同方式，以及如何将形状与 QML 的能力相结合，为形状添加平滑的动画。

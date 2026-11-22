@@ -1,11 +1,11 @@
-# Animating Shapes
+# 为形状添加动画
 
-One of the nice aspects of using Qt Quick Shapes, is that the paths drawn are defined directly in QML. This means that their properties can be bound, transitioned and animated, just like any other property in QML.
+使用 Qt Quick Shapes 的一大好处是，所绘制的路径直接在 QML 中定义。这意味着它们的属性可以像 QML 中的任何其他属性一样进行绑定、过渡和动画。
 
 ![](./assets/automatic/animation.png)
 
-In the example below, we reuse the basic shape from the very first section of this chapter, but we introduce a variable, ``t``, that we animate from ``0.0`` to ``1.0`` in a loop. We then use this variable to offset the position of the small circles, as well as the size of the top and bottom circle. This creates an animation in which it seems that the circles appear at the top and disappear towards the bottom.
+在下面的示例中，我们复用了本章第一节中的基础形状，但引入了一个变量 ``t``，让它在 ``0.0`` 到 ``1.0`` 之间循环动画。然后使用该变量偏移小圆的位置，以及顶部和底部圆的大小。这就产生了一种动画效果：圆圈看起来从顶部出现，向底部消失。
 
 <<< @/docs/ch09-shapes/src/shapes/animation.qml#global
 
-Notice that instead of using a ``NumberAnimation`` on ``t``, any other binding can be used, e.g. to a slider, an external state, and so on. Your imagination is the limit.
+注意，除了用 ``NumberAnimation`` 对 ``t`` 做动画，也可以使用任何其他绑定，例如绑定到滑块、外部状态等。唯一的限制是你的想象力。

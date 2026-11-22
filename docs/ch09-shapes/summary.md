@@ -1,3 +1,3 @@
-# Summary
+# 小结
 
-In this chapter we've a look at what the Qt Quick Shapes module has to offer. Using it we can create arbitrary shapes directly in QML, and leverage the property binding system of QML to create dynamic shapes. We've also had a look at the various path segments that can be used to build shapes from elements such as lines, arcs, and various curves. Finally, we've explored the filling options, where gradients can be used to create exciting visual effects from a path.
+本章我们了解了 Qt Quick Shapes 模块的功能。借助它，可以直接在 QML 中创建任意形状，并利用 QML 的属性绑定系统创建动态形状。我们还研究了用于构建形状的各种路径段，即直线、弧和各种曲线等元素。最后，我们探索了各种填充选项，可以利用渐变从一条路径创造出引人注目的视觉效果。
