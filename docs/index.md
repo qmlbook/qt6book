@@ -1,4 +1,4 @@
----
+﻿---
 home: true
 heroText: Qt 6 Book
 tagline: 一本关于 Qt 6 的书
@@ -18,7 +18,7 @@ features:
 - title: Qt 6 发布系列
   details: 让 Qt 成为面向未来的生产力平台
 
-footer: CC-BY-NC Licensed | Copyright © 2021-present J. Ryannel & J. Thelin
+footer: CC-BY-NC 许可 | Copyright © 2021-present J. Ryannel & J. Thelin
 ---
 
 就这么简单：

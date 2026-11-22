@@ -1,4 +1,4 @@
-# Qt 6 书籍简体中文翻译
+﻿# Qt 6 书籍简体中文翻译
 
 本仓库是 [qmlbook/qt6book](https://github.com/qmlbook/qt6book)（Qt 6 Book）的
 简体中文翻译工作区。
@@ -59,7 +59,7 @@ yarn run examples:build
 翻译进度、审查状态、构建记录见仓库根目录的 `TRANSLATION_STATUS.md`。
 术语约定见 `GLOSSARY.zh-CN.md`。
 
-当前状态：初始化完成，尚未开始翻译章节。
+当前状态：全部章节翻译与独立复核已完成，最终审计与构建通过（详见 TRANSLATION_STATUS.md）。
 
 ## 翻译约定摘要
 
