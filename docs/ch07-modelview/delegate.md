@@ -8,7 +8,7 @@
 
 <<< @/docs/ch07-modelview/src/delegates/basic.qml#global
 
-![图片](./assets/automatic/delegates-basic.png)
+![图像](./assets/automatic/delegates-basic.png)
 
 如果模型中的每一项都关联着一个动作——例如点击一项就对其执行操作——那么该功能就是每个委托的一部分。这样就把事件管理在视图和委托之间分开了：视图处理视图中项之间的导航，委托处理对特定项的操作。
 
@@ -46,8 +46,8 @@
 
 <<< @/docs/ch07-modelview/src/delegates/expanding.qml#global
 
-![图片](./assets/automatic/delegates-expanding-small.png)
+![图像](./assets/automatic/delegates-expanding-small.png)
 
-![图片](./assets/automatic/delegates-expanding-large.png)
+![图像](./assets/automatic/delegates-expanding-large.png)
 
 这里演示的把委托扩展以填满整个视图的技巧，可以用来让项委托以小得多的方式变形。例如，在浏览歌曲列表时，可以让当前项稍大一些，以容纳关于该特定项的更多信息。

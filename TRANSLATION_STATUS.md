@@ -60,6 +60,7 @@
 | `docs/ch20-qtformcu` | 6 | TRANSLATED | REVIEWED | N/A | 2cded50 | 批次 B22（父代理顺序完成） |
 | `docs/.vuepress/config.js` 导航标签 | 1 | TRANSLATED | REVIEWED | N/A | (见提交) | 批次 P01；仅读者可见导航文案已汉化 |
 | 根目录中文文档（`README.zh-CN.md` 等） | 3 | TRANSLATED | REVIEWED | PASS | （本提交） | INIT 创建；AUDIT 已终审 |
+| `README.md`（根目录原英文说明） | 1 | TRANSLATED | REVIEWED | PASS | 3951684 | 批次 P03 补译：构建说明等四节已汉化；标题与版权行保留英文 |
 
 文件数合计：137（可翻译 Markdown）+ 1（config.js 导航）+ 3（根目录中文文档）。
 
@@ -104,3 +105,9 @@ workaround，不修改 `package.json`、`yarn.lock` 或任何上游源文件。
 
 验证报告：`reports/verify-v1.md`（5 项 PASS）。复核报告：`reports/review-r1…r5.md`。
 翻译报告：`reports/translate-b01…b22.md`。批次映射：`reports/batch-map.md`。
+### 残留清理补记（2026-11-22 晚）
+
+- README.md 中文翻译由提交 3951684 入库（标题与版权行保留英文）；ch12 intro.md 作者注释同步汉化。
+- 图片 alt 统一：`![图片]`×28 与 `![image]`×1 全部改为 `![图像]`（空 alt 与人名/类型名 alt 保持基线原样）。
+- 英文散文终扫：仅剩 2 行外部 URL 链接引用（豁免）；无其他残留。
+- 构建：`NODE_OPTIONS=--openssl-legacy-provider yarn run docs:build` PASS（31.61s）。

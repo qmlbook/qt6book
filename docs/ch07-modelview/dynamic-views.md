@@ -2,9 +2,9 @@
 
 Repeater 对于有限且静态的数据集很好用，但在真实世界中，模型通常更复杂——也更大。这里就需要更聪明的解决方案。为此，Qt Quick 提供了 `ListView` 和 `GridView` 元素。两者都基于 `Flickable` 区域，因此用户可以在更大的数据集中移动浏览。同时，它们限制了同时实例化的委托数量。对于大型模型，这意味着场景中同时存在的元素更少。
 
-![图片](./assets/automatic/listview-basic.png)
+![图像](./assets/automatic/listview-basic.png)
 
-![图片](./assets/automatic/gridview-basic.png)
+![图像](./assets/automatic/gridview-basic.png)
 
 这两个元素的用法相似。我们先从 `ListView` 开始，然后以它为比较基准来描述 `GridView`。注意，`GridView` 会把一个项列表放入二维网格中，从左到右或从上到下排列。如果想展示数据表格，需要使用 `TableView`，它在“表模型”一节中介绍。
 
@@ -12,11 +12,11 @@ Repeater 对于有限且静态的数据集很好用，但在真实世界中，�
 
 <<< @/docs/ch07-modelview/src/listview/basic.qml#global
 
-![图片](./assets/automatic/listview-basic.png)
+![图像](./assets/automatic/listview-basic.png)
 
 如果模型包含的数据超出屏幕可以显示的范围，`ListView` 只会显示列表的一部分。然而，由于 Qt Quick 的默认行为，列表视图不限制委托显示的屏幕区域。这意味着委托可能在列表视图之外可见，并且列表视图之外委托的动态创建和销毁对用户是可见的。要防止这种情况，必须在 `ListView` 元素上通过把 `clip` 属性设置为 `true` 来激活裁剪（clipping）。下图展示了这样做的结果（左侧视图），与 `clip` 属性为 `false` 时（右侧视图）的对比。
 
-![图片](./assets/automatic/listview-clip.png)
+![图像](./assets/automatic/listview-clip.png)
 
 对用户来说，`ListView` 是一个可滚动区域。它支持惯性滚动（kinetic scrolling），也就是说可以通过轻拂快速浏览内容。默认情况下，它还可以被拉伸到内容末尾之外，然后弹回，以向用户发出已经到达末尾的信号。
 
@@ -30,7 +30,7 @@ Repeater 对于有限且静态的数据集很好用，但在真实世界中，�
 
 <<< @/docs/ch07-modelview/src/listview/horizontal.qml#global
 
-![图片](./assets/automatic/listview-horizontal.png)
+![图像](./assets/automatic/listview-horizontal.png)
 
 可以看出，水平方向的流动默认从左到右。这可以通过 `layoutDirection` 属性控制，根据流动方向可以设置为 `Qt.LeftToRight` 或 `Qt.RightToLeft`。
 
@@ -46,7 +46,7 @@ Repeater 对于有限且静态的数据集很好用，但在真实世界中，�
 
 <<< @/docs/ch07-modelview/src/listview/highlight.qml#global
 
-![图片](./assets/automatic/listview-highlight.png)
+![图像](./assets/automatic/listview-highlight.png)
 
 在与 `ListView` 一起使用高亮时，可以使用若干属性控制其行为。`highlightRangeMode` 控制高亮如何受视图中所显示内容的影响。默认设置 `ListView.NoHighlightRange` 意味着高亮和视图中项的可见范围完全无关。
 
@@ -70,7 +70,7 @@ Repeater 对于有限且静态的数据集很好用，但在真实世界中，�
 
 <<< @/docs/ch07-modelview/src/listview/header-footer.qml#global
 
-![图片](./assets/automatic/listview-header-footer.png)
+![图像](./assets/automatic/listview-header-footer.png)
 
 ::: tip
 页眉和页脚委托不遵循 `spacing`（`ListView` 的属性），而是直接紧挨着列表中的下一个项委托放置。这意味着任何间距都必须成为页眉和页脚项的一部分。
@@ -80,7 +80,7 @@ Repeater 对于有限且静态的数据集很好用，但在真实世界中，�
 
 使用 `GridView` 与使用 `ListView` 非常相似。唯一真正的区别在于，网格视图把委托放置在二维网格中，而不是线性列表中。
 
-![图片](./assets/automatic/gridview-basic.png)
+![图像](./assets/automatic/gridview-basic.png)
 
 与列表视图相比，网格视图并不依赖委托之间的间距和委托自身的大小。相反，它使用 `cellWidth` 和 `cellHeight` 属性控制内容委托的尺寸。每个委托项随后被放置在每个此类单元格的左上角。
 

@@ -14,7 +14,7 @@
 
 在 `Path` 中，`PathAttribute` 元素与 `PathPercent` 元素一样放置在元素之间。它们让你指定沿路径插值的属性值。这些属性附加到委托上，可以用来控制任何可以想到的属性。
 
-![图片](./assets/automatic/pathview-coverview.png)
+![图像](./assets/automatic/pathview-coverview.png)
 
 下面的例子演示了如何使用 `PathView` 元素创建一个用户可以翻阅的卡片视图。它使用了若干技巧来实现这一点。路径由三个 `PathLine` 元素组成。使用 `PathPercent` 元素，中心元素被正确居中，并获得足够的空间而不被其他元素挤占。使用 `PathAttribute` 元素，控制旋转、大小和 `z` 值。
 
@@ -44,7 +44,7 @@
 
 在下面的例子中，我们设置了一个简单的 `TableView`，使用从 C++ 暴露的自定义模型。目前，无法直接从 QML 创建面向表格的模型，但这一概念将在“Qt 与 C++”一章中解释。运行中的示例如下图所示。
 
-![图片](./assets/tableview.png)
+![图像](./assets/tableview.png)
 
 在下面的例子中，我们创建一个 `TableView`，并设置 `rowSpacing` 和 `columnSpacing` 以控制委托之间水平和垂直的间隙。其余属性的设置与任何其他类型的视图相同。
 
@@ -84,7 +84,7 @@ TableView {
 
 下面的示例演示了从 RSS 流中获取图像。`source` 属性指向通过 HTTP 的远程位置，数据会被自动下载。
 
-![图片](./assets/automatic/xmllistmodel-images.png)
+![图像](./assets/automatic/xmllistmodel-images.png)
 
 数据下载完成后，会被处理成模型项和角色。`query` 是 `XmlListModel` 的属性，它是一个 XPath，表示创建模型项的基础查询。在这个例子中，路径是 `/rss/channel/item`，因此对于 RSS 标签内 channel 标签内的每个 item 标签，都会创建一个模型项。
 
@@ -98,7 +98,7 @@ TableView {
 
 有时，列表中的数据可以划分为若干分节（section）。这可以简单到把联系人列表按字母表的每个字母分节，或者把音乐曲目按专辑分节。使用 `ListView` 可以把扁平列表划分为类别，为体验提供更多层次。
 
-![图片](./assets/automatic/listview-sections.png)
+![图像](./assets/automatic/listview-sections.png)
 
 要使用分节，必须设置 `section.property` 和 `section.criteria`。`section.property` 定义使用哪个属性把内容划分成分节。这里重要的是要知道，模型必须排序，使每个分节由连续的元素组成，否则同一个属性名可能出现在多个位置。
 
@@ -117,7 +117,7 @@ TableView {
 在某些情况下，你可能想把大量不同的项用在列表视图中。可以使用动态 QML 和 `Loader` 解决这个问题，但另一个选择是使用 `ObjectModel`，它来自 `QtQml.Models` 模块。对象模型与其他模型不同，它让你把实际的可视元素放在模型之中。这样，视图不需要任何 `delegate`。
 
 
-![图片](./assets/automatic/delegates-objectmodel.png)
+![图像](./assets/automatic/delegates-objectmodel.png)
 
 在下面的例子中，我们把三个 `Rectangle` 元素放入 `ObjectModel`。不过，其中一个矩形有一个 `Text` 元素子对象，而最后一个有圆角。如果使用类似 `ListModel` 的东西，这会导致一种表格式的模型。还会导致模型中出现空的 `Text` 元素。
 

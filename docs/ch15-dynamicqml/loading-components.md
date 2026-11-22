@@ -6,9 +6,9 @@
 
 下面描述的例子演示了如何用 `Loader` 元素把两个不同的用户界面部分加载到同一块空间中。其思路是实现一个速度表盘，它既可以是数字式的，也可以是模拟式的，如下图所示。表盘周围的代码不受当前加载的是哪一个项的影响。
 
-![图片](./assets/automatic/loader-analog.png)
+![图像](./assets/automatic/loader-analog.png)
 
-![图片](./assets/automatic/loader-digital.png)
+![图像](./assets/automatic/loader-digital.png)
 
 应用程序的第一步是声明一个 `Loader` 元素。请注意，这里省略了 `source` 属性。这是因为 `source` 取决于用户界面当前所处的状态。
 
@@ -36,7 +36,7 @@ Loader {
 
 设置好 `Connections` 元素的 `target` 属性后，就可以像往常一样，即使用 `onSignalName` 的方式连接信号。不过，通过更改 `target` 属性，可以在不同时刻监视不同的元素。
 
-![图片](./assets/automatic/connections.png)
+![图像](./assets/automatic/connections.png)
 
 在上面展示的例子中，向用户呈现了一个由两个可点击区域组成的用户界面。点击任一区域时，都会用动画使其闪烁。左侧区域如下面的代码片段所示。在 `MouseArea` 中会触发 `leftClickedAnimation`，使该区域闪烁。
 

@@ -10,7 +10,7 @@
 
 <<< @/docs/ch07-modelview/src/repeater/number.qml#global
 
-![图片](./assets/automatic/repeater-number.png)
+![图像](./assets/automatic/repeater-number.png)
 
 ## 使用数组
 
@@ -18,7 +18,7 @@
 
 <<< @/docs/ch07-modelview/src/repeater/array.qml#global
 
-![图片](./assets/automatic/repeater-array.png)
+![图像](./assets/automatic/repeater-array.png)
 
 ## 使用 `ListModel`
 
@@ -28,7 +28,7 @@
 
 <<< @/docs/ch07-modelview/src/repeater/model.qml#global
 
-![图片](./assets/automatic/repeater-model.png)
+![图像](./assets/automatic/repeater-model.png)
 
 ## 将委托用作默认属性
 

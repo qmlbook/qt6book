@@ -379,7 +379,7 @@ QColor DynamicEntryModel::get(int index)
 
 现在你可以在 QML 中使用该模型，并向模型插入、追加、移除条目。下面是一个小示例：用户可以输入颜色名称或颜色十六进制值，该颜色随后被追加到模型并显示在列表视图中。委托上的红色圆圈允许用户从模型中移除该条目。条目被移除后，列表视图会收到模型的通知并更新其内容。
 
-![图片](./images/modelview.png)
+![图像](./images/modelview.png)
 
 下面是 QML 代码。你也可以在本章的资源文件中找到完整源代码。示例使用 `QtQuick.Controls` 和 `QtQuick.Layout` 模块使代码更紧凑。控件模块在 Qt Quick 中提供了一组与桌面相关的 UI 元素，而布局模块提供了一些非常有用的布局管理器。
 

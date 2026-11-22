@@ -153,7 +153,7 @@ int main(int argc, char** argv)
 
 使用 Qt，你可以用 QML 和 Widgets 构建用户界面。本书以 QML 为重点，但在本章中，我们将看看 Widgets。这样我们就可以只用 C++ 来创建程序。
 
-![图片](./images/storecontent.png)
+![图像](./images/storecontent.png)
 
 主窗口本身是一个窗口部件（widget）。由于它没有任何父对象，因此成为一个顶层窗口。这源于 Qt 把用户界面视为一棵 UI 元素树的方式。在这种情况下，主窗口是根元素，因而成为窗口；而作为主窗口子对象的按钮，则成为窗口内的一个窗口部件。
 

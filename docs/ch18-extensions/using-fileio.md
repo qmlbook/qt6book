@@ -2,7 +2,7 @@
 
 现在我们可以用新创建的文件来访问一些数据了。在本例中，我们将使用一些 JSON 格式的城市数据，并把它们显示在表格中。我们把它构建为两个项目：一个是扩展插件（名为 `fileio`），为我们提供从文件读写文本的方式；另一个则在表格中显示数据（`CityUI`）。`CityUI` 使用 `fileio` 扩展来读写文件。
 
-![图片](./images/cityui_mock.png)
+![图像](./images/cityui_mock.png)
 
 JSON 数据不过是格式特殊的文本，这种格式使它可以转换为有效的 JavaScript 对象/数组，也可以再转回文本。我们用 `FileIO` 读取 JSON 格式的数据，并使用内置的 JavaScript 函数 `JSON.parse()` 把它转换为 JavaScript 对象。这些数据随后被用作表格视图的模型。下面展示的读取文档与写入文档函数实现了这一点。
 
@@ -86,7 +86,7 @@ TableView {
 
 
 
-![图片](./images/cityui_empty.png)
+![图像](./images/cityui_empty.png)
 
 `cities.json` 文档是一个城市条目数组。下面是一个例子。
 
@@ -167,7 +167,7 @@ FileIO {
 
 
 
-![图片](./images/cityui_table.png)
+![图像](./images/cityui_table.png)
 
 ## 收尾工作
 
@@ -211,5 +211,5 @@ TableViewColumn {
 
 遗憾的是，JavaScript 数组不像 `QAbstractItemModel` 这样的 Qt 模型那样聪明，后者会把行变化或数据变化通知视图。目前视图不会显示任何更新后的数据，因为它从未收到任何变化通知。只有当我们把数据重新设置回视图时，视图才意识到有新数据并刷新视图内容。再次使用 `view.model = data` 设置模型，就是让视图知道数据发生了变化的一种方式。
 
-![image](./images/cityui_populated.png)
+![图像](./images/cityui_populated.png)
 
