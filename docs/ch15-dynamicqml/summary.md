@@ -1,11 +1,11 @@
-## Summary
+## 小结
 
-In this chapter, we have looked at creating QML elements dynamically. This lets us create QML scenes freely, opening the door for user configurable and plug-in based architectures.
+在本章中，我们研究了动态创建 QML 元素。这让我们可以自由地创建 QML 场景，为用户可配置的架构和基于插件的架构打开了大门。
 
-The easiest way to dynamically load a QML element is to use a `Loader` element. This acts as a placeholder for the contents being loaded.
+动态加载 QML 元素最简单的方式，是使用 `Loader` 元素。它充当被加载内容的占位符。
 
-For a more dynamic approach, the `Qt.createQmlObject` function can be used to instantiate a string of QML. This approach does, however, have limitations. The full-blown solution is to dynamically create a `Component` using the `Qt.createComponent` function. Objects are then created by calling the `createObject` function of a `Component`.
+若要采用更动态的方式，可以使用 `Qt.createQmlObject` 函数实例化一段 QML 字符串。不过这种方式有其局限性。完整的解决方案是用 `Qt.createComponent` 函数动态创建一个 `Component`，然后通过调用该 `Component` 的 `createObject` 函数来创建对象。
 
-As bindings and signal connections rely on the existence of an object `id`, or access to the object instantiation, an alternate approach must be used for dynamically created objects. To create a binding, the `Binding` element is used. The `Connections` element makes it possible to connect to signals of a dynamically created object.
+由于属性绑定和信号连接依赖于对象 `id` 的存在，或者需要访问对象的实例化过程，因此对动态创建的对象必须采用其他方式。要创建绑定，使用 `Binding` 元素。`Connections` 元素则使我们可以连接动态创建的对象的信号。
 
-One of the challenges of working with dynamically created items is to keep track of them. This can be done using a model. By having a model tracking the dynamically created items, it is possible to implement functions for serialization and deserialization, making it possible to store and restore dynamically created scenes.
+使用动态创建的项时，挑战之一是跟踪它们。这可以借助模型来完成。让模型跟踪动态创建的项，就可以实现序列化与反序列化功能，从而能够存储和恢复动态创建的场景。

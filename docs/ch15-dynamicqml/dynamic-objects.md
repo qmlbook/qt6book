@@ -1,44 +1,44 @@
-## Creating and Destroying Objects
+## 创建与销毁对象
 
-The `Loader` element makes it possible to populate part of a user interface dynamically. However, the overall structure of the interface is still static. Through JavaScript, it is possible to take one more step and to instantiate QML elements completely dynamically.
+`Loader` 元素使得动态填充用户界面的一部分成为可能。不过，界面的整体结构仍然是静态的。借助 JavaScript，我们可以再进一步，完全动态地实例化 QML 元素。
 
-Before we dive into the details of creating elements dynamically, we need to understand the workflow. When loading a piece of QML from a file or even over the Internet, a component is created. The component encapsulates the interpreted QML code and can be used to create items. This means that loading a piece of QML code and instantiating items from it is a two-stage process. First, the QML code is parsed into a component. Then the component is used to instantiate actual item objects.
+在深入动态创建元素的细节之前，我们需要理解其工作流程。从文件甚至互联网加载一段 QML 时，会创建一个组件。该组件封装了解释后的 QML 代码，可用于创建项。这意味着，加载一段 QML 代码并从中实例化项是一个两阶段的过程。首先把 QML 代码解析为组件，然后用该组件实例化实际的项对象。
 
-In addition to creating elements from QML code stored in files or on servers, it is also possible to create QML objects directly from text strings containing QML code. The dynamically created items are then treated in a similar fashion once instantiated.
+除了从存储在文件或服务器上的 QML 代码创建元素之外，也可以直接从包含 QML 代码的文本字符串创建 QML 对象。这样动态创建的项在实例化之后，会以类似的方式加以处理。
 
-### Dynamically Loading and Instantiating Items
+### 动态加载并实例化项
 
-When loading a piece of QML, it is first interpreted as a component. This includes loading dependencies and validating the code. The location of the QML being loaded can be either a local file, a Qt resource, or even a distance network location specified by a URL. This means that the loading time can be everything from instant, for instance, a Qt resource located in RAM without any non-loaded dependencies, to very long, meaning a piece of code located on a slow server with multiple dependencies that need to be loaded.
+加载一段 QML 时，它首先会被解释为一个组件。这包括加载依赖并验证代码。被加载 QML 的位置可以是本地文件、Qt 资源，甚至是由 URL 指定的远程网络位置。这意味着加载时间可能从瞬间完成（例如位于 RAM 中、且没有任何未加载依赖的 Qt 资源），到非常漫长（例如位于缓慢的服务器上、且有多个待加载依赖的一段代码）不等。
 
-The status of a component being created can be tracked by it is `status` property. The available values are `Component.Null`, `Component.Loading`, `Component.Ready` and `Component.Error`. The `Null` to `Loading` to `Ready` is the usual flow. At any stage, the `status` can change to `Error`. In that case, the component cannot be used to create new object instances. The `Component.errorString()` function can be used to retrieve a user-readable error description.
+正在创建的组件的状态可以通过其 `status` 属性来跟踪。可用的值有 `Component.Null`、`Component.Loading`、`Component.Ready` 和 `Component.Error`。通常的流程是 `Null` 到 `Loading` 再到 `Ready`。在任何阶段，`status` 都可能变为 `Error`。此时该组件不能用于创建新的对象实例。`Component.errorString()` 函数可用于获取用户可读的错误描述。
 
-When loading components over slow connections, the `progress` property can be of use. It ranges from `0.0`, meaning nothing has been loaded, to `1.0` indicating that all have been loaded. When the component’s `status` changes to `Ready`, the component can be used to instantiate objects. The code below demonstrates how that can be achieved, taking into account the event of the component becoming ready or failing to be created directly, as well as the case where a component is ready slightly later.
+在缓慢的连接上加载组件时，`progress` 属性会派上用场。它的取值范围从 `0.0`（表示尚未加载任何内容）到 `1.0`（表示全部加载完成）。当组件的 `status` 变为 `Ready` 时，该组件就可以用来实例化对象。下面的代码演示了如何做到这一点，既考虑了组件立即就绪或创建失败的情况，也考虑了组件稍后才就绪的情况。
 
 <<< @/docs/ch15-dynamicqml/src/load-component/create-component.js#M1
 
-The code above is kept in a separate JavaScript source file, referenced from the main QML file.
+上面的代码保存在一个单独的 JavaScript 源文件中，由主 QML 文件引用。
 
 <<< @/docs/ch15-dynamicqml/src/load-component/main.qml#M1
 
-The `createObject` function of a component is used to create object instances, as shown above. This not only applies to dynamically loaded components but also `Component` elements inlined in the QML code. The resulting object can be used in the QML scene like any other object. The only difference is that it does not have an `id`.
+如上所示，组件的 `createObject` 函数用于创建对象实例。这不仅适用于动态加载的组件，也适用于内联在 QML 代码中的 `Component` 元素。生成的对象可以像其他对象一样在 QML 场景中使用。唯一的区别是它没有 `id`。
 
-The `createObject` function takes two arguments. The first is a `parent` object of the type `Item`. The second is a list of properties and values on the format `{"name": value, "name": value}`. This is demonstrated in the example below. Notice that the properties argument is optional.
+`createObject` 函数接受两个参数。第一个是类型为 `Item` 的 `parent` 对象。第二个是格式为 `{"name": value, "name": value}` 的属性和值列表。下面的例子演示了这一点。请注意，属性参数是可选的。
 
 ```js
 var image = component.createObject(root, {"x": 100, "y": 100});
 ```
 
 ::: tip
-A dynamically created component instance is not different to an in-line `Component` element. The in-line `Component` element also provides functions to instantiate objects dynamically.
+动态创建的组件实例与内联的 `Component` 元素并无不同。内联的 `Component` 元素同样提供了动态实例化对象的函数。
 :::
 
-#### Incubating Components
+#### 孵化组件
 
-When components are created using `createObject` the creation of the object component is blocking. This means that the instantiation of a complex element may block the main thread, causing a visible glitch. Alternatively, complex components may have to be broken down and loaded in stages using `Loader` elements.
+使用 `createObject` 创建对象时，创建过程是阻塞的。这意味着复杂元素的实例化可能会阻塞主线程，造成可见的卡顿。另一种办法是把复杂组件拆分开来，使用 `Loader` 元素分阶段加载。
 
-To resolve this problem, a component can be instantiated using the `incubateObject` method. This might work just as `createObject` and return an instance immediately, or it may call back when the component is ready. Depending on your exact setup, this may or may not be a good way to solve instantiation related animation glitches.
+为了解决这个问题，可以使用 `incubateObject` 方法来实例化组件。它可能像 `createObject` 一样立即返回一个实例，也可能在组件就绪时才回调。根据你的具体设置，这可能是、也可能不是解决与实例化有关的动画卡顿的好办法。
 
-To use an incubator, simply use it as `createComponent`. However, the returned object is an incubator and not the object instance itself. When the incubator’s status is `Component.Ready`, the object is available through the `object` property of the incubator. All this is shown in the example below:
+要使用孵化器（incubator），像使用 `createComponent` 一样调用它即可。不过，返回的对象是一个孵化器，而不是对象实例本身。当孵化器的状态为 `Component.Ready` 时，就可以通过孵化器的 `object` 属性获取对象。下面的例子展示了这一切：
 
 ```js
 function finishCreate() {
@@ -57,29 +57,29 @@ function finishCreate() {
 }
 ```
 
-### Dynamically Instantiating Items from Text
+### 从文本动态实例化项
 
-Sometimes, it is convenient to be able to instantiate an object from a text string of QML. If nothing else, it is quicker than putting the code in a separate source file. For this, the `Qt.createQmlObject` function is used.
+有时，能够从一段 QML 文本字符串实例化对象会很方便。即便没有别的理由，它也比把代码放进单独的源文件更快。为此可以使用 `Qt.createQmlObject` 函数。
 
-The function takes three arguments: `qml`, `parent` and `filepath`. The `qml` argument contains the string of QML code to instantiate. The `parent` argument provides a parent object to the newly created object. The `filepath` argument is used when reporting any errors from the creation of the object. The result returned from the function is either a new object or `null`.
+该函数接受三个参数：`qml`、`parent` 和 `filepath`。`qml` 参数包含要实例化的 QML 代码字符串。`parent` 参数为新创建的对象提供父对象。`filepath` 参数用于报告对象创建过程中的任何错误。函数返回的结果要么是一个新对象，要么是 `null`。
 
 ::: warning
-The `createQmlObject` function always returns immediately. For the function to succeed, all the dependencies of the call must be loaded. This means that if the code passed to the function refers to a non-loaded component, the call will fail and return `null`. To better handle this, the `createComponent` / `createObject` approach must be used.
+`createQmlObject` 函数总是立即返回。要使该函数成功，这次调用的所有依赖都必须已经加载。这意味着，如果传给函数的代码引用了尚未加载的组件，调用就会失败并返回 `null`。为了更好地处理这种情况，必须使用 `createComponent` / `createObject` 的方式。
 :::
 
-The objects created using the `Qt.createQmlObject` function resembles any other dynamically created object. That means that it is identical to every other QML object, apart from not having an `id`. In the example below, a new `Rectangle` element is instantiated from in-line QML code when the `root` element has been created.
+使用 `Qt.createQmlObject` 函数创建的对象与其他任何动态创建的对象相似。也就是说，除了没有 `id` 之外，它与其他 QML 对象完全相同。在下面的例子中，当 `root` 元素创建完成后，会从内联的 QML 代码实例化一个新的 `Rectangle` 元素。
 
 <<< @/docs/ch15-dynamicqml/src/create-object/main.qml#M1
 
-### Managing Dynamically Created Elements
+### 管理动态创建的元素
 
-Dynamically created objects can be treated as any other object in a QML scene. However, there are some pitfalls that we need to be aware of. The most important is the concept of the creation contexts.
+动态创建的对象可以像 QML 场景中的其他对象一样对待。不过，有一些陷阱需要我们注意。其中最重要的是创建上下文（creation context）的概念。
 
-The creation context of a dynamically created object is the context within it is being created. This is not necessarily the same context as the parent exists in. When the creation context is destroyed, so are the bindings concerning the object. This means that it is important to implement the creation of dynamic objects in a place in the code which will be instantiated during the entire lifetime of the objects.
+动态创建的对象的创建上下文，就是创建它时所处的上下文。它不一定与父对象所在的上下文相同。当创建上下文被销毁时，与该对象相关的绑定也会随之销毁。这意味着，务必把动态对象的创建实现在这样的代码位置：该处在对象的整个生命周期内都保持实例化状态。
 
-Dynamically created objects can also be dynamically destroyed. When doing this, there is a rule of thumb: never attempt to destroy an object that you have not created. This also includes elements that you have created, but not using a dynamic mechanism such as `Component.createObject` or `createQmlObject`.
+动态创建的对象也可以被动态销毁。这样做时有一条经验法则：永远不要试图销毁不是你创建的对象。这也包括你创建的、但并非通过 `Component.createObject` 或 `createQmlObject` 这类动态机制创建的元素。
 
-An object is destroyed by calling its `destroy` function. The function takes an optional argument which is an integer specifying how many milliseconds the objects shall exist before being destroyed. This is useful too, for instance, let the object complete a final transition.
+通过调用对象的 `destroy` 函数来销毁对象。该函数接受一个可选参数，是一个整数，指定对象在被销毁之前还应存在多少毫秒。这可以用来，例如，让对象完成最后一次过渡。
 
 ```js
 item = Qt.createQmlObject(...)
@@ -88,6 +88,6 @@ item.destroy()
 ```
 
 ::: tip
-It is possible to destroy an object from within, making it possible to create self-destroying popup windows for instance.
+可以从对象内部销毁它自身，例如借此创建能够自我销毁的弹窗。
 :::
 
