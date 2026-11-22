@@ -1,26 +1,25 @@
-# Qt and C++
+# Qt 与 C++
 
-Qt is a C++ toolkit with an extension for QML and Javascript. There exist many language bindings for Qt, but as Qt itself is developed in C++. The spirit of C++ can be found throughout the classes. In this section, we will look at Qt from a C++ perspective to build a better understanding of how to extend QML with native plugins developed using C++. Through C++, it is possible to extend and control the execution environment provided to QML.
+Qt 是一个 C++ 工具包，并带有针对 QML 和 JavaScript 的扩展。Qt 存在许多语言绑定，但 Qt 本身是用 C++ 开发的。C++ 的精神贯穿于这些类之中。在本节中，我们将从 C++ 的视角来审视 Qt，以便更好地理解如何使用 C++ 开发的原生插件扩展 QML。通过 C++，可以扩展并控制提供给 QML 的执行环境。
 
-![image](./images/yourapplication.png)
+![图片](./images/yourapplication.png)
 
-This chapter will, just as Qt, require the reader to have some basic knowledge of C++. Qt does not rely on advanced C++ features and I generally consider the Qt style of C++ to be very readable, so do not worry if you feel that your C++ knowledge is shaky.
+与 Qt 一样，本章要求读者具备一些 C++ 基础知识。Qt 并不依赖 C++ 的高级特性，而且我通常认为 Qt 风格的 C++ 可读性很好，所以如果你觉得自己的 C++ 知识不够扎实，也不必担心。
 
 ## Qt C++
 
-Approaching Qt from a C++ direction, you will find that Qt enriches C++ with a number of modern language features enabled through making introspection data available. This is made possible through the use of the `QObject` base class. Introspection data, or metadata, maintains information of the classes at run-time, something that ordinary C++ does not do. This makes it possible to dynamically probe objects for information about such details as their properties and available methods.
+从 C++ 的方向走近 Qt，你会发现 Qt 通过让内省（introspection）数据可用，为 C++ 增添了许多现代语言特性。这要归功于 `QObject` 基类的使用。内省数据也就是元数据（metadata），它在运行时保存类的信息，而普通 C++ 并不这样做。这使得我们可以动态地探测对象，获取诸如属性和可用方法之类的详细信息。
 
-Qt uses this meta information to enable a very loosely bound callback concept using signals and slots. Each signal can be connected to any number of slots or even other signals. When a signal is emitted from an object instance, the connected slots are invoked. As the signal emitting object does not need to know anything about the object owning the slot and vice versa, this mechanism is used to create very reusable components with very few inter-component dependencies.
+Qt 利用这些元信息，通过信号（signal）与槽（slot）实现了一种绑定非常松散的回调概念。每个信号都可以连接到任意数量的槽，甚至可以连接到其他信号。当对象实例发出信号时，与之连接的槽就会被调用。由于发出信号的对象无需了解拥有槽的对象的任何信息，反之亦然，这一机制被用来创建依赖极少、可高度复用的组件。
 
 ## Qt for Python
 
-The introspection features are also used to create dynamic language bindings, making it possible to expose a C++ object instance to QML and making C++ functions callable from Javascript. Other bindings for Qt C++ exist and besides the standard Javascript binding, the official one is the Python binding called [PySide6](https://www.qt.io/qt-for-python).
+内省特性还被用于创建动态语言绑定，从而可以把 C++ 对象实例暴露给 QML，并使 C++ 函数可从 JavaScript 调用。Qt C++ 还存在其他语言绑定；除了标准的 JavaScript 绑定之外，官方的绑定是名为 [PySide6](https://www.qt.io/qt-for-python) 的 Python 绑定。
 
-## Cross Platform
+## 跨平台
 
-In addition to this central concept, Qt makes it possible to develop cross-platform applications using C++. Qt C++ provides a platform abstraction on the different operating systems, which allows the developer to concentrate on the task at hand and not the details of how you open a file on different operating systems. This means you can re-compile the same source code for Windows, OS X, and Linux and Qt takes care of the different OS ways of handling certain things. The end result is natively built applications with the look and feel of the target platform. As the mobile is the new desktop, newer Qt versions can also target a number of mobile platforms using the same source code, e.g. iOS, Android, Jolla, BlackBerry, Ubuntu Phone, Tizen.
+除了这一核心概念之外，Qt 还使开发者能够用 C++ 开发跨平台应用程序。Qt C++ 在不同的操作系统之上提供了平台抽象，让开发者专注于手头的任务，而不必操心在不同操作系统上如何打开文件这类细节。这意味着你可以把同一份源代码重新编译到 Windows、OS X 和 Linux 上，由 Qt 来处理不同操作系统在处理某些事情时的不同做法。最终得到的是以原生方式构建、具有目标平台外观和体验的应用程序。由于移动平台已成为新的桌面，较新的 Qt 版本还可以用同一份源代码面向多种移动平台，例如 iOS、Android、Jolla、BlackBerry、Ubuntu Phone、Tizen。
 
-When it comes to re-using, not only can source code be re-used but developer skills are also reusable. A team knowing Qt can reach out to far more platforms than a team just focusing on a single platform specific technology and as Qt is so flexible the team can create different system components using the same technology.
+谈到复用，不仅可以复用源代码，开发者的技能同样可以复用。一个掌握 Qt 的团队能够触及的平台，远多于只专注于单一平台专用技术的团队；而且由于 Qt 如此灵活，团队可以用同一套技术创建不同的系统组件。
 
-For all platform, Qt offers a set of basic types, e.g. strings with full Unicode support, lists, vectors, buffers. It also provides a common abstraction to the target platform’s main loop, and cross-platform threading and networking support. The general philosophy is that for an application developer Qt comes with all required functionality included. For domain-specific tasks such as to interface to your native libraries, Qt comes with several helper classes to make this easier.
-
+对于所有平台，Qt 都提供了一组基本类型，例如完全支持 Unicode 的字符串、列表、向量、缓冲区。它还对目标平台的主循环提供了统一的抽象，以及跨平台的线程和网络支持。总体理念是：对于应用程序开发者而言，Qt 自带所需的全部功能。对于特定领域的任务（例如与你的原生库对接），Qt 也提供了若干辅助类来简化这项工作。

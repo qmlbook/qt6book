@@ -1,15 +1,12 @@
-# Build Systems
+# 构建系统
 
-Building software reliably across different platforms can be a complex task. You will encounter different environments with different compilers, paths, and library variations. The purpose of Qt is to shield the application developer from these cross-platform issues. Qt relies on [CMake](https://cmake.org/) to convert `CMakeLists.txt` project files to platform specific make files, which then can be built using the platform specific tooling.
+在不同平台上可靠地构建软件可能是一项复杂的任务。你会遇到不同的环境，它们有着不同的编译器、路径和库变体。Qt 的目标是让应用程序开发者免受这些跨平台问题的困扰。Qt 依赖 [CMake](https://cmake.org/) 将 `CMakeLists.txt` 项目文件转换为平台相关的 make 文件，然后使用平台相关的工具进行构建。
 
 ::: tip
-Qt comes with three different build systems. The original Qt build system 
-was called `qmake`. Another Qt specific build system is `QBS` which uses a 
-declarative approach to describing the build sequence. Since version 6, Qt 
-has shifted from `qmake` to CMake as the official build system.
+Qt 自带三种不同的构建系统。最初的 Qt 构建系统名为 `qmake`。另一个 Qt 专用的构建系统是 `QBS`，它使用声明式的方法来描述构建序列。从版本 6 开始，Qt 已将官方构建系统从 `qmake` 转向 CMake。
 :::
 
-A typical build flow in Qt under Unix would be:
+在 Unix 下，Qt 中典型的构建流程如下：
 
 ```sh
 vim CMakeLists.txt
@@ -17,7 +14,7 @@ cmake . // generates Makefile
 make
 ```
 
-With Qt you are encouraged to use shadow builds. A shadow build is a build outside of your source code location. Assume we have a myproject folder with a `CMakeLists.txt` file. The flow would be like this:
+Qt 鼓励使用影子构建（shadow build）。影子构建是指在源代码位置之外进行构建。假设我们有一个包含 `CMakeLists.txt` 文件的 myproject 文件夹，流程如下：
 
 ```sh
 mkdir build
@@ -25,15 +22,15 @@ cd build
 cmake ..
 ```
 
-We create a build folder and then call cmake from inside the build folder with the location of our project folder. This will set up the makefile in a way that all build artifacts are stored under the build folder instead of inside our source code folder. This allows us to create builds for different qt versions and build configurations at the same time and also it does not clutter our source code folder which is always a good thing.
+我们创建一个 build 文件夹，然后在 build 文件夹内调用 cmake，并给出项目文件夹的位置。这会以如下方式配置 makefile：所有构建产物都存放在 build 文件夹下，而不是源代码文件夹内。这让我们可以同时为不同的 Qt 版本和构建配置创建构建，而且不会弄乱源代码文件夹——这总是一件好事。
 
-When you are using Qt Creator it does these things behind the scenes for you and you do not have to worry about these steps in most cases. For larger projects and for a deeper understanding of the flow, it is recommended that you learn to build your Qt project from the command line to ensure that you have full control over what is happening.
+当你使用 Qt Creator 时，它会在幕后替你完成这些事情，大多数情况下你不必操心这些步骤。对于较大的项目，以及为了更深入地理解这一流程，建议你学会从命令行构建 Qt 项目，以确保完全掌控正在发生的一切。
 
 ## CMake
 
-CMake is a tool created by Kitware. Kitware is very well known for their 3D visualization software VTK and also CMake, the cross-platform makefile generator. It uses a series of `CMakeLists.txt` files to generate platform-specific makefiles. CMake is used by the KDE project and as such has a special relationship with the Qt community and since version 6, it is the preferred way to build Qt projects.
+CMake 是由 Kitware 创建的工具。Kitware 以其 3D 可视化软件 VTK 以及跨平台 makefile 生成器 CMake 而闻名。它使用一系列 `CMakeLists.txt` 文件来生成平台相关的 makefile。CMake 被 KDE 项目使用，因此与 Qt 社区有着特殊的关系；从版本 6 开始，它是构建 Qt 项目的首选方式。
 
-The `CMakeLists.txt` is the file used to store the project configuration. For a simple hello world using Qt Core the project file would look like this:
+`CMakeLists.txt` 是用来存储项目配置的文件。对于一个使用 Qt Core 的简单 Hello World 程序，项目文件如下所示：
 
 ```cmake
 // ensure cmake version is at least 3.16.0
@@ -64,31 +61,31 @@ add_executable(foundation_tests
 target_link_libraries(foundation_tests PRIVATE Qt6::Core Qt6::Test)
 ```
 
-This will build a `foundations_tests` executable using `tst_foundation.cpp` and link against the Core and Test libraries from Qt 6. You will find more examples of CMake files in this book, as we use CMake for all C++ based examples.
+这将使用 `tst_foundation.cpp` 构建一个 `foundations_tests` 可执行文件，并链接 Qt 6 的 Core 和 Test 库。在本书中你会看到更多 CMake 文件示例，因为我们所有基于 C++ 的示例都使用 CMake。
 
-CMake is a powerful, a complex, tool and it takes some time to get used to the syntax. CMake is very flexible and really shines in large and complex projects.
+CMake 是一个强大而复杂的工具，需要一些时间来熟悉其语法。CMake 非常灵活，在大型复杂项目中真正大放异彩。
 
-## References
-
-
-* [CMake Help](http://www.cmake.org/documentation/) - available online but also as Qt Help format
+## 参考资料
 
 
-* [Running CMake](http://www.cmake.org/runningcmake/)
+* [CMake 帮助](http://www.cmake.org/documentation/) - 可在线获取，也可使用 Qt Help 格式
 
 
-* [KDE CMake Tutorial](https://techbase.kde.org/Development/Tutorials/CMake)
+* [运行 CMake](http://www.cmake.org/runningcmake/)
+
+
+* [KDE CMake 教程](https://techbase.kde.org/Development/Tutorials/CMake)
 
 
 * [CMake Book](http://www.kitware.com/products/books/CMakeBook.html)
 
 
-* [CMake and Qt](http://www.cmake.org/cmake/help/v3.0/manual/cmake-qt.7.html)
+* [CMake 与 Qt](http://www.cmake.org/cmake/help/v3.0/manual/cmake-qt.7.html)
 
 
 ## QMake
 
-QMake is the tool which reads your project file and generates the build file. A project file is a simplified write-down of your project configuration, external dependencies, and your source files. The simplest project file is probably this:
+QMake 是读取项目文件并生成构建文件的工具。项目文件是对项目配置、外部依赖和源文件的简化书写。最简单的项目文件大概是这样的：
 
 ```js
 // myproject.pro
@@ -96,7 +93,7 @@ QMake is the tool which reads your project file and generates the build file. A 
 SOURCES += main.cpp
 ```
 
-Here we build an executable application which will have the name `myproject` based on the project file name. The build will only contain the `main.cpp` source file. And by default, we will use the `QtCore` and `QtGui` module for this project. If our project were a QML application we would need to add the `QtQuick` and `QtQml` module to the list:
+这里我们构建一个可执行应用程序，其名称 `myproject` 来自项目文件名。构建中只包含 `main.cpp` 源文件。默认情况下，本项目会使用 `QtCore` 和 `QtGui` 模块。如果我们的项目是一个 QML 应用程序，就需要把 `QtQuick` 和 `QtQml` 模块加入列表：
 
 ```js
 // myproject.pro
@@ -106,7 +103,7 @@ QT += qml quick
 SOURCES += main.cpp
 ```
 
-Now the build file knows to link against the `QtQml` and `QtQuick` Qt modules. QMake uses the concept of `=`, `+=` and `-=` to assign, add, remove elements from a list of options, respectively. For a pure console build without UI dependencies you would remove the `QtGui` module:
+现在构建文件知道要链接 `QtQml` 和 `QtQuick` 这两个 Qt 模块。QMake 使用 `=`、`+=` 和 `-=` 的概念，分别对选项列表进行赋值、添加和移除元素。对于没有 UI 依赖的纯控制台构建，你可以移除 `QtGui` 模块：
 
 ```js
 // myproject.pro
@@ -116,7 +113,7 @@ QT -= gui
 SOURCES += main.cpp
 ```
 
-When you want to build a library instead of an application, you need to change the build template:
+当你想构建库而不是应用程序时，需要更改构建模板：
 
 ```js
 // myproject.pro
@@ -128,9 +125,9 @@ HEADERS += utils.h
 SOURCES += utils.cpp
 ```
 
-Now the project will build as a library without UI dependencies and used the `utils.h` header and the `utils.cpp` source file. The format of the library will depend on the OS you are building the project.
+现在项目将构建为一个没有 UI 依赖的库，并使用 `utils.h` 头文件和 `utils.cpp` 源文件。库的格式取决于你构建项目所用的操作系统。
 
-Often you will have more complicated setups and need to build a set of projects. For this, qmake offers the `subdirs` template. Assume we would have a mylib and a myapp project. Then our setup could be like this:
+通常你会有更复杂的设置，需要构建一组项目。为此，qmake 提供了 `subdirs` 模板。假设我们有一个 mylib 项目和一个 myapp 项目，那么我们的设置可能如下：
 
 ```js
 my.pro
@@ -141,7 +138,7 @@ myapp/myapp.pro
 myapp/main.cpp
 ```
 
-We know already how the mylib.pro and myapp.pro would look like. The my.pro as the overarching project file would look like this:
+我们已经知道 mylib.pro 和 myapp.pro 会是什么样子。作为总控项目文件的 my.pro 会是这样：
 
 ```js
 // my.pro
@@ -153,11 +150,11 @@ subdirs = mylib \
 myapp.depends = mylib
 ```
 
-This declares a project with two subprojects: `mylib` and `myapp`, where `myapp` depends on `mylib`. When you run qmake on this project file it will generate file a build file for each project in a corresponding folder. When you run the makefile for `my.pro`, all subprojects are also built.
+这声明了一个包含两个子项目的项目：`mylib` 和 `myapp`，其中 `myapp` 依赖于 `mylib`。当你对这个项目文件运行 qmake 时，它会在相应文件夹中为每个项目生成一个构建文件。当你运行 `my.pro` 的 makefile 时，所有子项目也会被构建。
 
-Sometimes you need to do one thing on one platform and another thing on other platforms based on your configuration. For this qmake introduces the concept of scopes. A scope is applied when a configuration option is set to true.
+有时你需要根据配置，在一个平台上做一件事，在其他平台上做另一件事。为此 qmake 引入了作用域（scope）的概念。当某个配置选项被设为 true 时，该作用域就会被应用。
 
-For example, to use a Unix specific utils implementation you could use:
+例如，要使用 Unix 专用的 utils 实现，你可以这样写：
 
 ```js
 unix {
@@ -167,7 +164,7 @@ unix {
 }
 ```
 
-What it says is if the CONFIG variable contains a Unix option then apply this scope otherwise use the else path. A typical one is to remove the application bundling under mac:
+它的意思是：如果 CONFIG 变量包含 Unix 选项，就应用这个作用域，否则走 else 分支。一个典型的例子是在 mac 下移除应用程序打包：
 
 ```js
 macx {
@@ -175,17 +172,17 @@ macx {
 }
 ```
 
-This will create your application as a plain executable under mac and not as a `.app` folder which is used for application installation.
+这会在 mac 下把你的应用程序创建为普通可执行文件，而不是用于安装应用程序的 `.app` 文件夹。
 
-QMake based projects are normally the number one choice when you start programming Qt applications. There are also other options out there. All have their benefits and drawbacks. We will shortly discuss these other options next.
+当你开始编写 Qt 应用程序时，基于 QMake 的项目通常是首选。还有其他一些选择，各有优缺点。接下来我们将简要讨论这些其他选项。
 
-## References
-
-
-* [QMake Manual](http://doc.qt.io/qt-5//qmake-manual.html) - Table of contents of the qmake manual
+## 参考资料
 
 
-* [QMake Language](http://doc.qt.io/qt-5//qmake-language.html) - Value assignment, scopes and so like
+* [QMake 手册](http://doc.qt.io/qt-5//qmake-manual.html) - qmake 手册的目录
 
 
-* [QMake Variables](http://doc.qt.io/qt-5//qmake-variable-reference.html) - Variables like TEMPLATE, CONFIG, QT is explained here
+* [QMake 语言](http://doc.qt.io/qt-5//qmake-language.html) - 值赋值、作用域等
+
+
+* [QMake 变量](http://doc.qt.io/qt-5//qmake-variable-reference.html) - 这里解释了 TEMPLATE、CONFIG、QT 等变量
