@@ -2,63 +2,65 @@
 
 *Copyright(C) 2012-2021 Johan Thelin and Jürgen Bocklage-Ryannel*
 
-The new home for the Qt6 book (based on QmlBook)
+Qt6 书籍（基于 QmlBook）的新家
 
-You can always find the latest released version of the book built at [https://www.qt.io/product/qt6/qml-book](https://www.qt.io/product/qt6/qml-book), and the latest snapshot at [https://distracted-dijkstra-f5d508.netlify.app/](https://distracted-dijkstra-f5d508.netlify.app/).
+> 本仓库为简体中文翻译版；翻译说明、术语表与进度见 [README.zh-CN.md](README.zh-CN.md)。
 
-# Contents
+你可以随时在 [https://www.qt.io/product/qt6/qml-book](https://www.qt.io/product/qt6/qml-book) 找到本书最新发布版本的构建成果，最新快照则位于 [https://distracted-dijkstra-f5d508.netlify.app/](https://distracted-dijkstra-f5d508.netlify.app/)。
 
-1. Building the Book Locally
-2. Building for Release
-3. For Reviewers
-4. For Authors
+# 目录
 
-# 1. Building the Book Locally
+1. 在本地构建本书
+2. 构建发布版本
+3. 致审阅者
+4. 致作者
 
-The contents is built into a static site using [VuePress](https://vuepress.vuejs.org/). The packages are managed using [Yarn](https://yarnpkg.com/).
+# 1. 在本地构建本书
 
-To build the contents locally, run:
+全书内容使用 [VuePress](https://vuepress.vuejs.org/) 构建为静态站点，包管理使用 [Yarn](https://yarnpkg.com/)。
+
+要在本地构建内容，运行：
 
 ```
 $ yarn
 $ yarn run docs:dev
 ```
 
-Then visit [localhost:8080](http://localhost:8080) to view the book.
+然后访问 [localhost:8080](http://localhost:8080) 阅读本书。
 
-To build the examples, run:
+要构建示例程序，运行：
 
 ```
 $ yarn run examples:build
 ```
 
-This will create the `_examples/` directory with the build. It assumes Qt6 can be found by CMake. My typical command line on a Debian Linux machine looks like this:
+这会在 `_examples/` 目录中生成构建产物。它假定 CMake 能够找到 Qt6。我在一台 Debian Linux 机器上的典型命令行如下：
 
 ```
 $ CMAKE_PREFIX_PATH=/path/to/Qt/6.2.0/gcc_64/lib/cmake/ yarn run examples:build
 ```
 
-Subsequent calls do not need `CMAKE_PREFIX_PATH` to be specified.
+后续调用无需再指定 `CMAKE_PREFIX_PATH`。
 
-# 2. Building for Release
+# 2. 构建发布版本
 
-To build for release, first build the docs, then package the examples into a tar-ball:
+要构建发布版本，先构建文档，再把示例打包为 tar 压缩包：
 
 ```
 $ yarn run docs:build
 $ yarn run examples:package
 ```
 
-This creates `examples.tar.gz` in your package root, as well as where VuePress places the output, i.e. `docs/.vuepress/dist/`.
+这会在你的包根目录生成 `examples.tar.gz`，同时生成 VuePress 的输出，即 `docs/.vuepress/dist/`。
 
-Notice that the `examples:package` command assumes that the VuePress `dist/` directory exists.
+请注意 `examples:package` 命令假定 VuePress 的 `dist/` 目录已经存在。
 
-# 3. For Reviewers
+# 3. 致审阅者
 
-Pick chapters to review from the [Project Board](https://github.com/qmlbook/qt6book/projects/1). Also look for issues tagged as [Questions](https://github.com/qmlbook/qt6book/issues?q=is%3Aissue+is%3Aopen+label%3Aquestion) in the project.
+请从 [Project Board](https://github.com/qmlbook/qt6book/projects/1) 中挑选要审阅的章节，也可以关注项目中标记为 [Questions](https://github.com/qmlbook/qt6book/issues?q=is%3Aissue+is%3Aopen+label%3Aquestion) 的议题。
 
-Reviews are welcome both as issues, or as pull requests. Pick the approach that is the easiest for you!
+欢迎以 issue 或 pull request 的形式提交审阅意见——选择对你来说最方便的方式即可！
 
-# 4. For Authors
+# 4. 致作者
 
-Chapters are outlined in `docs/.vuepress/config.js`. Please tag chapters as `Qt5`, `Qt6 Draft`, and `Qt 6` respectively.
+各章节的结构在 `docs/.vuepress/config.js` 中定义。请分别将章节标记为 `Qt5`、`Qt6 Draft` 和 `Qt 6`。

@@ -15,34 +15,34 @@ Qt Quick 软件适配（Qt Quick Software Adaption），也就是纯软件渲染
 本章将带你了解 Qt Quick 3D 的基础知识，让你能够基于内置网格（mesh）以及外部工具创建的资源（asset），构建可交互的 3D 场景。我们还将介绍动画，以及 2D 与 3D 内容的混合使用。
 
 <!--
-    
-## Advanced topics
 
-_on hold_
-    
-- Custom Materials
-    - Shaders 
-        - Fragment shader
-            - Colour
-            - Transparency
-            - Texture (images)
-        - Vertex shader
-            - Basic deformation example
-            - Animating the deformation
-- Effects
-    - Always a fragment shader, applied to the view
-    - Play with colour
-    - Play with distortion
-    - Combine / stack effects
-    - Animate effects
-- Optimizations
-    - Instancing
+## 高级主题
+
+_暂缓（on hold）_
+
+- 自定义材质
+    - 着色器
+        - 片元着色器
+            - 颜色
+            - 透明度
+            - 纹理（图像）
+        - 顶点着色器
+            - 基本变形示例
+            - 让变形产生动画
+- 特效
+    - 始终是一个应用于视图的片元着色器
+    - 玩转颜色
+    - 玩转变形扭曲
+    - 组合 / 叠加特效
+    - 让特效产生动画
+- 优化
+    - 实例化（Instancing）
         - https://doc.qt.io/qt-6/quick3d-instancing.html
-    - Improving performance using the shadergen tool
+    - 使用 shadergen 工具提升性能
         - https://doc.qt.io/qt-6/qtquick3d-tool-shadergen.html
-    - Optimizing models
+    - 优化模型
         - https://doc.qt.io/qt-6/quick3d-asset-conditioning-3d-assets.html
-    - Optimizing 2D contents (textures)
+    - 优化 2D 内容（纹理）
         - https://doc.qt.io/qt-6/quick3d-asset-conditioning-2d-assets.html
 
 -->
