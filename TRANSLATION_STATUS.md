@@ -36,30 +36,30 @@
 
 | 目标（Target） | 文件数 | 翻译状态 | 审查状态 | 构建状态 | 提交 SHA | 备注 |
 | --- | --- | --- | --- | --- | --- | --- |
-| `docs/index.md` | 1 | TRANSLATED | NOT REVIEWED | BASELINE PASS | dda25cc | 推荐顺序第 1 项；批次 B01 |
-| `docs/preface` | 3 | TRANSLATED | NOT REVIEWED | N/A | 9f6ec64 | 批次 B02 |
-| `docs/ch01-meetqt` | 3 | TRANSLATED | NOT REVIEWED | N/A | 6727ab3 | 批次 B03 |
-| `docs/ch02-start` | 5 | TRANSLATED | NOT REVIEWED | N/A | bbd74cf | 批次 B04 |
-| `docs/ch03-qtcreator` | 8 | TRANSLATED | NOT REVIEWED | N/A | ecb005c | 批次 B05 |
-| `docs/ch04-qmlstart` | 9 | TRANSLATED | NOT REVIEWED | N/A | 879d520 | 学习优先目标；批次 B06 |
-| `docs/ch05-fluid` | 4 | TRANSLATED | NOT REVIEWED | N/A | 4f6bc0a | 批次 B07（重试后顺序完成） |
-| `docs/ch06-controls` | 6 | TRANSLATED | NOT REVIEWED | N/A | 1b69091 | 学习优先目标；批次 B08 |
-| `docs/ch07-modelview` | 7 | TRANSLATED | NOT REVIEWED | N/A | e6e5631 | 学习优先目标；批次 B09 |
-| `docs/ch08-canvas` | 10 | TRANSLATED | NOT REVIEWED | N/A | a98fc85 | 批次 B12（卡死后顺序完成） |
-| `docs/ch09-shapes` | 6 | TRANSLATED | NOT REVIEWED | N/A | faa1fd2 | 批次 B13（卡死后顺序完成） |
-| `docs/ch10-effects` | 15 | TRANSLATED | NOT REVIEWED | N/A | 963df7a | 批次 B14 |
-| `docs/ch11-multimedia` | 6 | TRANSLATED | NOT REVIEWED | N/A | 69d9d91 | 批次 B15（卡死后顺序完成） |
-| `docs/ch12-qtquick3d` | 7 | TRANSLATED | NOT REVIEWED | N/A | c7784cb | 批次 B16（混合：子代理+父代理） |
-| `docs/ch13-networking` | 9 | TRANSLATED | NOT REVIEWED | N/A | 406e0c1 | 批次 B17（4 个提交，混合完成） |
-| `docs/ch14-storage` | 3 | TRANSLATED | NOT REVIEWED | N/A | 9e7763e | 批次 B18 |
-| `docs/ch15-dynamicqml` | 5 | TRANSLATED | NOT REVIEWED | N/A | 94f8c4d | 批次 B19 |
-| `docs/ch16-javascript` | 5 | TRANSLATED | NOT REVIEWED | N/A | cf663a6 | 批次 B20 |
-| `docs/ch17-qtcpp` | 6 | TRANSLATED | NOT REVIEWED | N/A | dc007ac | 学习优先目标；批次 B10（卡死后顺序完成） |
-| `docs/ch18-extensions` | 7 | TRANSLATED | NOT REVIEWED | N/A | 581cb64 | 批次 B11（卡死后顺序完成）；不含 `src/CityUI/LICENSE.md` |
-| `docs/ch19-python` | 6 | TRANSLATED | NOT REVIEWED | N/A | 8cba751 | 批次 B21（2 个提交） |
-| `docs/ch20-qtformcu` | 6 | TRANSLATED | NOT REVIEWED | N/A | 2cded50 | 批次 B22（父代理顺序完成） |
-| `docs/.vuepress/config.js` 导航标签 | 1 | TRANSLATED | NOT REVIEWED | N/A | (见提交) | 批次 P01；仅读者可见导航文案已汉化 |
-| 根目录中文文档（`README.zh-CN.md` 等） | 3 | TRANSLATED | NOT REVIEWED | BASELINE PASS | — | INIT 创建；全书完成后终审 |
+| `docs/index.md` | 1 | TRANSLATED | REVIEWED | BASELINE PASS | dda25cc | 推荐顺序第 1 项；批次 B01 |
+| `docs/preface` | 3 | TRANSLATED | REVIEWED | N/A | 9f6ec64 | 批次 B02 |
+| `docs/ch01-meetqt` | 3 | TRANSLATED | REVIEWED | N/A | 6727ab3 | 批次 B03 |
+| `docs/ch02-start` | 5 | TRANSLATED | REVIEWED | N/A | bbd74cf | 批次 B04 |
+| `docs/ch03-qtcreator` | 8 | TRANSLATED | REVIEWED | N/A | ecb005c | 批次 B05 |
+| `docs/ch04-qmlstart` | 9 | TRANSLATED | REVIEWED | N/A | 879d520 | 学习优先目标；批次 B06 |
+| `docs/ch05-fluid` | 4 | TRANSLATED | REVIEWED | N/A | 4f6bc0a | 批次 B07（重试后顺序完成） |
+| `docs/ch06-controls` | 6 | TRANSLATED | REVIEWED | N/A | 1b69091 | 学习优先目标；批次 B08 |
+| `docs/ch07-modelview` | 7 | TRANSLATED | REVIEWED | N/A | e6e5631 | 学习优先目标；批次 B09 |
+| `docs/ch08-canvas` | 10 | TRANSLATED | REVIEWED | N/A | a98fc85 | 批次 B12（卡死后顺序完成） |
+| `docs/ch09-shapes` | 6 | TRANSLATED | REVIEWED | N/A | faa1fd2 | 批次 B13（卡死后顺序完成） |
+| `docs/ch10-effects` | 15 | TRANSLATED | REVIEWED | N/A | 963df7a | 批次 B14 |
+| `docs/ch11-multimedia` | 6 | TRANSLATED | REVIEWED | N/A | 69d9d91 | 批次 B15（卡死后顺序完成） |
+| `docs/ch12-qtquick3d` | 7 | TRANSLATED | REVIEWED | N/A | c7784cb | 批次 B16（混合：子代理+父代理） |
+| `docs/ch13-networking` | 9 | TRANSLATED | REVIEWED | N/A | 406e0c1 | 批次 B17（4 个提交，混合完成） |
+| `docs/ch14-storage` | 3 | TRANSLATED | REVIEWED | N/A | 9e7763e | 批次 B18 |
+| `docs/ch15-dynamicqml` | 5 | TRANSLATED | REVIEWED | N/A | 94f8c4d | 批次 B19 |
+| `docs/ch16-javascript` | 5 | TRANSLATED | REVIEWED | N/A | cf663a6 | 批次 B20 |
+| `docs/ch17-qtcpp` | 6 | TRANSLATED | REVIEWED | N/A | dc007ac | 学习优先目标；批次 B10（卡死后顺序完成） |
+| `docs/ch18-extensions` | 7 | TRANSLATED | REVIEWED | N/A | 581cb64 | 批次 B11（卡死后顺序完成）；不含 `src/CityUI/LICENSE.md` |
+| `docs/ch19-python` | 6 | TRANSLATED | REVIEWED | N/A | 8cba751 | 批次 B21（2 个提交） |
+| `docs/ch20-qtformcu` | 6 | TRANSLATED | REVIEWED | N/A | 2cded50 | 批次 B22（父代理顺序完成） |
+| `docs/.vuepress/config.js` 导航标签 | 1 | TRANSLATED | REVIEWED | N/A | (见提交) | 批次 P01；仅读者可见导航文案已汉化 |
+| 根目录中文文档（`README.zh-CN.md` 等） | 3 | TRANSLATED | REVIEWED | BASELINE PASS | — | INIT 创建；全书完成后终审 |
 
 文件数合计：137（可翻译 Markdown）+ 1（config.js 导航）+ 3（根目录中文文档）。
 
