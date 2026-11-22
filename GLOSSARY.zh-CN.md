@@ -135,6 +135,78 @@
   中文模式名 + 首次括注英文 UI 名。
 - 项目模板名、向导 UI 名：保持英文。
 - 快捷键键名（Ctrl、Shift、Alt、功能键）：保持英文。
+
+## 扩展术语（B06–B09 提案，父代理已合并）
+
+| English | 简体中文 | 备注 |
+| --- | --- | --- |
+| easing / easing curve | 缓动 / 缓动曲线 | |
+| interpolation | 插值 | |
+| sequential animation | 顺序动画 | |
+| parallel animation | 并行动画 | |
+| positioner | 定位器 | Row/Column/Grid/Flow；与 Qt Creator 的 Locator（定位器）不同语境 |
+| gradient / gradient stop | 渐变 / 渐变停止点 | |
+| elide | 省略 | `elide` 属性语境 |
+| anti-aliasing | 抗锯齿 | |
+| smoothing | 平滑处理 | |
+| focus / focus scope | 焦点 / 焦点作用域 | |
+| dynamic scoping | 动态作用域 | |
+| clipping | 裁剪 | |
+| required property | 必需属性 | |
+| just-in-time (JIT) compilation | 即时编译 | |
+| interpreted language | 解释型语言 | |
+| fill mode | 填充模式 | |
+| margin / offset / baseline | 边距 / 偏移量 / 基线 | 锚点语境 |
+| stacking order (z-order) | 堆叠顺序 | |
+| image provider | 图像提供者 | |
+| input constraint / input mask / echo mode | 输入约束 / 输入掩码 / 回显模式 | |
+| wrap (text) | 换行 | |
+| property group | 属性组 | |
+| default property | 默认属性 | |
+| translation (geometry) | 平移 | 与「翻译」区分 |
+| combined transformation | 组合变换 | |
+| scaling artifact | 缩放伪影 | |
+| kinetic view / kinetic scrolling | 惯性视图 / 惯性滚动 | |
+| palette | 调色板 | |
+| file selector | 文件选择器 | |
+| drawer | 抽屉 | |
+| header / footer | 页眉 / 页脚 | 窗口、页面与 ListView 语境 |
+| menu bar / tool bar / status bar | 菜单栏 / 工具栏 / 状态栏 | |
+| dialog | 对话框 | |
+| (image) asset | （图像）资源 | |
+| 9-patch image | 9-patch 图像 | 9-patch 不译 |
+| inset area | inset（内嵌）区域 | |
+| name filter | 名称过滤器 | |
+| hamburger button | 汉堡按钮 | |
+| page indicator | 页面指示器 | |
+| stack push/pop | 栈压入 / 栈弹出 | |
+| model-view separation / pattern | 模型-视图分离 / 模型-视图模式 | |
+| highlight / highlight delegate | 高亮 / 高亮委托 | |
+| current item | 当前项 | |
+| snap mode | 吸附模式 | |
+| bounds behavior | 边界行为 | |
+| highlight range | 高亮范围 | |
+| role (model role) | 角色 | `display` 角色 |
+| implicit size | 隐式尺寸 | |
+| section (ListView) | 分节 | 分节委托 |
+| object model | 对象模型 | |
+| action (menu action) | 动作 | |
+| shape-shifting (delegate) | 变形 | |
+| expand / expanded | 展开 | |
+| thumbnail | 缩略图 | |
+| fade in / fade out | 淡入 / 淡出 | |
+
+## 补充决策（B06–B09）
+
+- 标准按钮枚举名（Ok、Yes、No、Cancel 等）：保持英文（对应 StandardButton 枚举）。
+- 示例 UI 标签字符串（*File*、*Open*、*Home Screen* 等）：保持英文（与保留的
+  `qsTr()` 代码字符串一致），正文用斜体表示。
+- QML 页面/组件名（Current、UserStats、Home 等）、控件状态名（pressed、checked、
+  hovered、disabled 等）、样式名（Basic、Imagine、Material、Universal、Fusion、
+  Windows、macOS）：保持英文。
+- 设计指南专有名称（Microsoft Universal Design Guidelines、Google Material
+  Design Guidelines）：保持英文。
+- ch17 章名（跨章引用）：「Qt C++」保持原样；导航标题以 P01 最终决定为准。
 ## 待决术语
 
 （暂无。翻译过程中若出现表中未覆盖且影响一致性的术语，在此登记后使用。）

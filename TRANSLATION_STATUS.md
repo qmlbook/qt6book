@@ -41,10 +41,10 @@
 | `docs/ch01-meetqt` | 3 | TRANSLATED | NOT REVIEWED | N/A | 6727ab3 | 批次 B03 |
 | `docs/ch02-start` | 5 | TRANSLATED | NOT REVIEWED | N/A | bbd74cf | 批次 B04 |
 | `docs/ch03-qtcreator` | 8 | TRANSLATED | NOT REVIEWED | N/A | ecb005c | 批次 B05 |
-| `docs/ch04-qmlstart` | 9 | NOT STARTED | NOT REVIEWED | N/A | — | 学习优先目标 |
-| `docs/ch05-fluid` | 4 | NOT STARTED | NOT REVIEWED | N/A | — | |
-| `docs/ch06-controls` | 6 | NOT STARTED | NOT REVIEWED | N/A | — | 学习优先目标 |
-| `docs/ch07-modelview` | 7 | NOT STARTED | NOT REVIEWED | N/A | — | 学习优先目标 |
+| `docs/ch04-qmlstart` | 9 | TRANSLATED | NOT REVIEWED | N/A | 879d520 | 学习优先目标；批次 B06 |
+| `docs/ch05-fluid` | 4 | TRANSLATED | NOT REVIEWED | N/A | 4f6bc0a | 批次 B07（重试后顺序完成） |
+| `docs/ch06-controls` | 6 | TRANSLATED | NOT REVIEWED | N/A | 1b69091 | 学习优先目标；批次 B08 |
+| `docs/ch07-modelview` | 7 | TRANSLATED | NOT REVIEWED | N/A | e6e5631 | 学习优先目标；批次 B09 |
 | `docs/ch08-canvas` | 10 | NOT STARTED | NOT REVIEWED | N/A | — | |
 | `docs/ch09-shapes` | 6 | NOT STARTED | NOT REVIEWED | N/A | — | |
 | `docs/ch10-effects` | 15 | NOT STARTED | NOT REVIEWED | N/A | — | |
