@@ -1,10 +1,10 @@
 # Web Sockets
 
-The WebSockets module provides an implementation of the WebSockets protocol for WebSockets clients and servers. It mirrors the Qt CPP module. It allows sending a string and binary messages using a full duplex communication channel. A WebSocket is normally established by making an HTTP connection to the server and the server then “upgrades” the connection to a WebSocket connection.
+WebSockets 模块为 WebSockets 客户端和服务器提供了 WebSockets 协议的实现。它与 Qt CPP 模块相对应。它允许通过全双工（full duplex）通信信道发送字符串和二进制消息。WebSocket 通常通过向服务器发起一个 HTTP 连接来建立，然后由服务器把该连接“升级”为 WebSocket 连接。
 
-In Qt/QML you can also simply use the WebSocket and WebSocketServer objects to creates direct WebSocket connection. The WebSocket protocol uses the “ws” URL schema or “wss” for a secure connection.
+在 Qt/QML 中，也可以直接使用 WebSocket 和 WebSocketServer 对象来创建直接的 WebSocket 连接。WebSocket 协议使用 “ws” URL 模式，安全连接则使用 “wss”。
 
-You can use the web socket qml module by importing it first.
+使用 web socket QML 模块前，需要先导入它。
 
 ```qml
 import QtWebSockets
@@ -14,67 +14,66 @@ WebSocket {
 }
 ```
 
-## WS Server
+## WS 服务器
 
-You can easily create your own WS server using the C++ part of the Qt WebSocket or use a different WS implementation, which I find very interesting. It is interesting because it allows connecting the amazing rendering quality of QML with the great expanding web application servers. In this example, we will use a Node JS based web socket server using the [ws](https://npmjs.org/package/ws) module. For this, you first need to install [node js](http://nodejs.org/). Then, create a `ws_server` folder and install the ws package using the node package manager (npm).
+你可以用 Qt WebSocket 的 C++ 部分轻松创建自己的 WS 服务器，也可以使用另一种 WS 实现，我觉得这非常有意思。有意思之处在于，它能把 QML 出色的渲染质量与蓬勃发展的 Web 应用服务器连接起来。在这个例子中，我们将使用基于 Node JS 的 web socket 服务器，它用 [ws](https://npmjs.org/package/ws) 模块实现。为此，首先需要安装 [node js](http://nodejs.org/)。然后创建一个 `ws_server` 文件夹，用 node 包管理器（npm）安装 ws 包。
 
-The code shall create a simple echo server in NodeJS to echo our messages back to our QML client.
+代码将在 NodeJS 中创建一个简单的回显服务器（echo server），把我们的消息回显给 QML 客户端。
 
-![image](./images/ws_client.png)
+![图像](./images/ws_client.png)
 
 ```sh
 cd ws_server
 npm install ws
 ```
 
-The npm tool downloads and installs the ws package and dependencies into your local folder.
+npm 工具会把 ws 包及其依赖下载并安装到你的本地文件夹中。
 
-A `server.js` file will be our server implementation. The server code will create a web socket server on port 3000 and listens to an incoming connection. On an incoming connection, it will send out a greeting and waits for client messages. Each message a client sends on a socket will be sent back to the client.
+`server.js` 文件将作为我们的服务器实现。服务器代码会在端口 3000 上创建一个 web socket 服务器并监听传入的连接。有连接进来时，它会发出问候并等待客户端消息。客户端在套接字上发送的每条消息都会被发回客户端。
 
 <<< @/docs/ch13-networking/src/ws/ws_server/server.js#global
 
-You need to get used to the notation of JavaScript and the function callbacks.
+你需要习惯 JavaScript 的这种写法和函数回调。
 
-## WS Client
+## WS 客户端
 
-On the client side, we need a list view to display the messages and a TextInput for the user to enter a new chat message.
+在客户端一侧，我们需要一个列表视图来显示消息，以及一个 TextInput 供用户输入新的聊天消息。
 
-We will use a label with white color in the example.
+示例中会使用一个白色的 `Label` 组件。
 
 <<< @/docs/ch13-networking/src/ws/ws_client/Label.qml#global
 
-Our chat view is a list view, where the text is appended to a list model. Each entry is displayed using a row of prefix and message label. We use a cell width `cw` factor to split the with into 24 columns.
+我们的聊天视图是一个列表视图，文本被追加到一个列表模型中。每个条目用一行来显示，包含前缀和消息标签。我们使用单元格宽度系数 `cw` 把宽度分成 24 列。
 
 <<< @/docs/ch13-networking/src/ws/ws_client/ChatView.qml#global
 
-The chat input is just a simple text input wrapped with a colored border.
+聊天输入框只是一个外包彩色边框的简单文本输入框。
 
 <<< @/docs/ch13-networking/src/ws/ws_client/ChatInput.qml#global
 
-When the web socket receives a message it appends the message to the chat view. Same applies for a status change. Also when the user enters a chat message a copy is appended to the chat view on the client side and the message is sent to the server.
+当 web socket 收到消息时，会把该消息追加到聊天视图中。状态变化时同样如此。另外，当用户输入聊天消息时，会在客户端一侧把一个副本追加到聊天视图，并把消息发送到服务器。
 
 <<< @/docs/ch13-networking/src/ws/ws_client/ws_client.qml#global
 
-You need first run the server and then the client. There is no retry connection mechanism in our simple client.
+需要先运行服务器，再运行客户端。我们这个简单客户端没有重试连接的机制。
 
 
-Running the server
+运行服务器：
 
 ```sh
 cd ws_server
 node server.js
 ```
 
-Running the client
+运行客户端：
 
 ```sh
 cd ws_client
 qml ws_client.qml
 ```
 
-When entering text and pressing enter you should see something like this.
+输入文本并按回车后，你应该会看到类似下面的画面。
 
 
 
-![image](./images/ws_client.png)
-
+![图像](./images/ws_client.png)
