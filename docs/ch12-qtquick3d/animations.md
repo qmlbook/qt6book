@@ -12,13 +12,13 @@
 
 这个示例的目标是让 Suzanne——Blender 的猴头——用她的一只耳朵挥手。
 
-![image](./assets/monkey.gif)
+![图像](./assets/monkey.gif)
 
 骨骼动画有时被称为顶点蒙皮（vertex skinning）。基本上，一副骨架被放进网格内部，网格的顶点绑定到骨架上。这样，当骨架移动时，网格就被变形为各种姿势。
 
 由于讲授 Blender 超出了本书的范围，你要找的关键词是 posing（摆姿势）和 armatures（骨架）。Armatures 是 Blender 对骨骼的称呼。有大量视频教程讲解如何做到这一点。下面的截图展示了 Blender 中带有 Suzanne 和 armatures 的场景。注意耳朵的 armatures 已被命名，以便我们能从 QML 中识别它们。
 
-![image](./assets/blender-monkey-with-bones.png)
+![图像](./assets/blender-monkey-with-bones.png)
 
 Blender 场景完成后，我们把它导出为 COLLADA 文件并转换为 QML 和网格，就像 _Working with Assets_（使用资源）一节中那样。得到的 QML 文件名为 ``Monkey_with_bones.qml``。
 
@@ -57,6 +57,6 @@ qt_add_qml_module(appanimations
 
 最终摆动的耳朵可以在下面欣赏：
 
-![image](./assets/monkey.gif)
+![图像](./assets/monkey.gif)
 
 如你所见，导入并使用在设计工具中创建的骨架是很方便的。这让从 QML 为复杂 3D 模型制作动画变得容易。

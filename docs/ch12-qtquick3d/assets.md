@@ -18,15 +18,15 @@ Balsam 的目的是让在 [Blender](https://www.blender.org/)、Maya 或 3ds Max
 
 Blender 可以从 [https://www.blender.org/](https://www.blender.org/) 获取，而精通 Blender 是另一本书的主题，所以我们将做最基础的事情。移除原来的立方体（用鼠标左键选中立方体，按 ``shift + x``，选择 _Delete_），添加网格（键盘上 ``shift + a``，选择 _Mesh_），然后选择添加猴头（从可用网格列表中选择 _Monkey_）。有一批视频教程演示如何做到这一点。最终带有猴头场景的 Blender 用户界面如下所示。
 
-![image](./assets/blender-monkey.png)
+![图像](./assets/blender-monkey.png)
 
 猴头就位后，进入 File -> Export -> COLLADA。
 
-![image](./assets/blender-export-menu.png)
+![图像](./assets/blender-export-menu.png)
 
 这会带你到 Export COLLADA 对话框，你可以在那里导出得到的场景。
 
-![image](./assets/blender-export-collada.png)
+![图像](./assets/blender-export-collada.png)
 
 ::: tip 提示
 Blender 场景和导出的 COLLADA 文件（``*.dae``）都可以在本章的示例文件中找到。
@@ -38,11 +38,11 @@ COLLADA 文件保存到磁盘后，我们可以用 Balsam 把它准备好以在 
 
 我们先把 ``monkey.dae`` 文件添加到输入文件区（input files），并把输出文件夹设置为一个合理的路径。你的路径很可能与截图中所示的不同。
 
-![image](./assets/balsamui-1.png)
+![图像](./assets/balsamui-1.png)
 
 ``balsamui`` 中的 _Settings_ 选项卡包含所有选项。它们都对应 ``balsam`` 工具的一个命令行选项。现在，我们把它们全部保留为默认值。
 
-![image](./assets/balsamui-2.png)
+![图像](./assets/balsamui-2.png)
 
 现在，回到 _Input_ 选项卡并点击 _Convert_。这将在用户界面的状态区产生如下输出：
     
@@ -81,7 +81,7 @@ qt_add_qml_module(appbasicasset
 
 ``Monkey.qml`` 包含整个 Blender 场景，包括相机和一盏灯，因此结果是一个完整场景，如下所示。
 
-![image](./assets/asset-first-input.png)
+![图像](./assets/asset-first-input.png)
 
 有兴趣的读者建议去探索 ``Monkey.qml`` 文件。你会看到，它包含的是一个完全正常的 Qt Quick 3D 场景，由我们在本章已经用过的那些元素搭建而成。
 
@@ -97,6 +97,6 @@ qt_add_qml_module(appbasicasset
 
 得到的视图如下所示。
 
-![image](./assets/asset-second-input.png)
+![图像](./assets/asset-second-input.png)
 
 这演示了如何从 blender 这样的 3D 设计工具导出一个简单网格，转换为 Qt Quick 3D 格式，然后在 QML 中使用。有一点值得思考：我们可以原样导入整个场景（即使用 ``Monkey.qml``），也可以只使用资源（例如 ``suzanne.mesh``）。这让你在“简单导入场景”与“通过在 QML 中搭建场景来获得灵活性但增加复杂度”之间进行权衡取舍。

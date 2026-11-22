@@ -14,7 +14,7 @@
 
 我们将通过创建下图所示的场景，来了解这些元素如何协同工作。
 
-![图片](./assets/basicscene.png)
+![图像](./assets/basicscene.png)
 
 首先，QML 代码以 ``View3D`` 作为主元素，填满整个窗口。我们还导入了 ``QtQuick3D`` 模块。
 
@@ -69,7 +69,7 @@ Window {
 
 生成的场景如下图所示。
 
-![图片](./assets/basicscene.png)
+![图像](./assets/basicscene.png)
 
 总而言之，一个最小场景由以下部分组成：一个带有 ``SceneEnvironment`` 的 ``View3D``、可供观察的物体（例如带有网格的 ``Model``）、一个光源（例如 ``DirectionalLight``），以及用于观察的相机（例如 ``PerspectiveCamera``）。
 
@@ -87,7 +87,7 @@ Window {
 
 它们都展示在下图中。（左上：立方体，右上：圆锥体，中央：球体，左下：圆柱体，右下：矩形）
 
-![图片](./assets/meshes.png)
+![图像](./assets/meshes.png)
 
 ::: tip 提示
 需要注意的是，``#Rectangle`` 是单面的。也就是说，它只有一个方向可见。因此 ``eulerRotation`` 属性十分重要。
@@ -103,13 +103,13 @@ Window {
 
 第一个是 ``DirectionalLight``，在前面的示例中我们已经用过。它的作用很像太阳，沿给定方向均匀地照亮整个场景。如果把 ``castsShadow`` 属性设为 ``true``，光源就会产生阴影，如下图所示。所有光源都有这个属性。
 
-![图片](./assets/light_directional.png)
+![图像](./assets/light_directional.png)
 
 <<< @/docs/ch12-qtquick3d/src/lights/main.qml#directional
 
 下一种光源是 ``PointLight``。它从空间中的给定点发出光线，然后根据 ``constantFade``、``linearFade`` 和 ``quadraticFace`` 属性的值逐渐衰减至黑暗，光照按 ``constantFade + distance * (linearFade * 0.01) + distance^2 * (quadraticFade * 0.0001)`` 计算。默认值为常量衰减和二次衰减取 ``1.0``，线性衰减取 ``0.0``，这意味着光按平方反比定律衰减。
 
-![图片](./assets/light_point.png)
+![图像](./assets/light_point.png)
 
 <<< @/docs/ch12-qtquick3d/src/lights/main.qml#point
 
@@ -117,7 +117,7 @@ Window {
 
 内锥中的光照表现很像 ``PointLight``，同样可以用 ``constantFade``、``linearFade`` 和 ``quadraticFace`` 属性控制。此外，光线越接近外锥就越暗，这一效果由 ``coneAngle`` 控制。
 
-![图片](./assets/light_spot.png)
+![图像](./assets/light_spot.png)
 
 <<< @/docs/ch12-qtquick3d/src/lights/main.qml#spot
 

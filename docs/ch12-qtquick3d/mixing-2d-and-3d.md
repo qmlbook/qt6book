@@ -20,7 +20,7 @@ Qt Quick 3D 的构建目标就是良好地集成到用于构建动态 2D 内容�
 
 另一种方法是把 2D Qt Quick 元素直接放进场景。这正是下面示例所用的方法，我们为 Suzanne 提供了一个姓名徽章。
 
-![image](./assets/mix-2d-and-3d.png)
+![图像](./assets/mix-2d-and-3d.png)
 
 我们在这里所做的是实例化一个 ``Node``，它在 3D 场景中充当锚点。然后我们把 ``Rectangle`` 和 ``Text`` 元素放进 ``Node`` 内部。这两个都是 2D Qt Quick 元素。随后我们可以通过 ``Node`` 元素的相应属性来控制 3D 的位置、旋转和缩放。
 

@@ -10,7 +10,7 @@
 
 两种材质类型的示例如下所示，左边是 ``PrincipledMaterial``，右边是 ``DefaultMaterial``。
 
-![image](./assets/materials.png)
+![图像](./assets/materials.png)
 
 比较这两个 Suzanne，我们可以看到两种材质是如何设置的。
 
@@ -26,7 +26,7 @@
 
 下图展示了 default 材质在 ``specularAmount`` 和 ``specularRoughness`` 属性取不同值时的效果。
 
-![image](./assets/default-material.png)
+![图像](./assets/default-material.png)
 
 ``specularAmount`` 从 ``0.8``（最左）经过 ``0.5``（中间）变化到 ``0.2``（最右）。
 
@@ -40,7 +40,7 @@
 
 下图展示了 principled 材质在 ``metalness`` 和 ``roughness`` 属性取不同值时的效果。
 
-![image](./assets/principled-material.png)
+![图像](./assets/principled-material.png)
 
 ``metalness`` 从 ``0.8``（最左）经过 ``0.5``（中间）变化到 ``0.2``（最右）。
 
@@ -52,7 +52,7 @@
 
 本节主示例中的最后一个细节是天空盒（skybox）。在这个示例中，我们使用图像作为天空盒，而不是单一颜色的背景。
 
-![image](./assets/materials.png)
+![图像](./assets/materials.png)
 
 要提供天空盒，如下方代码所示，把一个 ``Texture`` 赋给 ``SceneEnvironment`` 的 ``lightProbe`` 属性。这意味着场景接收基于图像的光照，也就是用天空盒来照亮场景。我们还调整了 ``probeExposure``，它用来控制通过探针（probe）暴露多少光，也就是场景会被照得多亮。在这个场景中，我们把光探针与一个 ``DirectionalLight`` 结合起来得到最终光照。
 
