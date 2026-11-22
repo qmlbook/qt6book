@@ -1,4 +1,4 @@
-# 翻译状态（TRANSLATION_STATUS.md）
+﻿# 翻译状态（TRANSLATION_STATUS.md）
 
 ## 项目元数据
 
@@ -36,11 +36,11 @@
 
 | 目标（Target） | 文件数 | 翻译状态 | 审查状态 | 构建状态 | 提交 SHA | 备注 |
 | --- | --- | --- | --- | --- | --- | --- |
-| `docs/index.md` | 1 | NOT STARTED | NOT REVIEWED | BASELINE PASS | — | 推荐顺序第 1 项 |
-| `docs/preface` | 3 | NOT STARTED | NOT REVIEWED | N/A | — | |
-| `docs/ch01-meetqt` | 3 | NOT STARTED | NOT REVIEWED | N/A | — | |
-| `docs/ch02-start` | 5 | NOT STARTED | NOT REVIEWED | N/A | — | |
-| `docs/ch03-qtcreator` | 8 | NOT STARTED | NOT REVIEWED | N/A | — | |
+| `docs/index.md` | 1 | TRANSLATED | NOT REVIEWED | BASELINE PASS | dda25cc | 推荐顺序第 1 项；批次 B01 |
+| `docs/preface` | 3 | TRANSLATED | NOT REVIEWED | N/A | 9f6ec64 | 批次 B02 |
+| `docs/ch01-meetqt` | 3 | TRANSLATED | NOT REVIEWED | N/A | 6727ab3 | 批次 B03 |
+| `docs/ch02-start` | 5 | TRANSLATED | NOT REVIEWED | N/A | bbd74cf | 批次 B04 |
+| `docs/ch03-qtcreator` | 8 | TRANSLATED | NOT REVIEWED | N/A | ecb005c | 批次 B05 |
 | `docs/ch04-qmlstart` | 9 | NOT STARTED | NOT REVIEWED | N/A | — | 学习优先目标 |
 | `docs/ch05-fluid` | 4 | NOT STARTED | NOT REVIEWED | N/A | — | |
 | `docs/ch06-controls` | 6 | NOT STARTED | NOT REVIEWED | N/A | — | 学习优先目标 |
