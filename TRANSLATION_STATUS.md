@@ -45,17 +45,17 @@
 | `docs/ch05-fluid` | 4 | TRANSLATED | NOT REVIEWED | N/A | 4f6bc0a | 批次 B07（重试后顺序完成） |
 | `docs/ch06-controls` | 6 | TRANSLATED | NOT REVIEWED | N/A | 1b69091 | 学习优先目标；批次 B08 |
 | `docs/ch07-modelview` | 7 | TRANSLATED | NOT REVIEWED | N/A | e6e5631 | 学习优先目标；批次 B09 |
-| `docs/ch08-canvas` | 10 | NOT STARTED | NOT REVIEWED | N/A | — | |
-| `docs/ch09-shapes` | 6 | NOT STARTED | NOT REVIEWED | N/A | — | |
-| `docs/ch10-effects` | 15 | NOT STARTED | NOT REVIEWED | N/A | — | |
-| `docs/ch11-multimedia` | 6 | NOT STARTED | NOT REVIEWED | N/A | — | |
+| `docs/ch08-canvas` | 10 | TRANSLATED | NOT REVIEWED | N/A | a98fc85 | 批次 B12（卡死后顺序完成） |
+| `docs/ch09-shapes` | 6 | TRANSLATED | NOT REVIEWED | N/A | faa1fd2 | 批次 B13（卡死后顺序完成） |
+| `docs/ch10-effects` | 15 | TRANSLATED | NOT REVIEWED | N/A | 963df7a | 批次 B14 |
+| `docs/ch11-multimedia` | 6 | TRANSLATED | NOT REVIEWED | N/A | 69d9d91 | 批次 B15（卡死后顺序完成） |
 | `docs/ch12-qtquick3d` | 7 | NOT STARTED | NOT REVIEWED | N/A | — | |
 | `docs/ch13-networking` | 9 | NOT STARTED | NOT REVIEWED | N/A | — | |
 | `docs/ch14-storage` | 3 | NOT STARTED | NOT REVIEWED | N/A | — | |
 | `docs/ch15-dynamicqml` | 5 | NOT STARTED | NOT REVIEWED | N/A | — | |
 | `docs/ch16-javascript` | 5 | NOT STARTED | NOT REVIEWED | N/A | — | |
 | `docs/ch17-qtcpp` | 6 | TRANSLATED | NOT REVIEWED | N/A | dc007ac | 学习优先目标；批次 B10（卡死后顺序完成） |
-| `docs/ch18-extensions` | 7 | NOT STARTED | NOT REVIEWED | N/A | — | 不含 `src/CityUI/LICENSE.md` |
+| `docs/ch18-extensions` | 7 | TRANSLATED | NOT REVIEWED | N/A | 581cb64 | 批次 B11（卡死后顺序完成）；不含 `src/CityUI/LICENSE.md` |
 | `docs/ch19-python` | 6 | NOT STARTED | NOT REVIEWED | N/A | — | |
 | `docs/ch20-qtformcu` | 6 | NOT STARTED | NOT REVIEWED | N/A | — | |
 | `docs/.vuepress/config.js` 导航标签 | 1 | NOT STARTED | NOT REVIEWED | N/A | — | 仅读者可见导航文案 |

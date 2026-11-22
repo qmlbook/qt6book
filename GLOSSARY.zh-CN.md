@@ -207,6 +207,30 @@
 - 设计指南专有名称（Microsoft Universal Design Guidelines、Google Material
   Design Guidelines）：保持英文。
 - ch17 章名（跨章引用）：「Qt C++」保持原样；导航标题以 P01 最终决定为准。
+
+## 扩展术语（B11–B15 提案，父代理已合并）
+
+| English | 简体中文 | 备注 |
+| --- | --- | --- |
+| plugin / extension | 插件 / 扩展 | |
+| register a type | 注册类型 | `qmlRegisterType` 保持英文 |
+| canvas | 画布 | |
+| composition mode | 合成模式 | |
+| pixel buffer | 像素缓冲 | |
+| shape / path / path element | 形状 / 路径 / 路径元素 | |
+| conical gradient | 锥形渐变 | |
+| emitter / affector / particle painter | 发射器 / 影响器 / 粒子绘制器 | Qt Quick Particles |
+| particle group | 粒子组 | |
+| sprite | 精灵 | |
+| vector space / magnitude | 向量空间 / 幅值 | |
+| bake / baking (shaders) | 烘焙 | qsb 语境 |
+| render pipeline | 渲染管线 | |
+| vertex shader / fragment shader | 顶点着色器 / 片元着色器 | |
+| aging (particle) | 老化 | 标题约定：「老化（Age）」 |
+| media / player / playback | 媒体 / 播放器 / 播放 | |
+| sound effect | 音效 | |
+| video stream | 视频流 | |
+| capture (image) | 捕获 | |
 ## 待决术语
 
 （暂无。翻译过程中若出现表中未覆盖且影响一致性的术语，在此登记后使用。）
