@@ -54,7 +54,7 @@
 | `docs/ch14-storage` | 3 | NOT STARTED | NOT REVIEWED | N/A | — | |
 | `docs/ch15-dynamicqml` | 5 | NOT STARTED | NOT REVIEWED | N/A | — | |
 | `docs/ch16-javascript` | 5 | NOT STARTED | NOT REVIEWED | N/A | — | |
-| `docs/ch17-qtcpp` | 6 | NOT STARTED | NOT REVIEWED | N/A | — | 学习优先目标 |
+| `docs/ch17-qtcpp` | 6 | TRANSLATED | NOT REVIEWED | N/A | dc007ac | 学习优先目标；批次 B10（卡死后顺序完成） |
 | `docs/ch18-extensions` | 7 | NOT STARTED | NOT REVIEWED | N/A | — | 不含 `src/CityUI/LICENSE.md` |
 | `docs/ch19-python` | 6 | NOT STARTED | NOT REVIEWED | N/A | — | |
 | `docs/ch20-qtformcu` | 6 | NOT STARTED | NOT REVIEWED | N/A | — | |
