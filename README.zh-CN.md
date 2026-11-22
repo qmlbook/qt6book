@@ -54,6 +54,13 @@ yarn run docs:build
 yarn run examples:build
 ```
 
+## 在线阅读
+
+本书已通过 GitHub Actions 自动部署到 GitHub Pages：
+
+**https://bgllj.github.io/qt6book-zh/**
+
+
 ## 翻译状态
 
 翻译进度、审查状态、构建记录见仓库根目录的 `TRANSLATION_STATUS.md`。

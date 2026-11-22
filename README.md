@@ -1,10 +1,12 @@
-# Qt6 Book
+﻿# Qt6 Book
 
 *Copyright(C) 2012-2021 Johan Thelin and Jürgen Bocklage-Ryannel*
 
 Qt6 书籍（基于 QmlBook）的新家
 
 > 本仓库为简体中文翻译版；翻译说明、术语表与进度见 [README.zh-CN.md](README.zh-CN.md)。
+
+> **在线阅读：<https://bgllj.github.io/qt6book-zh/>**
 
 你可以随时在 [https://www.qt.io/product/qt6/qml-book](https://www.qt.io/product/qt6/qml-book) 找到本书最新发布版本的构建成果，最新快照则位于 [https://distracted-dijkstra-f5d508.netlify.app/](https://distracted-dijkstra-f5d508.netlify.app/)。
 
