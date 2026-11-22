@@ -1,24 +1,24 @@
-# Directed Particles
+# 定向粒子
 
-We have seen particles can rotate. But particles can also have a trajectory. The trajectory is specified as the velocity or acceleration of particles defined by a stochastic direction also named a vector space.
+我们已经看到粒子可以旋转。但粒子还可以拥有轨迹。轨迹由粒子的速度或加速度指定，而速度或加速度由一个随机方向——也称为向量空间——来定义。
 
-There are different vector spaces available to define the velocity or acceleration of a particle:
+有多种向量空间可用于定义粒子的速度或加速度：
 
-* `AngleDirection` - a direction that varies in angle
-* `PointDirection` - a direction that varies in x and y components
-* `TargetDirection` - a direction towards the target point
+* `AngleDirection` - 角度发生变化的方向
+* `PointDirection` - x 和 y 分量发生变化的方向
+* `TargetDirection` - 指向目标点的方向
 
-![image](./assets/particle_directions.png)
+![图像](./assets/particle_directions.png)
 
-Let’s try to move the particles over from the left to the right side of our scene by using the velocity directions.
+让我们试着利用速度方向，把粒子从场景的左侧移动到右侧。
 
-We first try the `AngleDirection`. For this we need to specify the `AngleDirection` as an element of the velocity property of our emitter:
+我们先试试 `AngleDirection`。为此，需要把 `AngleDirection` 指定为发射器 velocity 属性的一个元素：
 
 ```qml
 velocity: AngleDirection { }
 ```
 
-The angle where the particles are emitted is specified using the angle property. The angle is provided as a value between 0..360 degree and 0 points to the right. For our example, we would like the particles to move to the right so 0 is already the right direction. The particles shall spread by +/- 5 degrees:
+粒子发射时的角度由 angle 属性指定。该角度以 0..360 度之间的值给出，0 指向右方。在我们的示例中，希望粒子向右移动，所以 0 已经是正确的方向。粒子应在 +/- 5 度的范围内扩散：
 
 ```qml
 velocity: AngleDirection {
@@ -27,7 +27,7 @@ velocity: AngleDirection {
 }
 ```
 
-Now we have set our direction, the next thing is to specify the velocity of the particle. This is defined by a magnitude. The magnitude is defined in pixels per seconds. As we have ca. 640px to travel 100 seems to be a good number. This would mean by an average lifetime of 6.4 secs a particle would cross the open space. To make the traveling of the particles more interesting we vary the magnitude using the `magnitudeVariation` and set this to the half of the magnitude:
+现在方向已经设定，接下来要指定粒子的速度。速度由幅值定义。幅值的单位是每秒像素数。由于我们大约有 640 像素的路程要走，100 看起来是个不错的数值。这意味着在平均 6.4 秒的生命周期内，粒子将穿过这片开阔空间。为了让粒子的行进过程更有趣，我们用 `magnitudeVariation` 改变幅值，并把它设置为幅值的一半：
 
 ```qml
 velocity: AngleDirection {
@@ -37,13 +37,13 @@ velocity: AngleDirection {
 }
 ```
 
-![image](./assets/angledirection.png)
+![图像](./assets/angledirection.png)
 
-Here is the full source code, with an average lifetime set to 6.4 seconds. We set the emitter width and height to 1px. This means all particles are emitted at the same location and from thereon travel based on our given trajectory.
+下面是完整的源代码，平均生命周期设为 6.4 秒。我们把发射器的宽度和高度都设为 1 像素。这意味着所有粒子都在同一位置发射，并从那里按照给定的轨迹行进。
 
 <<< @/docs/ch10-effects/src/particles/angledirection.qml#M1
 
-So what is then the acceleration doing? The acceleration adds an acceleration vector to each particle, which changes the velocity vector over time. For example, let’s make a trajectory like an arc of stars. For this we change our velocity direction to -45 degree and remove the variations, to better visualize a coherent arc:
+那么加速度又是做什么的呢？加速度为每个粒子添加一个加速度向量，它会随时间改变速度向量。例如，让我们做出一条由星星组成的弧形轨迹。为此，把速度方向改为 -45 度并去掉变化量，以便更清楚地看到一条连贯的弧线：
 
 ```qml
 velocity: AngleDirection {
@@ -52,7 +52,7 @@ velocity: AngleDirection {
 }
 ```
 
-The acceleration direction shall be 90 degrees (down direction) and we choose one-fourth of the velocity magnitude for this:
+加速度方向应为 90 度（向下方向），这里我们取速度幅值的四分之一：
 
 ```qml
 acceleration: AngleDirection {
@@ -61,27 +61,27 @@ acceleration: AngleDirection {
 }
 ```
 
-The result is an arc going from the center-left to the bottom right.
+结果是一条从左中延伸到右下的弧线。
 
-![image](./assets/angledirection2.png)
+![图像](./assets/angledirection2.png)
 
-The values are discovered by trial-and-error.
+这些数值是通过反复试错得到的。
 
-Here is the full code of our emitter.
+下面是发射器的完整代码。
 
 <<< @/docs/ch10-effects/src/particles/angledirection2.qml#M1
 
-In the next example we would like that the particles again travel from left to right but this time we use the `PointDirection` vector space.
+在下一个示例中，我们希望粒子再次从左向右行进，但这次使用 `PointDirection` 向量空间。
 
-A `PointDirection` derived its vector space from an x and y component. For example, if you want the particles to travel in a 45-degree vector, you need to specify the same value for x and y.
+`PointDirection` 的向量空间由 x 和 y 分量导出。例如，如果希望粒子沿 45 度方向行进，就需要为 x 和 y 指定相同的值。
 
-In our case we want the particles to travel from left-to-right building a 15-degree cone. For this we specify a `PointDirection` as our velocity vector space:
+在我们的场景中，希望粒子从左向右行进，形成一个 15 度的锥形。为此，把 `PointDirection` 指定为速度向量空间：
 
 ```qml
 velocity: PointDirection { }
 ```
 
-To achieve a traveling velocity of 100 px per seconds we set our x component to 100. For the 15 degrees (which is 1/6th of 90 degrees) we specify any variation of 100/6:
+为了达到每秒 100 像素的行进速度，我们把 x 分量设为 100。对于 15 度（即 90 度的 1/6），我们把变化量指定为 100/6：
 
 ```qml
 velocity: PointDirection {
@@ -92,11 +92,11 @@ velocity: PointDirection {
 }
 ```
 
-The result should be particles traveling in a 15-degree cone from right to left.
+结果应该是粒子在一个 15 度的锥形中从右向左行进。
 
-![image](./assets/pointdirection.png)
+![图像](./assets/pointdirection.png)
 
-Now coming to our last contender, the `TargetDirection`. The target direction allows us to specify a target point as an x and y coordinate relative to the emitter or an item. When an item has specified the center of the item will become the target point. You can achieve the 15-degree cone by specifying a target variation of 1/6 th of the x target:
+现在来看最后一位选手——`TargetDirection`。目标方向允许我们把目标点指定为相对于发射器或某个项的 x 和 y 坐标。当指定了某个项时，该项的中心将成为目标点。通过把目标变化量指定为 x 目标的 1/6，可以得到 15 度的锥形：
 
 ```qml
 velocity: TargetDirection {
@@ -108,11 +108,11 @@ velocity: TargetDirection {
 ```
 
 ::: tip
-Target direction are great to use when you have a specific x/y coordinate you want the stream of particles emitted towards.
+当你有一个具体的 x/y 坐标，希望粒子流向它发射时，目标方向非常有用。
 :::
 
-I spare you the image as it looks the same as the previous one, instead, I have a quest for you.
+我就不展示图像了，因为它和上一张看起来一样；相反，我给你留了一道题。
 
-In the following image, the red and the green circle specify each a target item for the target direction of the velocity respective the acceleration property. Each target direction has the same parameters. Here the question: Who is responsible for velocity and who is for acceleration?
+在下图中，红圈和绿圈分别为 velocity 和 acceleration 属性的目标方向指定了一个目标项。两个目标方向的参数相同。问题来了：谁负责速度，谁负责加速度？
 
-![image](./assets/directionquest.png)
+![图像](./assets/directionquest.png)

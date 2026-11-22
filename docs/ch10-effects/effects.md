@@ -1,20 +1,20 @@
-# Effects in QML
+# QML 中的效果
 
-In this chapter, we will look at the tools for various effects in QML. The focus will be on:
+本章我们将了解在 QML 中实现各种效果的工具，重点包括：
 
-* Particle Effects
-* Shader Effects
+* 粒子效果
+* 着色器效果
 
-## Particle Effects
+## 粒子效果
 
-Particle effects lets us create groups of particles, i.e. instances of a given element. These are generated in a stochastic way and let us work with groups of items rather than individual items. This can be used to create things such as falling leafs, explosions, fire, clouds, and starfields.
+粒子效果让我们可以创建粒子组，即给定元素的实例。这些实例以随机方式生成，使我们可以成组地处理项，而不是逐个处理单个项。这可以用来创建诸如落叶、爆炸、火焰、云朵和星空之类的效果。
 
-## Shader Effects
+## 着色器效果
 
-Shader effects are applied in the graphics rendering pipeline and allows us to change both the size and colour of any visible QML element. This can be used to create transitions such as the genie effect, waves and curtains, or filters such as blur, grayscale, and blending.
+着色器效果应用于图形渲染管线中，可以改变任何可见 QML 元素的大小和颜色。它可以用来创建诸如精灵效果（genie effect）、波浪和窗帘这样的过渡效果，也可以实现诸如模糊、灰度和混合这样的滤镜效果。
 
-Shaders are written in a shader language which is then baked and imported into the QML scene, much as other resources. These shaders can then be applied to images or other elements to create advanced visual effects.
+着色器使用一种着色器语言编写，然后像其他资源一样被烘焙并导入到 QML 场景中。接着，这些着色器可以应用到图像或其他元素上，以创建高级视觉效果。
 
 ::: tip
-Working with shader effects is an advanced topic.
+使用着色器效果是一个高级主题。
 :::

@@ -1,16 +1,16 @@
-# Particle Groups
+# 粒子组
 
-At the beginning of this chapter, we stated particles are in groups, which is by default the empty group (‘’). Using the `GroupGoal` affector is it possible to let the particle change groups. To visualize this we would like to create a small firework, where rockets start into space and explode in the air into a spectacular firework.
+在本章开头我们说过，粒子属于某个组，默认是空组（‘’）。使用 `GroupGoal` 影响器可以让粒子改变所属组。为了直观地展示这一点，我们要创建一个小小的烟花效果：火箭升入空中，在空中炸开成壮观的烟花。
 
-![image](./assets/firework_teaser.png)
+![图像](./assets/firework_teaser.png)
 
-The example is divided into 2 parts. The 1st part called “Launch Time” is concerned to set up the scene and introduce particle groups and the 2nd part called “Let there be fireworks” focuses on the group changes.
+该示例分为两部分。第一部分名为“点火升空”（Launch Time），负责搭建场景并介绍粒子组；第二部分名为“烟花盛开”（Let there be fireworks），重点介绍组的切换。
 
-Let’s get started!
+开始吧！
 
-## Launch Time
+## 点火升空
 
-To get it going we create a typical dark scene:
+首先创建一个典型的深色场景：
 
 ```qml
 import QtQuick 2.5
@@ -24,7 +24,7 @@ Rectangle {
 }
 ```
 
-The tracer property will be used to switch the tracer scene wide on and off. The next thing is to declare our particle system:
+tracer 属性用于在整个场景范围内开关示踪器。接下来声明我们的粒子系统：
 
 ```qml
 ParticleSystem {
@@ -32,7 +32,7 @@ ParticleSystem {
 }
 ```
 
-And our two image particles (one for the rocket and one for the exhaust smoke):
+以及两个图像粒子（一个用于火箭，一个用于尾气烟雾）：
 
 ```qml
 ImageParticle {
@@ -53,9 +53,9 @@ ImageParticle {
 }
 ```
 
-You can see in on the images, they use the *groups* property to declare to which group the particle belongs. It is enough to just declare a name and an implicit group will be created by Qt Quick.
+如代码所示，它们使用 *groups* 属性声明粒子属于哪个组。只需声明一个名称，Qt Quick 就会创建一个隐式组。
 
-Now it’s time to emit some rockets into the air. For this, we create an emitter on the bottom of our scene and set the velocity in an upward direction. To simulate some gravity we set an acceleration downwards:
+现在是时候向空中发射一些火箭了。为此，我们在场景底部创建一个发射器，并把速度设为向上方向。为模拟一些重力，设置一个向下的加速度：
 
 ```qml
 Emitter {
@@ -75,9 +75,9 @@ Emitter {
 }
 ```
 
-The emitter is in the group *‘rocket’*, the same as our rocket particle painter. Through the group name, they are bound together. The emitter emits particles into the group ‘rocket’ and the rocket particle painter will pain them.
+该发射器属于 *'rocket'* 组，与火箭粒子绘制器相同。通过组名，它们绑定在一起。发射器把粒子发射到 'rocket' 组，火箭粒子绘制器会绘制它们。
 
-For the exhaust, we use a trail emitter, which follows our rocket. It declares an own group called ‘smoke’ and follows the particles from the ‘rocket’ group:
+对于尾气，我们使用轨迹发射器（TrailEmitter），它跟随火箭。它声明一个名为 'smoke' 的独立组，并跟随 'rocket' 组中的粒子：
 
 ```qml
 TrailEmitter {
@@ -96,9 +96,9 @@ TrailEmitter {
 }
 ```
 
-The smoke is directed downwards to simulate the force the smoke comes out of the rocket. The *emitHeight* and *emitWidth* specify the are around the particle followed from where the smoke particles shall be emitted. If this is not specified then they are of the particle followed is taken but for this example, we want to increase the effect that the particles stem from a central point near the end of the rocket.
+烟雾方向朝下，以模拟烟雾从火箭中喷出的力。*emitHeight* 和 *emitWidth* 指定被跟随粒子周围的区域，烟雾粒子从该区域发射。如果不指定，则取被跟随粒子的相应尺寸；但在本例中，我们想强化粒子源自火箭尾部附近某中心点的效果。
 
-If you start the example now you will see the rockets fly up and some are even flying out of the scene. As this is not really wanted we need to slow them down before they leave the screen. A friction affector can be used here to slow the particles down to a minimum threshold:
+如果现在运行示例，你会看到火箭向上飞，有些甚至飞出了场景。这并不是我们想要的，因此需要在它们离开屏幕之前减慢它们。这里可以使用摩擦影响器把粒子减速到一个最小阈值：
 
 ```qml
 Friction {
@@ -111,9 +111,9 @@ Friction {
 }
 ```
 
-In the friction affector, you also need to declare which groups of particles it shall affect. The friction will slow all rockets, which are 80 pixels downwards from the top of the screen down by a factor of 0.9 (try 100 and you will see they almost stop immediately) until they reach a velocity of 5 pixels per second. As the particles have still an acceleration downwards applied the rockets will start sinking toward the ground after they reach the end of their life-span.
+在摩擦影响器中，同样需要声明它影响哪些粒子组。摩擦会把屏幕顶部向下 80 像素范围内的所有火箭按 0.9 的系数减慢（试试 100，你会发现它们几乎立刻停下），直到速度降到每秒 5 像素。由于粒子仍施加着向下的加速度，火箭在到达寿命终点后会开始向地面下坠。
 
-As climbing up in the air is hard work and a very unstable situation we want to simulate some turbulences while the ship is climbing:
+由于向空中爬升是件苦差事，而且状态很不稳定，我们想在火箭爬升时模拟一些湍流：
 
 ```qml
 Turbulence {
@@ -126,19 +126,19 @@ Turbulence {
 }
 ```
 
-Also, the turbulence needs to declare which groups it shall affect. The turbulence itself reaches from the bottom 160 pixels upwards (until it reaches the border of the friction). They also could overlap.
+同样，湍流也需要声明它影响哪些组。湍流本身从底部向上延伸 160 像素（直到到达摩擦区域的边界）。两者也可以重叠。
 
-When you start the example now you will see the rockets are climbing up and then will be slowed down by the friction and fall back to the ground by the still applied downwards acceleration. The next thing would be to start the firework.
+现在运行示例，你会看到火箭向上爬升，然后被摩擦减慢，又因为仍施加着向下的加速度而落回地面。接下来就该让烟花绽放了。
 
-![image](./assets/firework_rockets.png)
+![图像](./assets/firework_rockets.png)
 
 ::: tip
-The image shows the scene with the tracers enabled to show the different areas. Rocket particles are emitted in the red area and then affected by the turbulence in the blue area. Finally, they are slowed down by the friction affector in the green area and start falling again, because of the steady applied downwards acceleration.
+图中启用了示踪器以显示不同区域。火箭粒子在红色区域发射，然后在蓝色区域受到湍流影响。最后，它们在绿色区域被摩擦影响器减慢，并因持续施加的向下加速度而开始下落。
 :::
 
-## Let there be fireworks
+## 烟花盛开
 
-To be able to change the rocket into a beautiful firework we need add a `ParticleGroup` to encapsulate the changes:
+为了能把火箭变成美丽的烟花，我们需要添加一个 `ParticleGroup` 来封装这些变化：
 
 ```qml
 ParticleGroup {
@@ -147,7 +147,7 @@ ParticleGroup {
 }
 ```
 
-We change to the particle group using a `GroupGoal` affector. The group goal affector is placed near the vertical center of the screen and it will affect the group ‘rocket’. With the *groupGoal* property we set the target group for the change to ‘explosion’, our earlier defined particle group:
+我们使用 `GroupGoal` 影响器切换到该粒子组。组目标影响器放置在屏幕垂直中心附近，它会影响 'rocket' 组。通过 *groupGoal* 属性，我们把变更的目标组设为 'explosion'，即前面定义的粒子组：
 
 ```qml
 GroupGoal {
@@ -162,13 +162,13 @@ GroupGoal {
 }
 ```
 
-The *jump* property states the change in groups shall be immediately and not after a certain duration.
+*jump* 属性表示组的切换应立即发生，而不是在一定时间之后发生。
 
 ::: tip
-In the Qt 5 alpha release we could the *duration* for the group change not get working. Any ideas?
+在 Qt 5 alpha 版本中，我们没能让组切换的 *duration* 生效。有谁有什么主意吗？
 :::
 
-As the group of the rocket now changes to our ‘explosion’ particle group when the rocket particle enters the group goal area we need to add the firework inside the particle group:
+由于火箭粒子进入组目标区域时，其组会变为 'explosion' 粒子组，我们需要把烟花效果加到该粒子组内部：
 
 ```qml
 // inside particle group
@@ -184,9 +184,9 @@ TrailEmitter {
 }
 ```
 
-The explosion emits particles into the ‘sparkle’ group. We will define soon a particle painter for this group. The trail emitter used follows the rocket particle and emits per rocket 200 particles. The particles are directed upwards and vary by 180 degrees.
+爆炸向 'sparkle' 组发射粒子。我们很快会为该组定义一个粒子绘制器。所用的轨迹发射器跟随火箭粒子，每个火箭发射 200 个粒子。粒子方向朝上，在 180 度范围内变化。
 
-As the particles are emitted into the ‘sparkle’ group, we also need to define a particle painter for the particles:
+由于粒子被发射到 'sparkle' 组，我们还需要为这些粒子定义一个粒子绘制器：
 
 ```qml
 ImageParticle {
@@ -200,9 +200,9 @@ ImageParticle {
 }
 ```
 
-The sparkles of our firework shall be little red stars with an almost transparent color to allow some shine effects.
+我们烟花的火花应是小小的红色星星，颜色近乎透明，以呈现出一些闪光效果。
 
-To make the firework more spectacular we also add a second trail emitter to our particle group, which will emit particles in a narrow cone downwards:
+为了让烟花更加壮观，我们还向粒子组添加第二个轨迹发射器，它以狭窄的锥形向下发射粒子：
 
 ```qml
 // inside particle group
@@ -218,14 +218,14 @@ TrailEmitter {
 }
 ```
 
-Otherwise, the setup is similar to the other explosion trail emitter. That’s it.
+除此之外，设置与另一个爆炸轨迹发射器类似。大功告成。
 
-Here is the final result.
+下面是最终效果。
 
 
 
-![image](./assets/firework_final.png)
+![图像](./assets/firework_final.png)
 
-Here is the full source code of the rocket firework.
+下面是火箭烟花的完整源代码。
 
 <<< @/docs/ch10-effects/src/particles/firework.qml#M1

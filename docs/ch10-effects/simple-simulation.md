@@ -1,36 +1,36 @@
-# Simple Simulation
+# 简单模拟
 
-Let us have a look at a very simple simulation to get started. Qt Quick makes it actually very simple to get started with particle rendering. For this we need:
+让我们先看一个非常简单的模拟作为入门。Qt Quick 其实让粒子渲染的上手变得非常简单。为此我们需要：
 
 
-* A `ParticleSystem` which binds all elements to a simulation
-* An `Emitter` which emits particles into the system
-* A `ParticlePainter` derived element, which visualizes the particles
+* 一个 `ParticleSystem`，把所有元素绑定到一个模拟中
+* 一个 `Emitter`，向系统中发射粒子
+* 一个派生自 `ParticlePainter` 的元素，用于可视化粒子
 
 <<< @/docs/ch10-effects/src/particles/simple.qml#M1
 
-The outcome of the example will look like this:
+该示例的结果如下所示：
 
-![image](./assets/simpleparticles.png)
+![图像](./assets/simpleparticles.png)
 
-We start with an 80x80 pixel dark rectangle as our root element and background. Therein we declare a `ParticleSystem`. This is always the first step as the system binds all other elements together. Typically the next element is the `Emitter`, which defines the emitting area based on it’s bounding box and basic parameters for them to be emitted particles. The emitter is bound to the system using the `system` property.
+我们从一个 80x80 像素的深色矩形开始，它既是根元素也是背景。我们在其中声明一个 `ParticleSystem`。这始终是第一步，因为该系统把所有其他元素绑定在一起。接下来的元素通常是 `Emitter`，它根据自身的边界框定义发射区域，以及被发射粒子的基本参数。发射器通过 `system` 属性绑定到系统。
 
-The emitter in this example emits 10 particles per second (`emitRate: 10`) over the area of the emitter with each a lifespan of 1000msec (`lifeSpan : 1000`) and a lifespan variation between emitted particles of 500 msec (`lifeSpanVariation: 500`). A particle shall start with a size of 16px (`size: 16`) and at the end of its life shall be 32px (`endSize: 32`).
+本例中的发射器在整个发射器区域上每秒发射 10 个粒子（`emitRate: 10`），每个粒子的寿命为 1000 毫秒（`lifeSpan : 1000`），粒子之间的寿命变化为 500 毫秒（`lifeSpanVariation: 500`）。粒子的初始尺寸为 16 像素（`size: 16`），在其生命结束时为 32 像素（`endSize: 32`）。
 
-The green bordered rectangle is a tracer element to show the geometry of the emitter. This visualizes that also while the particles are emitted inside the emitters bounding box the rendering is not limited to the emitters bounding box. The rendering position depends upon life-span and direction of the particle. This will get more clear when we look into how to change the direction particles.
+带绿色边框的矩形是一个示踪元素，用来显示发射器的几何形状。这说明，虽然粒子是在发射器的边界框内发射的，但渲染并不局限于发射器的边界框。渲染位置取决于粒子的寿命和方向。当我们研究如何改变粒子方向时，这一点会更加清楚。
 
-The emitter emits logical particles. A logical particle is visualized using a `ParticlePainter` in this example we use an `ImageParticle`, which takes an image URL as the source property. The image particle has also several other properties, which control the appearance of the average particle.
+发射器发射的是逻辑粒子。逻辑粒子使用 `ParticlePainter` 可视化，本例中使用的是 `ImageParticle`，它通过 source 属性接收图像 URL。图像粒子还有若干其他属性，用于控制粒子的一般外观。
 
-* `emitRate`: particles emitted per second (defaults to 10 per second)
-* `lifeSpan`: milliseconds the particle should last for (defaults to 1000 msec)
-* `size`, `endSize`: size of the particles at the beginning and end of their life  (defaults to 16 px)
+* `emitRate`：每秒发射的粒子数（默认每秒 10 个）
+* `lifeSpan`：粒子持续存在的毫秒数（默认 1000 毫秒）
+* `size`、`endSize`：粒子在生命开始和结束时的尺寸（默认 16 像素）
 
-Changing these properties can influence the result in a drastical way
+改变这些属性会对结果产生巨大的影响。
 
 <<< @/docs/ch10-effects/src/particles/simple2.qml#M1
 
-Besides increasing the emit rate to 40 and the lifespan to 2 seconds the size now starts at 64 pixels and decreases 32 pixels at the end of a particle lifespan.
+除了把发射速率提高到 40、把寿命提高到 2 秒之外，尺寸现在从 64 像素开始，在粒子寿命结束时减小 32 像素。
 
-![image](./assets/simpleparticles2.png)
+![图像](./assets/simpleparticles2.png)
 
-Increasing the `endSize` even more would lead to a more or less white background. Please note also when the particles are only emitted in the area defined by the emitter the rendering is not constrained to it.
+若进一步增大 `endSize`，背景几乎会变成白色。还请注意：即使粒子只在发射器定义的区域内发射，渲染也不受该区域约束。
