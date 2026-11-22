@@ -1,12 +1,12 @@
-# Introduction to Controls
+# 控件简介
 
-Using Qt Quick from scratch gives you primitive graphical and interaction elements from which you can build your user interfaces. Using Qt Quick Controls you start from a slightly more structured set of controls to build from. 
+从头使用 Qt Quick 时，你得到的是原始的图形元素和交互元素，只能以它们为基础构建用户界面。而使用 Qt Quick Controls，则可以从一组结构更完善的控件开始构建。
 
-The controls range from simple text labels and buttons to more complex ones such as sliders and dials. These elements are handy if you want to create a user interface based on classic interaction patterns, as they provide a good foundation to stand on.
+这些控件既包括简单的文本标签和按钮，也包括更复杂的滑块和旋钮。如果你想基于经典的交互模式创建用户界面，这些元素会非常顺手，因为它们提供了坚实的基础。
 
-Qt Quick Controls come with a number of styles out of the box that are shown in the table below. The *Basic* style is a basic flat style. The *Universal* style is based on the Microsoft Universal Design Guidelines, while *Material* is based on Google’s Material Design Guidelines, and the *Fusion* style is a desktop-oriented style.
+Qt Quick Controls 开箱即用地提供了多种样式，如下表所示。*Basic* 样式是一种基础的扁平样式。*Universal* 样式基于 Microsoft Universal Design Guidelines，*Material* 样式基于 Google 的 Material Design Guidelines，而 *Fusion* 样式则是一种面向桌面的样式。
 
-Some of the styles can be tweaked by modifying palettes. The *Imagine* style is based on image assets, this allows a graphical designer to create a new style without writing any code at all, not even for palette colour codes.
+其中一些样式可以通过修改调色板（palette）来微调。*Imagine* 样式基于图像资源（image assets），这使得图形设计师无需编写任何代码即可创建新样式，甚至不需要编写调色板颜色代码。
 
 * Basic
     
@@ -36,16 +36,16 @@ Some of the styles can be tweaked by modifying palettes. The *Imagine* style is 
     
     ![](./assets/style-universal.png)
 
-Qt Quick Controls 2 is available from the `QtQuick.Controls` import. The following modules are also of interest:
+Qt Quick Controls 2 可以通过 `QtQuick.Controls` 导入使用。以下模块也值得关注：
 
-* **`QtQuick.Controls`** - The basic controls.
-* **`QtQuick.Templates`** - Provides the behavioral, non-visual base types for the controls.
-* **`QtQuick.Controls.Imagine`** - Imagine style theming support.
-* **`QtQuick.Controls.Material`** - Material style theming support.
-* **`QtQuick.Controls.Universal`** - Universal style theming support.
-* **`Qt.labs.platform`** - Support for platform native dialogs for common tasks such as picking files, colours, etc, as well as system tray icons and standard paths.
+* **`QtQuick.Controls`** - 基础控件。
+* **`QtQuick.Templates`** - 为控件提供行为性、非可视的基类型。
+* **`QtQuick.Controls.Imagine`** - Imagine 样式主题支持。
+* **`QtQuick.Controls.Material`** - Material 样式主题支持。
+* **`QtQuick.Controls.Universal`** - Universal 样式主题支持。
+* **`Qt.labs.platform`** - 支持常见任务的平台原生对话框，例如选择文件、颜色等，还提供系统托盘图标和标准路径。
 
 :::warning Qt.Labs
-Notice that the `Qt.labs` modules are experimental, meaning that their APIs can have breaking changes between Qt versions.
+请注意，`Qt.labs` 模块是实验性的，这意味着它们的 API 在 Qt 版本之间可能发生不兼容的变更。
 :::
 
