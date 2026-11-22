@@ -58,7 +58,7 @@
 | `docs/ch18-extensions` | 7 | TRANSLATED | NOT REVIEWED | N/A | 581cb64 | 批次 B11（卡死后顺序完成）；不含 `src/CityUI/LICENSE.md` |
 | `docs/ch19-python` | 6 | TRANSLATED | NOT REVIEWED | N/A | 8cba751 | 批次 B21（2 个提交） |
 | `docs/ch20-qtformcu` | 6 | TRANSLATED | NOT REVIEWED | N/A | 2cded50 | 批次 B22（父代理顺序完成） |
-| `docs/.vuepress/config.js` 导航标签 | 1 | NOT STARTED | NOT REVIEWED | N/A | — | 仅读者可见导航文案 |
+| `docs/.vuepress/config.js` 导航标签 | 1 | TRANSLATED | NOT REVIEWED | N/A | (见提交) | 批次 P01；仅读者可见导航文案已汉化 |
 | 根目录中文文档（`README.zh-CN.md` 等） | 3 | TRANSLATED | NOT REVIEWED | BASELINE PASS | — | INIT 创建；全书完成后终审 |
 
 文件数合计：137（可翻译 Markdown）+ 1（config.js 导航）+ 3（根目录中文文档）。
