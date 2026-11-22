@@ -1,4 +1,4 @@
-﻿# QObject 类
+# QObject 类
 
 正如引言中所述，`QObject` 使 Qt 的许多核心功能（例如信号和槽）成为可能。这通过内省来实现，而内省正是 `QObject` 所提供的能力。`QObject` 是 Qt 中几乎所有类的基类。例外的是值类型，例如 `QColor`、`QString` 和 `QList`。
 

@@ -1,4 +1,4 @@
-﻿module.exports = {
+module.exports = {
   title: 'Qt 6 Book',
   description: "一本关于 QML 的书",  
   plugins: [

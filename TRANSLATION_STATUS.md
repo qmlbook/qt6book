@@ -1,4 +1,4 @@
-﻿# 翻译状态（TRANSLATION_STATUS.md）
+# 翻译状态（TRANSLATION_STATUS.md）
 
 ## 项目元数据
 
