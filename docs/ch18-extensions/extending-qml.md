@@ -1,4 +1,3 @@
-# Extending QML with C++
+# 使用 C++ 扩展 QML
 
-Creating application using only QML can sometimes be limiting. The QML run-time is developed using C++, and the run-time environment can be extended, making it possible to make use of the full performance and freedom of the surrounding system.
-
+仅使用 QML 创建应用程序有时会受到限制。QML 运行时是用 C++ 开发的，其运行时环境可以被扩展，从而能够充分利用底层系统的全部性能与自由度。
