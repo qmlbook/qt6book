@@ -1,8 +1,8 @@
-# JS Language
+# JS 语言
 
-This chapter will not give you a general introduction to JavaScript. There are other books out there for a general introduction to JavaScript, please visit this great side on [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript).
+本章不会为你提供 JavaScript 的通用入门介绍。市面上有其他书籍介绍 JavaScript 基础，请访问 [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) 上这个优秀的网站。
 
-On the surface JavaScript is a very common language and does not differ a lot from other languages:
+从表面上看，JavaScript 是一种非常普通的语言，与其他语言差异不大：
 
 ```js
 function countDown() {
@@ -19,9 +19,9 @@ function countDown2() {
 }
 ```
 
-But be warned JS has function scope and not block scope as in C++ (see [Functions and function scope](https://developer.mozilla.org/it/docs/Web/JavaScript/Reference/Functions_and_function_scope)).
+但请注意，JS 具有函数作用域（function scope），而不是像 C++ 那样的块作用域（block scope）（参见[函数和函数作用域](https://developer.mozilla.org/it/docs/Web/JavaScript/Reference/Functions_and_function_scope)）。
 
-The statements `if ... else`, `break`, `continue` also work as expected. The switch case can also compare other types and not just integer values:
+`if ... else`、`break`、`continue` 语句也能按预期工作。switch case 还可以比较其他类型，而不仅仅是整数值：
 
 ```js
 function getAge(name) {
@@ -36,9 +36,9 @@ function getAge(name) {
 }
 ```
 
-JS knows several values which can be false, e.g. `false`, `0`, `""`, `undefined`, `null`). For example, a function returns by default `undefined`. To test for false use the `===` identity operator. The `==` equality operator will do type conversion to test for equality. If possible use the faster and better `===` strict equality operator which will test for identity (see [Comparison operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators)).
+JS 有若干可以视为假的值，例如 `false`、`0`、`""`、`undefined`、`null`。例如，函数默认返回 `undefined`。要测试假值，请使用 `===` 恒等运算符。`==` 相等运算符会进行类型转换来测试相等性。如果可能，请使用更快更好的 `===` 严格相等运算符，它测试的是恒等性（参见[比较运算符](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators)）。
 
-Under the hood, javascript has its own ways of doing things. For example arrays:
+在底层，JavaScript 有自己的处理方式。例如数组：
 
 ```js
 function doIt() {
@@ -55,9 +55,9 @@ function doIt() {
 }
 ```
 
-Also for people coming from C++ or Java which are used to an OO language JS just works differently. JS is not purely an OO language it is a so-called prototype based language. Each object has a prototype object. An object is created based on his prototype object. Please read more about this in the book [Javascript the Good Parts by Douglas Crockford](http://javascript.crockford.com).
+此外，对于来自 C++ 或 Java、习惯于面向对象（OO）语言的人来说，JS 的工作方式截然不同。JS 不是纯粹的面向对象语言，它是一种所谓的基于原型（prototype based）的语言。每个对象都有一个原型对象。对象基于其原型对象创建。请阅读 Douglas Crockford 所著的 [JavaScript the Good Parts](http://javascript.crockford.com) 一书了解更多信息。
 
-To test some small JS snippets you can use the online [JS Console](http://jsconsole.com) or just build a little piece of QML code:
+要测试一些小的 JS 代码片段，你可以使用在线 [JS Console](http://jsconsole.com)，或者只需构建一小段 QML 代码：
 
 ```qml
 import QtQuick 2.5
@@ -71,4 +71,3 @@ Item {
   }
 }
 ```
-
