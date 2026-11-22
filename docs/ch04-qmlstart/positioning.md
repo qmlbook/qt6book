@@ -1,55 +1,54 @@
-# Positioning Elements
+# 元素定位
 
-There are a number of QML elements used to position items. These are called positioners, of which the Qt Quick module provides the following: `Row`, `Column`, `Grid` and `Flow`. They can be seen showing the same contents in the illustration below.
+有一批 QML 元素用于对可视项进行定位。这些元素称为定位器，Qt Quick 模块提供了以下几种：`Row`、`Column`、`Grid` 和 `Flow`。在下图中可以看到它们展示相同的内容。
 
 
 ::: tip
-Before we go into details, let me introduce some helper elements: the red, blue, green, lighter and darker squares. Each of these components contains a 48x48 pixel colorized rectangle. As a reference, here is the source code for the `RedSquare`:
+在深入细节之前，让我介绍几个辅助元素：红色、蓝色、绿色、较浅和较深的方块。这些组件各自包含一个 48x48 像素的着色矩形。作为参考，下面是 `RedSquare` 的源代码：
 :::
 
 <<< @/docs/ch04-qmlstart/src/positioners/RedSquare.qml#global
 
-Please note the use of `Qt.lighter(color)` to produce a lighter border color based on the fill color. We will use these helpers in the next examples to make the source code more compact and readable. Please remember, each rectangle is initially 48x48 pixels.
+请注意 `Qt.lighter(color)` 的用法：基于填充色生成较浅的边框颜色。我们将在后续示例中使用这些辅助组件，使源代码更紧凑易读。请记住，每个矩形初始为 48x48 像素。
 
-The `Column` element arranges child items into a column by stacking them on top of each other. The `spacing` property can be used to distance each of the child elements from each other.
+`Column` 元素把子项堆叠起来，排列成一列。`spacing` 属性可用于让各子元素之间保持距离。
 
 ![](./assets/column.png)
 
 <<< @/docs/ch04-qmlstart/src/positioners/ColumnExample.qml#global
 
-The `Row` element places its child items next to each other, either from the left to the right, or from the right to the left, depending on the `layoutDirection` property. Again, `spacing` is used to separate child items.
+`Row` 元素把子项并排放置，根据 `layoutDirection` 属性从左到右或从右到左排列。同样，`spacing` 用于分隔子项。
 
 ![](./assets/row.png)
 
 <<< @/docs/ch04-qmlstart/src/positioners/RowExample.qml#global
 
-The `Grid` element arranges its children in a grid. By setting the `rows` and `columns` properties, the number of rows or columns can be constrained. By not setting either of them, the other is calculated from the number of child items. For instance, setting rows to 3 and adding 6 child items will result in 2 columns. The properties `flow` and `layoutDirection` are used to control the order in which the items are added to the grid, while `spacing` controls the amount of space separating the child items.
+`Grid` 元素把子对象排列成网格。通过设置 `rows` 和 `columns` 属性，可以约束行数或列数。如果两者都不设置，另一方就根据子项数量计算。例如，把 rows 设为 3 并添加 6 个子项，将得到 2 列。`flow` 和 `layoutDirection` 属性用于控制项添加到网格中的顺序，`spacing` 控制分隔子项的间距。
 
 ![](./assets/grid.png)
 
 <<< @/docs/ch04-qmlstart/src/positioners/GridExample.qml#global
 
-The final positioner is `Flow`. It adds its child items in a flow. The direction of the flow is controlled using `flow` and `layoutDirection`. It can run sideways or from the top to the bottom. It can also run from left to right or in the opposite direction. As the items are added in the flow, they are wrapped to form new rows or columns as needed. In order for a flow to work, it must have a width or a height. This can be set either directly, or though anchor layouts.
+最后一种定位器是 `Flow`。它按流的方式添加子项。流的方向由 `flow` 和 `layoutDirection` 控制。它可以横向流动，也可以从上到下流动；还可以从左到右或反向流动。项按流添加时，会根据需要换行或换列，形成新的行或列。要让流正常工作，它必须有宽度或高度。这可以直接设置，也可以通过锚点布局设置。
 
 ![](./assets/flow.png)
 
 <<< @/docs/ch04-qmlstart/src/positioners/FlowExample.qml#global
 
-An element often used with positioners is the `Repeater`. It works like a for-loop and iterates over a model. In the simplest case a model is just a value providing the number of loops.
+与定位器配合使用的常见元素是 `Repeater`。它的工作方式类似 for 循环，在模型上迭代。最简单的情况下，模型只是一个提供循环次数的值。
 
 ![](./assets/repeater.png)
 
 <<< @/docs/ch04-qmlstart/src/positioners/RepeaterExample.qml#global
 
-In this repeater example, we use some new magic. We define our own `colorArray` property, which is an array of colors. The repeater creates a series of rectangles (16, as defined by the model). For each loop, it creates the rectangle as defined by the child of the repeater. In the rectangle we chose the color by using JS math functions: `Math.floor(Math.random()*3)`. This gives us a random number in the range from 0..2, which we use to select the color from our color array. As noted earlier, JavaScript is a core part of Qt Quick, and as such, the standard libraries are available to us.
+在这个 repeater 示例中，我们用了一些新的技巧。我们定义了自己的 `colorArray` 属性，它是一个颜色数组。repeater 创建一系列矩形（16 个，由模型定义）。每轮循环，它按 repeater 的子元素所定义的那样创建矩形。在矩形中，我们用 JS 数学函数选取颜色：`Math.floor(Math.random()*3)`。这给出 0..2 范围内的一个随机数，我们用它从颜色数组中选择颜色。如前所述，JavaScript 是 Qt Quick 的核心部分，因此标准库对我们可用。
 
-A repeater injects the `index` property into the repeater. It contains the current loop-index. (0,1,..15). We can use this to make our own decisions based on the index, or in our case to visualize the current index with the `Text` element. 
+repeater 会把 `index` 属性注入其中。它包含当前的循环索引（0、1、…、15）。我们可以据此基于索引做出自己的判断，在本例中则用 `Text` 元素把当前索引可视化。
 
 ::: tip
-While the `index` property is dynamically injected into the Rectangle, it is a good practice to declare it as a required property to ease readability and help tooling. This is achieved by the `required property int index` line. 
+虽然 `index` 属性是动态注入到 Rectangle 中的，但良好的做法是把它声明为必需属性，以提高可读性并便于工具处理。这通过 `required property int index` 一行实现。
 :::
 
 ::: tip
-More advanced handling of larger models and kinetic views with dynamic delegates is covered in its own model-view chapter. Repeaters are best used when having a small amount of static data to be presented.
+对较大型模型以及带动态委托的惯性视图的更高级处理，将在专门的模型-视图章节中介绍。Repeater 最适合用于呈现少量静态数据的场景。
 :::
-

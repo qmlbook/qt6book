@@ -1,9 +1,9 @@
-# Advanced Techniques
+# 高级技巧
 
-## Performance of QML
+## QML 的性能
 
-QML and Javascript are interpreted languages. This means that they do not have to be processed by a compiler before being executed. Instead, they are being run inside an execution engine. However, as interpretation is a costly operation, various techniques are used to improve performance.
+QML 和 JavaScript 是解释型语言。这意味着它们在执行前不必经过编译器处理，而是运行在执行引擎中。不过由于解释执行开销较大，人们采用了多种技术来提升性能。
 
-The QML engine uses just-in-time (JIT) compilation to improve performance. It also caches the intermediate output to avoid having to recompile. This works seamlessly for you as a developer. The only trace of this is that files ending with `qmlc` and `jsc` can be found next to the source files.
+QML 引擎使用即时编译（just-in-time compilation，JIT）来提升性能。它还缓存中间输出，避免重复编译。作为开发者，这一切对你来说是无缝的。唯一的痕迹是源文件旁会出现以 `qmlc` 和 `jsc` 结尾的文件。
 
-If you want to avoid the initial start-up penalty induced by the initial parsing you can also pre-compile your QML and Javascript. This requires you to put your code into a Qt resource file, and is described in detail in the [Compiling QML Ahead of Time](https://doc.qt.io/qt-6/qtquick-deployment.html#ahead-of-time-compilation) chapter in the Qt documentation.
+如果想避免初始解析带来的启动开销，也可以预编译你的 QML 和 JavaScript。这要求你把代码放进 Qt 资源文件，详见 Qt 文档中的[提前编译 QML](https://doc.qt.io/qt-6/qtquick-deployment.html#ahead-of-time-compilation)一章。
