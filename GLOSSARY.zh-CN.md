@@ -231,6 +231,53 @@
 | sound effect | 音效 | |
 | video stream | 视频流 | |
 | capture (image) | 捕获 | |
+
+## 扩展术语（B16–B22 提案，父代理已合并）
+
+| English | 简体中文 | 备注 |
+| --- | --- | --- |
+| mesh / material / texture | 网格 / 材质 / 纹理 | 3D 语境 |
+| skeleton / joint / armature | 骨架 / 关节 / armature | Blender 专有词保留英文 |
+| morphing animation / skeletal animation | 变形动画 / 骨骼动画 | |
+| vertex skinning | 顶点蒙皮 | |
+| skybox / light probe | 天空盒 / 光探针 | |
+| singleton | 单例 | |
+| bare metal | 裸机 | |
+| microcontroller (MCU) | 微控制器（MCU） | |
+| platform definition | 平台定义 | |
+| glyph | 字形 | |
+| local storage / transaction / rollback | 本地存储 / 事务 / 回滚 | |
+| recordset | 记录集 | |
+| creation context | 创建上下文 | |
+| incubator / incubate | 孵化器 / 孵化 | |
+| serialization / deserialization | 序列化 / 反序列化 | |
+| model item | 模型项 | |
+| placeholder | 占位符 | |
+| callback | 回调 | |
+| loosely typed | 松散类型 | |
+| prototype-based | 基于原型 | |
+| identity operator | 恒等运算符 | |
+| closure | 闭包 | |
+| first-class citizen | 一等公民 | |
+| getter / setter | 获取器 / 设置器 | |
+| notify signal | 通知信号 | |
+| boilerplate code | 样板代码 | |
+| decorator | 装饰器 | |
+| plugin (McuSupport etc.) | 插件 | |
+| asset import tool | 资源导入工具 | Balsam 语境 |
+| vertex shader / fragment shader | 顶点着色器 / 片元着色器 | 已有条目，统一 |
+
+## 导航标签决策（P01）
+
+- 站点标题：`Qt 6 Book`（书名保持英文，与 heroText 一致）；描述：一本关于 QML 的书。
+- 章节导航：Preface=前言；Meet Qt=认识 Qt；Getting Started=入门；Qt Creator IDE=
+  Qt Creator 集成开发环境；Quick Starter=快速入门；Fluid Elements=流畅元素；
+  QtQuick Controls=Qt Quick Controls（产品名）；Model View=模型视图；Canvas=Canvas
+  （QML 类型名）；Shapes=形状；Effects=特效；Multimedia=多媒体；Qt Quick 3D=Qt Quick 3D；
+  Networking=网络；Storage=存储；Dynamic QML=动态 QML；Javascript=JavaScript（规范大小写）；
+  Qt C++=Qt C++（保持）；Extending QML=扩展 QML；Qt for Python / Qt for MCUs=保持英文。
+- themeConfig 文案：Contribute!=贡献！；Help us improve this page!=帮助我们改进此页面！；
+  Last Updated=最后更新。
 ## 待决术语
 
 （暂无。翻译过程中若出现表中未覆盖且影响一致性的术语，在此登记后使用。）
