@@ -1,19 +1,19 @@
-# Introduction
+# 简介
 
-The Qt for Python project provides the tooling to bind C++ and Qt to Python, and a complete Python API to Qt. This means that everything that you can do with Qt and C++, you can also do with Qt and Python. This ranges from headless services to widget based user interfaces. In this chapter, we will focus on how to integrate QML and Python.
+Qt for Python 项目提供了将 C++ 和 Qt 绑定到 Python 的工具，以及一套完整的面向 Qt 的 Python API。这意味着，凡是能用 Qt 和 C++ 完成的事情，也都可以用 Qt 和 Python 完成，范围从无界面服务（headless services）到基于窗口部件的用户界面。本章将重点介绍如何集成 QML 和 Python。
 
-Currently, Qt for Python is available for all desktop platforms, but not for mobile. Depending on which platform you use, the setup of Python is slightly different, but as soon as you have a [Python](https://www.python.org/) and [PyPA](https://www.pypa.io/en/latest/) environment setup, you can install Qt for Python using `pip`. This is discussed in more detail further down.
+目前，Qt for Python 支持所有桌面平台，但不支持移动平台。根据所用平台的不同，Python 的配置略有差异；不过，只要搭建好 [Python](https://www.python.org/) 和 [PyPA](https://www.pypa.io/en/latest/) 环境，就可以使用 `pip` 安装 Qt for Python。这一点稍后会详细讨论。
 
-As the Qt for Python project provides an entirely new language binding for Qt, it also comes with a new set of documentation. The following resources are good to know about when exploring this module.
+由于 Qt for Python 项目为 Qt 提供了一套全新的语言绑定（language binding），它也配套了全新的文档。在探索这个模块时，了解以下资源会很有帮助。
 
 
-* Reference documentation: [https://doc.qt.io/qtforpython/](https://doc.qt.io/qtforpython/)
-* Qt for Python wiki: [https://wiki.qt.io/Qt_for_Python](https://wiki.qt.io/Qt_for_Python)
-* Caveats: [https://wiki.qt.io/Qt_for_Python/Considerations](https://wiki.qt.io/Qt_for_Python/Considerations)
+* 参考文档：[https://doc.qt.io/qtforpython/](https://doc.qt.io/qtforpython/)
+* Qt for Python wiki：[https://wiki.qt.io/Qt_for_Python](https://wiki.qt.io/Qt_for_Python)
+* 注意事项：[https://wiki.qt.io/Qt_for_Python/Considerations](https://wiki.qt.io/Qt_for_Python/Considerations)
 
-The Qt for Python bindings are generated using the Shiboken tool. At times, it might be of interest to read about it as well to understand what is going on. The preferred point for finding information about Shiboken is the [reference documentation](https://doc.qt.io/qtforpython/shiboken6/index.html). If you want to mix your own C++ code with Python and QML, Shiboken is the tool that you need.
+Qt for Python 的绑定是使用 Shiboken 工具生成的。有时也值得阅读它的相关资料，以便理解背后发生的事情。查找 Shiboken 信息的首选位置是[参考文档](https://doc.qt.io/qtforpython/shiboken6/index.html)。如果你想把自己的 C++ 代码与 Python 和 QML 混合使用，Shiboken 就是你需要的工具。
 
 ::: tip
-Through-out this chapter we will use Python 3.7.
+本章全程使用 Python 3.7。
 :::
 
