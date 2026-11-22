@@ -1,11 +1,11 @@
-# Summary
+# 小结
 
-Qt Quick 3D offers a rich way of integrating 3D contents into a Qt Quick scene, allowing a tight integration through QML. 
+Qt Quick 3D 提供了一种丰富的方式把 3D 内容集成到 Qt Quick 场景中，并允许通过 QML 紧密集成。
 
-When working with 3D contents, the most common approach is to work with assets created in other tools such as Blender, Maya, or 3ds Max. Using the _Balsam_ tool it is possible to import meshes, materials, as well as animation skeletons, from these models into QML. This can then be used to render, as well as interacting with the models.
+处理 3D 内容时，最常见的方法是使用在 Blender、Maya 或 3ds Max 等其他工具中创建的资源。使用 _Balsam_ 工具，可以把网格（mesh）、材质（material）以及动画骨架（animation skeleton）从这些模型导入到 QML 中。然后可以用它来渲染模型以及与模型交互。
 
-QML is still used to setup the scene, as well as instantiating models. This means that a scene can be built in an external tool, or be instantiated dynamically from QML using elements created using external tool. In the most basic cases, scenes can also be created from the built in meshed that come with Qt Quick 3D.
+QML 仍然用于搭建场景以及实例化模型。这意味着场景可以在外部工具中构建，也可以使用外部工具创建的元素从 QML 动态实例化。在最基本的情况下，场景也可以用 Qt Quick 3D 自带的内置网格来创建。
 
-By allowing the tight integration of Qt Quick's 2D contents, and Qt Quick 3D, it is possible to create modern and intuit user interfaces. With QML's ability to bind C++ properties to QML properties, this makes it easy to connect 3D model state to underlying C++ state.
+通过允许 Qt Quick 的 2D 内容与 Qt Quick 3D 紧密集成，可以创建出现代而直观的用户界面。借助 QML 把 C++ 属性绑定到 QML 属性的能力，把 3D 模型状态连接到底层的 C++ 状态变得很容易。
 
-In this chapter we've only scratched the surface of what is possible using Qt Quick 3D. There are more advanced concepts ranging from custom filters and shaders, to generating meshes dynamically from C++. There is also a large set of optimization techniques that can be used to ensure good rendering performance of complex 3D contents. You can read more about this in the [Qt Quick 3D Reference Documentation](https://doc.qt.io/qt-6/qtquick3d-index.html).
+在本章中，我们只是初步领略了 Qt Quick 3D 的能力。还有更高级的概念，从自定义过滤器和着色器，到从 C++ 动态生成网格。另有一大批优化技术可以用来确保复杂 3D 内容的良好渲染性能。你可以在 [Qt Quick 3D 参考文档](https://doc.qt.io/qt-6/qtquick3d-index.html)中阅读到更多内容。
