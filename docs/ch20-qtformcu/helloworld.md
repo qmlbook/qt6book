@@ -1,47 +1,47 @@
-# Hello World - for MCUs
+# Hello World——面向 MCU
 
-As the setup of Qt for MCU can be a bit tricky, we will start with a _Hello World_ like example to ensure that the toolchain works, and so that we can discuss the basic differences between Qt Quick Ultralite and standard Qt Quick.
+由于 Qt for MCU 的环境搭建可能有些棘手，我们先从一个类似 _Hello World_ 的示例开始，以确保工具链可以工作，并借此讨论 Qt Quick Ultralite 与标准 Qt Quick 之间的基本差异。
 
-First up, we need to start by creating a Qt for MCUs project in Qt Creator to get a C++ entry point into the system. When working with Qt Quick Ultralite, we cannot use a common runtime such as ``qml``. This is because Qt Quick Ultralite is translated into C++ together with optimized versions of all the assets. These are then built into a target executable. This means that there is no support for dynamic loading of QML and such - as there is no interpreter running on the target.
+首先，我们需要在 Qt Creator 中创建一个 Qt for MCUs 项目，以获得进入系统的 C++ 入口点。使用 Qt Quick Ultralite 时，我们无法使用像 ``qml`` 这样的常规运行时。这是因为 Qt Quick Ultralite 会连同所有资源的优化版本一起被翻译成 C++，然后构建成目标可执行文件。这意味着不支持 QML 之类的动态加载——因为目标设备上并没有运行解释器。
 
 ![](./assets/create-project-1.png)
 
-I call the project ``helloworld``. Feel free to pick a name of your own. The only thing changing is the name of the entry-point QML-file of the project.
+我把项目命名为 ``helloworld``。你可以随意挑选自己的名字。唯一会变化的是项目的入口 QML 文件名。
 
 ![](./assets/create-project-2.png)
 
-Also, make sure to pick the Qt for MCUs kits when creating your project.
+另外，创建项目时请确保选择 Qt for MCUs 构建套件（kit）。
 
 ![](./assets/create-project-3.png)
 
-After a few more configuration pages, you will end up with a project as shown below.
+再经过几个配置页面后，你会得到如下所示的项目。
 
 ![](./assets/qtcreator-with-project.png)
 
-Once the basic project is setup, run the project on your desktop and ensure that you get a window like the one shown below.
+基本项目搭建完成后，在桌面上运行该项目，确认你能得到如下图所示的窗口。
 
 ![](./assets/qul-hello-world.png)
 
-Now that we know that the installation works, replace the QML in ``helloworld.qml`` with the code shown below. We will walk through this example line by line below, but first, build and run it for your _Qt for MCU Desktop_ target. This should result in a window looking like the screenshot below the code.
+既然我们知道安装可以工作了，把 ``helloworld.qml`` 中的 QML 替换为下面所示的代码。我们会在下面逐行讲解这个示例，但请先为你的 _Qt for MCU Desktop_ 目标构建并运行它。结果应该是一个形如代码下方截图的窗口。
 
 <<< @/docs/ch20-qtformcu/src/helloworld/helloworld.qml#global
 
 ![](./assets/hello-world-orange.png)
 
-Click the orange rectangle, and it fades to red. Click it again and it fades back to orange.
+点击橙色矩形，它会渐变为红色。再次点击，它会渐变回橙色。
 
 ![](./assets/hello-world-red.png)
 
-Now, let's have a look at the source code from a Qt Quick perspective and compare.
+现在，让我们从 Qt Quick 的视角来看这些源代码并做比较。
 
-First up, Qt Quick Ultralight ignores the version numbers after import statements. This is supported in Qt Quick since Qt 6 too by leaving out the version number, so if you can manage without it and need compatibility, make sure to leave out the version number.
+首先，Qt Quick Ultralite 会忽略 import 语句后的版本号。自 Qt 6 起，Qt Quick 也支持省略版本号来做到这一点，所以如果你可以不用版本号并且需要兼容性，请确保省略版本号。
 
 ```qml
 import QtQuick
 import QtQuickUltralite.Extras
 ```
 
-In the root of our scene, we place a ``Rectangle``. This is because Qt Quick Ultralite does not provide a default, white, background. By using a ``Rectangle`` as root, we ensure that we control the background color of the scene.
+在场景的根部，我们放置了一个 ``Rectangle``。这是因为 Qt Quick Ultralite 不提供默认的白色背景。通过把 ``Rectangle`` 作为根，我们确保自己控制场景的背景色。
 
 ```qml
 Rectangle {
@@ -49,7 +49,7 @@ Rectangle {
     height: 272
 ```
 
-The next part, the clickable ``Rectangle``, is straight forward QML, with some Javascript bound to the ``onClicked`` event. Qt for MCUs has limited support for Javascript, so ensure to keep such scripts simple. You can read more about the specific limitations in the links at the end of this section.
+下一部分，即可点击的 ``Rectangle``，是直白的 QML，其中把一些 JavaScript 绑定到 ``onClicked`` 事件上。Qt for MCUs 对 JavaScript 的支持有限，因此请确保让这类脚本保持简单。你可以在本节末尾的链接中阅读到具体的限制。
 
 ```qml
     Rectangle {
@@ -75,7 +75,7 @@ The next part, the clickable ``Rectangle``, is straight forward QML, with some J
     }
 ```
 
-Finally, the text is rendered using a ``StaticText`` element, which is a version of the ``Text`` element for static texts. This means that the text can be rendered once, or even pre-rendered, which can save a lot of resources on a small, MCU-based, system.
+最后，文本使用 ``StaticText`` 元素来渲染，它是面向静态文本的 ``Text`` 元素的一个版本。这意味着文本可以只渲染一次，甚至可以预渲染，这在基于 MCU 的小型系统上可以节省大量资源。
 
 ```qml
     StaticText {
@@ -87,17 +87,17 @@ Finally, the text is rendered using a ``StaticText`` element, which is a version
 }
 ```
 
-In Qt Creator, you will notice that you get warnings around the ``StaticText`` element. This is because Qt Creator assumes that you are working with Qt Quick. To make Qt Creator aware of Qt Quick Ultralite, you need to set the ``QML_IMPORT_PATH`` to the path of your Qt for MCUs compatibility module. You can do this in your CMakeLists.txt file, or in your project settings. The project settings for a standard Windows 10 install is shown below.
+在 Qt Creator 中，你会注意到 ``StaticText`` 元素周围出现警告。这是因为 Qt Creator 假定你正在使用 Qt Quick。要让 Qt Creator 感知 Qt Quick Ultralite，你需要把 ``QML_IMPORT_PATH`` 设置为你的 Qt for MCUs 兼容性模块的路径。你可以在 CMakeLists.txt 文件中或在项目设置里完成这一配置。标准 Windows 10 安装的项目设置如下所示。
 
 ![](./assets/qtcreator-qml-import-path.png)
 
-In addition to what has been stated above, there are more differences. For instance, the Qt Quick Ultralite ``Item`` class, and hence the ``Rectangle`` class, lacks a lot of properties that could be found in Qt Quick. For instance, the ``scale`` and ``rotation`` properties are missing. These are only available for specific elements such as ``Image``, and there it is made available through the ``Rotation`` and ``Scale`` types instead of properties.
+除上述内容外，还有更多差异。例如，Qt Quick Ultralite 的 ``Item`` 类以及随之的 ``Rectangle`` 类缺少许多在 Qt Quick 中能找到的属性。例如，``scale`` 和 ``rotation`` 属性缺失。它们只对特定元素可用，比如 ``Image``；在那里它们通过 ``Rotation`` 和 ``Scale`` 类型而不是属性来提供。
 
-Going beyond the example above, there are fewer QML elements in general in Qt Quick Ultralite, but the supported types is continuously growing. The intention is that the provided types cover the use-cases of the intended target devices. You can read more about this and general compatibility issues in the links provided below.
+再进一步看，Qt Quick Ultralite 总体上提供的 QML 元素更少，但受支持的类型在持续增加。其意图是让所提供的类型覆盖目标设备的用例。你可以在下面提供的链接中阅读到这一点以及一般的兼容性问题。
 
-::: tip Links
-Further reading at qt.io:
-* [Qt Quick Ultralite vs Qt Quick](https://doc.qt.io/QtForMCUs/qtul-qtquick-differences.html)
-* [Differences between Qt Quick Ultralite Controls and Qt Quick Controls](https://doc.qt.io/QtForMCUs/qtul-qtquick-controls-api-differences.html)
-* [Known Issues and Limitations](https://doc.qt.io/QtForMCUs/qtul-known-issues.html)
+::: tip 链接
+在 qt.io 上的延伸阅读：
+* [Qt Quick Ultralite 与 Qt Quick 的对比](https://doc.qt.io/QtForMCUs/qtul-qtquick-differences.html)
+* [Qt Quick Ultralite Controls 与 Qt Quick Controls 的差异](https://doc.qt.io/QtForMCUs/qtul-qtquick-controls-api-differences.html)
+* [已知问题与限制](https://doc.qt.io/QtForMCUs/qtul-known-issues.html)
 :::
