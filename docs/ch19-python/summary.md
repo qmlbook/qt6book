@@ -1,3 +1,3 @@
-# Summary
+# 小结
 
-In this chapter we have looked at the PySide6 module from the Qt for Python project. After a brief look at installation, we focused on how Qt concepts are used from Python. This included slots, signals and properties. We also looked at a basic list model and how to expose both Python objects and classes from Python to QML.
+本章介绍了 Qt for Python 项目中的 PySide6 模块。在简要了解安装之后，我们重点学习了如何从 Python 使用 Qt 的概念，包括槽、信号和属性。我们还了解了一个基本的列表模型，以及如何把 Python 对象和 Python 类暴露给 QML。
