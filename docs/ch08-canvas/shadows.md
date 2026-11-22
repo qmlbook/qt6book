@@ -1,20 +1,20 @@
-# Shadows
+# 阴影
 
-A path can be visually enhanced using shadows with the 2D context object. A shadow is an area around the path with an offset, color and specified blurring. For this you can specify a `shadowColor`, `shadowOffsetX`, `shadowOffsetY` and a `shadowBlur`. All of this needs to be defined using the 2D context. The 2D context is your only API to the drawing operations.
+借助 2D 上下文对象，可以用阴影增强路径的视觉效果。阴影是路径周围带有偏移、颜色和指定模糊程度的区域。为此可以指定 `shadowColor`、`shadowOffsetX`、`shadowOffsetY` 和 `shadowBlur`。所有这些都需要通过 2D 上下文来定义。2D 上下文是你进行绘制操作的唯一 API。
 
-A shadow can also be used to create a glow effect around a path. In the next example, we create a text “Canvas” with a white glow around. All this on a dark background for better visibility.
+阴影也可以用来在路径周围创建发光效果（glow effect）。在下一个示例中，我们创建一段周围带有白色光晕的文本“Canvas”。这一切都放在深色背景上，以获得更好的可见性。
 
-First, we draw the dark background:
+首先，绘制深色背景：
 
 <<< @/docs/ch08-canvas/src/canvas/shadow.qml#M1
 
-then we define our shadow configuration, which will be used for the next path:
+然后定义阴影配置，它将用于下一条路径：
 
 <<< @/docs/ch08-canvas/src/canvas/shadow.qml#M2
 
-Finally, we draw our “Canvas” text using a large bold 80px font from the *Ubuntu* font family.
+最后，我们使用 *Ubuntu* 字体家族的大号 80px 粗体绘制“Canvas”文本。
 
 <<< @/docs/ch08-canvas/src/canvas/shadow.qml#M3
 
-![image](./assets/shadow.png)
+![](./assets/shadow.png)
 

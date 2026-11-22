@@ -1,12 +1,12 @@
-# Convenience API
+# 便捷 API
 
-For operations on rectangles, a convenience API is provided which draws directly and does need a stroke or fill call.
+针对矩形上的操作，提供了一套便捷 API，可以直接绘制，无需再调用 stroke 或 fill。
 
 <<< @/docs/ch08-canvas/src/canvas/convenient.qml#M1
 
-![image](./assets/convenient.png)
+![](./assets/convenient.png)
 
 ::: tip
-The stroke area extends half of the line width on both sides of the path. A 4 px lineWidth will draw 2 px outside the path and 2 px inside.
+描边区域在路径两侧各延伸半个线宽。4 px 的 lineWidth 会在路径外侧绘制 2 px，内侧绘制 2 px。
 :::
 

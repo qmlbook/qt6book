@@ -1,18 +1,18 @@
-# Porting from HTML5 Canvas
+# 从 HTML5 Canvas 移植
 
-Porting from an HTML5 canvas to a QML canvas is fairly easy. In this chapter we will look at the example below and do the conversion.
+把 HTML5 画布移植到 QML 画布相当容易。在本章中，我们将以下面的示例为例进行转换。
 
 * [https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Transformations](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Transformations)
 * [http://en.wikipedia.org/wiki/Spirograph](http://en.wikipedia.org/wiki/Spirograph)
 
-## Spirograph
+## 万花尺
 
-We use a [spirograph](http://en.wikipedia.org/wiki/Spirograph) example from the Mozilla project as our foundation. The original HTML5 was posted as part of the [canvas tutorial](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Transformations).
+我们以 Mozilla 项目中的一个[万花尺（Spirograph）](http://en.wikipedia.org/wiki/Spirograph)示例为基础。最初的 HTML5 示例是作为 [Canvas 教程](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Transformations)的一部分发布的。
 
-There were a few lines we needed to change:
+有几行代码我们需要改动：
 
 
-* Qt Quick requires you to declare a variable, so we needed to add some *var* declarations
+* Qt Quick 要求声明变量，因此我们需要添加一些 *var* 声明
 
     ```js
     for (var i=0;i<3;i++) {
@@ -21,7 +21,7 @@ There were a few lines we needed to change:
     ```
 
 
-* We adapted the draw method to receive the Context2D object
+* 我们调整了 draw 方法，使其接收 Context2D 对象
 
     ```js
     function draw(ctx) {
@@ -30,13 +30,13 @@ There were a few lines we needed to change:
     ```
 
 
-* We needed to adapt the translation for each spiro due to different sizes
+* 由于尺寸不同，我们需要调整每个万花尺图形的平移
 
     ```js
     ctx.translate(20+j*50,20+i*50);
     ```
 
-Finally, we completed our `onPaint` handler. Inside we acquire a context and call our draw function.
+最后，我们完成了 `onPaint` 处理器。在其中获取上下文并调用 draw 函数。
 
 ```qml
 onPaint: {
@@ -45,17 +45,17 @@ onPaint: {
 }
 ```
 
-The result is a ported spiro graph graphics running using the QML canvas.
+结果是一个使用 QML 画布运行的移植版万花尺图形。
 
-![image](./assets/spirograph.png)
+![](./assets/spirograph.png)
 
-As you can see, with no changes to the actual logic, and relatively few changes to the code itself, a port from HTML5 to QML is possible.
+如你所见，无需改动实际逻辑，只需对代码本身做相对较少的修改，就可以从 HTML5 移植到 QML。
 
-## Glowing Lines
+## 发光线
 
-Here is another more complicated port from the W3C organization. The original [pretty glowing lines](http://www.w3.org/TR/2dcontext/#examples) has some pretty nice aspects, which makes the porting more challenging.
+这里是另一个来自 W3C 组织的、更复杂的移植示例。最初的[漂亮的发光线](http://www.w3.org/TR/2dcontext/#examples)（pretty glowing lines）有一些相当不错的特性，这让移植更具挑战性。
 
-![image](./assets/html_glowlines.png)
+![](./assets/html_glowlines.png)
 
 ```html
 <!DOCTYPE HTML>
@@ -129,9 +129,9 @@ setInterval(blank, 40);
 </html>
 ```
 
-In HTML5 the Context2D object can paint at any time on the canvas. In QML it can only point inside the `onPaint` handler. The timer in usage with `setInterval` triggers in HTML5 the stroke of the line or to blank the screen. Due to the different handling in QML, it’s not possible to just call these functions, because we need to go through the `onPaint` handler. Also, the color presentations need to be adapted. Let’s go through the changes on by one.
+在 HTML5 中，Context2D 对象可以随时在画布上绘制。在 QML 中，它只能在 `onPaint` 处理器内部绘制。HTML5 中与 `setInterval` 配合使用的计时器会触发线条描边或清空屏幕。由于 QML 的处理方式不同，不能直接调用这些函数，因为我们需要经过 `onPaint` 处理器。此外，颜色的表示方式也需要调整。让我们逐一查看这些改动。
 
-Everything starts with the canvas element. For simplicity, we just use the `Canvas` element as the root element of our QML file.
+一切都从画布元素开始。为简单起见，我们直接把 `Canvas` 元素用作 QML 文件的根元素。
 
 ```qml
 import QtQuick
@@ -144,9 +144,9 @@ Canvas {
 }
 ```
 
-To untangle the direct call of the functions through the `setInterval`, we replace the `setInterval` calls with two timers which will request a repaint. A `Timer` is triggered after a short interval and allows us to execute some code. As we can’t tell the paint function which operation we would like to trigger we define for each operation a bool flag request an operation and trigger then a repaint request.
+为了理清通过 `setInterval` 对函数的直接调用，我们用两个计时器替换 `setInterval` 调用，由它们请求重绘。`Timer` 会在短暂的间隔后触发，并允许我们执行一些代码。由于我们无法告诉绘制函数想触发哪一种操作，我们为每种操作定义一个布尔标志来请求该操作，然后再触发重绘请求。
 
-Here is the code for the line operation. The blank operation is similar.
+下面是 line 操作的代码。blank 操作与之类似。
 
 ```qml
 ...
@@ -169,7 +169,7 @@ Component.onCompleted: {
 ...
 ```
 
-Now we have an indication which (line or blank or even both) operation we need to perform during the `onPaint` operation. As we enter the `onPaint` handler for each paint request we need to extract the initialization of the variable into the canvas element.
+现在我们就有了指示：在 `onPaint` 期间需要执行哪一种操作（line、blank，甚至两者都要）。由于每次绘制请求都会进入 `onPaint` 处理器，我们需要把变量的初始化提取到画布元素中。
 
 ```qml
 Canvas {
@@ -181,7 +181,7 @@ Canvas {
 }
 ```
 
-Now our paint function should look like this:
+现在我们的绘制函数应该如下所示：
 
 ```qml
 onPaint: {
@@ -197,7 +197,7 @@ onPaint: {
 }
 ```
 
-The *line* function was extracted for a canvas as an argument.
+*line* 函数被提取出来，并以画布上下文作为参数。
 
 ```qml
 function line(context) {
@@ -228,9 +228,9 @@ function line(context) {
 }
 ```
 
-The biggest change was the use of the QML `Qt.rgba()` and `Qt.hsla()` functions, which required to adopt the values to the used 0.0 … 1.0 range in QML.
+最大的变化是使用了 QML 的 `Qt.rgba()` 和 `Qt.hsla()` 函数，这要求把数值调整到 QML 所用的 0.0 到 1.0 范围。
 
-Same applies to the *blank* function.
+*blank* 函数同理。
 
 ```qml
 function blank(context) {
@@ -239,6 +239,6 @@ function blank(context) {
 }
 ```
 
-The final result will look similar to this.
+最终结果看起来与此类似。
 
-![image](./assets/glowlines.png)
+![](./assets/glowlines.png)

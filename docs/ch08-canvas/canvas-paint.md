@@ -1,19 +1,19 @@
-# Canvas Paint
+# Canvas 绘图
 
-In this example, we will create a small paint application using the `Canvas` element.
+在这个示例中，我们将使用 `Canvas` 元素创建一个小绘图应用。
 
-![image](./assets/canvaspaint.png)
+![](./assets/canvaspaint.png)
 
-For this, we arrange four color squares on the top of our scene using a row positioner. A color square is a simple rectangle filled with a mouse area to detect clicks.
+为此，我们使用行定位器在场景顶部排列四个颜色方块。颜色方块是一个内含鼠标区域的简单矩形，用于检测点击。
 
 <<< @/docs/ch08-canvas/src/canvas/paint.qml#M1
 
-The colors are stored in an array and the paint color. When one the user clicks in one of the squares the color of the square is assigned to the `paintColor` property of the row named `colorTools`.
+这些颜色存储在一个数组中，而绘图颜色单独保存。当用户点击其中一个方块时，该方块的颜色会被赋给 `paintColor` 属性，也就是名为 `colorTools` 的行的属性。
 
-To enable tracking of the mouse events on the canvas we have a `MouseArea` covering the canvas element and hooked up the pressed and position changed handlers.
+为了跟踪画布上的鼠标事件，我们用一个 `MouseArea` 覆盖画布元素，并挂接了按下（pressed）和位置变化（position changed）处理器。
 
 <<< @/docs/ch08-canvas/src/canvas/paint.qml#M2
 
-A mouse press stores the initial mouse position into the `lastX` and `lastY` properties. Every change on the mouse position triggers a paint request on the canvas, which will result in calling the `onPaint` handler.
+鼠标按下会把初始鼠标位置存储到 `lastX` 和 `lastY` 属性中。鼠标位置的每次变化都会在画布上触发一个绘制请求，进而调用 `onPaint` 处理器。
 
-To finally draw the users stroke, in the `onPaint` handler we begin a new path and move to the last position. Then we gather the new position from the mouse area and draw a line with the selected color to the new position. The mouse position is stored as the new `last` position.
+为了最终画出用户的笔画，在 `onPaint` 处理器中我们开始一条新路径并移动到最后的位置。然后从鼠标区域获取新位置，并用选定的颜色向新位置画一条线。鼠标位置被存储为新的 `last` 位置。

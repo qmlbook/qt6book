@@ -1,15 +1,15 @@
-# Transformation
+# 变换
 
-The canvas allows you to transform the coordinate system in several ways. This is very similar to the transformation offered by QML items. You have the possibility to `scale`, `rotate`, `translate` the coordinate system. Indifference to QML the transform origin is always the canvas origin. For example to scale a path around its center you would need to translate the canvas origin to the center of the path. It is also possible to apply a more complex transformation using the transform method.
+画布允许你以多种方式变换坐标系。这与 QML 可视项提供的变换非常相似。你可以对坐标系进行缩放（`scale`）、旋转（`rotate`）和平移（`translate`）。与 QML 不同的是，变换原点始终是画布原点。例如，要围绕一条路径的中心缩放它，你需要把画布原点平移到路径的中心。也可以使用 transform 方法应用更复杂的变换。
 
 <<< @/docs/ch08-canvas/src/canvas/transform.qml#M1
 
-![image](./assets/transform.png)
+![](./assets/transform.png)
 
-Besides translate the canvas allows also to scale using `scale(x,y)` around x and y-axis, to rotate using `rotate(angle)`, where the angle is given in radius (*360 degree = 2\*Math.PI*) and to use a matrix transformation using the `setTransform(m11, m12, m21, m22, dx, dy)`.
+除了平移之外，画布还允许使用 `scale(x,y)` 围绕 x 轴和 y 轴缩放，使用 `rotate(angle)` 旋转，其中角度以弧度为单位（*360 degree = 2\*Math.PI*），以及使用 `setTransform(m11, m12, m21, m22, dx, dy)` 进行矩阵变换。
 
 ::: tip
-To reset any transformation you can call the `resetTransform()` function to set the transformation matrix back to the identity matrix:
+要重置任何变换，可以调用 `resetTransform()` 函数，把变换矩阵恢复为单位矩阵：
 
 ```js
 ctx.resetTransform()
