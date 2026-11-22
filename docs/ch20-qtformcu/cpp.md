@@ -1,4 +1,4 @@
-﻿# 与 C++ 集成
+# 与 C++ 集成
 
 ## C++ 部分
 
@@ -28,7 +28,7 @@
 
 <<< @/docs/ch20-qtformcu/src/cppintegration/counter.cpp#ctor
 
-``increase`` 和 ``decrease`` 函数看起来很相似。它们使用 getter 和 setter，而不是直接与值交互。
+``increase`` 和 ``decrease`` 函数看起来很相似。它们使用获取器和设置器，而不是直接与值交互。
 
 <<< @/docs/ch20-qtformcu/src/cppintegration/counter.cpp#incdec
 
@@ -72,7 +72,7 @@ Rectangle {
 
 <<< @/docs/ch20-qtformcu/src/cppintegration/cppintegration.qml#left
 
-右侧的按钮直接从 QML 修改 ``Counter.value``。这样做是可行的，但对 C++ 是不可见的。C++ 没有简单的方式来监视某个属性是否发生了变化，因此如果需要 C++ 端做出反应，推荐使用 setter 方法，而不是直接修改属性值。
+右侧的按钮直接从 QML 修改 ``Counter.value``。这样做是可行的，但对 C++ 是不可见的。C++ 没有简单的方式来监视某个属性是否发生了变化，因此如果需要 C++ 端做出反应，推荐使用设置器方法，而不是直接修改属性值。
 
 <<< @/docs/ch20-qtformcu/src/cppintegration/cppintegration.qml#right
 

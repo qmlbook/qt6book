@@ -8,7 +8,7 @@
 
 
 
-![image](./assets/jsconsole.png)
+![图像](./assets/jsconsole.png)
 
 我们使用 Qt Creator 创建一个使用 Qt Quick Controls 的 Qt Quick UI 项目。我们将项目命名为 JSConsole。向导完成后，我们已经有了一个基本的应用程序结构，包含一个应用程序窗口和一个用于退出应用程序的菜单。
 
