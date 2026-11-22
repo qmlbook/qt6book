@@ -1,9 +1,10 @@
-# Registering your Qt Kit
+# 注册 Qt 构建套件
+<a name="registering-your-qt-kit"></a>
 
-The Qt Kit is probably the most difficult aspect when it comes to working with Qt Creator initially. A Qt Kit is a set of a Qt version, compiler and device and some other settings. It is used to uniquely identify the combination of tools for your project build. A typical kit for the desktop would contain a C++ compiler and a Qt version (e.g. Qt 6.xx.yy) and a device (“Desktop”). After you have created a project you need to assign a kit to a project before Qt Creator can build the project. Before you are able to create a kit first you need to have a compiler installed and have a Qt version registered. A Qt version is registered by specifying the path to the `qmake` executable. Qt Creator then queries `qmake` for information required to identify the Qt version. This is also true for Qt 6 where CMake is the preferred build tool.
+在初次使用 Qt Creator 时，Qt 构建套件（Qt Kit）大概是最困难的部分。一个 Qt 构建套件由 Qt 版本、编译器、设备以及一些其他设置组合而成。它用于唯一标识项目构建所用的工具组合。一个典型的桌面构建套件会包含一个 C++ 编译器、一个 Qt 版本（例如 Qt 6.xx.yy）和一个设备（“Desktop”）。创建项目后，你需要为项目分配一个构建套件，Qt Creator 才能构建该项目。在能够创建构建套件之前，你需要先安装编译器并注册 Qt 版本。注册 Qt 版本的方式是指定 `qmake` 可执行文件的路径。随后 Qt Creator 会查询 `qmake`，获取识别该 Qt 版本所需的信息。对于首选构建工具为 CMake 的 Qt 6 来说也是如此。
 
-Adding a kit and registering a Qt version is done in the `Settings ‣ Kits` entry. There you can also see which compilers are registered.
+添加构建套件和注册 Qt 版本都在 `Settings ‣ Kits` 中完成。在那里你还能看到已注册了哪些编译器。
 
 ::: tip
-Please first check if your Qt Creator has already the correct Qt version registered and then ensure a Kit for your combination of compiler and Qt and device is specified. **You can not build a project without a kit.**
+请先检查你的 Qt Creator 是否已注册正确的 Qt 版本，然后确保针对你的编译器、Qt 与设备组合指定了构建套件。**没有构建套件就无法构建项目。**
 :::

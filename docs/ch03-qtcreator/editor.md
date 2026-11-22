@@ -1,8 +1,8 @@
-# Using the Editor
+# 使用编辑器
+<a name="using-the-editor"></a>
 
-When you open a project or you just created a new project Qt Creator will switch to the edit mode. You should see on the left of your project files and in the center area the code editor. Selecting files on the left will open them in the editor. 
+当你打开项目或刚创建新项目时，Qt Creator 会切换到编辑模式。左侧应能看到项目文件，中央区域则是代码编辑器。在左侧选择文件，即可在编辑器中打开它们。
 
-The editor provides syntax highlighting, code-completion, and quick-fixes. Also, it supports several commands for code refactoring. When working with the editor you will have the feeling that everything reacts immediately. This is thanks to the developers of Qt Creator which made the tool feel really snappy.
+编辑器提供语法高亮、代码补全和快速修复。它还支持多种代码重构命令。使用编辑器时，你会觉得一切响应都很迅速。这要归功于 Qt Creator 的开发者们，是他们让这个工具用起来如此流畅。
 
 ![](./assets/creator-editor.png)
-
