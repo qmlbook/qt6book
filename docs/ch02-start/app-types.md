@@ -1,14 +1,14 @@
-# Application Types
+# 应用程序类型
 
-This section is a run through of different application types one can write with Qt 6. It’s not limited to the selection presented here, but it will give you a better idea of what you can achieve with Qt 6 in general.
+本节概览用 Qt 6 可以编写的不同应用程序类型。并不局限于这里介绍的这些类型，但能让你对用 Qt 6 通常能实现什么有更清楚的认识。
 
-## Console Application
+## 控制台应用程序
 
-A console application does not provide a graphical user interface, and is usually called as part of a system service or from the command line. Qt 6 comes with a series of ready-made components which help you create cross-platform console applications very efficiently. For example, the networking file APIs, string handling, and an efficient command line parser. As Qt is a high-level API on top of C++, you get programming speed paired with execution speed. Don’t think of Qt as being *just* a UI toolkit - it has so much more to offer!
+控制台应用程序不提供图形用户界面（GUI），通常作为系统服务的一部分被调用，或从命令行调用。Qt 6 提供了一系列现成的组件，帮助你非常高效地创建跨平台控制台应用程序。例如网络与文件 API、字符串处理，以及高效的命令行解析器。由于 Qt 是构建在 C++ 之上的高层 API，你既能获得编程效率，又能获得运行速度。不要把 Qt 看作*仅仅*是一个 UI 工具包——它能提供的远不止这些！
 
-### String Handling
+### 字符串处理
 
-This first example demonstrates how you could add 2 constant strings. Admittedly, this is not a very useful application, but it gives you an idea of what a native C++ application without an event loop may look like.
+第一个示例演示如何将 2 个常量字符串相加。诚然，这不是一个很有用的应用程序，但能让你了解一个没有事件循环的原生 C++ 应用程序可能是什么样子。
 
 ```cpp
 // module or class includes
@@ -30,9 +30,9 @@ int main(int argc, char** argv)
 }
 ```
 
-### Container Classes
+### 容器类
 
-This example adds a list, and list iteration, to the application. Qt comes with a large collection of container classes that are easy to use, and has the same API paradigms as other Qt classes.
+这个示例在应用程序中加入了列表以及列表迭代。Qt 提供了大量易于使用的容器类，它们与其他 Qt 类遵循相同的 API 范式。
 
 ```cpp
 QString s1("Hello");
@@ -51,7 +51,7 @@ while(iter.hasNext()) {
 cout << "!" << Qt::endl;
 ```
 
-Here is a more advanced list function, that allows you to join a list of strings into one string. This is very handy when you need to proceed line based text input. The inverse (string to string-list) is also possible using the `QString::split()` function.
+这里是一个更高级的列表函数，它可以把一个字符串列表连接成单个字符串。当你需要按行处理文本输入时，这非常方便。反向操作（从字符串得到字符串列表）同样可以用 `QString::split()` 函数完成。
 
 ```cpp
 QString s1("Hello");
@@ -64,9 +64,9 @@ QString s = list.join(" ") + "!";
 cout << s << Qt::endl;
 ```
 
-### File IO
+### 文件输入输出
 
-In the next snippet, we read a CSV file from the local directory and loop over the rows to extract the cells from each row. Doing this, we get the table data from the CSV file in ca. 20 lines of code. File reading gives us a byte stream, to be able to convert this into valid Unicode text, we need to use the text stream and pass in the file as a lower-level stream. For writing CSV files, you would just need to open the file in write mode, and pipe the lines into the text stream.
+在下面的代码片段中，我们从本地目录读取一个 CSV 文件，并遍历各行，从每一行中提取单元格。这样，大约 20 行代码就能从 CSV 文件中获得表格数据。文件读取得到的是字节流，为了把它转换为有效的 Unicode 文本，我们需要使用文本流，并把文件作为更低层的流传入。要写入 CSV 文件，只需以写入模式打开文件，再把各行写入文本流即可。
 
 ```cpp
 QList<QStringList> data;
@@ -96,15 +96,15 @@ if(file.open(QIODevice::ReadOnly)) {
 // No cleanup necessary.
 ```
 
-This concludes the section about console based applications with Qt.
+以上就是关于用 Qt 编写基于控制台的应用程序这一小节的全部内容。
 
-## C++ Widget Application
+## C++ Widget 应用程序
 
-Console based applications are very handy, but sometimes you need to have a graphical user interface (GUI). In addition, GUI-based applications will likely need a back-end to read/write files, communicate over the network, or keep data in a container.
+基于控制台的应用程序非常方便，但有时你需要图形用户界面。此外，基于 GUI 的应用程序很可能还需要一个后端，用来读/写文件、通过网络通信，或把数据保存在容器中。
 
-In this first snippet for widget-based applications, we do as little as needed to create a window and show it. In Qt, a widget without a parent is a window. We use a scoped pointer to ensure that the widget is deleted when the pointer goes out of scope. The application object encapsulates the Qt runtime, and we start the event loop with the `exec()` call. From there on, the application reacts only to events triggered by user input (such as mouse or keyboard), or other event providers, such as networking or file IO. The application only exits when the event loop is exited. This is done by calling `quit()` on the application or by closing the window.
+在这个基于窗口部件（widget）的应用程序的第一个片段中，我们用尽可能少的代码创建一个窗口并显示它。在 Qt 中，没有父对象的窗口部件就是一个窗口。我们使用作用域指针来确保指针离开作用域时该窗口部件被销毁。应用程序对象封装了 Qt 运行时，我们通过调用 `exec()` 启动事件循环。从那时起，应用程序只响应由用户输入（如鼠标或键盘）触发的事件，或网络、文件 IO 等其他事件源产生的事件。只有退出事件循环，应用程序才会结束。退出可以通过在应用程序上调用 `quit()` 或关闭窗口来完成。
 
-When you run the code, you will see a window with the size of 240 x 120 pixels. That’s all.
+运行这段代码时，你会看到一个 240 x 120 像素的窗口。仅此而已。
 
 ```cpp
 include <QtGui>
@@ -119,9 +119,9 @@ int main(int argc, char** argv)
 }
 ```
 
-### Custom Widgets
+### 自定义窗口部件
 
-When you work on user interfaces, you may need to create custom-made widgets. Typically, a widget is a window area filled with painting calls. Additionally, the widget has internal knowledge of how to handle keyboard and mouse input, as well as how to react to external triggers. To do this in Qt, we need to derive from QWidget and overwrite several functions for painting and event handling.
+开发用户界面时，你可能需要创建定制的窗口部件。通常，窗口部件就是一块由绘制调用填充的窗口区域。此外，窗口部件内部还知道如何处理键盘和鼠标输入，以及如何对外部触发做出反应。要在 Qt 中做到这一点，我们需要继承 QWidget，并重写若干用于绘制和事件处理的函数。
 
 ```cpp
 #pragma once
@@ -141,7 +141,7 @@ private:
 };
 ```
 
-In the implementation, we draw a small border on our widget and a small rectangle on the last mouse position. This is very typical for a low-level custom widget. Mouse and keyboard events change the internal state of the widget and trigger a painting update. We won’t go into too much detail about this code, but it is good to know that you have the possibility. Qt comes with a large set of ready-made desktop widgets, so it’s likely that you don’t have to do this.
+在实现中，我们在窗口部件上绘制一个小边框，并在上一次鼠标位置处绘制一个小矩形。这是底层自定义窗口部件的典型做法。鼠标和键盘事件会改变窗口部件的内部状态，并触发重绘更新。我们不会深入讲解这段代码，但知道存在这种可能性是件好事。Qt 提供了大量现成的桌面窗口部件，所以你多半不需要这样做。
 
 ```cpp
 include "customwidget.h"
@@ -180,11 +180,11 @@ void CustomWidget::mouseMoveEvent(QMouseEvent *event)
 }
 ```
 
-### Desktop Widgets
+### 桌面窗口部件
 
-The Qt developers have done all of this for you already and provide a set of desktop widgets, with a native look on different operating systems. Your job, then, is to arrange these different widgets in a widget container into larger panels. A widget in Qt can also be a container for other widgets. This is accomplished through the parent-child relationship. This means we need to make our ready-made widgets, such as buttons, checkboxes, radio buttons, lists, and grids, children of other widgets. One way to accomplish this is displayed below.
+Qt 开发者已经替你完成了所有这些工作，并提供了一组桌面窗口部件，在不同操作系统上都具有原生外观。于是你的任务就是把这些不同的窗口部件在窗口部件容器中排列成更大的面板。Qt 中的窗口部件也可以作为其他窗口部件的容器。这通过父子关系实现。也就是说，我们需要把按钮、复选框、单选按钮、列表、网格等现成的窗口部件，变成其他窗口部件的子对象。下面展示了实现这一点的一种方式。
 
-Here is the header file for a so-called widget container.
+下面是一个所谓窗口部件容器的头文件。
 
 ```cpp
 class CustomWidget : public QWidget
@@ -202,7 +202,7 @@ private:
 };
 ```
 
-In the implementation, we use layouts to better arrange our widgets. Layout managers re-layout the widgets according to some size policies when the container widget is re-sized. In this example, we have a list, a line edit, and a button, which are arranged vertically and allow the user to edit a list of cities. We use Qt’s `signal` and `slots` to connect sender and receiver objects.
+在实现中，我们使用布局来更好地排列窗口部件。当容器窗口部件改变大小时，布局管理器会按照某些大小策略重新布局这些窗口部件。在这个示例中，我们有一个列表、一个行编辑器和一个按钮，它们垂直排列，允许用户编辑一个城市列表。我们使用 Qt 的 `signal`（信号）和 `slots`（槽）来连接发送方对象和接收方对象。
 
 ```cpp
 CustomWidget::CustomWidget(QWidget *parent) :
@@ -245,11 +245,11 @@ void CustomWidget::updateItem()
 }
 ```
 
-### Drawing Shapes
+### 绘制图形
 
-Some problems are better visualized. If the problem at hand looks remotely like geometrical objects, Qt graphics view is a good candidate. A graphics view arranges simple geometrical shapes in a scene. The user can interact with these shapes, or they are positioned using an algorithm. To populate a graphics view, you need a graphics view and a graphics scene. The scene is attached to the view and is populated with graphics items.
+有些问题用图形呈现会更直观。如果手头的问题看起来多少有点像几何对象，那么 Qt 的图形视图（graphics view）是一个很好的候选。图形视图在一个场景中排列简单的几何形状。用户可以与这些形状交互，也可以用算法来摆放它们。要填充一个图形视图，你需要一个图形视图和一个图形场景。场景附加到视图上，并用图形项（graphics item）来填充。
 
-Here is a short example. First the header file with the declaration of the view and scene.
+下面是一个简短的示例。首先是声明视图和场景的头文件。
 
 ```cpp
 class CustomWidgetV2 : public QWidget
@@ -264,7 +264,7 @@ private:
 };
 ```
 
-In the implementation, the scene gets attached to the view first. The view is a widget and gets arranged in our container widget. In the end, we add a small rectangle to the scene, which is then rendered on the view.
+在实现中，场景首先附加到视图上。视图是一个窗口部件，被排列在我们的容器窗口部件中。最后，我们向场景添加一个小矩形，它随后被渲染到视图上。
 
 ```cpp
 include "customwidgetv2.h"
@@ -286,9 +286,9 @@ CustomWidget::CustomWidget(QWidget *parent) :
 }
 ```
 
-## Adapting Data
+## 适配数据
 
-Up to now, we have mostly covered basic data types and how to use widgets and graphics views. In your applications, you will often need a larger amount of structured data, which may also need to be stored persistently. Finally, the data also needs to be displayed. For this, Qt uses models. A simple model is the string list model, which gets filled with strings and then attached to a list view.
+到目前为止，我们主要介绍了基本数据类型，以及如何使用窗口部件和图形视图。在应用程序中，你经常需要大量结构化数据，这些数据可能还需要持久存储。最后，数据还需要被显示出来。为此，Qt 使用模型。一个简单的模型是字符串列表模型，它被填入字符串，然后附加到列表视图上。
 
 ```cpp
 m_view = new QListView(this);
@@ -300,7 +300,7 @@ cities << "Munich" << "Paris" << "London";
 m_model->setStringList(cities);
 ```
 
-Another popular way to store and retrieve data is SQL. Qt comes with SQLite embedded, and also has support for other database engines (e.g. MySQL and PostgreSQL). First, you need to create your database using a schema, like this:
+另一种流行的存取数据方式是 SQL。Qt 内置了 SQLite，同时也支持其他数据库引擎（例如 MySQL 和 PostgreSQL）。首先，你需要用一个模式（schema）来创建数据库，像这样：
 
 ```sql
 CREATE TABLE city (name TEXT, country TEXT);
@@ -309,13 +309,13 @@ INSERT INTO city VALUES ("Paris", "France");
 INSERT INTO city VALUES ("London", "United Kingdom");
 ```
 
-To use SQL, we need to add the SQL module to our .pro file
+要使用 SQL，我们需要把 SQL 模块加入 .pro 文件
 
 ```
 QT += sql
 ```
 
-And then we can open our database using C++. First, we need to retrieve a new database object for the specified database engine. With this database object, we open the database. For SQLite, it’s enough to specify the path to the database file. Qt provides some high-level database models, one of which is the table model. The table model uses a table identifier and an optional where clause to select the data. The resulting model can be attached to a list view as with the other model before.
+然后就可以用 C++ 打开数据库。首先，需要为指定的数据库引擎获取一个新的数据库对象。用这个数据库对象来打开数据库。对于 SQLite，只需指定数据库文件的路径即可。Qt 提供了一些高层数据库模型，其中之一是表模型。表模型使用表标识符和一个可选的 where 子句来选择数据。得到的模型可以像前面的模型一样，附加到列表视图上。
 
 ```cpp
 QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
@@ -333,7 +333,7 @@ view->setModel(m_model);
 m_model->select();
 ```
 
-For a higher level model operations, Qt provides a sorting file proxy model that allows you sort, filter, and transform models.
+对于更高层的模型操作，Qt 提供了一个排序过滤代理模型（sort filter proxy model），可以用来对模型进行排序、过滤和转换。
 
 ```cpp
 QSortFilterProxyModel* proxy = new QSortFilterProxyModel(this);
@@ -342,7 +342,7 @@ view->setModel(proxy);
 view->setSortingEnabled(true);
 ```
 
-Filtering is done based on the column that is to be filters, and a string as filter argument.
+过滤基于要过滤的那一列进行，过滤参数是一个字符串。
 
 ```cpp
 proxy->setFilterKeyColumn(0);
@@ -350,21 +350,21 @@ proxy->setFilterCaseSensitivity(Qt::CaseInsensitive);
 proxy->setFilterFixedString(QString)
 ```
 
-The filter proxy model is much more powerful than demonstrated here. For now, it is enough to remember it exists.
+过滤代理模型的功能比这里演示的强大得多。目前只要记住它存在就足够了。
 
 !!! note
 
-    This has been an overview of the different kind of classic applications you can develop with Qt 5. The desktop is moving, and soon the mobile devices will be our desktop of tomorrow. Mobile devices have a different user interface design. They are much more simplistic than desktop applications. They do one thing and they do it with simplicity and focus. Animations are an important part of the mobile experience. A user interface needs to feel alive and fluent. The traditional Qt technologies are not well suited for this market.
+    以上是用 Qt 5 可以开发的不同种类经典应用程序的概览。桌面正在演变，移动设备很快就会成为我们明天的桌面。移动设备有着不同的用户界面设计。它们比桌面应用程序简单得多。它们只做一件事，并以简洁而专注的方式去做。动画是移动体验的重要组成部分。用户界面需要让人感觉生动而流畅。传统的 Qt 技术并不适合这个市场。
 
-*Coming next: Qt Quick to the rescue.*
+*接下来：Qt Quick 来救场了。*
 
-## Qt Quick Application
+## Qt Quick 应用程序
 
-There is an inherent conflict in modern software development. The user interface is moving much faster than our back-end services. In a traditional technology, you develop the so-called front-end at the same pace as the back-end. This results in conflicts when customers want to change the user interface during a project, or develop the idea of a user interface during the project. Agile projects, require agile methods.
+现代软件开发中存在一种固有的矛盾。用户界面的变化远快于我们的后端服务。在传统技术中，所谓前端的开发与后端保持相同的节奏。当客户想在项目进行中修改用户界面，或者用户界面的想法是在项目进行中才形成时，就会产生冲突。敏捷项目需要敏捷的方法。
 
-Qt Quick provides a declarative environment where your user interface (the front-end) is declared like HTML and your back-end is in native C++ code. This allows you to get the best of both worlds.
+Qt Quick 提供了一种声明式（declarative）环境：用户界面（前端）像 HTML 一样被声明出来，后端则是原生 C++ 代码。这样你就能兼得两者之长。
 
-This is a simple Qt Quick UI below
+下面是一个简单的 Qt Quick UI：
 
 ```qml
 import QtQuick
@@ -379,7 +379,7 @@ Rectangle {
 }
 ```
 
-The declaration language is called QML and it needs a runtime to execute it. Qt provides a standard runtime called `qml`. You can also write a custom runtime. For this, we need a quick view and set the main QML document as a source from C++. Then you can show the user interface.
+这种声明式语言称为 QML，它需要一个运行时来执行。Qt 提供了名为 `qml` 的标准运行时。你也可以编写自定义运行时。为此，我们需要一个 quick view（快速视图），并在 C++ 中把主 QML 文档设置为源。然后就可以显示用户界面了。
 
 ```cpp
 #include <QtGui>
@@ -393,9 +393,9 @@ int main(int argc, char *argv[])
 }
 ```
 
-Let’s come back to our earlier examples. In one example, we used a C++ city model. It would be great if we could use this model inside our declarative QML code.
+让我们回到前面的示例。在一个示例中，我们使用了 C++ 城市模型。如果能在声明式 QML 代码中使用这个模型，那就太好了。
 
-To enable this, we first code our front-end to see how we would want to use a city model. In this case, the front-end expects an object named `cityModel` which we can use inside a list view.
+为此，我们先编写前端，看看会想怎样使用城市模型。这里，前端期望一个名为 `cityModel` 的对象，我们可以在列表视图中使用它。
 
 ```qml
 import QtQuick
@@ -411,7 +411,7 @@ Rectangle {
 }
 ```
 
-To enable the `cityModel`, we can mostly re-use our previous model, and add a context property to our root context. The root context is the other root-element in the main document.
+要启用 `cityModel`，我们基本可以复用之前的模型，并向根上下文添加一个上下文属性。根上下文是主文档中的另一个根元素。
 
 ```cpp
 m_model = QSqlTableModel(this);
