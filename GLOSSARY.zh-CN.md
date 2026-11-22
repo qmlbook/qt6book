@@ -278,6 +278,12 @@
   Qt C++=Qt C++（保持）；Extending QML=扩展 QML；Qt for Python / Qt for MCUs=保持英文。
 - themeConfig 文案：Contribute!=贡献！；Help us improve this page!=帮助我们改进此页面！；
   Last Updated=最后更新。
+
+## 复核阶段决策（R4/R5 提案）
+
+- genie effect = 精灵效果（genie effect）；与 sprite=精灵 区分，首次出现保留英文标注。
+- REST API、Web Sockets 等标准术语作标题时保持英文。
+- 图片 alt 文本全书统一为「图像」（复核中发现 图像/图片 混用，AUDIT 时统一）。
 ## 待决术语
 
 （暂无。翻译过程中若出现表中未覆盖且影响一致性的术语，在此登记后使用。）
