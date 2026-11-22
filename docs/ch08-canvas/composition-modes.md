@@ -15,4 +15,4 @@
 
 <<< @/docs/ch08-canvas/src/canvas/compositeoperation.qml#M1
 
-![](./assets/composite-operations.png)
+![图像](./assets/composite-operations.png)

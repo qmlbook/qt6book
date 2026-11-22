@@ -16,5 +16,5 @@
 
 <<< @/docs/ch08-canvas/src/canvas/shadow.qml#M3
 
-![](./assets/shadow.png)
+![图像](./assets/shadow.png)
 

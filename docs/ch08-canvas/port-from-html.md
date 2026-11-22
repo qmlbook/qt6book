@@ -47,7 +47,7 @@ onPaint: {
 
 结果是一个使用 QML 画布运行的移植版万花尺图形。
 
-![](./assets/spirograph.png)
+![图像](./assets/spirograph.png)
 
 如你所见，无需改动实际逻辑，只需对代码本身做相对较少的修改，就可以从 HTML5 移植到 QML。
 
@@ -55,7 +55,7 @@ onPaint: {
 
 这里是另一个来自 W3C 组织的、更复杂的移植示例。最初的[漂亮的发光线](http://www.w3.org/TR/2dcontext/#examples)（pretty glowing lines）有一些相当不错的特性，这让移植更具挑战性。
 
-![](./assets/html_glowlines.png)
+![图像](./assets/html_glowlines.png)
 
 ```html
 <!DOCTYPE HTML>
@@ -241,4 +241,4 @@ function blank(context) {
 
 最终结果看起来与此类似。
 
-![](./assets/glowlines.png)
+![图像](./assets/glowlines.png)

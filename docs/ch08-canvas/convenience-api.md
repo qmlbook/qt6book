@@ -4,7 +4,7 @@
 
 <<< @/docs/ch08-canvas/src/canvas/convenient.qml#M1
 
-![](./assets/convenient.png)
+![图像](./assets/convenient.png)
 
 ::: tip
 描边区域在路径两侧各延伸半个线宽。4 px 的 lineWidth 会在路径外侧绘制 2 px，内侧绘制 2 px。

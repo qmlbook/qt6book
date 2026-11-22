@@ -4,7 +4,7 @@
 
 <<< @/docs/ch08-canvas/src/canvas/transform.qml#M1
 
-![](./assets/transform.png)
+![图像](./assets/transform.png)
 
 除了平移之外，画布还允许使用 `scale(x,y)` 围绕 x 轴和 y 轴缩放，使用 `rotate(angle)` 旋转，其中角度以弧度为单位（*360 degree = 2\*Math.PI*），以及使用 `setTransform(m11, m12, m21, m22, dx, dy)` 进行矩阵变换。
 
