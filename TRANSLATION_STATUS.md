@@ -1,4 +1,4 @@
-# 翻译状态（TRANSLATION_STATUS.md）
+﻿# 翻译状态（TRANSLATION_STATUS.md）
 
 ## 项目元数据
 
@@ -11,7 +11,7 @@
 | 初始化日期 | 2026-11-22 |
 | 发现的可翻译 Markdown 文件数 | 137 |
 | 基线构建命令 | `yarn run docs:build`（需加环境变量，见下方“构建记录”） |
-| 基线构建结果 | PASS（带 `NODE_OPTIONS=--openssl-legacy-provider`；裸命令在 Node 24 下为环境性失败，见“构建记录”） |
+| 基线构建结果 | PASS（2026-11-22 最终审计构建，42.09s，137 文件全量中文化后构建成功；命令仍需 `NODE_OPTIONS=--openssl-legacy-provider`，见“构建记录”） |
 
 ### 构建环境
 
@@ -59,7 +59,7 @@
 | `docs/ch19-python` | 6 | TRANSLATED | REVIEWED | N/A | 8cba751 | 批次 B21（2 个提交） |
 | `docs/ch20-qtformcu` | 6 | TRANSLATED | REVIEWED | N/A | 2cded50 | 批次 B22（父代理顺序完成） |
 | `docs/.vuepress/config.js` 导航标签 | 1 | TRANSLATED | REVIEWED | N/A | (见提交) | 批次 P01；仅读者可见导航文案已汉化 |
-| 根目录中文文档（`README.zh-CN.md` 等） | 3 | TRANSLATED | REVIEWED | BASELINE PASS | — | INIT 创建；全书完成后终审 |
+| 根目录中文文档（`README.zh-CN.md` 等） | 3 | TRANSLATED | REVIEWED | PASS | （本提交） | INIT 创建；AUDIT 已终审 |
 
 文件数合计：137（可翻译 Markdown）+ 1（config.js 导航）+ 3（根目录中文文档）。
 
@@ -86,3 +86,21 @@ workaround，不修改 `package.json`、`yarn.lock` 或任何上游源文件。
 - 未决术语：无（见 `GLOSSARY.zh-CN.md` 的“待决术语”一节）。
 - 注意：`README.md` 作者姓名 “Jürgen Bocklage-Ryannel” 在部分终端输出中出现
   乱码（编码显示问题），以 Git 历史与上游内容为准，不影响翻译。
+
+## 最终 AUDIT（2026-11-22）
+
+| # | 检查项 | 结果 |
+| --- | --- | --- |
+| 1 | 所有范围内文件均在状态表中 | PASS（137 个 md 全部覆盖；1 个 LICENSE 排除） |
+| 2 | 每个目标均已翻译并复核 | PASS（22 批 + P01/P02；状态全部 TRANSLATED / REVIEWED） |
+| 3 | 术语遵循术语表 | PASS（V2 + 独立验证：属性绑定/信号处理器/构建套件/委托等一致） |
+| 4 | 读者可见导航为中文 | PASS（21 章导航标签已本地化，路径全部不变且可解析） |
+| 5 | 代码/命令/标识符/源码包含完整 | PASS（逐字节比对；仅 config.js 字符串字面量差异） |
+| 6 | 内部链接/锚点/图片/表格可用 | PASS（全书无内部锚点链接；图片 alt 统一「图像」；构建通过） |
+| 7 | 无遗留未译英文散文 | PASS（仅 HTML 注释、LICENSE、URL 链接文本属受保护内容） |
+| 8 | 无生成物/依赖目录被暂存 | PASS（git status 干净；node_modules/dist 未跟踪） |
+| 9 | `git diff --check` | PASS |
+| 10 | 全量文档构建 | PASS（`NODE_OPTIONS=--openssl-legacy-provider yarn run docs:build`，42.09s，生成 docs/.vuepress/dist；裸命令在 Node 24 的失败为已记录的环境性问题） |
+
+验证报告：`reports/verify-v1.md`（5 项 PASS）。复核报告：`reports/review-r1…r5.md`。
+翻译报告：`reports/translate-b01…b22.md`。批次映射：`reports/batch-map.md`。
