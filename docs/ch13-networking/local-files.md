@@ -1,28 +1,27 @@
-# Local files
+# 本地文件
 
-Is it also possible to load local (XML/JSON) files using the XMLHttpRequest. For example a local file named “colors.json” can be loaded using:
+也可以使用 XMLHttpRequest 加载本地的（XML/JSON）文件。例如，名为 “colors.json” 的本地文件可以这样加载：
 
 ```js
 xhr.open("GET", "colors.json")
 ```
 
-We use this to read a color table and display it as a grid. It is not possible to modify the file from the Qt Quick side. To store data back to the source we would need a small REST based HTTP server or a native Qt Quick extension for file access.
+我们用它来读取一张颜色表并以网格形式显示。无法从 Qt Quick 一侧修改这个文件。若要把数据存回源文件，我们需要一个基于 REST 的小型 HTTP 服务器，或者一个用于文件访问的原生 Qt Quick 扩展。
 
 <<< @/docs/ch13-networking/src/localfiles/localfiles.qml#global
 
 :::tip
-By default, using GET on a local file is disabled by the QML engine. To overcome this limitation, you can set the `QML_XHR_ALLOW_FILE_READ` environment variable to `1`:
+默认情况下，QML 引擎禁止对本地文件使用 GET。要解除这一限制，可以将 `QML_XHR_ALLOW_FILE_READ` 环境变量设为 `1`：
 
 ```sh
 QML_XHR_ALLOW_FILE_READ=1 qml localfiles.qml
 ```
 
-The issue is when allowing a QML application to read local files through an `XMLHttpRequest`, hence `XHR`, this opens up the entire file system for reading, which is a potential security issue. Qt will allow you to read local files only if the environment variable is set, so that this is a concious decision.
+问题在于，允许 QML 应用通过 `XMLHttpRequest`（即 `XHR`）读取本地文件，会开放整个文件系统供其读取，这是一个潜在的安全问题。只有设置了该环境变量，Qt 才会允许读取本地文件，因此这必须是一个有意识的决定。
 :::
 
-Instead of using the `XMLHttpRequest` it is also possible to use the XmlListModel to access local files.
+除了使用 `XMLHttpRequest`，也可以使用 XmlListModel 来访问本地文件。
 
 <<< @/docs/ch13-networking/src/localfiles/localfilesxmlmodel.qml#global
 
-With the XmlListModel it is only possible to read XML files and not JSON files.
-
+XmlListModel 只能读取 XML 文件，不能读取 JSON 文件。

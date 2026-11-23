@@ -1,3 +1,3 @@
-# Summary
+# 小结
 
-This concludes our chapter about QML networking. Please bear in mind Qt has on the native side a much richer networking API as on the QML side currently. But the idea of the chapter is to push the boundaries of QML networking and how to integrate with cloud-based services.
+以上就是关于 QML 网络的这一章。请记住，Qt 在原生一侧提供的网络 API 远比目前 QML 一侧的丰富。不过本章的意图是探索 QML 网络能力的边界，以及如何与基于云的服务集成。

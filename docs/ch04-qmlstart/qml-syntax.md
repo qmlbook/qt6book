@@ -1,46 +1,46 @@
-# QML Syntax
+# QML 语法
 
-QML is a declarative language used to describe how objects relate to each other. QtQuick is a framework built on QML for building the user interface of your application. It breaks down the user interface into smaller elements, which can be combined into components. QtQuick describes the look and the behavior of these user interface elements. This user interface description can be enriched with JavaScript code to provide simple but also more complex logic. In this perspective, it follows the HTML-JavaScript pattern but QML and QtQuick are designed from the ground up to describe user interfaces, not text-documents.
+QML 是一种声明式（declarative）语言，用于描述对象之间的关系。QtQuick 是构建在 QML 之上的框架，用于打造应用程序的用户界面。它把用户界面分解为更小的元素，这些元素可以组合成组件。QtQuick 描述这些用户界面元素的外观和行为。可以用 JavaScript 代码丰富这一用户界面描述，从而提供简单乃至更复杂的逻辑。从这个角度看，它沿袭了 HTML-JavaScript 的模式，但 QML 和 QtQuick 从设计之初就是用来描述用户界面的，而不是文本文档。
 
-In its simplest form, QtQuick lets you create a hierarchy of elements. Child elements inherit the coordinate system from the parent. An `x,y` coordinate is always relative to the parent.
+在最简单的形式下，QtQuick 让你创建元素的层次结构。子元素从父元素继承坐标系。`x,y` 坐标总是相对于父对象的。
 
 ::: tip
-QtQuick builds on QML. The QML language only knows of elements, properties, signals and bindings. QtQuick is a framework built on QML. Using default properties, the hierarchy of QtQuick elements can be constructed in an elegant way.
+QtQuick 构建于 QML 之上。QML 语言本身只认元素、属性、信号和绑定。QtQuick 是构建在 QML 上的框架。借助默认属性，可以优雅地构建 QtQuick 元素的层次结构。
 :::
 
 ![](./assets/scene.png)
 
-Let’s start with a simple example of a QML file to explain the different syntax.
+让我们从一个简单的 QML 文件示例开始，解释其中的各种语法。
 
 <<< @/docs/ch04-qmlstart/src/concepts/RectangleExample.qml#global
 
-* The `import` statement imports a module. An optional version in the form of `<major>.<minor>` can be added.
-* Comments can be made using `//` for single line comments or `/* */` for multi-line comments. Just like in C/C++ and JavaScript
-* Every QML file needs to have exactly one root element, like HTML
-* An element is declared by its type followed by `{ }`
-* Elements can have properties, they are in the form `name: value`
-* Arbitrary elements inside a QML document can be accessed by using their `id` (an unquoted identifier)
-* Elements can be nested, meaning a parent element can have child elements. The parent element can be accessed using the `parent` keyword
+* `import` 语句导入一个模块。可以附加一个形如 `<major>.<minor>` 的可选版本号。
+* 注释可以用 `//` 表示单行注释，或用 `/* */` 表示多行注释，与 C/C++ 和 JavaScript 中一样。
+* 每个 QML 文件必须有且只有一个根元素，与 HTML 一样。
+* 元素由其类型后跟 `{ }` 声明。
+* 元素可以有属性，属性的形式为 `name: value`。
+* QML 文档中的任意元素都可以通过其 `id`（一个不带引号的标识符）来访问。
+* 元素可以嵌套，即父元素可以有子元素。可以使用 `parent` 关键字访问父元素。
 
-With the `import` statement you import a QML module by name. In Qt5 you had to specify a major and minor version (e.g. `2.15`), this is now optional in Qt6. For the book content we drop this optional version number as normally you automatically want to choose the newest version available from your selected Qt Kit.
+使用 `import` 语句可以按名称导入 QML 模块。在 Qt5 中必须指定主版本号和次版本号（例如 `2.15`），而在 Qt6 中这是可选的。本书内容中省略这一可选版本号，因为通常你希望自动选择所选 Qt 构建套件中可用的最新版本。
 
 ::: tip
-Often you want to access a particular element by id or a parent element using the `parent` keyword. So it’s good practice to name your root element “root” using `id: root`. Then you don’t have to think about how the root element is named in your QML document.
+通常你需要通过 id 访问某个特定元素，或用 `parent` 关键字访问父元素。因此，良好的做法是用 `id: root` 把根元素命名为“root”。这样就不必操心 QML 文档中根元素叫什么名字了。
 :::
 
 ::: tip
-You can run the example using the Qt Quick runtime from the command line from your OS like this:
+你可以在操作系统中通过命令行，使用 Qt Quick 运行时运行示例，如下所示：
 
     $ $QTDIR/bin/qml RectangleExample.qml
 
-Where you need to replace the `$QTDIR` to the path to your Qt installation. The `qml` executable initializes the Qt Quick runtime and interprets the provided QML file.
+其中需要把 `$QTDIR` 替换为 Qt 安装路径。`qml` 可执行程序会初始化 Qt Quick 运行时并解释执行所提供的 QML 文件。
 
-In Qt Creator, you can open the corresponding project file and run the document  `RectangleExample.qml`.
+在 Qt Creator 中，可以打开相应的项目文件并运行文档 `RectangleExample.qml`。
 :::
 
-## Properties
+## 属性
 
-Elements are declared by using their element name but are defined by using their properties or by creating custom properties. A property is a simple key-value pair, e.g. `width: 100`, `text: 'Greetings'`, `color: '#FF0000'`. A property has a well-defined type and can have an initial value.
+元素通过元素名来声明，但通过使用属性或创建自定义属性来定义。属性是一对简单的键值，例如 `width: 100`、`text: 'Greetings'`、`color: '#FF0000'`。属性有明确定义的类型，并且可以有初始值。
 
 ```qml
 Text {
@@ -80,62 +80,61 @@ Text {
 }
 ```
 
-Let’s go through the different features of properties:
+下面逐一了解属性的各种特性：
 
 
-* **(1)** `id` is a very special property-like value, it is used to reference elements inside a QML file (called “document” in QML). The `id` is not a string type but rather an identifier and part of the QML syntax. An `id` needs to be unique inside a document and it can’t be reset to a different value, nor may it be queried. (It behaves much like a reference in the C++ world.)
+* **(1)** `id` 是一种非常特殊的、类似属性的值，用于引用 QML 文件内部的元素（在 QML 中称为“文档”）。`id` 不是字符串类型，而是标识符，是 QML 语法的一部分。`id` 在文档内必须唯一，不能重置为其他值，也不能被查询。（它的行为很像 C++ 世界中的引用。）
 
-* **(2)** A property can be set to a value, depending on its type. If no value is given for a property, an initial value will be chosen. You need to consult the documentation of the particular element for more information about the initial value of a property.
+* **(2)** 属性可以根据其类型设置为某个值。如果未给属性赋值，将选取一个初始值。关于属性初始值的更多信息，需要查阅相应元素的文档。
 
-* **(3)** A property can depend on one or many other properties. This is called *binding*. A bound property is updated when its dependent properties change. It works like a contract, in this case, the `height` should always be two times the `width`.
+* **(3)** 属性可以依赖一个或多个其他属性。这称为*绑定*（binding）。被绑定的属性会在其依赖的属性变化时更新。它的工作方式如同契约：此例中 `height` 应当始终是 `width` 的两倍。
 
-* **(4)** Adding new properties to an element is done using the `property` qualifier followed by the type, the name and the optional initial value (`property <type> <name> : <value>`). If no initial value is given, a default initial value is chosen.
+* **(4)** 向元素添加新属性使用 `property` 限定符，后接类型、名称和可选的初始值（`property <type> <name> : <value>`）。如果未给出初始值，则选取默认初始值。
 
 ::: tip
-You can also declare one property to be the default property using `default` keyword. If another element is created inside the element and not explicitly bound to a property, it is bound to the default property. For instance, This is used when you add child elements. The child elements are added automatically to the default property `children` of type list if they are visible elements.
+还可以用 `default` 关键字声明某个属性为默认属性。如果在元素内部创建了另一个元素而未显式绑定到某个属性，它就会绑定到默认属性。例如，添加子元素时就会用到这一点。如果子元素是可视元素，它们会自动添加到类型为 list 的默认属性 `children` 中。
 :::
 
-* **(5)** Another important way of declaring properties is using the `alias` keyword (`property alias <name>: <reference>`). The `alias` keyword allows us to forward a property of an object or an object itself from within the type to an outer scope. We will use this technique later when defining components to export the inner properties or element ids to the root level. A property alias does not need a type, it uses the type of the referenced property or object.
+* **(5)** 声明属性的另一种重要方式是使用 `alias` 关键字（`property alias <name>: <reference>`）。`alias` 关键字允许我们把类型内部某个对象的属性或对象本身转发到外层作用域。稍后定义组件时，我们将使用这一技术把内部属性或元素 id 导出到根级别。属性别名不需要指定类型，它使用被引用属性或对象的类型。
 
-* **(6)** The `text` property depends on the custom property `times` of type int. The `int` based value is automatically converted to a `string` type. The expression itself is another example of binding and results in the text being updated every time the `times` property changes.
-
-
-* **(7)** Some properties are grouped properties. This feature is used when a property is more structured and related properties should be grouped together. Another way of writing grouped properties is `font { family: "Ubuntu"; pixelSize: 24 }`.
+* **(6)** `text` 属性依赖于类型为 int 的自定义属性 `times`。基于 `int` 的值会自动转换为 `string` 类型。该表达式本身是绑定的又一个例子，每当 `times` 属性变化时文本都会更新。
 
 
-* **(8)** Some properties belong to the element class itself. This is done for global settings elements which appear only once in the application (e.g. keyboard input). The writing is `<Element>.<property>: <value>`.
+* **(7)** 有些属性是分组属性。当属性结构更复杂、相关属性应当归为一组时，就使用这一特性。分组属性的另一种写法是 `font { family: "Ubuntu"; pixelSize: 24 }`。
 
 
-* **(9)** For every property, you can provide a signal handler. This handler is called after the property changes. For example, here we want to be notified whenever the height changes and use the built-in console to log a message to the system.
+* **(8)** 有些属性属于元素类本身。这用于在应用程序中只出现一次的全局设置元素（例如键盘输入）。写法是 `<Element>.<property>: <value>`。
+
+
+* **(9)** 对每个属性都可以提供一个信号处理器。该处理器在属性变化之后被调用。例如，这里我们希望在 height 每次变化时得到通知，并使用内置控制台向系统记录一条消息。
 
 ::: warning
-An element id should only be used to reference elements inside your document (e.g. the current file). QML provides a mechanism called "dynamic scoping", where documents loaded later on overwrite the element IDs from documents loaded earlier. This makes it possible to reference element IDs from previously loaded documents if they have not yet been overwritten. It’s like creating global variables. Unfortunately, this frequently leads to really bad code in practice, where the program depends on the order of execution. Unfortunately, this can’t be turned off. Please only use this with care; or, even better, don’t use this mechanism at all. It’s better to export the element you want to provide to the outside world using properties on the root element of your document.
+元素 id 只应用于引用文档（例如当前文件）内部的元素。QML 提供一种称为“动态作用域”的机制：后加载的文档会覆盖先加载文档中的元素 ID。这使得在尚未被覆盖时引用先前加载文档的元素 ID 成为可能。这就像创建全局变量。遗憾的是，实践中这常常导致非常糟糕的代码——程序依赖于执行顺序。而且这一机制无法关闭。请谨慎使用；或者更好的做法是根本不要使用它。更好的方式是通过文档根元素上的属性，把你想对外提供的元素导出去。
 :::
 
-## Scripting
+## 脚本
 
-QML and JavaScript (also known as ECMAScript) are best friends. In the *JavaScript* chapter we will go into more detail on this symbiosis. Currently, we just want to make you aware of this relationship.
+QML 和 JavaScript（也称 ECMAScript）是好朋友。在 *JavaScript* 一章中，我们将更详细地讨论这种共生关系。现在我们只是想让你意识到这一关系。
 
 <<< @/docs/ch04-qmlstart/src/concepts/ScriptingExample.qml#text
 
-* **(1)** The text changed handler `onTextChanged` prints the current text every time the text changed due to the space bar being pressed. As we use a parameter injected by the signal, we need to use the function syntax here. It's also possible to use an arrow function (`(text) => {}`), but we feel `function(text) {}` is more readable.
+* **(1)** 文本变化处理器 `onTextChanged` 会在每次因按下空格键而导致文本变化时打印当前文本。由于我们使用了由信号注入的参数，这里需要使用函数语法。也可以使用箭头函数（`(text) => {}`），但我们认为 `function(text) {}` 可读性更好。
 
 
-* **(2)** When the text element receives the space key (because the user pressed the space bar on the keyboard) we call a JavaScript function `increment()`.
+* **(2)** 当文本元素接收到空格键（因为用户按下了键盘上的空格键）时，我们调用 JavaScript 函数 `increment()`。
 
 
-* **(3)** Definition of a JavaScript function in the form of `function <name>(<parameters>) { ... }`, which increments our counter `spacePresses`. Every time `spacePresses` is incremented, bound properties will also be updated.
+* **(3)** 以 `function <name>(<parameters>) { ... }` 形式定义的 JavaScript 函数，它把计数器 `spacePresses` 加一。每当 `spacePresses` 递增时，被绑定的属性也会更新。
 
-## Binding
+## 绑定
 
-The difference between the QML `:` (binding) and the JavaScript `=` (assignment) is that the binding is a contract and keeps true over the lifetime of the binding, whereas the JavaScript assignment (`=`) is a one time value assignment.
+QML 的 `:`（绑定）与 JavaScript 的 `=`（赋值）之间的区别在于：绑定是一份契约，在绑定的生命周期内始终保持有效；而 JavaScript 赋值（`=`）是一次性的值赋值。
 
-The lifetime of a binding ends when a new binding is set on the property or even when a JavaScript value is assigned to the property. For example, a key handler setting the text property to an empty string would destroy our increment display:
+当属性上设置了新的绑定时，绑定的生命周期即告结束；甚至当向属性赋予 JavaScript 值时也会如此。例如，某个按键处理器把 text 属性设置为空字符串，就会破坏我们的递增显示：
 
 <<< @/docs/ch04-qmlstart/src/concepts/ScriptingExample.qml#clear-binding{2}
 
 
-After pressing escape, pressing the space bar will not update the display anymore, as the previous binding of the `text` property (*text: “Space pressed: ” + spacePresses + ” times”*) was destroyed.
+按下 Esc 之后，再按空格键将不再更新显示，因为 `text` 属性先前的绑定（*text: “Space pressed: ” + spacePresses + ” times”*）已被销毁。
 
-When you have conflicting strategies to change a property as in this case (text updated by a change to a property increment via a binding and text cleared by a JavaScript assignment) then you can’t use bindings! You need to use assignment on both property change paths as the binding will be destroyed by the assignment (broken contract!).
-
+当你像本例这样存在相互冲突的属性修改策略时（通过绑定随属性递增而更新文本，以及通过 JavaScript 赋值清空文本），就不能使用绑定！你必须在两条属性修改路径上都使用赋值，因为赋值会销毁绑定（契约被破坏！）。

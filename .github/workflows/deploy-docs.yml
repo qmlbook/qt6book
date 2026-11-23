@@ -1,0 +1,49 @@
+name: Deploy docs to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    # Deploy only from the standalone Chinese publication repo.
+    # Inert in forks/upstream (see PR discussion).
+    if: github.repository == 'bgllj/qt6book-zh'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: yarn
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      - name: Build documentation
+        # webpack 4 md4 hash needs the OpenSSL legacy provider on Node 17+
+        run: yarn run docs:build
+        env:
+          NODE_OPTIONS: --openssl-legacy-provider
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/.vuepress/dist
+
+  deploy:
+    if: github.repository == 'bgllj/qt6book-zh'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

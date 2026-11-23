@@ -1,5 +1,3 @@
-# Quick Starter
+# 快速入门
 
-
-This chapter provides an overview of QML, the declarative user interface language used in Qt 6. We will discuss the QML syntax, which is a tree of elements, followed by an overview of the most important basic elements. Later we will briefly look at how to create our own elements, called components and how to transform elements using property manipulations. Towards the end, we will look at how to arrange elements together in a layout and finally have a look at elements where the user can provide input.
-
+本章概述 Qt 6 中使用的声明式用户界面语言 QML。我们将讨论 QML 语法——一棵由元素构成的树，随后介绍最重要的基础元素。之后简要了解如何创建我们自己的元素（称为组件），以及如何通过属性操作对元素进行变换。在本章末尾，我们将了解如何在布局中排列元素，最后看看用户可以提供输入的元素。

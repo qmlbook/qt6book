@@ -1,3 +1,3 @@
-# Summary
+# 小结
 
-We have seen how to install the Qt SDK and how to create our first application. Then we walked you through the different application types to give you an overview of Qt, showing off some features Qt offers for application development. I hope you got a good impression that Qt is a very rich user interface toolkit and offers everything an application developer can hope for and more. Still, Qt does not lock you into specific libraries, as you can always use other libraries, or even extend Qt yourself. It is also rich when it comes to supporting different application models: console, classic desktop user interface, and touch user interface.
+我们已经了解了如何安装 Qt SDK，以及如何创建第一个应用程序。随后我们带你遍历了不同的应用程序类型，对 Qt 做了概览，展示 Qt 为应用开发提供的一些特性。希望你已经形成这样的印象：Qt 是一个非常丰富的用户界面工具包，提供了应用开发者所能期望的一切，甚至更多。不过，Qt 并不会把你锁定在特定的库上——你随时可以使用其他库，甚至自行扩展 Qt。在支持不同应用模式方面它同样丰富：控制台、经典桌面用户界面和触摸用户界面。

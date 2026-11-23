@@ -1,31 +1,31 @@
-# Creating the plugin
+# 创建插件
 
-Qt Creator contains a wizard to create a **QtQuick 2 QML Extension Plugin**, found under **Library** when creating a new project. We use it to create a plugin called `fileio` with a `FileIO` object to start within the module `org.example.io`.
+Qt Creator 提供了一个创建 **QtQuick 2 QML Extension Plugin** 的向导，在新建项目时位于 **Library** 下。我们用它创建一个名为 `fileio` 的插件，其中先从模块 `org.example.io` 中的一个 `FileIO` 对象开始。
 
 ::: tip
-The current wizard generates a QMake based project. Please use the example from this chapter as a starting point to build a CMake based project. 
+当前向导生成的是基于 QMake 的项目。请使用本章的示例作为起点，来构建基于 CMake 的项目。
 :::
 
-The project should consist of the `fileio.h` and `fileio.cpp`, that declare and implement the `FileIO` type, and a `fileio_plugin.cpp` that contains the actual plugin class that allows the QML engine to discover out extension.
+该项目应由声明并实现 `FileIO` 类型的 `fileio.h` 和 `fileio.cpp`，以及包含实际插件类的 `fileio_plugin.cpp` 组成，后者让 QML 引擎能够发现我们的扩展。
 
-The plugin class is derived from the `QQmlEngineExtensionPlugin` class, and contains a the `Q_OBJECT` and `Q_PLUGIN_METADATA` macros. The entire file can be seen below.
+插件类派生自 `QQmlEngineExtensionPlugin` 类，并包含 `Q_OBJECT` 与 `Q_PLUGIN_METADATA` 宏。整个文件如下所示。
 
 <<< @/docs/ch18-extensions/src/fileio/fileio_plugin.cpp
 
-The extension will automatically discover and register all types marked with `QML_ELEMENT` and `QML_NAMED_ELEMENT`. We will see how this is done in the FileIO Implementation section below.
+扩展会自动发现并注册所有标记了 `QML_ELEMENT` 和 `QML_NAMED_ELEMENT` 的类型。我们将在下文的“FileIO 实现”一节中看到这是如何完成的。
 
-For the import of the module to work, the user also needs to specify a URI, e.g. `import org.example.io`. Interestingly we cannot see the module URI anywhere. This is set from the outside using a `qmldir` file, alternatively in the `CMakeLists.txt` file of your project.
+要让模块的导入正常工作，用户还需要指定一个 URI，例如 `import org.example.io`。有意思的是，我们在任何地方都看不到模块 URI。它是从外部通过 `qmldir` 文件设置的，也可以在项目的 `CMakeLists.txt` 文件中设置。
 
-The `qmldir` file specifies the content of your QML plugin or better the QML side of your plugin. A hand-written `qmldir` file for our plugin should look something like this: 
+`qmldir` 文件规定了 QML 插件的内容，更准确地说，是插件的 QML 侧内容。为我们的插件手写的 `qmldir` 文件大致如下：
 
 ```cpp
 module org.example.io
 plugin fileio
 ```
 
-The module is the URI that the user imports, and after it you name which plugin to load for the said URI. The plugin line must be identical with your plugin file name (under mac this would be *libfileio_debug.dylib* on the file system and *fileio* in the *qmldir*, for a Linux system, the same line would look for *libfileio.so*). These files are created by Qt Creator based on the given information. 
+module 就是用户导入的 URI，其后你指定为该 URI 加载哪个插件。plugin 行必须与你的插件文件名一致（在 mac 上，文件系统中对应 *libfileio_debug.dylib*，而在 *qmldir* 中写作 *fileio*；在 Linux 系统中，同一行会查找 *libfileio.so*）。这些文件由 Qt Creator 根据给定的信息创建。
 
-The easier way to create a correct `qmldir` file is in the `CMakeLists.txt` for your project, in the `qt_add_qml_module` macro. Here, the `URI` parameter is used to specify the URI of the plugin, e.g. `org.example.io`. This way, the `qmldir` file is generated when the project is built. For the example here, the `qt_add_qml_module` macro looks as follows:
+更简单地创建正确 `qmldir` 文件的方式，是在项目的 `CMakeLists.txt` 中使用 `qt_add_qml_module` 宏。这里用 `URI` 参数指定插件的 URI，例如 `org.example.io`。这样，`qmldir` 文件会在项目构建时生成。对于这里的示例，`qt_add_qml_module` 宏如下所示：
 
 ```
 qt_add_qml_module(fileio PLUGIN_TARGET
@@ -39,11 +39,11 @@ qt_add_qml_module(fileio PLUGIN_TARGET
 )
 ```
 
-When importing a module called `org.example.io`, the QML engine will look in one of the import paths , e.g. the `QML2_IMPORT_PATH` environment variable, and try to locate the `org/example/io` path with a `qmldir` file. The `qmldir` file will tell the engine which library to load as a QML extension plugin using which module URI. Two modules with the same URI will override each other. For the example above, the module can be imported with the following command:
+当导入名为 `org.example.io` 的模块时，QML 引擎会在导入路径中查找（例如 `QML2_IMPORT_PATH` 环境变量），尝试找到带有 `qmldir` 文件的 `org/example/io` 路径。`qmldir` 文件会告诉引擎：使用哪个模块 URI、将哪个库作为 QML 扩展插件加载。具有相同 URI 的两个模块会互相覆盖。对于上面的示例，可以用以下命令导入该模块：
 
 ```
 QML2_IMPORT_PATH=/home/.../ch18-extensions/src/fileio/imports \
 ./.../ch18-extensions/src/CityUI/CityUI
 ```
 
-Notice that the `QML2_IMPORT_PATH` points to the `imports` directory, and that the `org/example/io` sub-path is found via the `org.example.io` part of the import statement.
+注意，`QML2_IMPORT_PATH` 指向 `imports` 目录，而 `org/example/io` 子路径是通过导入语句中的 `org.example.io` 部分找到的。

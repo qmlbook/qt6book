@@ -1,10 +1,10 @@
-# Qt Creator IDE
+# Qt Creator 集成开发环境
+<a name="qt-creator-ide"></a>
 
-Qt Creator is the default integrated development environment for Qt. It’s written from Qt developers for Qt developers. The IDE is available on all major desktop platforms, e.g. Windows/Mac/Linux. We have already seen customers using Qt Creator on an embedded device. Qt Creator has a lean efficient user interface and it really shines in making the developer productive. Qt Creator can be used to run your Qt Quick user interface but also to compile c++ code and this for your host system or for another device using a cross-compiler.
+Qt Creator 是 Qt 默认的集成开发环境（IDE）。它由 Qt 开发者编写，也为 Qt 开发者打造。该 IDE 在所有主流桌面平台上都可用，例如 Windows/Mac/Linux。我们已经见到过客户在嵌入式设备上使用 Qt Creator。Qt Creator 的用户界面精简高效，在提升开发者生产力方面尤为出色。Qt Creator 既可以用来运行你的 Qt Quick 用户界面，也可以用来编译 C++ 代码——无论目标是你的主机系统，还是借助交叉编译器的其他设备。
 
 ![](./assets/qtcreator-screenshots.png)
 
 ::: warning
-Update screenshots!
+请更新截图！
 :::
-

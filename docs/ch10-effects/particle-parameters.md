@@ -1,8 +1,8 @@
-# Particle Parameters
+# 粒子参数
 
-We saw already how to change the behavior of the emitter to change our simulation. The particle painter used allows us how the particle image is visualized for each particle.
+我们已经看到，如何通过改变发射器的行为来改变模拟结果。所使用的粒子绘制器则决定了每个粒子的图像如何被可视化。
 
-Coming back to our example we update our `ImageParticle`. First, we change our particle image to a small sparking star image:
+回到我们的示例，我们来更新 `ImageParticle`。首先，把粒子图像换成一颗闪亮的小星星：
 
 ```qml
 ImageParticle {
@@ -11,14 +11,14 @@ ImageParticle {
 }
 ```
 
-The particle shall be colorized in an gold color which varies from particle to particle by +/- 20%:
+粒子应染成金色，且每个粒子的金色在 +/- 20% 的范围内变化：
 
 ```qml
 color: '#FFD700'
 colorVariation: 0.2
 ```
 
-To make the scene more alive we would like to rotate the particles. Each particle should start by 15 degrees clockwise and varies between particles by +/-5 degrees. Additional the particle should continuously rotate with the velocity of 45 degrees per second. The velocity shall also vary from particle to particle by +/- 15 degrees per second:
+为了让场景更加生动，我们让粒子旋转。每个粒子从顺时针 15 度开始，粒子之间在 +/-5 度范围内变化。此外，粒子应以每秒 45 度的速度持续旋转。该速度也应逐粒子在每秒 +/- 15 度的范围内变化：
 
 ```qml
 rotation: 15
@@ -27,16 +27,16 @@ rotationVelocity: 45
 rotationVelocityVariation: 15
 ```
 
-Last but not least, we change the entry effect for the particle. This is the effect used when a particle comes to life. In this case, we want to use the scale effect:
+最后同样重要的是，我们改变粒子的进入效果。这是粒子诞生时使用的效果。这里我们要使用缩放效果：
 
 ```qml
 entryEffect: ImageParticle.Scale
 ```
 
-So now we have rotating golden stars appearing all over the place.
+这样，我们就有了到处出现的旋转金色星星。
 
-![image](./assets/particleparameters.png)
+![图像](./assets/particleparameters.png)
 
-Here is the code we changed for the image-particle in one block.
+下面是我们对图像粒子所做修改的完整代码。
 
 <<< @/docs/ch10-effects/src/particles/particlevariation.qml#M1

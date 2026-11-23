@@ -1,6 +1,6 @@
-# UI Controls
+# UI 控件
 
-This chapter shows how to use the Qt Quick Controls module. Qt Quick Controls are used to create advanced user interfaces built from standard components such as buttons, labels, sliders and so on. 
+本章介绍如何使用 Qt Quick Controls 模块。Qt Quick Controls 用于创建高级的用户界面，这些界面由按钮、标签、滑块等标准组件构建而成。
 
-Qt Quick Controls can be arranged using the layout module and are easy to style. Also we will look into the various styles for the different platforms before diving into custom styling.
+Qt Quick Controls 可以使用布局模块进行排列，而且易于设置样式。在深入自定义样式之前，我们还将了解适用于不同平台的各种样式。
 

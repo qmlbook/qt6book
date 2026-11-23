@@ -1,27 +1,27 @@
-# Mixing 2D and 3D Contents
+# 混合 2D 与 3D 内容
 
-Qt Quick 3D has been built to integrate nicely into the traditional Qt Quick used to build dynamic 2D contents.
+Qt Quick 3D 的构建目标就是良好地集成到用于构建动态 2D 内容的传统 Qt Quick 中。
 
-## 3D Contents in a 2D Scene
+## 2D 场景中的 3D 内容
 
-It is straight forward to mix 3D contents into a 2D scene, as the ``View3D`` element represents a 2D surface in the Qt Quick scene.
+把 3D 内容混入 2D 场景是直白的，因为 ``View3D`` 元素代表 Qt Quick 场景中的一个 2D 表面。
 
-There are a couple of properties that can be of interest when combining 3D contents into a 2D scene this way. 
+以这种方式把 3D 内容组合进 2D 场景时，有几个属性可能很值得关注。
 
-First, the ``renderMode`` of ``View3D``, which lets you control if the 3D contents is rendered behind, in-front-of, or inline with the 2D contents. It can also be rendered on an off-screen buffer which then is combined with the 2D scene.
+首先是 ``View3D`` 的 ``renderMode``，它让你控制 3D 内容渲染在 2D 内容的后面、前面，还是与 2D 内容内联。它也可以渲染到一个离屏缓冲（off-screen buffer）上，然后与 2D 场景合成。
 
-The other property is the ``backgroundMode`` of the ``SceneEnvironment`` bound to the ``environment`` property of the ``View3D``. Ẁe've seen it set to ``Color`` or ``SkyBox``, but it can also be set to ``Transparent`` which lets you see any 2D contents behind the ``View3D`` through the 3D scene.
+另一个属性是绑定到 ``View3D`` 的 ``environment`` 属性上的 ``SceneEnvironment`` 的 ``backgroundMode``。我们已经见过它被设置为 ``Color`` 或 ``SkyBox``，但它也可以被设置为 ``Transparent``，让你能透过 3D 场景看到 ``View3D`` 背后的任何 2D 内容。
 
-When building a combined 2D and 3D scene, it is also good to know that it is possible to combine multiple ``View3D`` elements in a single Qt Quick scene. For instance, if you want to have multiple 3D models in a single scene, but they are separate parts of the 2D interface, then you can put them in separate ``View3D`` elements and handle the layout from the 2D Qt Quick side.
+在构建 2D 与 3D 的组合场景时，还有一点很好用：可以把多个 ``View3D`` 元素组合在单个 Qt Quick 场景中。例如，如果你想在一个场景中拥有多个 3D 模型，但它们是 2D 界面中彼此分离的部分，那么你可以把它们放进不同的 ``View3D`` 元素，并在 2D 的 Qt Quick 一侧处理布局。
 
-## 2D Contents in a 3D Scene
+## 3D 场景中的 2D 内容
 
-To put 2D contents into a 3D scene, it needs to be placed on a 3D surface. The Qt Quick 3D ``Texture`` element has a ``sourceItem`` property that allows you to integrate a 2D Qt Quick scene as a texture for an arbitrary 3D surface.
+要把 2D 内容放进 3D 场景，它需要被放置在一个 3D 表面上。Qt Quick 3D 的 ``Texture`` 元素有一个 ``sourceItem`` 属性，允许你把一个 2D Qt Quick 场景作为纹理（texture）集成到任意 3D 表面上。
 
-Another apporoach is to put the 2D Qt Quick elements directly into the scene. This is the approach used in the example below where we provide a name badge for Suzanne.
+另一种方法是把 2D Qt Quick 元素直接放进场景。这正是下面示例所用的方法，我们为 Suzanne 提供了一个姓名徽章。
 
-![image](./assets/mix-2d-and-3d.png)
+![图像](./assets/mix-2d-and-3d.png)
 
-What we do here is that we instantiate a ``Node`` that serves as an anchor point in the 3D scene. We then place a ``Rectangle`` and a ``Text`` element inside the ``Node``. These two are 2D Qt Quick elements. We can then control the 3D position, rotation, and scale through the corresponding properties of the ``Node`` element.
+我们在这里所做的是实例化一个 ``Node``，它在 3D 场景中充当锚点。然后我们把 ``Rectangle`` 和 ``Text`` 元素放进 ``Node`` 内部。这两个都是 2D Qt Quick 元素。随后我们可以通过 ``Node`` 元素的相应属性来控制 3D 的位置、旋转和缩放。
 
 <<< @/docs/ch12-qtquick3d/src/mix2d3d/main.qml#2dnode

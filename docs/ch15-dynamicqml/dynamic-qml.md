@@ -1,4 +1,4 @@
-# Dynamic QML
+# 动态 QML
 
-Until now, we have treated QML as a tool for constructing a static set of scenes and navigating between them. Depending on various states and logic rules, a living and dynamic user interface is constructed. By working with QML and JavaScript in a more dynamic manner, the flexibility and possibilities expand even further. Components can be loaded and instantiated at run-time, elements can be destroyed. Dynamically created user interfaces can be saved to disk and later restored.
+到目前为止，我们一直把 QML 当作构建一组静态场景并在它们之间导航的工具。依据各种状态和逻辑规则，构建出生动而动态的用户界面。以更动态的方式使用 QML 和 JavaScript，可以进一步扩展其灵活性与可能性。组件可以在运行时加载和实例化，元素也可以被销毁。动态创建的用户界面可以保存到磁盘，并在之后恢复。
 

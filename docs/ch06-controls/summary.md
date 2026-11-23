@@ -1,7 +1,7 @@
-# Summary
+# 小结
 
-In this chapter we have looked at Qt Quick Controls 2. They offer a set of elements that provide more high-level concepts than the basic QML elements. For most scenarios, you will save memory and gain performance by using the Qt Quick Controls 2, as they are based around optimized C++ logic instead of Javascript and QML.
+本章我们了解了 Qt Quick Controls 2。它提供了一组元素，与基础 QML 元素相比具有更高层次的概念。在大多数场景下，使用 Qt Quick Controls 2 可以节省内存并提升性能，因为它们基于优化过的 C++ 逻辑，而不是 JavaScript 和 QML。
 
-We’ve demonstrated how different styles can be used, and how a common code base can be developed using file selectors. This way, a single code base can address multiple platforms with different user interactions and visual styles.
+我们演示了如何使用不同的样式，以及如何借助文件选择器开发通用的代码库。这样，单一代码库就能应对多个平台在用户交互和视觉风格上的差异。
 
-Finally, we have looked at the Imagine style, which allows you to completely customize the look of a QML application through the use of graphical assets. In this way, an application can be reskinned without any code change whatsoever.
+最后，我们了解了 Imagine 样式，它允许你通过图形资源完全自定义 QML 应用程序的外观。这样，无需修改任何代码就可以为应用程序更换皮肤。

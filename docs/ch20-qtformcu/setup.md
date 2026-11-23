@@ -1,25 +1,25 @@
-# Setup
+# 搭建环境
 
-[Qt for MCUs](https://doc.qt.io/QtForMCUs/index.html) comes with support for a range of evaluation boards from companies such as NCP, Renesas, ST, and Infinion/Cypress. These are good for getting started and helps you try out the integration to the specific MCU. In the end, you will most likely end up tuning a specific platform definition to your specific hardware, e.g. to configure the amount of RAM, FLASH and screen configuration.
+[Qt for MCUs](https://doc.qt.io/QtForMCUs/index.html) 支持来自 NCP、Renesas、ST、Infinion/Cypress 等公司的多种评估板。这些评估板适合入门，帮助你尝试与特定 MCU 的集成。最终，你很可能需要为自己的具体硬件调优某个平台定义（platform definition），例如配置 RAM、FLASH 的容量以及屏幕配置。
 
 ![](./assets/installer-mcu.png)
 
-In addition to supporting multiple MCUs out of the box, Qt for MCUs also support running either on FreeRTOS or directly on the bare metal, i.e. without an operating system. As Qt for MCUs focuses on the graphical front-end part of things, there are no classes for filesystems and such. All this has to come from the underlying system. Hence, if you need support for more complex feature, FreeRTOS is one option.
+除了开箱即用地支持多种 MCU 之外，Qt for MCUs 还支持运行在 FreeRTOS 上或直接跑在裸机上，也就是没有操作系统。由于 Qt for MCUs 专注于图形前端部分，它没有文件系统之类的类。这一切都必须来自底层系统。因此，如果你需要更复杂特性的支持，FreeRTOS 是一个选择。
 
-When it comes to the development environment, various boards come with various compilers, so the Qt for MCUs setup will look a bit different depending on which MCU you target, as well as which compiler you choose. For instance, for the boards from ST, both GCC and IAR are supported, while for some other boards Green Hills MULTI Compiler is used. The officially supported development hosts from Qt's point of view are Linux (Ubuntu 20.04 LTS on x86_64) or Windows (Windows 10 on x86_64). For Windows, please notice that the MSVC compilers supported are the 2017 and 2019 editions - not the very latest. Make sure to follow the latest [setup instructions on qt.io](https://doc.qt.io/QtForMCUs/qtul-setup-development-host.html) to get a working environment.
+至于开发环境，不同的评估板配有不同的编译器，所以 Qt for MCUs 的安装步骤会因你所面向的 MCU 以及所选择的编译器不同而略有差异。例如，ST 的评估板同时支持 GCC 和 IAR，而另一些评估板则使用 Green Hills MULTI 编译器。从 Qt 的角度，官方支持的开发主机是 Linux（x86_64 上的 Ubuntu 20.04 LTS）或 Windows（x86_64 上的 Windows 10）。在 Windows 上，请注意受支持的 MSVC 编译器是 2017 和 2019 版本——不是最新的版本。请务必按照 [qt.io 上最新的安装说明](https://doc.qt.io/QtForMCUs/qtul-setup-development-host.html)来搭建可用的环境。
 
-Once you have setup your environment, you can find the supported boards as _Kits_ as well as under _Devices - MCU_ under the _Tools - Options..._ menu item in Qt Creator.
+环境搭建完成后，你可以在 Qt Creator 的 _Tools - Options..._ 菜单项下，找到作为 _Kits_ 出现的受支持评估板，以及 _Devices - MCU_ 下的相关条目。
 
 ![](./assets/kits.png)
 ![](./assets/devices.png)
 
 ::: tip
-If you do not find the MCUs tab under Tools, make sure that the Qt for MCUs plugins (McuSupport and BaremetalSupport) are available and activated under _Help - About Plugins..._.
+如果在 Tools 下找不到 MCU 选项卡，请确认 Qt for MCUs 插件（McuSupport 和 BaremetalSupport）在 _Help - About Plugins..._ 下可用并已启用。
 :::
 
-::: tip Links
-Further reading at qt.io:
+::: tip 链接
+在 qt.io 上的延伸阅读：
 
-* [Supported boards](https://doc.qt.io/QtForMCUs/qtul-supported-platforms.html)
-* [Platform porting guide](https://doc.qt.io/QtForMCUs/platform-porting-guide-introduction.html)
+* [受支持的评估板](https://doc.qt.io/QtForMCUs/qtul-supported-platforms.html)
+* [平台移植指南](https://doc.qt.io/QtForMCUs/platform-porting-guide-introduction.html)
 :::

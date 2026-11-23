@@ -1,9 +1,9 @@
-# Summary
+# 小结
 
-When creating new user interfaces effects can make a difference between a dull interface and a sparkling interface. In this chapter we've looked at particle effects and shaders.
+在创建新的用户界面时，效果可以让呆板的界面和闪闪发光的界面拉开差距。在本章中，我们了解了粒子效果和着色器。
 
-Particles provide a powerful and fun way to express graphical phenomena like smoke. firework, random visual elements. The particles look are playful and have a great potential when used wisely to create some eye catcher in any user interface. Using too many particle effects inside a user interface will definitely lead to the impression towards a game. Creating games is also the real strength of the particles.
+粒子提供了一种强大而有趣的方式来表现烟雾、烟花、随机视觉元素等图形现象。粒子的外观充满趣味，若善加使用，在任何用户界面中都极具打造视觉亮点的潜力。在用户界面中使用过多的粒子效果，绝对会给人留下游戏的印象。制作游戏也正是粒子真正擅长的领域。
 
-Shaders can be used to take the QML scene to the next level. Using vertex shaders it is possible to change the shape of elements, while fragment shaders are used to alter the texture of an element, e.g. changing the colour, or transforming the surface to produce effects such as waves.
+着色器可以把 QML 场景提升到新的层次。使用顶点着色器可以改变元素的形状，而片元着色器则用于改变元素的纹理，例如改变颜色，或者变换表面以产生波浪之类的效果。
 
-In this chapter we've scratched the surface of these two topics. For the interested reader, there are many more possibilities to explore.
+在本章中，我们只是触及了这两个主题的表面。对于感兴趣的读者，还有许多可能性等着去探索。

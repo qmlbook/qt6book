@@ -1,19 +1,19 @@
-# Components
+# 组件
 
-A component is a reusable element. QML provides different ways to create components. Currently, we will look only at the simplest form - a file-based component. A file-based component is created by placing a QML element in a file and giving the file an element name (e.g. `Button.qml`). You can use the component like every other element from the Qt Quick module. In our case, you would use this in your code as `Button { ... }`.
+组件是可复用的元素。QML 提供多种创建组件的方式。这里我们只看最简单的形式——基于文件的组件。基于文件的组件通过把一个 QML 元素放进文件、并给文件取一个元素名（例如 `Button.qml`）来创建。你可以像使用 Qt Quick 模块中的任何其他元素一样使用该组件。在我们的例子中，会在代码里写作 `Button { ... }`。
 
-For example, let’s create a rectangle containing a text component and a mouse area. This resembles a simple button and doesn’t need to be more complicated for our purposes.
+例如，让我们创建一个包含文本组件和鼠标区域的矩形。它看起来像一个简单的按钮，就我们的目的而言不必更复杂。
 
 <<< @/docs/ch04-qmlstart/src/components/InlinedComponentExample.qml#button
 
-The UI will look similar to this. In the first image, the UI is in its initial state, and in the second image the button has been clicked.
+界面大致如下。第一幅图中界面处于初始状态，第二幅图中按钮已被点击。
 
 ![](./assets/button_waiting.png)
 
 ![](./assets/button_clicked.png)
 
 
-Now our task is to extract the button UI into a reusable component. For this, we should think about a possible API for our button. You can do this by imagining how someone else should use your button. Here’s what I came up with:
+现在我们的任务是把按钮界面提取为一个可复用的组件。为此，我们应该考虑按钮可能的 API。你可以设想别人应当如何使用你的按钮。下面是我的想法：
 
 ```qml
 // minimal API for a button
@@ -23,22 +23,22 @@ Button {
 }
 ```
 
-I would like to set the text using a `text` property and to implement my own click handler. Also, I would expect the button to have a sensible initial size, which I can overwrite (e.g. with `width: 240` for example).
+我希望通过 `text` 属性设置文本，并实现自己的点击处理器。另外，我希望按钮有一个合理的初始尺寸，并且可以覆盖它（例如用 `width: 240`）。
 
-To achieve this we create a `Button.qml` file and copy our button UI inside. Additionally, we need to export the properties a user might want to change at the root level.
+为此我们创建一个 `Button.qml` 文件，把按钮界面复制进去。此外，我们需要在根级别导出用户可能想要修改的属性。
 
 <<< @/docs/ch04-qmlstart/src/components/Button.qml#global
 
-We have exported the text property and the clicked signal at the root level. Typically we name our root element root to make referencing it easier. We use the `alias` feature of QML, which is a way to export properties inside nested QML elements to the root level and make this available for the outside world. It is important to know that only the root level properties can be accessed from outside this file by other components.
+我们在根级别导出了 text 属性和 clicked 信号。通常把根元素命名为 root，以便于引用。我们使用了 QML 的 `alias` 特性，它可以把嵌套 QML 元素内部的属性导出到根级别，使其对外部世界可用。需要知道的是，只有根级别的属性才能被此文件之外的其他组件访问。
 
-To use our new `Button` element we can simply declare it in our file. So the earlier example will become a little bit simplified.
+要使用新的 `Button` 元素，只需在文件中声明它。这样前面的例子就简化了一些。
 
 <<< @/docs/ch04-qmlstart/src/components/ReusableComponentExample.qml#reusability
 
-Now you can use as many buttons as you like in your UI by just using `Button { ... }`. A real button could be more complex, e.g. providing feedback when clicked or showing a nicer decoration.
+现在你可以在界面中随意使用任意多的按钮，只需写 `Button { ... }`。真正的按钮可能更复杂，例如在点击时提供反馈或显示更漂亮的装饰。
 
 ::: tip
-If you want to, you could even go a step further and use an `Item` as a root element. This prevents users from changing the color of the button we designed, and provides us with more control over the exported API. The target should be to export a minimal API. Practically, this means we would need to replace the root `Rectangle` with an `Item` and make the rectangle a nested element in the root item.
+如果愿意，你甚至可以更进一步，用 `Item` 作为根元素。这可以防止用户更改我们设计的按钮颜色，并让我们对导出的 API 有更多的控制。目标应当是导出最小的 API。实际上，这意味着我们需要把根 `Rectangle` 替换为 `Item`，并把矩形变成根 `Item` 中的嵌套元素。
 
 ```qml
 Item {
@@ -58,5 +58,4 @@ Item {
 ```
 :::
 
-With this technique, it is easy to create a whole series of reusable components.
-
+借助这一技术，很容易创建一整套可复用的组件。

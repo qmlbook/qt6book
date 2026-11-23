@@ -1,3 +1,3 @@
-# Advanced Techniques
+# 高级技巧
 
-Nothing advanced here :-)
+这里没有什么高级内容 :-)

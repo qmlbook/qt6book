@@ -1,24 +1,24 @@
-# The Basics
+# 基础知识
 
-In this section we will walk through the basics of Qt Quick 3D. This includes working with the built in shapes (meshes), using lights, and transformations in 3D.
+本节将介绍 Qt Quick 3D 的基础知识，包括使用内置形状（网格）、光照，以及 3D 中的各种变换。
 
-## A Basic Scene
+## 基础场景
 
-A 3D scene consists of a few standard elements:
+一个 3D 场景由若干标准元素构成：
 
-- ``View3D``, which is the top level QML element representing the entire 3D scene.
-- ``SceneEnvironment``, controls how the scene is rendered, including how the background, or sky box, is rendered.
-- ``PerspectiveCamera``, the camera in the scene. Can also be a ``OrthographicCamera``, or even a custom camera with a custom projection matrix.
+- ``View3D``：顶层 QML 元素，代表整个 3D 场景。
+- ``SceneEnvironment``：控制场景的渲染方式，包括背景（即天空盒（sky box））的渲染方式。
+- ``PerspectiveCamera``：场景中的相机。也可以使用 ``OrthographicCamera``，甚至使用带有自定义投影矩阵的自定义相机。
 
-In addition to this, the scene usually contains ``Model`` instances representing objects in the 3D space, and lights.
+此外，场景通常还包含代表 3D 空间中物体的 ``Model`` 实例，以及光源。
 
-We will look at how these elements interact by creating the scene shown below.
+我们将通过创建下图所示的场景，来了解这些元素如何协同工作。
 
-![image](./assets/basicscene.png)
+![图像](./assets/basicscene.png)
 
-First of all, the QML code is setup with a ``View3D`` as the main element, filling the window. We also import the ``QtQuick3D`` module.
+首先，QML 代码以 ``View3D`` 作为主元素，填满整个窗口。我们还导入了 ``QtQuick3D`` 模块。
 
-The ``View3D`` element can be seen as any other Qt Quick element, just that inside of it, the 3D contents will be rendered.
+``View3D`` 元素可以视为普通 Qt Quick 元素，只是其内部会渲染 3D 内容。
 
 ```qml
 import QtQuick
@@ -39,47 +39,45 @@ Window {
 }
 ```
 
-Then we setup the ``SceneEnvironment`` with a solid background colour. This is done inside the ``View3D`` element.
+接着，我们为 ``SceneEnvironment`` 设置纯色背景。这是在 ``View3D`` 元素内部完成的。
 
 <<< @/docs/ch12-qtquick3d/src/basicscene/main.qml#environment
 
-The ``SceneEnvironment`` can be used to control a lot more rendering parameters, but for now, we only use it to set a solid background colour.
+``SceneEnvironment`` 还能控制许多其他渲染参数，不过目前我们只用它来设置纯色背景。
 
-The next step is to add _meshes_ to the scene. A mesh represents an object in 3D space. Each mesh is created using a ``Model`` QML element.
+下一步是向场景中添加网格。网格代表 3D 空间中的一个物体。每个网格都通过一个 ``Model`` QML 元素创建。
 
-A model can be used to load 3D assets, but there are a few built-in meshes allowing us to get started without involving the complexity of 3D assets management. In the code below, we create a ``#Cone`` and a ``#Sphere``.
+模型可用于加载 3D 资源，不过 Qt Quick 3D 还提供了一些内置网格，让我们无需应对 3D 资源管理的复杂性即可上手。在下面的代码中，我们创建了一个 ``#Cone`` 和一个 ``#Sphere``。
 
-In addition to the shape of the mesh, we position them in 3D space and provide them with a material with a simple, diffuse base colour. We will discuss materials more in the [Materials and Light]("Materials and Lights") section
+除了网格的形状之外，我们还在 3D 空间中对它们进行定位，并为它们提供一种具有简单漫反射（diffuse）基础颜色的材质（material）。关于材质，我们将在[材质与光照]("Materials and Lights")一节中进一步讨论。
 
-When positioning elements in 3D space, coordinates are expressed as ``Qt.vector3d(x, y, z)`` where the `x` axis controls the horizontal movement, `y` is the vertical movement, and `z` the how close or far away something is. 
+在 3D 空间中定位元素时，坐标用 ``Qt.vector3d(x, y, z)`` 表示：其中 `x` 轴控制水平移动，`y` 轴控制垂直移动，`z` 轴控制物体的远近。
 
-By default, the positive direction of the `x` axis is to the right, positive `y` points upwards, and positive `z` out of the screen. I say default, because this depends on the projection matrix of the camera.
+默认情况下，`x` 轴的正方向向右，`y` 轴正方向向上，`z` 轴正方向指向屏幕外。我之所以说“默认”，是因为这取决于相机的投影矩阵。
 
 <<< @/docs/ch12-qtquick3d/src/basicscene/main.qml#meshes
 
-Once we have lights in the scene we add a ``DirectionalLight``, which is a light that works much like the sun. It adds an even light in a pre-determined direction. The direction is controlled using the ``eulerRotation`` property where we can rotate the light direction around the various axes.
-
-By setting the ``castsShadow`` property to ``true`` we ensure that the light generates shadows as can be seen on cone, where the shadow from the sphere is visible.
+在场景中加入光照时，我们添加了一个 ``DirectionalLight``，它的工作方式很像太阳。它沿给定方向均匀地照亮场景。方向由 ``eulerRotation`` 属性控制，我们可以用它让光照方向绕各坐标轴旋转。将 ``castsShadow`` 属性设为 ``true``，就能让该光源产生阴影；从圆锥体上可以看到球体投下的阴影。
 
 <<< @/docs/ch12-qtquick3d/src/basicscene/main.qml#light
 
-The last piece of the puzzle is to add a camera to the scene. There are various cameras for various perspectives, but for a realistic projection, the ``ProjectionCamera`` is the one to use.
+最后一步是为场景添加相机。不同的视角需要不同的相机，若要实现真实感投影，则应使用 ``ProjectionCamera``。
 
-In the code, we place the camera using the ``position`` property. It is then possible to direct the camera using the ``eulerRotation`` property, but instead we call the ``lookAt`` method from the ``Component.onCompleted`` signal handler. This rotates the camera to look at a specific direction once it has been created and initialized.
+在代码中，我们通过 ``position`` 属性放置相机。本可以用 ``eulerRotation`` 属性来指定相机朝向，但我们改为在 ``Component.onCompleted`` 信号处理器中调用 ``lookAt`` 方法。这样，相机在创建并初始化完成后就会旋转到指定方向。
 
 <<< @/docs/ch12-qtquick3d/src/basicscene/main.qml#camera
 
-The resulting scene can be seen below.
+生成的场景如下图所示。
 
-![image](./assets/basicscene.png)
+![图像](./assets/basicscene.png)
 
-So, all in all, a minimal scene consists of a ``View3D`` with an ``SceneEnvironment``, something to look at, e.g. a ``Model`` with a mesh, a light source, e.g. a ``DirectionalLight``, and something to look with, e.g. a ``PerspectiveCamera``.
+总而言之，一个最小场景由以下部分组成：一个带有 ``SceneEnvironment`` 的 ``View3D``、可供观察的物体（例如带有网格的 ``Model``）、一个光源（例如 ``DirectionalLight``），以及用于观察的相机（例如 ``PerspectiveCamera``）。
 
 
 
-## The Built-in Meshes
+## 内置网格
 
-In the previous example, we used the built-in cone and sphere. Qt Quick 3D comes with the following built in meshes:
+在前面的示例中，我们使用了内置的圆锥体和球体。Qt Quick 3D 提供以下内置网格：
 
 - ``#Cube``
 - ``#Cone``
@@ -87,42 +85,42 @@ In the previous example, we used the built-in cone and sphere. Qt Quick 3D comes
 - ``#Cylinder``
 - ``#Rectangle``
 
-These are all shown in the illustration below. (top-left: Cube, top-right: Cone, center: Sphere, bottom-left: Cylinder, bottom-right: Rectangle)
+它们都展示在下图中。（左上：立方体，右上：圆锥体，中央：球体，左下：圆柱体，右下：矩形）
 
-![image](./assets/meshes.png)
+![图像](./assets/meshes.png)
 
-::: tip Tip
-One caveat is that the ``#Rectangle`` is one-sided. That means that it is only visible from one direction. This means that the ``eulerRotation`` property is important.
+::: tip 提示
+需要注意的是，``#Rectangle`` 是单面的。也就是说，它只有一个方向可见。因此 ``eulerRotation`` 属性十分重要。
 :::
 
-When working with real scenes, the meshes are exported from a design tool and then imported into the Qt Quick 3D scene. We look at this in more detail in the [Working with Assets](assets.md) section.
+在实际场景中，网格通常从设计工具导出，然后再导入 Qt Quick 3D 场景。我们将在[使用资源](assets.md)一节中更详细地介绍这一流程。
 
 
 
-## Lights
+## 光源
 
-Just as with meshes, Qt Quick 3D comes with a number of pre-defined light sources. These are used to light the scene in different ways.
+与网格一样，Qt Quick 3D 也提供了一些预定义的光源。它们以不同方式为场景照明。
 
-The first one, ``DirectionalLight``, should be familiar from our previous example. It works much as the sun, and casts light uniformly over the scene in a given direction. If the ``castsShadow`` property is set to ``true``, the light will cast shadows, as shown in the illustration below. This property is available for all the light sources.
+第一个是 ``DirectionalLight``，在前面的示例中我们已经用过。它的作用很像太阳，沿给定方向均匀地照亮整个场景。如果把 ``castsShadow`` 属性设为 ``true``，光源就会产生阴影，如下图所示。所有光源都有这个属性。
 
-![image](./assets/light_directional.png)
+![图像](./assets/light_directional.png)
 
 <<< @/docs/ch12-qtquick3d/src/lights/main.qml#directional
 
-The next light source is the ``PointLight``. It is a light that eminates from a given point in space and then falls off towards darkness based on the values of the ``constantFade``, ``linearFade``, and ``quadraticFace`` properties, where the light is calculated as ``constantFade + distance * (linearFade * 0.01) + distance^2 * (quadraticFade * 0.0001)``. The default values are ``1.0`` constant and quadratic fade, and ``0.0`` for the linear fade, meaning that the light falls off according to the inverse square law.
+下一种光源是 ``PointLight``。它从空间中的给定点发出光线，然后根据 ``constantFade``、``linearFade`` 和 ``quadraticFace`` 属性的值逐渐衰减至黑暗，光照按 ``constantFade + distance * (linearFade * 0.01) + distance^2 * (quadraticFade * 0.0001)`` 计算。默认值为常量衰减和二次衰减取 ``1.0``，线性衰减取 ``0.0``，这意味着光按平方反比定律衰减。
 
-![image](./assets/light_point.png)
+![图像](./assets/light_point.png)
 
 <<< @/docs/ch12-qtquick3d/src/lights/main.qml#point
 
-The last of the light sources is the ``SpotLight`` which emits a cone of light in a given direction, much like a real world spotlight. The cone consists of an inner and an outer cone. The width of these is controlled by the ``innerConeAngle`` and ``coneAngle``, specified in degrees between zero and 180 degrees.
+最后一种光源是 ``SpotLight``，它沿给定方向发出锥形光束，很像现实中的聚光灯。光锥由内锥和外锥组成。二者的宽度分别由 ``innerConeAngle`` 和 ``coneAngle`` 控制，取值范围为 0 到 180 度。
 
-The light in the inner cone behaves much like a ``PointLight`` and can be controlled using the ``constantFade``, ``linearFade``, and ``quadraticFace`` properties. In addition to this, the light fades towards darkness as it approaches the outer cone, controlled by the ``coneAngle``.
+内锥中的光照表现很像 ``PointLight``，同样可以用 ``constantFade``、``linearFade`` 和 ``quadraticFace`` 属性控制。此外，光线越接近外锥就越暗，这一效果由 ``coneAngle`` 控制。
 
-![image](./assets/light_spot.png)
+![图像](./assets/light_spot.png)
 
 <<< @/docs/ch12-qtquick3d/src/lights/main.qml#spot
 
-In addition to the ``castsShadow`` property, all lights also has the commonly used properties ``color`` and ``brightness`` which control the color and intensity of the light emitted. The lights also has an ``ambientColor`` property defining a base color to be applied to materials, before they are lit by the light source. This property is set to black by default, but can be used to provide a base lighting in a scene.
+除了 ``castsShadow`` 属性外，所有光源还都有常用的 ``color`` 和 ``brightness`` 属性，用于控制所发光的颜色和强度。光源还有一个 ``ambientColor`` 属性，用于定义在被光源照亮之前施加到材质上的基础颜色。该属性默认为黑色，但可以用来为场景提供基础照明。
 
-In the examples this far, we've only used one light source at a time, but it is of course possible to combine multiple light sources in a single scene.
+到目前为止的示例中，我们一次只使用了一个光源，但当然也可以在单个场景中组合使用多个光源。

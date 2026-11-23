@@ -1,25 +1,25 @@
-# JS Objects
+# JS 对象
 
-While working with JS there are some objects and methods which are more frequently used. This is a small collection of them.
+在使用 JS 时，有一些对象和方法使用得更为频繁。这里是其中的一个小集合。
 
 
-* `Math.floor(v)`, `Math.ceil(v)`, `Math.round(v)` - largest, smallest, rounded integer from float
+* `Math.floor(v)`、`Math.ceil(v)`、`Math.round(v)` - 从浮点数获取最大整数、最小整数、四舍五入后的整数
 
-* `Math.random()` - create a random number between 0 and 1
+* `Math.random()` - 生成 0 到 1 之间的随机数
 
-* `Object.keys(o)` - get keys from object (including QObject)
+* `Object.keys(o)` - 从对象（包括 QObject）获取键
 
-* `JSON.parse(s)`, `JSON.stringify(o)` - conversion between JS object and JSON string
+* `JSON.parse(s)`、`JSON.stringify(o)` - JS 对象与 JSON 字符串之间的转换
 
-* `Number.toFixed(p)` - fixed precision float
+* `Number.toFixed(p)` - 指定精度的浮点数
 
-* `Date` - Date manipulation
+* `Date` - 日期操作
 
-You can find them also at: [JavaScript reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference)
+你也可以在以下位置找到它们：[JavaScript 参考文档](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference)
 
-Here some small and limited examples of how to use JS with QML. They should give you an idea how you can use JS inside QML
+下面是一些关于如何在 QML 中使用 JS 的简短而有限的示例。它们应该能让你了解如何在 QML 中使用 JS。
 
-## Print all keys from QML Item
+## 打印 QML Item 的所有键
 
 ```qml
 Item {
@@ -35,7 +35,7 @@ Item {
 }
 ```
 
-## Parse an object to a JSON string and back
+## 将对象解析为 JSON 字符串并还原
 
 ```qml
 Item {
@@ -52,7 +52,7 @@ Item {
 }
 ```
 
-## Current Date
+## 当前日期
 
 ```qml
 Item {
@@ -69,7 +69,7 @@ Item {
 }
 ```
 
-## Call a function by name
+## 按名称调用函数
 
 ```qml
 Item {
@@ -88,4 +88,3 @@ Item {
     }
 }
 ```
-

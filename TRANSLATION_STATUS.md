@@ -1,0 +1,113 @@
+﻿# 翻译状态（TRANSLATION_STATUS.md）
+
+## 项目元数据
+
+| 项目 | 值 |
+| --- | --- |
+| 上游仓库（Upstream URL） | <https://github.com/qmlbook/qt6book.git> |
+| 基线分支（Base branch） | `main` |
+| 基线提交（Base commit SHA） | `3e7d97a5a11f368a3b9f58ace3fd6e70cb461282` |
+| 翻译分支（Translation branch） | `translation/zh-CN` |
+| 初始化日期 | 2026-11-22 |
+| 发现的可翻译 Markdown 文件数 | 137 |
+| 基线构建命令 | `yarn run docs:build`（需加环境变量，见下方“构建记录”） |
+| 基线构建结果 | PASS（2026-11-22 最终审计构建，42.09s，137 文件全量中文化后构建成功；命令仍需 `NODE_OPTIONS=--openssl-legacy-provider`，见“构建记录”） |
+
+### 构建环境
+
+| 项目 | 值 |
+| --- | --- |
+| 操作系统 | Windows (win32) |
+| Node.js | v24.22.1 |
+| Yarn | 1.22.22（classic，匹配 `yarn.lock` v1） |
+| VuePress | ^1.8.2（来自 `package.json`） |
+| 包管理约定 | 使用现有 `yarn.lock`，不升级依赖 |
+
+### 文件计数说明
+
+`docs/` 下 Markdown 文件共 138 个，其中
+`docs/ch18-extensions/src/CityUI/LICENSE.md` 为许可证文件（超出翻译范围），
+故可翻译文件数为 **137**。计数由仓库内文件检索得出，非硬编码。
+
+## 目标进度表
+
+翻译状态取值：`NOT STARTED` / `IN PROGRESS` / `TRANSLATED`。
+审查状态取值：`NOT REVIEWED` / `REVIEWED`。
+
+| 目标（Target） | 文件数 | 翻译状态 | 审查状态 | 构建状态 | 提交 SHA | 备注 |
+| --- | --- | --- | --- | --- | --- | --- |
+| `docs/index.md` | 1 | TRANSLATED | REVIEWED | BASELINE PASS | dda25cc | 推荐顺序第 1 项；批次 B01 |
+| `docs/preface` | 3 | TRANSLATED | REVIEWED | N/A | 9f6ec64 | 批次 B02 |
+| `docs/ch01-meetqt` | 3 | TRANSLATED | REVIEWED | N/A | 6727ab3 | 批次 B03 |
+| `docs/ch02-start` | 5 | TRANSLATED | REVIEWED | N/A | bbd74cf | 批次 B04 |
+| `docs/ch03-qtcreator` | 8 | TRANSLATED | REVIEWED | N/A | ecb005c | 批次 B05 |
+| `docs/ch04-qmlstart` | 9 | TRANSLATED | REVIEWED | N/A | 879d520 | 学习优先目标；批次 B06 |
+| `docs/ch05-fluid` | 4 | TRANSLATED | REVIEWED | N/A | 4f6bc0a | 批次 B07（重试后顺序完成） |
+| `docs/ch06-controls` | 6 | TRANSLATED | REVIEWED | N/A | 1b69091 | 学习优先目标；批次 B08 |
+| `docs/ch07-modelview` | 7 | TRANSLATED | REVIEWED | N/A | e6e5631 | 学习优先目标；批次 B09 |
+| `docs/ch08-canvas` | 10 | TRANSLATED | REVIEWED | N/A | a98fc85 | 批次 B12（卡死后顺序完成） |
+| `docs/ch09-shapes` | 6 | TRANSLATED | REVIEWED | N/A | faa1fd2 | 批次 B13（卡死后顺序完成） |
+| `docs/ch10-effects` | 15 | TRANSLATED | REVIEWED | N/A | 963df7a | 批次 B14 |
+| `docs/ch11-multimedia` | 6 | TRANSLATED | REVIEWED | N/A | 69d9d91 | 批次 B15（卡死后顺序完成） |
+| `docs/ch12-qtquick3d` | 7 | TRANSLATED | REVIEWED | N/A | c7784cb | 批次 B16（混合：子代理+父代理） |
+| `docs/ch13-networking` | 9 | TRANSLATED | REVIEWED | N/A | 406e0c1 | 批次 B17（4 个提交，混合完成） |
+| `docs/ch14-storage` | 3 | TRANSLATED | REVIEWED | N/A | 9e7763e | 批次 B18 |
+| `docs/ch15-dynamicqml` | 5 | TRANSLATED | REVIEWED | N/A | 94f8c4d | 批次 B19 |
+| `docs/ch16-javascript` | 5 | TRANSLATED | REVIEWED | N/A | cf663a6 | 批次 B20 |
+| `docs/ch17-qtcpp` | 6 | TRANSLATED | REVIEWED | N/A | dc007ac | 学习优先目标；批次 B10（卡死后顺序完成） |
+| `docs/ch18-extensions` | 7 | TRANSLATED | REVIEWED | N/A | 581cb64 | 批次 B11（卡死后顺序完成）；不含 `src/CityUI/LICENSE.md` |
+| `docs/ch19-python` | 6 | TRANSLATED | REVIEWED | N/A | 8cba751 | 批次 B21（2 个提交） |
+| `docs/ch20-qtformcu` | 6 | TRANSLATED | REVIEWED | N/A | 2cded50 | 批次 B22（父代理顺序完成） |
+| `docs/.vuepress/config.js` 导航标签 | 1 | TRANSLATED | REVIEWED | N/A | (见提交) | 批次 P01；仅读者可见导航文案已汉化 |
+| 根目录中文文档（`README.zh-CN.md` 等） | 3 | TRANSLATED | REVIEWED | PASS | （本提交） | INIT 创建；AUDIT 已终审 |
+| `README.md`（根目录原英文说明） | 1 | TRANSLATED | REVIEWED | PASS | 3951684 | 批次 P03 补译：构建说明等四节已汉化；标题与版权行保留英文 |
+
+文件数合计：137（可翻译 Markdown）+ 1（config.js 导航）+ 3（根目录中文文档）。
+
+## 当前进行中目标
+
+`none`（本次 INIT 运行不翻译章节。）
+
+## 构建记录
+
+| 日期 | 命令 | 退出状态 | 说明 |
+| --- | --- | --- | --- |
+| 2026-11-22 | `yarn install --frozen-lockfile` | 0（成功，92.71s） | 按现有 `yarn.lock` 安装依赖，未升级、未改动锁文件 |
+| 2026-11-22 | `yarn run docs:build` | 1（失败） | **环境性失败**：Node.js v24.22.1 的 OpenSSL 3 拒绝 webpack 4 的 md4 哈希，报 `ERR_OSSL_EVP_UNSUPPORTED`（`error:0308010C:digital envelope routines::unsupported`）。在未修改的基线提交上即可复现，与翻译无关。未改动任何依赖或源码。 |
+| 2026-11-22 | `NODE_OPTIONS=--openssl-legacy-provider yarn run docs:build` | 0（成功，35.29s） | **基线构建通过**。输出：`√ Server: Compiled successfully in 13.90s`、`√ Client: Compiled successfully in 21.89s`、`success Generated static files in docs\.vuepress\dist.`。构建期警告均为上游固有：`Browserslist: caniuse-lite is outdated`、`Language does not exist: h/txt/vert/frag/conf`（棱镜对未知代码块语言标签的提示）、`[DEP0187]` 弃用警告。 |
+
+后续运行构建时请使用：
+`$env:NODE_OPTIONS='--openssl-legacy-provider'; yarn run docs:build`（PowerShell），
+或在 cmd 中先 `set NODE_OPTIONS=--openssl-legacy-provider`。这是环境兼容性
+workaround，不修改 `package.json`、`yarn.lock` 或任何上游源文件。
+
+## 已知阻塞与未决术语
+
+- 阻塞：无。
+- 未决术语：无（见 `GLOSSARY.zh-CN.md` 的“待决术语”一节）。
+- 注意：`README.md` 作者姓名 “Jürgen Bocklage-Ryannel” 在部分终端输出中出现
+  乱码（编码显示问题），以 Git 历史与上游内容为准，不影响翻译。
+
+## 最终 AUDIT（2026-11-22）
+
+| # | 检查项 | 结果 |
+| --- | --- | --- |
+| 1 | 所有范围内文件均在状态表中 | PASS（137 个 md 全部覆盖；1 个 LICENSE 排除） |
+| 2 | 每个目标均已翻译并复核 | PASS（22 批 + P01/P02；状态全部 TRANSLATED / REVIEWED） |
+| 3 | 术语遵循术语表 | PASS（V2 + 独立验证：属性绑定/信号处理器/构建套件/委托等一致） |
+| 4 | 读者可见导航为中文 | PASS（21 章导航标签已本地化，路径全部不变且可解析） |
+| 5 | 代码/命令/标识符/源码包含完整 | PASS（逐字节比对；仅 config.js 字符串字面量差异） |
+| 6 | 内部链接/锚点/图片/表格可用 | PASS（全书无内部锚点链接；图片 alt 统一「图像」；构建通过） |
+| 7 | 无遗留未译英文散文 | PASS（仅 HTML 注释、LICENSE、URL 链接文本属受保护内容） |
+| 8 | 无生成物/依赖目录被暂存 | PASS（git status 干净；node_modules/dist 未跟踪） |
+| 9 | `git diff --check` | PASS |
+| 10 | 全量文档构建 | PASS（`NODE_OPTIONS=--openssl-legacy-provider yarn run docs:build`，42.09s，生成 docs/.vuepress/dist；裸命令在 Node 24 的失败为已记录的环境性问题） |
+
+验证报告：`reports/verify-v1.md`（5 项 PASS）。复核报告：`reports/review-r1…r5.md`。
+翻译报告：`reports/translate-b01…b22.md`。批次映射：`reports/batch-map.md`。
+### 残留清理补记（2026-11-22 晚）
+
+- README.md 中文翻译由提交 3951684 入库（标题与版权行保留英文）；ch12 intro.md 作者注释同步汉化。
+- 图片 alt 统一：`![图片]`×28 与 `![image]`×1 全部改为 `![图像]`（空 alt 与人名/类型名 alt 保持基线原样）。
+- 英文散文终扫：仅剩 2 行外部 URL 链接引用（豁免）；无其他残留。
+- 构建：`NODE_OPTIONS=--openssl-legacy-provider yarn run docs:build` PASS（31.61s）。

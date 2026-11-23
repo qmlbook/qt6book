@@ -1,11 +1,11 @@
-# Summary
+# 小结
 
-The plugin created in this chapter is a very simple plugin. but it can be re-used and extended by other types for different applications. Using plugins creates a very flexible solution. For example, you can now start the UI by just using the `qml`. Open the folder where your `CityUI` project is a start the UI with `qml main.qml`. The extension is readily available to the QML engine from any project and can be imported anywhere.
+本章创建的插件是一个非常简单的插件，但它可以被复用，也可以通过其他类型加以扩展，用于不同的应用程序。使用插件可以得到非常灵活的解决方案。例如，现在只需使用 `qml` 就能启动用户界面。打开 `CityUI` 项目所在的文件夹，用 `qml main.qml` 启动用户界面。该扩展可以立即被任何项目中的 QML 引擎使用，并且可以在任何地方导入。
 
-You are encouraged to write your applications in a way so that they work with a `qml`. This has a tremendous increase in turnaround time for the UI developer and it is also a good habit to keep a clear separation of the logic and the presentation of an application.
+我们鼓励你以能够配合 `qml` 运行的方式来编写应用程序。这会大大缩短用户界面开发者的周转时间，而且保持应用程序逻辑与呈现的清晰分离也是一个好习惯。
 
-The only drawback with using plugins is that the deployment gets more difficult. This becomes more apparent the simpler the application is (as the overhead of creating and deploying the plugin stays the same). You need now to deploy your plugin with your application. If this is a problem for you, you can still use the same `FileIO` class and register it directly in your `main.cpp` using `qmlRegisterType`. The QML code would stay the same.
+使用插件唯一的缺点是部署变得更困难。应用程序越简单，这一点就越明显（因为创建和部署插件的开销保持不变）。现在你需要把插件随应用程序一起部署。如果这对你来说是个问题，你仍然可以使用同一个 `FileIO` 类，在 `main.cpp` 中用 `qmlRegisterType` 直接注册它。QML 代码保持不变。
 
-In larger projects, you do not use an application as such. You have a simple qml runtime similar to the `qml` command provided with Qt, and require all native functionality to come as plugins. And your projects are simple pure qml projects using these qml extension plugins. This provides greater flexibility and removes the compilation step for UI changes. After editing a QML file you just need to run the UI. This allows the user interface writers to stay flexible and agile to make all these little changes to push pixels.
+在更大的项目中，你并不使用传统意义上的应用程序。你会有一个简单的 QML 运行时，类似于 Qt 提供的 `qml` 命令，并要求所有原生功能都以插件的形式提供。而你的项目则是使用这些 QML 扩展插件的纯 QML 项目。这提供了更大的灵活性，并且免去了修改用户界面时的编译步骤。编辑 QML 文件之后，只需运行用户界面即可。这让用户界面编写者能够保持灵活与敏捷，完成所有这些微调像素的小改动。
 
-Plugins provide a nice and clean separation between C++ backend development and QML frontend development. When developing QML plugins always have the QML side in mind and do not hesitate to start with a QML only mockup first to validate your API before you implement it in C++. If an API is written in C++ people often hesitate to change it or not to speak of to rewrite it. Mocking an API in QML provides much more flexibility and less initial investment. When using plugins the switch between a mocked API and the real API is just changing the import path for the qml runtime.
+插件在 C++ 后端开发与 QML 前端开发之间提供了清晰而干净的分离。开发 QML 插件时，要始终想着 QML 一侧；在用 C++ 实现之前，不妨先用纯 QML 模拟出一个原型来验证你的 API。API 一旦用 C++ 写成，人们往往不愿改动它，更不用说重写了。在 QML 中模拟 API 会灵活得多，前期投入也更小。使用插件时，从模拟 API 切换到真实 API，只需更改 QML 运行时的导入路径。

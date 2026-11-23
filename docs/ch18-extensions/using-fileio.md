@@ -1,15 +1,15 @@
-# Using FileIO
+# 使用 FileIO
 
-Now we can use our newly created file to access some data. In this example, we will some city data in a JSON format and display it in a table. We build this as two projects: one for the extension plugin (called `fileio`) which provides us a way to read and write text from a file, and the other, which displays the data in a table, (`CityUI`). The `CityUI` uses the `fileio`extension for reading and writing files. 
+现在我们可以用新创建的文件来访问一些数据了。在本例中，我们将使用一些 JSON 格式的城市数据，并把它们显示在表格中。我们把它构建为两个项目：一个是扩展插件（名为 `fileio`），为我们提供从文件读写文本的方式；另一个则在表格中显示数据（`CityUI`）。`CityUI` 使用 `fileio` 扩展来读写文件。
 
-![image](./images/cityui_mock.png)
+![图像](./images/cityui_mock.png)
 
-JSON data is just text that is formatted in such a way that it can be converted into a valid JS object/array and back to text. We use our `FileIO` to read the JSON formatted data and convert it into a JS object using the built-in Javascript function `JSON.parse()`. The data is later used as a model for the table view. This is implemented in the read document and write document functions shown below. 
+JSON 数据不过是格式特殊的文本，这种格式使它可以转换为有效的 JavaScript 对象/数组，也可以再转回文本。我们用 `FileIO` 读取 JSON 格式的数据，并使用内置的 JavaScript 函数 `JSON.parse()` 把它转换为 JavaScript 对象。这些数据随后被用作表格视图的模型。下面展示的读取文档与写入文档函数实现了这一点。
 
 <<< @/docs/ch18-extensions/src/CityUI/main.qml#readwrite
 
-The JSON data used in this example is in the `cities.json` file.
-It contains a list of city data entries, where each entry contains interesting data about the city such as what is shown below.
+本例使用的 JSON 数据在 `cities.json` 文件中。
+它包含一个城市数据条目列表，每个条目包含关于该城市的一些有用数据，如下所示。
 
 ```json
 [
@@ -24,11 +24,11 @@ It contains a list of city data entries, where each entry contains interesting d
 ]
 ```
 
-## The Application Window
+## 应用程序窗口
 
-We use the Qt Creator `QtQuick Application` wizard to create a Qt Quick Controls 2 based application. We will not use the new QML forms as this is difficult to explain in a book, although the new forms approach with a *ui.qml* file is much more usable than previous. So you can remove/delete the forms file for now.
+我们使用 Qt Creator 的 `QtQuick Application` 向导创建一个基于 Qt Quick Controls 2 的应用程序。我们不会使用新的 QML 表单（forms），因为这在书中难以解释，尽管基于 *ui.qml* 文件的新表单方式比以前好用得多。所以你现在可以先移除/删除表单文件。
 
-The basic setup is an `ApplicationWindow` which can contain a toolbar, menubar, and status bar. We will only use the menubar to create some standard menu entries for opening and saving the document. The basic setup will just display an empty window.
+基本结构是一个 `ApplicationWindow`，它可以包含工具栏、菜单栏和状态栏。我们只使用菜单栏，为打开和保存文档创建一些标准菜单项。基本结构只显示一个空窗口。
 
 ```qml
 import QtQuick 2.5
@@ -45,15 +45,15 @@ ApplicationWindow {
 }
 ```
 
-## Using Actions
+## 使用 Action
 
-To better use/reuse our commands we use the QML `Action` type. This will allow us later to use the same action also for a potential toolbar. The open and save and exit actions are quite standard. The open and save action do not contain any logic yet, this we will come later. The menubar is created with a file menu and these three action entries. Additional we prepare already a file dialog, which will allow us to pick our city document later. A dialog is not visible when declared, you need to use the `open()` method to show it.
+为了更好地使用/复用我们的命令，我们使用 QML 的 `Action` 类型。这样稍后也可以把同样的动作用于可能的工具栏。打开、保存和退出这几个动作都很标准。打开和保存动作目前还不包含任何逻辑，这一步稍后完成。菜单栏由一个文件菜单和这三个动作项组成。此外，我们已经先准备好了一个文件对话框，稍后它将让我们选择城市文档。对话框在声明时并不可见，你需要调用 `open()` 方法来显示它。
 
 <<< @/docs/ch18-extensions/src/CityUI/main.qml#actions
 
-## Formatting the Table
+## 格式化表格
 
-The content of the city data shall be displayed in a table. For this, we use the `TableView` control and declare 4 columns: city, country, area, population. Each column is a standard `TableViewColumn`. Later we will add columns for the flag and remove operation which will require a custom column delegate.
+城市数据的内容要显示在表格中。为此我们使用 `TableView` 控件，并声明 4 列：城市、国家、面积、人口。每一列都是标准的 `TableViewColumn`。稍后我们将添加国旗列和删除操作列，这将需要自定义的列委托。
 
 ```qml
 TableView {
@@ -82,13 +82,13 @@ TableView {
 }
 ```
 
-Now the application should show you a menubar with a file menu and an empty table with 4 table headers. The next step will be to populate the table with useful data using our *FileIO* extension.
+现在应用程序应该会显示一个带文件菜单的菜单栏，以及一个带 4 个表头的空表格。下一步是用我们的 *FileIO* 扩展向表格填充有用的数据。
 
 
 
-![image](./images/cityui_empty.png)
+![图像](./images/cityui_empty.png)
 
-The `cities.json` document is an array of city entries. Here is an example.
+`cities.json` 文档是一个城市条目数组。下面是一个例子。
 
 ```json
 [
@@ -103,11 +103,11 @@ The `cities.json` document is an array of city entries. Here is an example.
 ]
 ```
 
-Our job is it to allow the user to select the file, read it, convert it and set it onto the table view.
+我们的任务是让用户能够选择文件、读取它、转换它，并将其设置到表格视图上。
 
-## Reading Data
+## 读取数据
 
-For this we let the open action open the file dialog. When the user has selected a file the `onAccepted` method is called on the file dialog. There we call the `readDocument()` function. The `readDocument()` function sets the URL from the file dialog to our `FileIO` object and calls the `read()` method. The loaded text from `FileIO` is then parsed using the `JSON.parse()` method and the resulting object is directly set onto the table view as a model. How convenient is that?
+为此，我们让打开动作打开文件对话框。当用户选定一个文件后，文件对话框上的 `onAccepted` 方法会被调用。在那里我们调用 `readDocument()` 函数。`readDocument()` 函数把来自文件对话框的 URL 设置到 `FileIO` 对象上，并调用 `read()` 方法。然后用 `JSON.parse()` 方法解析从 `FileIO` 加载的文本，得到的对象直接作为模型设置到表格视图上。多么方便！
 
 ```qml
 Action {
@@ -139,9 +139,9 @@ FileIO {
 }
 ```
 
-## Writing Data
+## 写入数据
 
-For saving the document, we hook up the “save” action to the `saveDocument()` function. The save document function takes the model from the view, which is a JS object and converts it into a string using the `JSON.stringify()` function. The resulting string is set to the text property of our `FileIO` object and we call `write()` to save the data to disk. The “null” and “4” parameters on the `stringify` function will format the resulting JSON data using indentation with 4 spaces. This is just for better reading of the saved document.
+要保存文档，我们把“保存”动作连接到 `saveDocument()` 函数。save document 函数从视图获取模型（一个 JavaScript 对象），并用 `JSON.stringify()` 函数把它转换成字符串。得到的字符串被设置到 `FileIO` 对象的 text 属性上，然后我们调用 `write()` 把数据保存到磁盘。`stringify` 函数的“null”和“4”参数会让生成的 JSON 数据使用 4 个空格缩进。这只是为了让保存的文档更易读。
 
 ```qml
 Action {
@@ -163,17 +163,17 @@ FileIO {
 }
 ```
 
-This is basically the application with reading, writing and displaying a JSON document. Think about all the time spend by writing XML readers and writers. With JSON all you need is a way to read and write a text file or send receive a text buffer.
+这基本上就是一个能够读取、写入和显示 JSON 文档的应用程序了。想想过去编写 XML 读写器所花费的全部时间吧。有了 JSON，你所需要的只是一种读写文本文件或收发文本缓冲区的方式。
 
 
 
-![image](./images/cityui_table.png)
+![图像](./images/cityui_table.png)
 
-## Finishing Touch
+## 收尾工作
 
-The application is not fully ready yet. We still want to show the flags and allow the user to modify the document by removing cities from the model.
+应用程序还没有完全就绪。我们还想显示国旗，并允许用户从模型中删除城市来修改文档。
 
-In this example, the flag files are stored relative to the `main.qml` document in a *flags* folder. To be able to show them the table column needs to define a custom delegate for rendering the flag image.
+在这个示例中，国旗文件保存在相对于 `main.qml` 文档的 *flags* 文件夹中。为了能够显示它们，表格列需要定义一个用于渲染国旗图像的自定义委托。
 
 ```qml
 TableViewColumn {
@@ -189,9 +189,9 @@ TableViewColumn {
 }
 ```
 
-That is all that is needed to show the flag. It exposes the flag property from the JS model as `styleData.value` to the delegate. The delegate then adjusts the image path to pre-pend `'flags/'` and displays it as an `Image` element.
+显示国旗所需的全部工作就是这些。它把 JavaScript 模型中的 flag 属性以 `styleData.value` 的形式暴露给委托。然后委托调整图像路径，加上前缀 `'flags/'`，并将其作为 `Image` 元素显示。
 
-For removing we use a similar technique to display a remove button.
+对于删除操作，我们使用类似的技术来显示一个删除按钮。
 
 ```qml
 TableViewColumn {
@@ -207,9 +207,9 @@ TableViewColumn {
 }
 ```
 
-For the data removal operation, we get a hold on the view model and then remove one entry using the JS `splice` function. This method is available to us as the model is from the type JS array. The splice method changes the content of an array by removing existing elements and/or adding new elements.
+在数据删除操作中，我们先拿到视图的模型，然后用 JavaScript 的 `splice` 函数移除一个条目。之所以可以使用这个方法，是因为模型属于 JavaScript 数组类型。splice 方法通过移除现有元素和/或添加新元素来改变数组的内容。
 
-A JS array is unfortunately not so smart as a Qt model like the `QAbstractItemModel`, which will notify the view about row changes or data changes. The view will not show any updated data by now as it is never notified of any changes. Only when we set the data back to the view, the view recognizes there is new data and refreshes the view content. Setting the model again using `view.model = data` is a way to let the view know there was a data change.
+遗憾的是，JavaScript 数组不像 `QAbstractItemModel` 这样的 Qt 模型那样聪明，后者会把行变化或数据变化通知视图。目前视图不会显示任何更新后的数据，因为它从未收到任何变化通知。只有当我们把数据重新设置回视图时，视图才意识到有新数据并刷新视图内容。再次使用 `view.model = data` 设置模型，就是让视图知道数据发生了变化的一种方式。
 
-![image](./images/cityui_populated.png)
+![图像](./images/cityui_populated.png)
 

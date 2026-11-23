@@ -1,7 +1,7 @@
-# Storage
+# 存储
 
 
-In this chapter we discuss how to store and retrieve data from Qt Quick. Qt Quick offers only limited ways of storing local data directly. In this sense, it acts more like a browser. In many projects storing data is handled by the C++ backend and the required functionality is exported to the Qt Quick frontend side. Qt Quick does not provide you with access to the host file system to read and write files as you are used from the Qt C++ side. So it would be the task of the backend engineer to write such a plugin or maybe use a network channel to communicate with a local server, which provides these capabilities.
+本章讨论如何在 Qt Quick 中存储和检索数据。Qt Quick 直接存储本地数据的方式十分有限。从这个意义上说，它更像一个浏览器。在许多项目中，数据存储由 C++ 后端处理，所需的功能被导出到 Qt Quick 前端一侧。Qt Quick 不提供对宿主文件系统的访问，无法像你在 Qt C++ 中习惯的那样读写文件。因此，编写这样一个插件、或者通过网络通道与提供这些能力的本地服务器通信，就是后端工程师的任务。
 
-Every application needs to store smaller and larger information persistently. This can be done locally on the file system or remote on a server. Some information will be structured and simple (e.g. settings), some will be large and complicated for example documentation files and some will be large and structured and will require some sort of database connection. Here we will mainly cover the built-in capabilities of Qt Quick to store data as also the networked ways.
+每个应用都需要持久化地存储大小不一的信息。这可以在本地的文件系统上完成，也可以在远程服务器上完成。有些信息结构化且简单（例如设置），有些则庞大而复杂，例如文档文件，还有些既庞大又结构化，需要某种数据库连接。这里我们主要介绍 Qt Quick 内置的数据存储能力，以及基于网络的存储方式。
 

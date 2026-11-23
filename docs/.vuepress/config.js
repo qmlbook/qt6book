@@ -1,6 +1,7 @@
-module.exports = {
-  title: 'The Qt 6 Book',
-  description: "A book about QML",  
+﻿module.exports = {
+  base: '/qt6book-zh/',
+  title: 'Qt 6 Book',
+  description: "一本关于 QML 的书",  
   plugins: [
     'vuepress-plugin-mermaidjs',
     [ '@e8johan/vuepress-plugin-pdf-export', {
@@ -15,13 +16,13 @@ module.exports = {
   themeConfig: {
     displayAllHeaders: false,
     repo: 'qmlbook/qt6book',
-    repoLabel: 'Contribute!',
+    repoLabel: '贡献！',
     docsDir: 'docs',
     docsBranch: 'main',
     editLinks: true,
-    editLinkText: 'Help us improve this page!',
+    editLinkText: '帮助我们改进此页面！',
     smoothScroll: true,
-    lastUpdated: 'Last Updated',
+    lastUpdated: '最后更新',
     nav: [
     ],
     sidebar: sidebarOrder(),
@@ -145,7 +146,7 @@ function ch19Sidebar() {
 
 function ch18Sidebar() {
   return {
-    title: "Extending QML",
+    title: "扩展 QML",
     path: '/ch18-extensions/extending-qml',
     collapsable: false,
     children: [
@@ -178,7 +179,7 @@ function ch17Sidebar() {
 
 function ch16Sidebar() {
   return {
-    title: "Javascript",
+    title: "JavaScript",
     path: '/ch16-javascript/javascript',
     collapsable: false,
     children: [
@@ -193,7 +194,7 @@ function ch16Sidebar() {
 
 function ch15Sidebar() {
   return {
-    title: "Dynamic QML",
+    title: "动态 QML",
     path: '/ch15-dynamicqml/dynamic-qml',
     collapsable: false,
     children: [
@@ -208,7 +209,7 @@ function ch15Sidebar() {
 
 function ch14Sidebar() {
   return {
-    title: "Storage",
+    title: "存储",
     path: '/ch14-storage/storage',
     collapsable: false,
     children: [
@@ -221,7 +222,7 @@ function ch14Sidebar() {
 
 function ch13Sidebar() {
   return {
-    title: "Networking",
+    title: "网络",
     path: '/ch13-networking/networking',
     collapsable: false,
     children: [
@@ -257,7 +258,7 @@ function ch12Sidebar() {
 
 function ch11Sidebar() {
   return {
-    title: "Multimedia",
+    title: "多媒体",
     path: '/ch11-multimedia/multimedia',
     collapsable: false,
     children: [
@@ -273,7 +274,7 @@ function ch11Sidebar() {
 
 function ch10Sidebar() {
   return {
-    title: "Effects",
+    title: "特效",
     path: '/ch10-effects/effects',
     collapsable: false,
     children: [
@@ -298,7 +299,7 @@ function ch10Sidebar() {
 
 function ch09Sidebar() {
   return {
-    title: "Shapes",
+    title: "形状",
     path: '/ch09-shapes/shapes',
     collapsable: false,
     children: [
@@ -334,7 +335,7 @@ function ch08Sidebar() {
 
 function ch07Sidebar() {
   return {
-    title: "Model View",
+    title: "模型视图",
     path: '/ch07-modelview/model-view',
     collapsable: false,
     children: [
@@ -351,7 +352,7 @@ function ch07Sidebar() {
 
 function ch06Sidebar() {
   return {
-    title: "QtQuick Controls",
+    title: "Qt Quick Controls",
     path: '/ch06-controls/controls2',
     collapsable: false,
     children: [
@@ -367,7 +368,7 @@ function ch06Sidebar() {
 
 function ch05Sidebar() {
   return {
-    title: "Fluid Elements",
+    title: "流畅元素",
     path: '/ch05-fluid/fluid-elements',
     collapsable: false,
     children: [
@@ -381,7 +382,7 @@ function ch05Sidebar() {
 
 function ch04Sidebar() {
   return {
-    title: "Quick Starter",
+    title: "快速入门",
     path: '/ch04-qmlstart/quick-start',
     collapsable: false,
     children: [
@@ -400,7 +401,7 @@ function ch04Sidebar() {
 
 function ch03Sidebar() {
   return {
-    title: "Qt Creator IDE",
+    title: "Qt Creator 集成开发环境",
     path: '/ch03-qtcreator/qt-creator',
     collapsable: false,
     children: [
@@ -418,7 +419,7 @@ function ch03Sidebar() {
 
 function ch02Sidebar() {
   return {
-    title: "Getting Started",
+    title: "入门",
     path: '/ch02-start/quick-start',
     collapsable: false,
     children: [
@@ -433,7 +434,7 @@ function ch02Sidebar() {
 
 function ch01Sidebar() {
   return { 
-    title: "Meet Qt",
+    title: "认识 Qt",
     path: '/ch01-meetqt/meet-qt',
     collapsable: false,
     children: [
@@ -446,7 +447,7 @@ function ch01Sidebar() {
 
 function prefaceSidebar() {
   return { 
-    title: "Preface",
+    title: "前言",
     path: '/preface/preface',
     collapsable: false,
     children: [

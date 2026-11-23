@@ -1,4 +1,3 @@
-# Model-View-Delegate
+# 模型-视图-委托
 
-As soon as the amount of data goes beyond the trivial, it is no longer feasible to keep a copy of the data with the presentation. This means that the presentation layer, what is seen by the user, needs to be separated by the data layer, the actual contents. In Qt Quick, data is separated from the presentation through a so called model-view separation. Qt Quick provides a set of premade views in which each data element is the visualization by a delegate. To utilize the system, one must understand these classes and know how to create appropriate delegates to get the right look and feel.
-
+当数据量超出简单规模时，再把数据随表示层一起保存就不再可行了。这意味着表示层（用户所看到的内容）需要与数据层（实际内容）分离。在 Qt Quick 中，数据通过所谓的模型-视图分离（model-view separation）与表示分离。Qt Quick 提供了一组现成的视图（view），其中每个数据元素都通过一个委托（delegate）进行可视化。要利用这套体系，必须理解这些类，并且知道如何创建合适的委托，以获得正确的外观与行为。

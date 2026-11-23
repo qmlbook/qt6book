@@ -1,11 +1,11 @@
-# A Basic Shape
+# 基础形状
 
-The shape module lets you create arbitrarily paths and then stroke the outline and fill the interior. The definition of the path can be reused in other places where paths are used, e.g. for the ``PathView`` element used with models. But to paint a path, the ``Shape`` element is used, and the various path elements are put into a ``ShapePath``.
+形状模块可以创建任意路径，然后对轮廓进行描边并填充内部。路径的定义可以在其他使用路径的地方复用，例如与模型一起使用的 ``PathView`` 元素。不过，要绘制路径，需要使用 ``Shape`` 元素，并把各种路径元素放进 ``ShapePath`` 中。
 
-In the example below, the path shown in the screenshot here is created. The entire figure, all five filled areas, are created from a single path which then is stroked and filled.
+在下面的示例中，创建了截图所示的路径。整个图形（全部五个填充区域）都由单条路径创建，然后对该路径进行描边和填充。
 
 ![](./assets/automatic/basic.png)
 
 <<< @/docs/ch09-shapes/src/shapes/basic.qml#global
 
-The path is made up of the children to the ``ShapePath``, i.e. the ``PathArc``, ``PathLine``, and ``PathMove`` elements in the example above. In the next section, we will have a close look at the building blocks of paths.
+这条路径由 ``ShapePath`` 的子对象构成，即上例中的 ``PathArc``、``PathLine`` 和 ``PathMove`` 元素。下一节我们将仔细研究路径的构建块。

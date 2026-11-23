@@ -1,6 +1,6 @@
-# Acknowledgements
+# 致谢
 
-This book would not have been possible to create without the kind sponsorship from **The Qt Company**. It is a privilege to be able to work on a project such as this, and their help has been invaluable. I would like to give a special mention to (alphabetically):
+没有 **The Qt Company** 的慷慨赞助，本书就不可能问世。能够参与这样一个项目是一种荣幸，他们的帮助极其宝贵。我想特别提及以下人员（按字母顺序）：
 
 - empenzes 
 - Fabian K
@@ -13,9 +13,9 @@ This book would not have been possible to create without the kind sponsorship fr
 - Ulf Hermann
 - Vladimir Minenko
 
-## Contributors
+## 贡献者
 
-This book was made possible by the great community contributors. I would like to thank them all (alphabetically):
+本书多亏了出色的社区贡献者才得以成书。我要感谢他们所有人（按字母顺序）：
 
 - alexshen
 - arky
@@ -33,9 +33,9 @@ This book was made possible by the great community contributors. I would like to
 - VideoCarp
 - wangchunlin5013
 
-## History
+## 历史
 
-This book is based on [The QML Book](https://qmlbook.github.io/), originally written for Qt 5. I would like to thank all contributors to that book (alphabetically):
+本书基于 [The QML Book](https://qmlbook.github.io/)——该书最初是为 Qt 5 编写的。我要感谢那本书的所有贡献者（按字母顺序）：
 
 - aamirglb
 - alexeRadu
@@ -69,4 +69,4 @@ This book is based on [The QML Book](https://qmlbook.github.io/), originally wri
 - trolley
 - 29jm
 
-I would also like to give a special mention to Pelagicore, The Qt Company and Felgo for help the development of The QML Book by sponsoring our work and being generally awesome when it comes to feedback and support.
+我还要特别感谢 Pelagicore、The Qt Company 和 Felgo：感谢它们赞助我们的工作、帮助 The QML Book 的开发，并在反馈与支持方面始终表现出色。

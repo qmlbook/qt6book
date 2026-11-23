@@ -1,10 +1,9 @@
-# Fluid Elements
+# 流畅元素
 
-Until now, we have mostly looked at some simple graphical elements and how to arrange and manipulate them. 
+到目前为止，我们主要看了一些简单的图形元素，以及如何排列和操作它们。
 
-This chapter is about how to make these changes more interesting by animating them. 
+本章介绍如何为这些变化添加动画，使它们变得更加生动有趣。
 
-Animations are one of the key foundations for modern, slick user interfaces, and can be employed in your user interface via states, transitions and animations. Each state defines a set of property changes and can be combined with animations on state changes. These changes are described as a transition from one state to another state.
+动画是现代、流畅的用户界面的关键基础之一，可以通过状态、过渡和动画将其运用到你的用户界面中。每个状态定义一组属性更改，并可以与状态更改时的动画相结合。这些更改被描述为从一个状态到另一个状态的过渡。
 
-Besides animations being used during transitions, they can also be used as standalone elements triggered by some scripted events.
-
+除了在过渡期间使用动画之外，动画还可以作为独立元素使用，由某些脚本事件触发。

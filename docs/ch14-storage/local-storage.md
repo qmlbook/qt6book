@@ -1,28 +1,28 @@
-# Local Storage - SQL
+# 本地存储（Local Storage）- SQL
 
-Qt Quick supports a local storage API known from the web browsers the local storage API. the API is available under “import QtQuick.LocalStorage 2.0”.
+Qt Quick 支持一种在网页浏览器中广为人知的本地存储 API。该 API 可通过 “import QtQuick.LocalStorage 2.0” 使用。
 
-In general, it stores the content into an SQLite database in a system-specific location in a unique ID based file based on the given database name and version. It is not possible to list or delete existing databases. You can find the storage location from `QQmlEngine::offlineStoragePath()`.
+一般而言，它会把内容存储到位于系统特定位置的 SQLite 数据库中，数据库文件以基于给定数据库名称和版本生成的唯一 ID 命名。无法列出或删除已有的数据库。可以通过 `QQmlEngine::offlineStoragePath()` 查找存储位置。
 
-You use the API by first creating a database object and then creating transactions on the database. Each transaction can contain one or more SQL queries. The transaction will roll-back when a SQL query will fail inside the transaction.
+使用该 API 时，先创建一个数据库对象，然后在该数据库上创建事务。每个事务可以包含一条或多条 SQL 查询。当事务中有 SQL 查询失败时，事务将回滚。
 
-For example, to read from a simple notes table with a text column you could use the local storage like this:
+例如，要从一个带有文本列的简单 notes 表中读取数据，可以这样使用本地存储：
 
 <<< @/docs/ch14-storage/src/db-snippet/main.qml#global
 
-## Crazy Rectangle
+## 疯狂矩形（Crazy Rectangle）
 
-As an example assume we would like to store the position of a rectangle on our scene.
+作为示例，假设我们希望存储场景中一个矩形的位置。
 
-![image](./images/crazy_rect.png)
+![图像](./images/crazy_rect.png)
 
-Here is the base of the example. It contains a rectangle called `crazy` that is draggable and shows its current `x` and `y` position as text.
+下面是示例的基础部分。它包含一个名为 `crazy` 的矩形，该矩形可以拖动，并以文本形式显示其当前的 `x` 和 `y` 位置。
 
 <<< @/docs/ch14-storage/src/rectangle/main.qml#M1
 
-You can drag the rectangle freely around. When you close the application and launch it again the rectangle is at the same position.
+你可以随意拖动这个矩形。关闭应用并再次启动后，矩形会处于相同的位置。
 
-Now we would like to add that the x/y position of the rectangle is stored inside the SQL DB. For this, we need to add an `init`, `read` and `store` database function. These functions are called when on component completed and on component destruction.
+现在我们希望把矩形的 x/y 位置存储到 SQL 数据库中。为此，我们需要添加 `init`、`read` 和 `store` 这几个数据库函数。这些函数会在组件完成时和组件销毁时被调用。
 
 ```qml
 import QtQuick
@@ -55,23 +55,23 @@ Item {
 }
 ```
 
-You could also extract the DB code in an own JS library, which does all the logic. This would be the preferred way if the logic gets more complicated.
+你也可以把数据库代码提取到一个独立的 JS 库中，由它承担全部逻辑。如果逻辑变得更复杂，这是首选的做法。
 
-In the database initialization function, we create the DB object and ensure the SQL table is created. Notice that the database functions are quite talkative so that you can follow along on the console.
+在数据库初始化函数中，我们创建数据库对象，并确保 SQL 表已经创建。注意，这些数据库函数的输出相当详细，便于你在控制台中跟踪执行过程。
 
 <<< @/docs/ch14-storage/src/rectangle/main.qml#M2
 
-The application next calls the read function to read existing data back from the database. Here we need to differentiate if there is already data in the table. To check we look into how many rows the select clause has returned.
+接下来，应用调用 read 函数，从数据库读回已有数据。这里需要区分表中是否已经存在数据。检查的方式是查看 select 子句返回了多少行。
 
 <<< @/docs/ch14-storage/src/rectangle/main.qml#M4
 
-We expect the data is stored in a JSON string inside the value column. This is not typical SQL like, but works nicely with JS code. So instead of storing the x,y as properties in the table, we store them as a complete JS object using the JSON stringify/parse methods. In the end, we get a valid JS object with x and y properties, which we can apply on our crazy rectangle.
+我们假定数据以 JSON 字符串的形式存放在 value 列中。这并不像典型的 SQL 写法，但与 JS 代码配合得很好。因此，我们并不把 x、y 作为表中的属性来存储，而是使用 JSON 的 stringify/parse 方法把它们作为一个完整的 JS 对象存储。最终，我们得到一个带有 x 和 y 属性的有效 JS 对象，可以把它应用到疯狂矩形上。
 
-To store the data, we need to differentiate the update and insert cases. We use update when a record already exists and insert if no record under the name “crazy” exists.
+要存储数据，需要区分 update 和 insert 两种情况。当记录已存在时使用 update；如果不存在名为 “crazy” 的记录，则使用 insert。
 
 <<< @/docs/ch14-storage/src/rectangle/main.qml#M3
 
-Instead of selecting the whole recordset we could also use the SQLite count function like this: `SELECT COUNT(*) from data where name = "crazy"` which would return use one row with the number of rows affected by the select query. Otherwise, this is common SQL code. As an additional feature, we use the SQL value binding using the `?` in the query.
+与其选取整个记录集，我们也可以像这样使用 SQLite 的 count 函数：`SELECT COUNT(*) from data where name = "crazy"`，它会返回一行，其中包含 select 查询所影响的行数。除此之外，这就是普通的 SQL 代码。作为一项附加功能，我们使用查询中的 `?` 进行 SQL 值绑定。
 
-Now you can drag the rectangle and when you quit the application the database stores the x/y position and applies it on the next application run.
+现在你可以拖动矩形；退出应用时，数据库会保存 x/y 位置，并在下一次运行应用时应用该位置。
 

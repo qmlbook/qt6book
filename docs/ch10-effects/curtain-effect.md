@@ -1,35 +1,35 @@
-# Curtain Effect
+# 窗帘效果
 
-In the last example for custom shader effects, I would like to bring you the curtain effect. This effect was published first in May 2011 as part of [Qt labs for shader effects](http://labs.qt.nokia.com/2011/05/03/qml-shadereffectitem-on-qgraphicsview/).
+在自定义着色器效果的最后一个示例中，我想为你带来窗帘效果。该效果最早于 2011 年 5 月作为 [Qt 实验室的着色器效果](http://labs.qt.nokia.com/2011/05/03/qml-shadereffectitem-on-qgraphicsview/) 的一部分发布。
 
-![image](./assets/curtain.png)
+![图像](./assets/curtain.png)
 
-At that time I really loved these effects and the curtain effect was my favorite out of them. I just love how the curtain opens and hide the background object.
+当时我非常喜欢这些效果，而窗帘效果是其中我的最爱。我就是喜欢窗帘打开并遮住背景物体的样子。
 
-For this chapter, the effect has been adapted for Qt 6. It has also been slightly simplified to make it a better showcase.
+对于本章，该效果已适配到 Qt 6。它还被略微简化，以便更好地展示。
 
-The curtain image is called `fabric.png`. The effect then uses a vertex shader to swing the curtain forth and back and a fragment shader to apply shadows to show how the fabric folds.
+窗帘图像名为 `fabric.png`。该效果使用顶点着色器让窗帘来回摆动，用片元着色器施加阴影以展现织物是如何折叠的。
 
-The diagram below shows how the shader works. The waves are computed through a sin curve with 7 periods (7\*PI=21.99…). The other part is the swinging. The `topWidht` of the curtain is animated when the curtain is opened or closed. The `bottomWidth` follows the `topWidth` using a `SpringAnimation`. This creates the effect of the bottom part of the curtain swinging freely. The calculated `swing` component is the strength of the swing based on the y-component of the vertexes.
+下图展示了着色器的工作原理。波浪通过具有 7 个周期（7\*PI=21.99…）的正弦曲线计算。另一部分是摆动。窗帘的 `topWidht` 在窗帘打开或关闭时被动画驱动。`bottomWidth` 使用 `SpringAnimation` 跟随 `topWidth`。这就产生了窗帘下部自由摆动的效果。计算出的 `swing` 分量是基于顶点 y 分量的摆动强度。
 
-![image](./assets/curtain_diagram.png)
+![图像](./assets/curtain_diagram.png)
 
-The curtain effect is implemented in the `CurtainEffect.qml` file where the fabric image act as the texture source. In the QML code, the `mesh` property is adjusted to make sure that the number of vertices is increased to give a smoother result.
+窗帘效果在 `CurtainEffect.qml` 文件中实现，其中织物图像充当纹理源。在 QML 代码中，调整了 `mesh` 属性，以确保增加顶点数量，从而获得更平滑的结果。
 
 <<< @/docs/ch10-effects/src/effects/curtain/CurtainEffect.qml#M1
 
-The vertex shader, shown below, reshapes the curtain based on the `topWidth` and `bottomWidth` properties, extrapolating the shift based on the y-coordinate. It also calculates the `shade` value, which is used in the fragment shader. The `shade` property is passed through an additional output in `location` 1.
+下面所示的顶点着色器根据 `topWidth` 和 `bottomWidth` 属性重塑窗帘，并基于 y 坐标外推偏移量。它还计算 `shade` 值，该值在片元着色器中使用。`shade` 属性通过 `location` 1 处的附加输出传递。
 
 <<< @/docs/ch10-effects/src/effects/curtain/curtain.vert#M1
 
-In the fragment shader below, the `shade` is picked up as an input in `location` 1 and is then used to calculate the `fragColor`, which is used to draw the pixel in question.
+在下面的片元着色器中，`shade` 作为 `location` 1 处的输入被接收，然后用于计算 `fragColor`，它被用来绘制相应像素。
 
 <<< @/docs/ch10-effects/src/effects/curtain/curtain.frag#M1
 
-The combination of QML animations and passing variables from the vertex shader to the fragment shader demonstrates how QML and shaders can be used together to build complex, animated, effects.
+QML 动画与从顶点着色器向片元着色器传值的结合，展示了 QML 和着色器如何协同构建复杂的动画效果。
 
-The effect itself is used from the `curtaindemo.qml` file shown below.
+该效果本身通过下面所示的 `curtaindemo.qml` 文件使用。
 
 <<< @/docs/ch10-effects/src/effects/curtain/curtaindemo.qml#M1
 
-The curtain is opened through a custom `open` property on the curtain effect. We use a `MouseArea` to trigger the opening and closing of the curtain when the user clicks or taps the area.
+窗帘通过窗帘效果上的自定义 `open` 属性打开。我们使用 `MouseArea` 在用户点击或轻触该区域时触发窗帘的开合。

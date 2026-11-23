@@ -1,12 +1,11 @@
 # Locator
 
-The locator is a central component inside Qt Creator. It allows developers to navigate fast to specific locations inside the source code or inside the help. To open the locator press `Ctrl+K`.
+Locator（定位器）是 Qt Creator 内的一个核心组件。它让开发者能够快速导航到源代码或帮助中的特定位置。按 `Ctrl+K` 即可打开 Locator。
 
 ![](./assets/locator.png)
 
-A pop-up is coming from the bottom left and shows a list of options. If you just search a file inside your project just hit the first letter from the file name. The locator also accepts wild-cards, so `\*main.qml` will also work. Otherwise, you can also prefix your search to search for the specific content type.
+一个弹窗会从左下角弹出，显示选项列表。如果你只想在项目中搜索某个文件，键入文件名的首字母即可。Locator 也接受通配符，因此 `\*main.qml` 同样有效。此外，你还可以为搜索添加前缀，以查找特定的内容类型。
 
 ![](./assets/creator-locator.png)
 
-Please try it out. For example to open the help for the QML element Rectangle open the locator and type `? rectangle`. While you type the locator will update the suggestions until you found the reference you are looking for.
-
+请试一试。例如，要打开 QML 元素 Rectangle 的帮助，打开 Locator 并输入 `? rectangle`。输入过程中 Locator 会不断更新建议，直到你找到所需的参考条目。

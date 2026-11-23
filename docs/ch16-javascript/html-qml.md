@@ -1,8 +1,7 @@
-# Browser/HTML vs Qt Quick/QML
+# 浏览器/HTML 与 Qt Quick/QML 的对比
 
-The browser is the runtime to render HTML and execute the Javascript associated with the HTML. Nowadays modern web applications contain much more JavaScript than HTML. The Javascript inside the browser is a standard ECMAScript environment with some additional browser APIs. A typical JS environment inside the browser has a global object named `window` which is used to interact with the browser window (title, location URL, DOM tree etc.) Browsers provide functions to access DOM nodes by their id, class etc. (which were used by jQuery to provide the CSS selectors) and recently also by CSS selectors (`querySelector`, `querySelectorAll`). Additionally, there is a possibility to call a function after a certain amount of time (`setTimeout`) and to call it repeatedly (`setInterval`). Besides these (and other browser APIs), the environment is similar to QML/JS.
+浏览器是渲染 HTML 并执行与之关联的 JavaScript 的运行时。如今，现代 Web 应用程序中 JavaScript 的含量远超 HTML。浏览器中的 JavaScript 是一个标准的 ECMAScript 环境，并附带一些浏览器 API。浏览器中典型的 JS 环境有一个名为 `window` 的全局对象，用于与浏览器窗口交互（标题、位置 URL、DOM 树等）。浏览器提供了按 id、class 等访问 DOM 节点的函数（jQuery 曾利用这些函数提供 CSS 选择器功能），最近还支持直接通过 CSS 选择器访问（`querySelector`、`querySelectorAll`）。此外，还可以在一段时间后调用某个函数（`setTimeout`）以及重复调用某个函数（`setInterval`）。除了这些（以及其他浏览器 API）之外，该环境与 QML/JS 类似。
 
-Another difference is how JS can appear inside HTML and QML. In HTML, you can execute JS only during the initial page load or in event handlers (e.g. page loaded, mouse pressed). For example, your JS initializes normally on page load, which is comparable to `Component.onCompleted` in QML. By default, you cannot use JS for property bindings in a browser (AngularJS enhances the DOM tree to allow these, but this is far away from standard HTML).
+另一个区别是 JS 在 HTML 和 QML 中的出现方式。在 HTML 中，你只能在初始页面加载期间或事件处理器（例如页面加载完成、鼠标按下）中执行 JS。例如，你的 JS 通常在页面加载时初始化，这与 QML 中的 `Component.onCompleted` 类似。默认情况下，你不能在浏览器中将 JS 用于属性绑定（AngularJS 扩展了 DOM 树以支持这种用法，但这与标准 HTML 相去甚远）。
 
-In QML, JS is a much more of a first-class citizen and is much deeper integrated into the QML render tree. Which makes the syntax much more readable. Besides these differences, people who have developed HTML/JS applications should feel at home using QML/JS.
-
+在 QML 中，JS 更像是一等公民，并且更深入地集成到 QML 渲染树中。这使得语法更具可读性。除了这些差异之外，开发过 HTML/JS 应用程序的人在使用 QML/JS 时应该会感到得心应手。

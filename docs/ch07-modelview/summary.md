@@ -1,11 +1,11 @@
-# Summary
+# 小结
 
-In this chapter, we have looked at models, views, and delegates. For each data entry in a model, a view instantiates a delegate visualizing the data. This separates the data from the presentation.
+在本章中，我们研究了模型、视图和委托。对于模型中的每个数据条目，视图会实例化一个委托来可视化数据。这把数据与表示分离开来。
 
-A model can be a single integer, where the `index` variable is provided to the delegate. If a JavaScript array is used as a model, the `modelData` variable represents the data of the current index of the array, while `index` holds the index. For more complex cases, where multiple values need to be provided by each data item, a `ListModel` populated with `ListElement` items is a better solution.
+模型可以是一个单独的整数，此时 `index` 变量会提供给委托。如果 JavaScript 数组用作模型，`modelData` 变量表示数组当前索引处的数据，而 `index` 保存索引。对于更复杂的情况，即每个数据项需要提供多个值，一个 `ListModel`（用 `ListElement` 项填充）是更好的解决方案。
 
-For static models, a `Repeater` can be used as the view. It is easy to combine it with a positioner such as `Row`, `Column`, `Grid` or `Flow` to build user interface parts. For dynamic or large data models, a view such as `ListView`, `GridView`, or `TableView` is more appropriate. These create delegate instances on the fly as they are needed, reducing the number of elements live in the scene at once.
+对于静态模型，可以使用 `Repeater` 作为视图。它很容易与定位器（如 `Row`、`Column`、`Grid` 或 `Flow`）结合，构建用户界面的组成部分。对于动态或大型数据模型，`ListView`、`GridView` 或 `TableView` 这样的视图更合适。它们根据需要即时创建委托实例，减少了同时存在于场景中的元素数量。
 
-The difference between `GridView` and `TableView` is that the table view expects a table type model with multiple columns of data while the grid view shows a list type model in a grid.
+`GridView` 和 `TableView` 的区别在于，表格视图期望一个包含多列数据的表类型模型，而网格视图以网格形式显示列表类型的模型。
 
-The delegates used in the views can be static items with properties bound to data from the model, or they can be dynamic, with states depending on if they are in focus or not. Using the `onAdd` and `onRemove` signals of the view, they can even be animated as they appear and disappear.
+视图中使用的委托可以是属性绑定到模型数据的静态项，也可以是动态的，其状态取决于它们是否处于焦点中。利用视图的 `onAdd` 和 `onRemove` 信号，甚至可以在它们出现和消失时为其添加动画。
